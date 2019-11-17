@@ -125,6 +125,10 @@ ad_ip_parameter EXT_DEVICE_CLK_EN BOOLEAN 0 false { \
   ALLOWED_RANGES { "0:Disabled" "1:Enabled" }
 }
 
+ad_ip_parameter MCGB_EN BOOLEAN false false { \
+  DISPLAY_NAME "Enable the Master Clock Generation Block" \
+}
+
 proc create_phy_reset_control {tx num_of_lanes sysclk_frequency} {
   add_instance phy_reset_control altera_xcvr_reset_control
   set_instance_property phy_reset_control SUPPRESS_ALL_WARNINGS true
@@ -153,7 +157,8 @@ proc create_phy_reset_control {tx num_of_lanes sysclk_frequency} {
   }
 }
 
-proc create_lane_pll {id pllclk_frequency refclk_frequency num_lanes} {
+proc create_lane_pll {id pllclk_frequency refclk_frequency num_lanes mcgb_en} {
+
   add_instance lane_pll altera_xcvr_atx_pll_a10
   set_instance_property lane_pll SUPPRESS_ALL_INFO_MESSAGES true
   set_instance_parameter_value lane_pll {enable_pll_reconfig} {1}
@@ -163,7 +168,8 @@ proc create_lane_pll {id pllclk_frequency refclk_frequency num_lanes} {
   set_instance_parameter_value lane_pll {set_csr_soft_logic_enable} {1}
   set_instance_parameter_value lane_pll {set_output_clock_frequency} $pllclk_frequency
   set_instance_parameter_value lane_pll {set_auto_reference_clock_frequency} $refclk_frequency
-  if {$num_lanes > 6} {
+  
+ if {$num_lanes > 6 || $mcgb_en} {
     set_instance_parameter_value lane_pll enable_mcgb {true}
     set_instance_parameter_value lane_pll enable_hfreq_clk {true}
 
@@ -251,6 +257,7 @@ proc jesd204_compose {} {
   set lane_map [get_parameter_value "LANE_MAP"]
   set lane_invert [get_parameter_value "LANE_INVERT"]
   set soft_pcs [get_parameter_value "SOFT_PCS"]
+  set mcgb_en [get_parameter_value "MCGB_EN"]
   set device_family [get_parameter_value "DEVICE_FAMILY"]
   set device [get_parameter_value "DEVICE"]
   set ext_device_clk_en [get_parameter_value "EXT_DEVICE_CLK_EN"]
@@ -383,11 +390,17 @@ proc jesd204_compose {} {
     set jesd204_intfs {config control ilas_config event status}
     set phy_reset_intfs {analogreset digitalreset cal_busy}
 
-    create_lane_pll $id $pllclk_frequency $refclk_frequency $num_of_lanes
-    add_connection lane_pll.tx_serial_clk phy.serial_clk_x1
-    if {$num_of_lanes > 6} {
-      add_connection lane_pll.mcgb_serial_clk phy.serial_clk_xN
-    }
+    create_lane_pll $id $pllclk_frequency $refclk_frequency $num_of_lanes $mcgb_en
+
+	if {$mcgb_en} {
+		add_connection lane_pll.mcgb_serial_clk phy.serial_clk_x1
+	} else {
+		add_connection lane_pll.tx_serial_clk phy.serial_clk_x1
+	}
+	if {$num_of_lanes > 6} {
+		add_connection lane_pll.mcgb_serial_clk phy.serial_clk_xN
+	}
+
   } else {
     set tx_rx "rx"
     set data_direction source
