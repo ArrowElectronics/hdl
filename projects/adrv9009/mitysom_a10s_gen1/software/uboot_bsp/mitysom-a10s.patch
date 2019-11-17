@@ -1,0 +1,28 @@
+From c405c0ec0ddd71e9484a387425f2b8391209bea7 Mon Sep 17 00:00:00 2001
+From: Daniel Vincelette <dvincelette@criticallink.com>
+Date: Sun, 17 Nov 2019 12:57:38 -0500
+Subject: MitySOM-A10S Updates
+
+
+diff --git a/include/configs/socfpga_arria10.h b/include/configs/socfpga_arria10.h
+index b7f7963433..41cafe49a9 100755
+--- a/include/configs/socfpga_arria10.h
++++ b/include/configs/socfpga_arria10.h
+@@ -103,7 +103,7 @@
+ #define CONFIG_SYS_INIT_SP_ADDR		(CONFIG_SYS_INIT_RAM_ADDR + \
+ 					 CONFIG_SYS_INIT_RAM_SIZE  - SIZEOF_MMUPAGETABLE)
+ /* Default load address */
+-#define CONFIG_SYS_LOAD_ADDR		0x8000
++#define CONFIG_SYS_LOAD_ADDR		0xC000
+ 
+ /*
+  * Display CPU and Board Info
+@@ -233,7 +233,7 @@
+ #elif defined(CONFIG_MMC)
+ #define CONFIG_BOOTCOMMAND " run core_rbf_prog; run callscript; run mmcload;" \
+ 	"run set_initswstate; run mmcboot"
+-#define CONFIG_LINUX_DTB_NAME	socfpga_arria10_socdk_sdmmc.dtb
++#define CONFIG_LINUX_DTB_NAME	mitysom_a10s_devkit_adrv9009.dtb
+ #elif defined(CONFIG_CADENCE_QSPI)
+ #define CONFIG_BOOTCOMMAND "run qspirbfcore_rbf_prog; run qspiload;" \
+ 	"run set_initswstate; run qspiboot"
