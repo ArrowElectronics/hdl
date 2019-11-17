@@ -1,6 +1,9 @@
 set dac_fifo_name avl_ad9371_tx_fifo
 set dac_data_width 128
 set dac_dma_data_width 128
+if {![info exists jesd204_mcgb_en]} {
+	set jesd204_mcgb_en false
+}
 
 # ad9371_tx JESD204
 
@@ -12,6 +15,7 @@ set_instance_parameter_value ad9371_tx_jesd204 {REFCLK_FREQUENCY} {122.88}
 set_instance_parameter_value ad9371_tx_jesd204 {NUM_OF_LANES} {4}
 set_instance_parameter_value ad9371_tx_jesd204 {LANE_MAP} {3 0 1 2}
 set_instance_parameter_value ad9371_tx_jesd204 {SOFT_PCS} {false}
+set_instance_parameter_value ad9371_tx_jesd204 {MCGB_EN} {jesd204_mcgb_en}
 
 add_connection sys_clk.clk ad9371_tx_jesd204.sys_clk
 add_connection sys_clk.clk_reset ad9371_tx_jesd204.sys_resetn
@@ -33,6 +37,7 @@ set_instance_parameter_value ad9371_rx_jesd204 {LANE_RATE} {4915.2}
 set_instance_parameter_value ad9371_rx_jesd204 {REFCLK_FREQUENCY} {122.88}
 set_instance_parameter_value ad9371_rx_jesd204 {NUM_OF_LANES} {2}
 set_instance_parameter_value ad9371_rx_jesd204 {SOFT_PCS} {false}
+set_instance_parameter_value ad9371_rx_jesd204 {MCGB_EN} {jesd204_mcgb_en}
 
 add_connection sys_clk.clk ad9371_rx_jesd204.sys_clk
 add_connection sys_clk.clk_reset ad9371_rx_jesd204.sys_resetn
@@ -54,6 +59,7 @@ set_instance_parameter_value ad9371_rx_os_jesd204 {LANE_RATE} {4915.2}
 set_instance_parameter_value ad9371_rx_os_jesd204 {REFCLK_FREQUENCY} {122.88}
 set_instance_parameter_value ad9371_rx_os_jesd204 {SOFT_PCS} {false}
 set_instance_parameter_value ad9371_rx_os_jesd204 {NUM_OF_LANES} {2}
+set_instance_parameter_value ad9371_rx_os_jesd204 {MCGB_EN} {jesd204_mcgb_en}
 
 add_connection sys_clk.clk ad9371_rx_os_jesd204.sys_clk
 add_connection sys_clk.clk_reset ad9371_rx_os_jesd204.sys_resetn
