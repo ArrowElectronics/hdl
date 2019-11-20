@@ -396,11 +396,13 @@ module avl_dacfifo_wr #(
       avl_mem_raddr <= 'b0;
       avl_mem_raddr_g <= 'b0;
     end else begin
-      if (~avl_waitrequest && avl_write) begin
-        avl_mem_rvalid[0] <= 1'b1;
-        avl_mem_rvalid[1] <= avl_mem_rvalid[0];
-      end else begin
-        avl_mem_rvalid <= {avl_mem_rvalid[0], 1'b0};
+      if (~avl_waitrequest) begin
+          if (avl_write) begin
+            avl_mem_rvalid[0] <= 1'b1;
+            avl_mem_rvalid[1] <= avl_mem_rvalid[0];
+          end else begin
+            avl_mem_rvalid <= {avl_mem_rvalid[0], 1'b0};
+          end
       end
       if (~avl_waitrequest && avl_write) begin
         avl_mem_raddr <= avl_mem_raddr + 1'b1;
