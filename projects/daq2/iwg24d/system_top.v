@@ -172,8 +172,6 @@ module system_top (
   wire    [  7:0]   spi_csn_s;
   wire              dac_fifo_bypass;
 
-  wire              rx_sync_s;
-
   wire              hps_i2c1_scl;
   wire              hps_i2c1_scl_oe;
   wire              hps_i2c1_sda;
@@ -186,8 +184,6 @@ module system_top (
   assign spi_csn_adc = spi_csn_s[2];
   assign spi_csn_dac = spi_csn_s[1];
   assign spi_csn_clk = spi_csn_s[0];
-
-  assign rx_sync = ~rx_sync_s;
 
   daq2_spi i_daq2_spi (
     .spi_csn (spi_csn_s[2:0]),
@@ -330,7 +326,7 @@ module system_top (
     .tx_sysref_export (tx_sysref),
     .rx_serial_data_rx_serial_data (rx_serial_data),
     .rx_ref_clk_clk (rx_ref_clk),
-    .rx_sync_export (rx_sync_s),
+    .rx_sync_export (rx_sync),
     .rx_sysref_export (rx_sysref));
 
 endmodule
