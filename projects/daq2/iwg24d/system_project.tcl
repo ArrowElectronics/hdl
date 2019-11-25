@@ -24,8 +24,8 @@ set_location_assignment PIN_R30   -to rx_serial_data[2]     ; ## A06  FMCA_HPC_D
 set_location_assignment PIN_R29   -to "rx_serial_data[2](n)"; ## A07  FMCA_HPC_DP2_M2C_N
 set_location_assignment PIN_T32   -to rx_serial_data[3]     ; ## A02  FMCA_HPC_DP1_M2C_P
 set_location_assignment PIN_T31   -to "rx_serial_data[3](n)"; ## A03  FMCA_HPC_DP1_M2C_N
-set_location_assignment PIN_AM16  -to rx_sync               ; ## D08  FMCA_HPC_LA01_CC_P
-set_location_assignment PIN_AL16  -to "rx_sync(n)"          ; ## D09  FMCA_HPC_LA01_CC_N
+set_location_assignment PIN_AL16  -to rx_sync               ; ## D08  FMCA_HPC_LA01_CC_P
+set_location_assignment PIN_AM16  -to "rx_sync(n)"          ; ## D09  FMCA_HPC_LA01_CC_N
 set_location_assignment PIN_Y1    -to rx_sysref             ; ## G09  FMCA_HPC_LA03_P
 set_location_assignment PIN_Y2    -to "rx_sysref(n)"        ; ## G10  FMCA_HPC_LA03_N
 
