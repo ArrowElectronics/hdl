@@ -115,13 +115,16 @@ module system_top (
   output  [  0:0]   hps_uart0_tx,
   input   [  0:0]   hps_uart1_rx,
   output  [  0:0]   hps_uart1_tx,
-  input   [  0:0]   hps_uart1_cts_n,
-  output  [  0:0]   hps_uart1_rts_n,
 
-  // hps-i2c (fmc)
+  // hps-i2c1 (fmc)
 
-  inout   [  0:0]   hps_i2c_sda,
-  inout   [  0:0]   hps_i2c_scl,
+  inout   [  0:0]   hps_i2c1_sda,
+  inout   [  0:0]   hps_i2c1_scl,
+
+  // hps-i2c0
+
+  inout   [  0:0]   hps_i2c0_sda,
+  inout   [  0:0]   hps_i2c0_scl,
 
   // lane interface
 
@@ -172,12 +175,6 @@ module system_top (
   wire    [  7:0]   spi_csn_s;
   wire              dac_fifo_bypass;
 
-  wire              rx_sync_s;
-
-  wire              hps_i2c1_scl;
-  wire              hps_i2c1_scl_oe;
-  wire              hps_i2c1_sda;
-  wire              hps_i2c1_sda_oe;
 
   // assignments
 
@@ -186,8 +183,6 @@ module system_top (
   assign spi_csn_adc = spi_csn_s[2];
   assign spi_csn_dac = spi_csn_s[1];
   assign spi_csn_clk = spi_csn_s[0];
-
-  assign rx_sync = ~rx_sync_s;
 
   daq2_spi i_daq2_spi (
     .spi_csn (spi_csn_s[2:0]),
@@ -224,10 +219,7 @@ module system_top (
 
   assign sys_resetn_s = sys_resetn & sys_hps_resetn;
 
-  // hps_i2c1 routed to fmc via fpga io
 
-  ALT_IOBUF scl_iobuf (.i(1'b0), .oe(hps_i2c1_scl_oe), .o(hps_i2c1_scl), .io(hps_i2c_scl));
-  ALT_IOBUF sda_iobuf (.i(1'b0), .oe(hps_i2c1_sda_oe), .o(hps_i2c1_sda), .io(hps_i2c_sda));
 
   // instantiations
 
@@ -310,12 +302,10 @@ module system_top (
     .sys_hps_io_hps_io_phery_uart0_TX (hps_uart0_tx),
     .sys_hps_io_hps_io_phery_uart1_RX (hps_uart1_rx),
     .sys_hps_io_hps_io_phery_uart1_TX (hps_uart1_tx),
-    .sys_hps_io_hps_io_phery_uart1_CTS_N (hps_uart1_cts_n),
-    .sys_hps_io_hps_io_phery_uart1_RTS_N (hps_uart1_rts_n),
-    .sys_hps_i2c1_scl_in_clk (hps_i2c1_scl),
-    .sys_hps_i2c1_clk_clk (hps_i2c1_scl_oe),
-    .sys_hps_i2c1_sda_i (hps_i2c1_sda),
-    .sys_hps_i2c1_sda_oe (hps_i2c1_sda_oe),
+    .sys_hps_io_hps_io_phery_i2c1_SCL  (hps_i2c1_scl),
+    .sys_hps_io_hps_io_phery_i2c1_SDA (hps_i2c1_sda),
+    .sys_hps_io_hps_io_phery_i2c0_SCL  (hps_i2c0_scl),
+    .sys_hps_io_hps_io_phery_i2c0_SDA (hps_i2c0_sda),
     .sys_hps_out_rstn_reset_n (sys_hps_resetn),
     .sys_hps_rstn_reset_n (sys_resetn),
     .sys_rstn_reset_n (sys_resetn_s),
@@ -330,7 +320,7 @@ module system_top (
     .tx_sysref_export (tx_sysref),
     .rx_serial_data_rx_serial_data (rx_serial_data),
     .rx_ref_clk_clk (rx_ref_clk),
-    .rx_sync_export (rx_sync_s),
+    .rx_sync_export (rx_sync),
     .rx_sysref_export (rx_sysref));
 
 endmodule

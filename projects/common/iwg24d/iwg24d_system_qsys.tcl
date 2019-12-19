@@ -42,8 +42,8 @@ set_hps_io  IO_SHARED_Q1_01   NONE
 set_hps_io  IO_SHARED_Q1_02   NONE
 set_hps_io  IO_SHARED_Q1_03   UART0:TX
 set_hps_io  IO_SHARED_Q1_04   UART0:RX
-set_hps_io  IO_SHARED_Q1_05   UART1:CTS_N
-set_hps_io  IO_SHARED_Q1_06   UART1:RTS_N
+set_hps_io  IO_SHARED_Q1_05   I2C0:SDA
+set_hps_io  IO_SHARED_Q1_06   I2C0:SCL
 set_hps_io  IO_SHARED_Q1_07   UART1:TX
 set_hps_io  IO_SHARED_Q1_08   UART1:RX
 set_hps_io  IO_SHARED_Q1_09   MDIO1:MDIO
@@ -105,9 +105,11 @@ set_instance_parameter_value sys_hps {EMAC1_Mode} {RGMII_with_MDIO}
 set_instance_parameter_value sys_hps {UART0_PinMuxing} {IO}
 set_instance_parameter_value sys_hps {UART0_Mode} {No_flow_control}
 set_instance_parameter_value sys_hps {UART1_PinMuxing} {IO}
-set_instance_parameter_value sys_hps {UART1_Mode} {Flow_control}
-set_instance_parameter_value sys_hps {I2C1_PinMuxing} {FPGA}
+set_instance_parameter_value sys_hps {UART1_Mode} {No_flow_control}
+set_instance_parameter_value sys_hps {I2C1_PinMuxing} {IO}
 set_instance_parameter_value sys_hps {I2C1_Mode} {default}
+set_instance_parameter_value sys_hps {I2C0_PinMuxing} {IO}
+set_instance_parameter_value sys_hps {I2C0_Mode} {default}
 set_instance_parameter_value sys_hps {F2H_COLD_RST_Enable} {1}
 set_instance_parameter_value sys_hps {H2F_USER0_CLK_Enable} {1}
 set_instance_parameter_value sys_hps {H2F_USER0_CLK_FREQ} {175}
@@ -121,12 +123,6 @@ add_connection sys_clk.clk sys_hps.h2f_lw_axi_clock
 add_connection sys_clk.clk_reset sys_hps.h2f_lw_axi_reset
 add_interface sys_hps_io conduit end
 set_interface_property sys_hps_io EXPORT_OF sys_hps.hps_io
-add_interface sys_hps_2c1_scl_in clock sink
-set_interface_property sys_hps_i2c1_scl_in EXPORT_OF sys_hps.i2c1_scl_in
-add_interface sys_hps_i2c1_clk clock source
-set_interface_property sys_hps_i2c1_clk EXPORT_OF sys_hps.i2c1_clk
-add_interface sys_hps_i2c1 conduit end
-set_interface_property sys_hps_i2c1 EXPORT_OF sys_hps.i2c1
 
 # common dma interfaces
 

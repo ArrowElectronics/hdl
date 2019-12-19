@@ -210,11 +210,10 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_uart1_rx
 set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_uart1_cts_n
 set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_uart1_rts_n
 
-# hps-i2c (fmc) needs to be routed via FPGA pins to get to the FMC.
 # hpc peripherals pins routed to a dedicated HPS header (J1)on the baseboard
 
-set_location_assignment PIN_AP14   -to hps_i2c_scl
-set_location_assignment PIN_AN14   -to hps_i2c_sda
+set_location_assignment PIN_C18   -to hps_i2c_sda
+set_location_assignment PIN_D17   -to hps_i2c_scl
 
 set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_i2c_scl
 set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_i2c_sda
