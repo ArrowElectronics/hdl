@@ -9,11 +9,11 @@ set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_MEM_CLK_FREQ_MHZ} {1067.0
 set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_DEFAULT_REF_CLK_FREQ} {true}
 set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_USER_REF_CLK_FREQ_MHZ} {266.75}
 set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_REF_CLK_JITTER_PS} {10.0}
-set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_RATE_ENUM} {RATE_QUARTER}
+set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_RATE_ENUM} {RATE_HALF}
 set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_CORE_CLKS_SHARING_ENUM} {CORE_CLKS_SHARING_DISABLED}
 set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_IO_VOLTAGE} {1.2}
 set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_DEFAULT_IO} {true}
-set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_HPS_ENABLE_EARLY_RELEASE} {false}
+set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_HPS_ENABLE_EARLY_RELEASE} {true}
 set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_USER_PERIODIC_OCT_RECAL_ENUM} {PERIODIC_OCT_RECAL_AUTO}
 set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_REF_CLK_FREQ_MHZ} {266.75}
 set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_PING_PONG_EN} {false}
@@ -44,7 +44,7 @@ set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_STARTING_VREFIN} {61.0}
 set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_PLL_REF_CLK_IO_STD_ENUM} {IO_STD_LVDS}
 set_instance_parameter_value fpga_ddr4_cntrl {PHY_DDR4_RZQ_IO_STD_ENUM} {IO_STD_CMOS_12}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_FORMAT_ENUM} {MEM_FORMAT_DISCRETE}
-set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_DQ_WIDTH} {64}
+set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_DQ_WIDTH} {40}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_DQ_PER_DQS} {8}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_DISCRETE_CS_WIDTH} {1}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_NUM_OF_DIMMS} {1}
@@ -135,9 +135,9 @@ set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_NUM_OF_PHYSICAL_RANKS} {1
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_NUM_OF_LOGICAL_RANKS} {1}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_VREFDQ_TRAINING_VALUE} {74.9}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_VREFDQ_TRAINING_RANGE} {DDR4_VREFDQ_TRAINING_RANGE_1}
-set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_VREFDQ_TRAINING_RANGE_DISP} {Range 2 - 45% to 77.5%}
+set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_VREFDQ_TRAINING_RANGE_DISP} {Range 1 - 60% to 92.5%}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TTL_DQS_WIDTH} {8}
-set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TTL_DQ_WIDTH} {64}
+set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TTL_DQ_WIDTH} {40}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TTL_CS_WIDTH} {1}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TTL_CK_WIDTH} {1}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TTL_CKE_WIDTH} {1}
@@ -220,8 +220,8 @@ set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TDQSS_CYC} {0.27}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TQSH_CYC} {0.4}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TDSH_CYC} {0.18}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TDSS_CYC} {0.18}
-set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TWLS_PS} {108.0}
-set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TWLH_PS} {108.0}
+set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TWLS_PS} {162.5}
+set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TWLH_PS} {162.5}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TINIT_US} {500}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TMRD_CK_CYC} {8}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TRAS_NS} {32.0}
@@ -230,12 +230,12 @@ set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TRP_NS} {13.32}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TREFI_US} {7.8}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TRFC_NS} {260.0}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TWR_NS} {15.0}
-set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TWTR_L_CYC} {4}
-set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TWTR_S_CYC} {2}
+set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TWTR_L_CYC} {8}
+set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TWTR_S_CYC} {3}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TFAW_NS} {30.0}
-set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TRRD_L_CYC} {4}
-set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TRRD_S_CYC} {4}
-set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TCCD_L_CYC} {4}
+set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TRRD_L_CYC} {7}
+set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TRRD_S_CYC} {6}
+set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TCCD_L_CYC} {6}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TCCD_S_CYC} {4}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TDIVW_DJ_CYC} {0.1}
 set_instance_parameter_value fpga_ddr4_cntrl {MEM_DDR4_TDQSQ_PS} {66}
