@@ -202,23 +202,17 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_uart0_rx
 
 set_location_assignment PIN_F15   -to hps_uart1_tx
 set_location_assignment PIN_H15   -to hps_uart1_rx
-#set_location_assignment PIN_K21   -to hps_uart1_tx
-#set_location_assignment PIN_J21   -to hps_uart1_rx
-#set_location_assignment PIN_M21   -to hps_uart1_cts_n
-#set_location_assignment PIN_L21   -to hps_uart1_rts_n
 
 set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_uart1_tx
 set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_uart1_rx
-#set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_uart1_cts_n
-#set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_uart1_rts_n
 
-# hpc peripherals pins routed to a dedicated HPS header (J1)on the baseboard
+# hps-i2c
 
-set_location_assignment PIN_C18   -to hps_i2c_sda
-set_location_assignment PIN_D17   -to hps_i2c_scl
+set_location_assignment PIN_C18   -to hps_i2c1_sda
+set_location_assignment PIN_D17   -to hps_i2c1_scl
 
-set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_i2c_scl
-set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_i2c_sda
+set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_i2c1_scl
+set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_i2c1_sda
 
 
 
