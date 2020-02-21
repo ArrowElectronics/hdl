@@ -209,7 +209,7 @@ set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_NUM_OF_DIMMS} {1}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_RANKS_PER_DIMM} {1}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_CKE_PER_DIMM} {1}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_CK_WIDTH} {1}
-set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_ROW_ADDR_WIDTH} {15}
+set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_ROW_ADDR_WIDTH} {16}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_COL_ADDR_WIDTH} {10}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_BANK_ADDR_WIDTH} {2}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_BANK_GROUP_WIDTH} {1}
@@ -252,13 +252,13 @@ set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_USER_VREFDQ_TRAINING_R
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_BL_ENUM} {DDR4_BL_BL8}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_BT_ENUM} {DDR4_BT_SEQUENTIAL}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_ASR_ENUM} {DDR4_ASR_MANUAL_NORMAL}
-set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_DRV_STR_ENUM} {DDR4_DRV_STR_RZQ_7}
+set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_DRV_STR_ENUM} {DDR4_DRV_STR_RZQ_5}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_DLL_EN} {1}
-set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_RTT_NOM_ENUM} {DDR4_RTT_NOM_RZQ_6}
+set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_RTT_NOM_ENUM} {DDR4_RTT_NOM_RZQ_5}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_RTT_WR_ENUM} {DDR4_RTT_WR_ODT_DISABLED}
-set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_WTCL} {12}
+set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_WTCL} {16}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_ATCL_ENUM} {DDR4_ATCL_DISABLED}
-set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_TCL} {18}
+set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_TCL} {19}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_USE_DEFAULT_ODT} {1}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_R_ODTN_1X1} {Rank\ 0}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_R_ODT0_1X1} {off}
@@ -321,31 +321,31 @@ set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_TCCD_S_CYC} {4}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_TDIVW_DJ_CYC} {0.1}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_TDQSQ_PS} {66}
 set_instance_parameter_value sys_hps_ddr4_cntrl {MEM_DDR4_TQH_CYC} {0.38}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USE_DEFAULT_SLEW_RATES} {1}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USE_DEFAULT_ISI_VALUES} {1}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_CK_SLEW_RATE} {4.0}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_AC_SLEW_RATE} {2.0}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_RCLK_SLEW_RATE} {8.0}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_WCLK_SLEW_RATE} {4.0}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_RDATA_SLEW_RATE} {4.0}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_WDATA_SLEW_RATE} {2.0}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_AC_ISI_NS} {0.0}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_RCLK_ISI_NS} {0.0}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_WCLK_ISI_NS} {0.0}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_RDATA_ISI_NS} {0.0}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_WDATA_ISI_NS} {0.0}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_IS_SKEW_WITHIN_DQS_DESKEWED} {1}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_AC_TO_CK_SKEW_NS} {-0.00626847769365}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_BRD_SKEW_WITHIN_AC_NS} {0.00702600796212}
 set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_BRD_SKEW_WITHIN_DQS_NS} {0.02}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_PKG_BRD_SKEW_WITHIN_DQS_NS} {0.02}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_IS_SKEW_WITHIN_AC_DESKEWED} {0}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_BRD_SKEW_WITHIN_AC_NS} {0.02}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_PKG_BRD_SKEW_WITHIN_AC_NS} {0.02}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_DQS_TO_CK_SKEW_NS} {0.02}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_DQS_TO_CK_SKEW_NS} {-0.629645021323}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_IS_SKEW_WITHIN_AC_DESKEWED} {1}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_IS_SKEW_WITHIN_DQS_DESKEWED} {1}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_MAX_CK_DELAY_NS} {0.629749023118}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_MAX_DQS_DELAY_NS} {0.0}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_PKG_BRD_SKEW_WITHIN_AC_NS} {0.00702600796212}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_PKG_BRD_SKEW_WITHIN_DQS_NS} {0.0036363053537}
 set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_SKEW_BETWEEN_DIMMS_NS} {0.05}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_SKEW_BETWEEN_DQS_NS} {0.02}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_AC_TO_CK_SKEW_NS} {0.0}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_MAX_CK_DELAY_NS} {0.6}
-set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_MAX_DQS_DELAY_NS} {0.6}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_SKEW_BETWEEN_DQS_NS} {0.0}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_AC_ISI_NS} {0.0}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_AC_SLEW_RATE} {2.0}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_CK_SLEW_RATE} {4.0}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_RCLK_ISI_NS} {0.0}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_RCLK_SLEW_RATE} {8.0}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_RDATA_ISI_NS} {0.0}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_RDATA_SLEW_RATE} {4.0}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_WCLK_ISI_NS} {0.0}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_WCLK_SLEW_RATE} {4.0}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_WDATA_ISI_NS} {0.0}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USER_WDATA_SLEW_RATE} {2.0}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USE_DEFAULT_ISI_VALUES} {1}
+set_instance_parameter_value sys_hps_ddr4_cntrl {BOARD_DDR4_USE_DEFAULT_SLEW_RATES} {1}
 set_instance_parameter_value sys_hps_ddr4_cntrl {CTRL_DDR4_AVL_PROTOCOL_ENUM} {CTRL_AVL_PROTOCOL_ST}
 set_instance_parameter_value sys_hps_ddr4_cntrl {CTRL_DDR4_SELF_REFRESH_EN} {0}
 set_instance_parameter_value sys_hps_ddr4_cntrl {CTRL_DDR4_AUTO_POWER_DOWN_EN} {0}
@@ -499,4 +499,3 @@ ad_cpu_interconnect 0x00000040 sys_spi.spi_control_port
 
 ad_cpu_interrupt 5 sys_gpio_in.irq
 ad_cpu_interrupt 7 sys_spi.irq
-
