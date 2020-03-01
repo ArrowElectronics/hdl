@@ -206,13 +206,22 @@ set_location_assignment PIN_H15   -to hps_uart1_rx
 set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_uart1_tx
 set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_uart1_rx
 
-# hps-i2c
+set_location_assignment PIN_C18   -to hps_i2c_sda
+set_location_assignment PIN_D17   -to hps_i2c_scl
 
-set_location_assignment PIN_C18   -to hps_i2c1_sda
-set_location_assignment PIN_D17   -to hps_i2c1_scl
+set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_i2c_scl
+set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_i2c_sda
 
-set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_i2c1_scl
-set_instance_assignment -name IO_STANDARD "1.8 V" -to hps_i2c1_sda
+# fmc power enables
+set_instance_assignment -name IO_STANDARD "1.8 V" -to fmc_power_en[2]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to fmc_power_en[1]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to fmc_power_en[0]
 
+set_location_assignment PIN_AH7 -to fmc_power_en[0]
+set_location_assignment PIN_AP7 -to fmc_power_en[1]
+set_location_assignment PIN_AN9 -to fmc_power_en[2]
 
+set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
+set_global_assignment -name USE_CONFIGURATION_DEVICE OFF
+set_global_assignment -name RESERVE_DATA0_AFTER_CONFIGURATION "USE AS REGULAR IO"
 

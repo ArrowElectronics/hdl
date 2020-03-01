@@ -160,7 +160,11 @@ module system_top (
   output                  spi_csn_adc,
   output                  spi_clk,
   inout                   spi_sdio,
-  output                  spi_dir);
+  output                  spi_dir,
+
+  // fmc power enables
+  output  [2:0]           fmc_power_en
+  );
 
   // internal signals
 
@@ -175,10 +179,10 @@ module system_top (
   wire    [  7:0]   spi_csn_s;
   wire              dac_fifo_bypass;
 
-
   // assignments
 
   assign pg_c2m = 1'b1;
+  assign fmc_power_en = 3'b111;
 
   assign spi_csn_adc = spi_csn_s[2];
   assign spi_csn_dac = spi_csn_s[1];
