@@ -1,8 +1,9 @@
 
 
 package require qsys
+package require quartus::device
 source ../scripts/adi_env.tcl
-source ../scripts/adi_ip_alt.tcl
+source ../scripts/adi_ip_intel.tcl
 
 set_module_property NAME axi_ad9144
 set_module_property DESCRIPTION "AXI AD9144 Interface"
@@ -10,11 +11,12 @@ set_module_property VERSION 1.0
 set_module_property GROUP "Analog Devices"
 set_module_property DISPLAY_NAME axi_ad9144
 set_module_property ELABORATION_CALLBACK p_axi_ad9144
+set_module_property VALIDATION_CALLBACK info_param_validate
 
 # files
 
 ad_ip_files axi_ad9144 [list \
-  $ad_hdl_dir/library/altera/common/ad_mul.v \
+  $ad_hdl_dir/library/intel/common/ad_mul.v \
   $ad_hdl_dir/library/common/ad_dds_cordic_pipe.v \
   $ad_hdl_dir/library/common/ad_dds_sine_cordic.v \
   $ad_hdl_dir/library/common/ad_dds_sine.v \
@@ -36,12 +38,13 @@ ad_ip_files axi_ad9144 [list \
   $ad_hdl_dir/library/jesd204/ad_ip_jesd204_tpl_dac/ad_ip_jesd204_tpl_dac_framer.v \
   $ad_hdl_dir/library/jesd204/ad_ip_jesd204_tpl_dac/ad_ip_jesd204_tpl_dac_pn.v \
   $ad_hdl_dir/library/jesd204/ad_ip_jesd204_tpl_dac/ad_ip_jesd204_tpl_dac_regmap.v \
+  $ad_hdl_dir/library/jesd204/ad_ip_jesd204_tpl_common/up_tpl_common.v \
   \
   axi_ad9144.v \
-  $ad_hdl_dir/library/altera/common/up_xfer_cntrl_constr.sdc \
-  $ad_hdl_dir/library/altera/common/up_xfer_status_constr.sdc \
-  $ad_hdl_dir/library/altera/common/up_clock_mon_constr.sdc \
-  $ad_hdl_dir/library/altera/common/up_rst_constr.sdc \
+  $ad_hdl_dir/library/intel/common/up_xfer_cntrl_constr.sdc \
+  $ad_hdl_dir/library/intel/common/up_xfer_status_constr.sdc \
+  $ad_hdl_dir/library/intel/common/up_clock_mon_constr.sdc \
+  $ad_hdl_dir/library/intel/common/up_rst_constr.sdc \
 ]
 
 # parameters
@@ -60,13 +63,15 @@ set_parameter_property QUAD_OR_DUAL_N TYPE INTEGER
 set_parameter_property QUAD_OR_DUAL_N UNITS None
 set_parameter_property QUAD_OR_DUAL_N HDL_PARAMETER true
 
+adi_add_auto_fpga_spec_params
+
 # axi4 slave
 
-ad_ip_intf_s_axi s_axi_aclk s_axi_aresetn
+ad_ip_intf_s_axi s_axi_aclk s_axi_aresetn 12
 
 # transceiver interface
 
-ad_alt_intf clock   tx_clk        input   1
+ad_interface clock   tx_clk        input   1
 
 add_interface if_tx_data avalon_streaming source
 add_interface_port if_tx_data tx_data data output 128*(QUAD_OR_DUAL_N+1)
@@ -77,7 +82,7 @@ set_interface_property if_tx_data dataBitsPerSymbol 128
 
 # dma interface
 
-ad_alt_intf clock   dac_clk       output  1
+ad_interface clock   dac_clk       output  1
 
 for {set i 0} {$i < 4} {incr i} {
   add_interface dac_ch_${i} conduit end
@@ -89,7 +94,7 @@ for {set i 0} {$i < 4} {incr i} {
   set_interface_property dac_ch_${i} associatedReset none
 }
 
-ad_alt_intf signal  dac_dunf      input   1 unf
+ad_interface signal  dac_dunf      input   1 unf
 
 proc p_axi_ad9144 {} {
 

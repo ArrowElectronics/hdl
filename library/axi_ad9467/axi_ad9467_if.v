@@ -38,8 +38,9 @@
 
 module axi_ad9467_if #(
 
-  parameter DEVICE_TYPE = 0,
-  parameter IO_DELAY_GROUP = "dev_if_delay_group") (
+  parameter FPGA_TECHNOLOGY = 0,
+  parameter IO_DELAY_GROUP = "dev_if_delay_group",
+  parameter DELAY_REFCLK_FREQUENCY = 200) (
 
   // adc interface (clk, data, over-range)
 
@@ -128,9 +129,10 @@ module axi_ad9467_if #(
   generate
   for (l_inst = 0; l_inst <= 7; l_inst = l_inst + 1) begin : g_adc_if
   ad_data_in #(
-    .DEVICE_TYPE (DEVICE_TYPE),
+    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
     .IODELAY_CTRL (0),
-    .IODELAY_GROUP (IO_DELAY_GROUP))
+    .IODELAY_GROUP (IO_DELAY_GROUP),
+    .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY))
   i_adc_data (
     .rx_clk (adc_clk),
     .rx_data_in_p (adc_data_in_p[l_inst]),
@@ -150,9 +152,10 @@ module axi_ad9467_if #(
   // over-range interface
 
   ad_data_in #(
-    .DEVICE_TYPE (DEVICE_TYPE),
+    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
     .IODELAY_CTRL (1),
-    .IODELAY_GROUP (IO_DELAY_GROUP))
+    .IODELAY_GROUP (IO_DELAY_GROUP),
+    .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY))
   i_adc_or (
     .rx_clk (adc_clk),
     .rx_data_in_p (adc_or_in_p),
@@ -169,8 +172,7 @@ module axi_ad9467_if #(
 
   // clock
 
-  ad_data_clk #(
-    .DEVICE_TYPE (DEVICE_TYPE))
+  ad_data_clk
   i_adc_clk (
     .rst (1'b0),
     .locked (),

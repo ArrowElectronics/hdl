@@ -58,14 +58,18 @@ module axi_dmac #(
   parameter FIFO_SIZE = 8, // In bursts
   parameter AXI_ID_WIDTH_SRC = 1,
   parameter AXI_ID_WIDTH_DEST = 1,
+  parameter DMA_AXIS_ID_W = 8,
+  parameter DMA_AXIS_DEST_W = 4,
   parameter DISABLE_DEBUG_REGISTERS = 0,
-  parameter ENABLE_DIAGNOSTICS_IF = 0)(
+  parameter ENABLE_DIAGNOSTICS_IF = 0,
+  parameter ALLOW_ASYM_MEM = 0
+) (
   // Slave AXI interface
   input s_axi_aclk,
   input s_axi_aresetn,
 
   input         s_axi_awvalid,
-  input  [11:0] s_axi_awaddr,
+  input  [10:0] s_axi_awaddr,
   output        s_axi_awready,
   input   [2:0] s_axi_awprot,
   input         s_axi_wvalid,
@@ -76,7 +80,7 @@ module axi_dmac #(
   output [ 1:0] s_axi_bresp,
   input         s_axi_bready,
   input         s_axi_arvalid,
-  input  [11:0] s_axi_araddr,
+  input  [10:0] s_axi_araddr,
   output        s_axi_arready,
   input   [2:0] s_axi_arprot,
   output        s_axi_rvalid,
@@ -188,7 +192,11 @@ module axi_dmac #(
   output                                   s_axis_ready,
   input                                    s_axis_valid,
   input  [DMA_DATA_WIDTH_SRC-1:0]          s_axis_data,
+  input  [DMA_DATA_WIDTH_SRC/8-1:0]        s_axis_strb,
+  input  [DMA_DATA_WIDTH_SRC/8-1:0]        s_axis_keep,
   input  [0:0]                             s_axis_user,
+  input  [DMA_AXIS_ID_W-1:0]               s_axis_id,
+  input  [DMA_AXIS_DEST_W-1:0]             s_axis_dest,
   input                                    s_axis_last,
   output                                   s_axis_xfer_req,
 
@@ -197,6 +205,11 @@ module axi_dmac #(
   input                                    m_axis_ready,
   output                                   m_axis_valid,
   output [DMA_DATA_WIDTH_DEST-1:0]         m_axis_data,
+  output [DMA_DATA_WIDTH_DEST/8-1:0]       m_axis_strb,
+  output [DMA_DATA_WIDTH_DEST/8-1:0]       m_axis_keep,
+  output [0:0]                             m_axis_user,
+  output [DMA_AXIS_ID_W-1:0]               m_axis_id,
+  output [DMA_AXIS_DEST_W-1:0]             m_axis_dest,
   output                                   m_axis_last,
   output                                   m_axis_xfer_req,
 
@@ -282,10 +295,16 @@ localparam REAL_MAX_BYTES_PER_BURST =
   BYTES_PER_BURST_LIMIT < MAX_BYTES_PER_BURST ?
     BYTES_PER_BURST_LIMIT : MAX_BYTES_PER_BURST;
 
-/* Align to the length to the wider interface */
-localparam DMA_LENGTH_ALIGN =
-  BYTES_PER_BEAT_WIDTH_DEST < BYTES_PER_BEAT_WIDTH_SRC ?
-    BYTES_PER_BEAT_WIDTH_SRC : BYTES_PER_BEAT_WIDTH_DEST;
+/* MM has no alignment requirements */
+localparam DMA_LENGTH_ALIGN_SRC =
+  DMA_TYPE_SRC == DMA_TYPE_AXI_MM ? 0 : BYTES_PER_BEAT_WIDTH_SRC;
+localparam DMA_LENGTH_ALIGN_DEST =
+  DMA_TYPE_DEST == DMA_TYPE_AXI_MM ? 0 : BYTES_PER_BEAT_WIDTH_DEST;
+
+/* Choose the larger of the two */
+ localparam DMA_LENGTH_ALIGN =
+   DMA_LENGTH_ALIGN_SRC < DMA_LENGTH_ALIGN_DEST ?
+     DMA_LENGTH_ALIGN_DEST : DMA_LENGTH_ALIGN_SRC;
 
 localparam BYTES_PER_BURST_WIDTH =
   REAL_MAX_BYTES_PER_BURST > 2048 ? 12 :
@@ -448,6 +467,7 @@ axi_dmac_transfer #(
   .DMA_DATA_WIDTH_SRC(DMA_DATA_WIDTH_SRC),
   .DMA_DATA_WIDTH_DEST(DMA_DATA_WIDTH_DEST),
   .DMA_LENGTH_WIDTH(DMA_LENGTH_WIDTH),
+  .DMA_LENGTH_ALIGN(DMA_LENGTH_ALIGN),
   .BYTES_PER_BEAT_WIDTH_DEST(BYTES_PER_BEAT_WIDTH_DEST),
   .BYTES_PER_BEAT_WIDTH_SRC(BYTES_PER_BEAT_WIDTH_SRC),
   .BYTES_PER_BURST_WIDTH(BYTES_PER_BURST_WIDTH),
@@ -465,7 +485,8 @@ axi_dmac_transfer #(
   .ID_WIDTH(ID_WIDTH),
   .AXI_LENGTH_WIDTH_SRC(8-(4*DMA_AXI_PROTOCOL_SRC)),
   .AXI_LENGTH_WIDTH_DEST(8-(4*DMA_AXI_PROTOCOL_DEST)),
-  .ENABLE_DIAGNOSTICS_IF(ENABLE_DIAGNOSTICS_IF)
+  .ENABLE_DIAGNOSTICS_IF(ENABLE_DIAGNOSTICS_IF),
+  .ALLOW_ASYM_MEM(ALLOW_ASYM_MEM)
 ) i_transfer (
   .ctrl_clk(s_axi_aclk),
   .ctrl_resetn(s_axi_aresetn),
@@ -595,5 +616,11 @@ assign m_src_axi_wvalid = 'h0;
 assign m_src_axi_wdata = 'h0;
 assign m_src_axi_wstrb = 'h0;
 assign m_src_axi_wlast = 'h0;
+
+assign m_axis_keep = {DMA_DATA_WIDTH_DEST/8{1'b1}};
+assign m_axis_strb = {DMA_DATA_WIDTH_DEST/8{1'b1}};
+assign m_axis_id = 'h0;
+assign m_axis_dest = 'h0;
+assign m_axis_user = 'h0;
 
 endmodule

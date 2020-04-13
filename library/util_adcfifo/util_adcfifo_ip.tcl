@@ -1,7 +1,7 @@
 # ip
 
 source ../scripts/adi_env.tcl
-source $ad_hdl_dir/library/scripts/adi_ip.tcl
+source $ad_hdl_dir/library/scripts/adi_ip_xilinx.tcl
 
 adi_ip_create util_adcfifo
 adi_ip_files util_adcfifo [list \
@@ -12,6 +12,10 @@ adi_ip_files util_adcfifo [list \
   "util_adcfifo_constr.xdc" ]
 
 adi_ip_properties_lite util_adcfifo
+
+adi_ip_add_core_dependencies { \
+	analog.com:user:util_cdc:1.0 \
+}
 
 ipx::infer_bus_interface adc_clk xilinx.com:signal:clock_rtl:1.0 [ipx::current_core]
 ipx::infer_bus_interface adc_rst xilinx.com:signal:reset_rtl:1.0 [ipx::current_core]

@@ -1,0 +1,525 @@
+/*
+
+Xilinx Vivado v2018.3 (64-bit) [Major: 2018, Minor: 3]
+SW Build: 2405991 on Thu Dec  6 23:38:27 MST 2018
+IP Build: 2404404 on Fri Dec  7 01:43:56 MST 2018
+
+Process ID (PID): 28184
+License: Customer
+
+Current time: 	Mon Feb 10 06:32:03 EST 2020
+Time zone: 	Eastern Standard Time (America/New_York)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 8
+
+Screen size: 1920x1080
+Screen resolution (DPI): 96
+Available screens: 2
+Available disk space: 31 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	9.0.4 64-bit
+Java home: 	C:/Xilinx/Vivado/2018.3/tps/win64/jre9.0.4
+Java executable location: 	C:/Xilinx/Vivado/2018.3/tps/win64/jre9.0.4/bin/java.exe
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	a08473
+User home directory: C:/Users/a08473
+User working directory: C:/altera/qdesigns/18.1/examples/xilinx/hdl/projects/ad40xx_fmc/zed
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: C:/Xilinx/Vivado
+HDI_APPROOT: C:/Xilinx/Vivado/2018.3
+RDI_DATADIR: C:/Xilinx/Vivado/2018.3/data
+RDI_BINDIR: C:/Xilinx/Vivado/2018.3/bin
+
+Vivado preferences file location: C:/Users/a08473/AppData/Roaming/Xilinx/Vivado/2018.3/vivado.xml
+Vivado preferences directory: C:/Users/a08473/AppData/Roaming/Xilinx/Vivado/2018.3/
+Vivado layouts directory: C:/Users/a08473/AppData/Roaming/Xilinx/Vivado/2018.3/layouts
+PlanAhead jar file location: 	C:/Xilinx/Vivado/2018.3/lib/classes/planAhead.jar
+Vivado log file location: 	C:/altera/qdesigns/18.1/examples/xilinx/hdl/projects/ad40xx_fmc/zed/vivado.log
+Vivado journal file location: 	C:/altera/qdesigns/18.1/examples/xilinx/hdl/projects/ad40xx_fmc/zed/vivado.jou
+Engine tmp dir: 	C:/altera/qdesigns/18.1/examples/xilinx/hdl/projects/ad40xx_fmc/zed/.Xil/Vivado-28184-LM1310
+
+Xilinx Environment Variables
+----------------------------
+ALTERAOCLSDKROOT: C:\intelFPGA_pro\16.1\hld
+XILINX: C:/Xilinx/Vivado/2018.3/ids_lite/ISE
+XILINX_DSP: C:/Xilinx/Vivado/2018.3/ids_lite/ISE
+XILINX_PLANAHEAD: C:/Xilinx/Vivado/2018.3
+XILINX_VIVADO: C:/Xilinx/Vivado/2018.3
+XILINX_VIVADO_HLS: C:/Xilinx/Vivado/2018.3
+
+
+GUI allocated memory:	128 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 549 MB
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// Opening Vivado Project: C:\altera\qdesigns\18.1\examples\xilinx\hdl\projects\ad40xx_fmc\zed\ad40xx_zed.xpr. Version: Vivado v2018.3 
+// bx (cp):  Open Project : addNotify
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: open_project C:/altera/qdesigns/18.1/examples/xilinx/hdl/projects/ad40xx_fmc/zed/ad40xx_zed.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_CURRENT
+// TclEventType: MSGMGR_REFRESH_MSG
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 578 MB. GUI used memory: 48 MB. Current time: 2/10/20, 6:32:06 AM EST
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 108 MB (+110254kb) [00:00:20]
+// [Engine Memory]: 650 MB (+530455kb) [00:00:20]
+// [GUI Memory]: 117 MB (+4503kb) [00:00:21]
+// [Engine Memory]: 688 MB (+5399kb) [00:00:21]
+// WARNING: HEventQueue.dispatchEvent() is taking  3675 ms.
+// Tcl Message: open_project C:/altera/qdesigns/18.1/examples/xilinx/hdl/projects/ad40xx_fmc/zed/ad40xx_zed.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/altera/qdesigns/18.1/examples/xilinx/hdl/library'. 
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2018.3/data/ip'. 
+// Project name: ad40xx_zed; location: C:/altera/qdesigns/18.1/examples/xilinx/hdl/projects/ad40xx_fmc/zed; part: xc7z020clg484-1
+// [Engine Memory]: 724 MB (+1748kb) [00:00:25]
+dismissDialog("Open Project"); // bx (cp)
+// Tcl Message: open_project: Time (s): cpu = 00:00:23 ; elapsed = 00:00:15 . Memory (MB): peak = 747.621 ; gain = 170.195 
+// HMemoryUtils.trashcanNow. Engine heap size: 760 MB. GUI used memory: 68 MB. Current time: 2/10/20, 6:32:21 AM EST
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 29 seconds
+selectButton(RDIResourceCommand.RDICommands_SETTINGS, "ZedBoard Zynq Evaluation and Development Kit (xc7z020clg484-1)"); // h (Q, cp)
+// Run Command: RDIResourceCommand.RDICommands_SETTINGS
+// Tcl Command: 'rdi::info_commands {device::*}'
+// Tcl Command: 'rdi::info_commands {debug::*}'
+// Tcl Command: 'rdi::info_commands {*}'
+// F (cp): Settings: addNotify
+// WARNING: HEventQueue.dispatchEvent() is taking  1963 ms.
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a (F)
+// [Engine Memory]: 771 MB (+11218kb) [00:01:04]
+// [GUI Memory]: 125 MB (+2380kb) [00:01:04]
+dismissDialog("Settings"); // F (cp)
+// Elapsed time: 10 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, IP Integrator, Open Block Design]", 7, false); // u (Q, cp)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_BLOCK_DESIGN
+// bx (cp):  Open Block Design : addNotify
+// TclEventType: LOAD_FEATURE
+// Tcl Message: open_bd_design {C:/altera/qdesigns/18.1/examples/xilinx/hdl/projects/ad40xx_fmc/zed/ad40xx_zed.srcs/sources_1/bd/system/system.bd} 
+// TclEventType: RSB_CHANGE_CURRENT_DIAGRAM
+// TclEventType: LOAD_FEATURE
+// TclEventType: RSB_PROPERTY_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 803 MB. GUI used memory: 83 MB. Current time: 2/10/20, 6:33:11 AM EST
+// TclEventType: RSB_OPEN_DIAGRAM
+// [GUI Memory]: 132 MB (+756kb) [00:01:25]
+// [Engine Memory]: 881 MB (+75166kb) [00:01:25]
+// WARNING: HEventQueue.dispatchEvent() is taking  2053 ms.
+// TclEventType: RSB_CONNECTION_CHANGE
+// Elapsed time: 11 seconds
+closeView(PAResourceOtoP.PAViews_PROJECT_SUMMARY, "Project Summary"); // v
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: RSB_CHANGE_CURRENT_DIAGRAM
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: RSB_CHANGE_CURRENT_DIAGRAM
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: RSB_CHANGE_CURRENT_DIAGRAM
+// Tcl Message: open_bd_design: Time (s): cpu = 00:00:13 ; elapsed = 00:00:12 . Memory (MB): peak = 889.418 ; gain = 96.160 
+// 'bA' command handler elapsed time: 12 seconds
+dismissDialog("Open Block Design"); // bx (cp)
+maximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // R (aF, cp)
+selectButton(PAResourceCommand.PACommandNames_ZOOM_IN, "System_zoom_in"); // B (f, cp)
+// Run Command: PAResourceCommand.PACommandNames_ZOOM_IN
+selectButton(PAResourceCommand.PACommandNames_ZOOM_IN, "System_zoom_in"); // B (f, cp)
+// Run Command: PAResourceCommand.PACommandNames_ZOOM_IN
+selectButton(PAResourceCommand.PACommandNames_ZOOM_IN, "System_zoom_in"); // B (f, cp)
+// Run Command: PAResourceCommand.PACommandNames_ZOOM_IN
+// Run Command: PAResourceCommand.PACommandNames_CUSTOMIZE_RSB_BLOC
+// [GUI Memory]: 139 MB (+427kb) [00:02:38]
+// r (cp): Re-customize IP: addNotify
+// HMemoryUtils.trashcanNow. Engine heap size: 908 MB. GUI used memory: 89 MB. Current time: 2/10/20, 6:34:36 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 89 MB. Current time: 2/10/20, 6:35:41 AM EST
+// [Engine Memory]: 938 MB (+12790kb) [00:04:06]
+// Elapsed time: 324 seconds
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a (r)
+dismissDialog("Re-customize IP"); // r (cp)
+// [GUI Memory]: 147 MB (+169kb) [00:23:56]
+// Elapsed time: 1215 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Address Editor", 1); // k (j, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "System", 0); // k (j, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Address Editor", 1); // k (j, cp)
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 90 MB. Current time: 2/10/20, 7:05:41 AM EST
+// Elapsed time: 809 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "System", 0); // k (j, cp)
+unMinimizeFrame(PAResourceOtoP.PAViews_SYSTEM_HIERARCHY, "Design"); // ax
+// Elapsed time: 16 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v)]", 1); // B (D, cp)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v)]", 1, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v)]", 1, true, false, false, false, false, true); // B (D, cp) - Double Click - Node
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "system_top_ad40xx.v", 2); // k (j, cp)
+selectTab((HResource) null, "PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "system_top_ad40xx.v", 2, false, true); // k (j, cp) - Double Click
+unmaximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // R (aF, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "system_top_ad40xx.v", 2); // k (j, cp)
+selectTab((HResource) null, "PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "system_top_ad40xx.v", 2, false, true); // k (j, cp) - Double Click
+maximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // R (aF, cp)
+unmaximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // R (aF, cp)
+maximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // R (aF, cp)
+// Elapsed time: 115 seconds
+unmaximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // R (aF, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "System", 0); // k (j, cp)
+// Run Command: PAResourceCommand.PACommandNames_CUSTOMIZE_RSB_PIN
+// r (cp): Customize Pin: addNotify
+// Elapsed time: 29 seconds
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a (r)
+dismissDialog("Customize Pin"); // r (cp)
+// Run Command: PAResourceCommand.PACommandNames_CUSTOMIZE_RSB_BLOC
+// O (cp):  Re-customize IP : addNotify
+// r (cp): Re-customize IP: addNotify
+dismissDialog("Re-customize IP"); // O (cp)
+// Elapsed time: 877 seconds
+dismissDialog("Re-customize IP"); // r (cp)
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 87 MB. Current time: 2/10/20, 7:35:41 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 86 MB. Current time: 2/10/20, 8:05:41 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 8:35:42 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 9:05:42 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 9:35:42 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 10:05:42 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 10:35:43 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 11:05:43 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 11:35:43 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 12:05:43 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 86 MB. Current time: 2/10/20, 12:35:44 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 1:05:44 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 1:35:44 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 86 MB. Current time: 2/10/20, 2:05:44 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 2:35:45 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 86 MB. Current time: 2/10/20, 3:05:45 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 3:35:45 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 86 MB. Current time: 2/10/20, 4:05:45 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 4:35:45 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 5:05:46 PM EST
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 20498 ms to process. Increasing delay to 2000 ms.
+// WARNING: HSwingWorker (Update Runs Swing Worker) is taking 20855 ms. Increasing delay to 3000 ms.
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 20667 ms. Increasing delay to 62001 ms.
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 34 ms. Decreasing delay to 2034 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 86 MB. Current time: 2/10/20, 5:35:46 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 6:05:46 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 6:35:46 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 7:05:47 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 7:35:47 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 8:05:47 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 8:35:47 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 9:05:48 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 9:35:48 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 10:05:48 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 10:35:48 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 11:05:48 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/10/20, 11:35:49 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/11/20, 12:05:49 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/11/20, 12:35:49 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/11/20, 1:05:49 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 86 MB. Current time: 2/11/20, 1:35:50 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/11/20, 2:05:50 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/11/20, 2:35:50 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/11/20, 3:05:50 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/11/20, 3:35:51 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/11/20, 4:05:51 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/11/20, 4:35:51 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 85 MB. Current time: 2/11/20, 5:05:51 AM EST
+// Elapsed time: 79020 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v)]", 1); // B (D, cp)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v)]", 6); // B (D, cp)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v)]", 8); // B (D, cp)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci)]", 15); // B (D, cp)
+// A (cp): Show IP Hierarchy: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (A)
+// TclEventType: DG_GRAPH_STALE
+dismissDialog("Show IP Hierarchy"); // A (cp)
+// Elapsed time: 10 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v)]", 16); // B (D, cp)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v)]", 17); // B (D, cp)
+// Elapsed time: 15 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v)]", 17, true); // B (D, cp) - Node
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v)]", 17); // B (D, cp)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v)]", 17, true, false, false, false, true, false); // B (D, cp) - Popup Trigger - Node
+selectMenuItem(PAResourceQtoS.SrcMenu_OPEN_SELECTED_SOURCE_FILES, "Open File"); // af (al, cp)
+// Elapsed time: 205 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v)]", 16, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v)]", 16, true, false, false, false, true, false); // B (D, cp) - Popup Trigger - Node
+selectMenuItem(PAResourceQtoS.SrcMenu_OPEN_SELECTED_SOURCE_FILES, "Open File"); // af (al, cp)
+// Elapsed time: 51 seconds
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // B
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci)]", 15, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci)]", 15, true, false, false, false, true, false); // B (D, cp) - Popup Trigger - Node
+selectCodeEditor("axi_hdmi_tx.v", 406, 72); // D (w, cp)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v)]", 21, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v)]", 21, true, false, false, false, true, false); // B (D, cp) - Popup Trigger - Node
+selectMenuItem(PAResourceQtoS.SrcMenu_OPEN_SELECTED_SOURCE_FILES, "Open File"); // af (al, cp)
+// Elapsed time: 47 seconds
+selectCodeEditor("axi_hdmi_tx_core.v", 249, 284); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx_core.v", 249, 284, false, false, false, false, true); // D (w, cp) - Double Click
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 87 MB. Current time: 2/11/20, 5:35:52 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 87 MB. Current time: 2/11/20, 6:05:52 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 87 MB. Current time: 2/11/20, 6:35:52 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 87 MB. Current time: 2/11/20, 7:05:52 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 87 MB. Current time: 2/11/20, 7:35:52 AM EST
+// Elapsed time: 7966 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v)]", 21); // B (D, cp)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v), i_csc_RGB2CrYCb : ad_csc_RGB2CrYCb (ad_csc_RGB2CrYCb.v)]", 23, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v), i_csc_RGB2CrYCb : ad_csc_RGB2CrYCb (ad_csc_RGB2CrYCb.v), j_csc_1_Cr : ad_csc (ad_csc.v)]", 24, false, false, false, false, false, true); // B (D, cp) - Double Click
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 88 MB. Current time: 2/11/20, 8:05:53 AM EST
+// Elapsed time: 1607 seconds
+selectCodeEditor("ad_csc_RGB2CrYCb.v", 331, 255); // D (w, cp)
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 88 MB. Current time: 2/11/20, 8:35:53 AM EST
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 15793 ms to process. Increasing delay to 2000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 15793 ms to process. Increasing delay to 2000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 14339 ms to process. Increasing delay to 3000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 15585 ms to process. Increasing delay to 2000 ms.
+// WARNING: HSwingWorker (Update Runs Swing Worker) is taking 14664 ms. Increasing delay to 4000 ms.
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 15409 ms. Increasing delay to 46227 ms.
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 32 ms. Decreasing delay to 2032 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 87 MB. Current time: 2/11/20, 9:05:53 AM EST
+// Elapsed time: 4373 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v)]", 21, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v)]", 21, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v)]", 21, true, false, false, false, false, true); // B (D, cp) - Double Click - Node
+selectCodeEditor("axi_hdmi_tx_core.v", 120, 159); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx_core.v", 120, 159, false, false, false, false, true); // D (w, cp) - Double Click
+// Elapsed time: 161 seconds
+selectCodeEditor("axi_hdmi_tx_core.v", 121, 335); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx_core.v", 121, 335, false, false, false, false, true); // D (w, cp) - Double Click
+// Elapsed time: 12 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v)]", 17, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v)]", 17, true, false, false, false, false, true); // B (D, cp) - Double Click - Node
+// Elapsed time: 18 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v)]", 17); // B (D, cp)
+// Elapsed time: 27 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_hdmi_tx_core.v", 4); // k (j, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_hdmi_tx.v", 3); // k (j, cp)
+// Run Command: RDIResourceCommand.RDICommands_FIND
+// g (cp): Find: addNotify
+setText(PAResourceTtoZ.TclFindDialog_RESULT_NAME, (String) null); // j (g)
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a (g)
+dismissDialog("Find"); // g (cp)
+selectCodeEditor("axi_hdmi_tx.v", 446, 241); // D (w, cp)
+// Elapsed time: 11 seconds
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "src"); // l (aT, cp)
+selectCodeEditor("axi_hdmi_tx.v", 174, 452); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx.v", 174, 452, false, false, false, false, true); // D (w, cp) - Double Click
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 90 MB. Current time: 2/11/20, 9:35:53 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 90 MB. Current time: 2/11/20, 10:05:54 AM EST
+// Elapsed time: 2122 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v)]", 21); // B (D, cp)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v), i_csc_RGB2CrYCb : ad_csc_RGB2CrYCb (ad_csc_RGB2CrYCb.v)]", 23, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v), i_csc_RGB2CrYCb : ad_csc_RGB2CrYCb (ad_csc_RGB2CrYCb.v)]", 23, true, false, false, false, false, true); // B (D, cp) - Double Click - Node
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 89 MB. Current time: 2/11/20, 10:35:54 AM EST
+// Elapsed time: 2094 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v)]", 21, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v)]", 21, true, false, false, false, false, true); // B (D, cp) - Double Click - Node
+// Elapsed time: 79 seconds
+selectCodeEditor("axi_hdmi_tx_core.v", 188, 234); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx_core.v", 188, 234, false, false, false, false, true); // D (w, cp) - Double Click
+// Elapsed time: 27 seconds
+selectCodeEditor("axi_hdmi_tx_core.v", 117, 452); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx_core.v", 117, 452, false, false, false, false, true); // D (w, cp) - Double Click
+// Elapsed time: 85 seconds
+selectCodeEditor("axi_hdmi_tx_core.v", 205, 198); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx_core.v", 205, 198, false, false, false, false, true); // D (w, cp) - Double Click
+// Elapsed time: 53 seconds
+selectCodeEditor("axi_hdmi_tx_core.v", 226, 296); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx_core.v", 226, 296, false, false, false, false, true); // D (w, cp) - Double Click
+// Elapsed time: 134 seconds
+selectCodeEditor("axi_hdmi_tx_core.v", 131, 418); // D (w, cp)
+// Elapsed time: 111 seconds
+selectCodeEditor("axi_hdmi_tx_core.v", 231, 469); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx_core.v", 231, 469, false, false, false, false, true); // D (w, cp) - Double Click
+// Elapsed time: 140 seconds
+selectCodeEditor("axi_hdmi_tx_core.v", 192, 333); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx_core.v", 192, 333, false, false, false, false, true); // D (w, cp) - Double Click
+// Elapsed time: 89 seconds
+selectCodeEditor("axi_hdmi_tx_core.v", 123, 383); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx_core.v", 123, 383, false, false, false, false, true); // D (w, cp) - Double Click
+// Elapsed time: 30 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "ad_csc_RGB2CrYCb.v", 5); // k (j, cp)
+// Elapsed time: 52 seconds
+selectCodeEditor("ad_csc_RGB2CrYCb.v", 261, 236); // D (w, cp)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "axi_hdmi_tx_core.v", 4); // k (j, cp)
+selectCodeEditor("axi_hdmi_tx_core.v", 250, 359); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx_core.v", 250, 359, false, false, false, false, true); // D (w, cp) - Double Click
+// Elapsed time: 16 seconds
+selectCodeEditor("axi_hdmi_tx_core.v", 106, 301); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx_core.v", 106, 301, false, false, false, false, true); // D (w, cp) - Double Click
+// Elapsed time: 28 seconds
+selectCodeEditor("axi_hdmi_tx_core.v", 116, 215); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx_core.v", 116, 215, false, false, false, false, true); // D (w, cp) - Double Click
+// Elapsed time: 49 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v)]", 21); // B (D, cp)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v), i_ss_444to422 : ad_ss_444to422 (ad_ss_444to422.v)]", 24, false); // B (D, cp)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v), i_ss_444to422 : ad_ss_444to422 (ad_ss_444to422.v)]", 24, false, false, false, false, false, true); // B (D, cp) - Double Click
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 90 MB. Current time: 2/11/20, 11:05:54 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 90 MB. Current time: 2/11/20, 11:35:54 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 90 MB. Current time: 2/11/20, 12:05:54 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 89 MB. Current time: 2/11/20, 12:35:55 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 90 MB. Current time: 2/11/20, 1:05:55 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 89 MB. Current time: 2/11/20, 1:35:55 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 90 MB. Current time: 2/11/20, 2:05:55 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 89 MB. Current time: 2/11/20, 2:35:56 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 89 MB. Current time: 2/11/20, 3:05:56 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 89 MB. Current time: 2/11/20, 3:35:56 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 89 MB. Current time: 2/11/20, 4:05:56 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 938 MB. GUI used memory: 90 MB. Current time: 2/11/20, 4:35:57 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/11/20, 4:49:22 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/11/20, 5:19:22 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/11/20, 5:49:22 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/11/20, 6:19:22 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/11/20, 6:49:23 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/11/20, 7:19:23 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/11/20, 7:49:23 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/11/20, 8:19:23 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/11/20, 8:49:23 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/11/20, 9:19:24 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/11/20, 9:49:24 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/11/20, 10:19:24 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/11/20, 10:49:24 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/11/20, 11:19:25 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/11/20, 11:49:25 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 12:19:25 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/12/20, 12:49:25 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/12/20, 1:19:25 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/12/20, 1:49:26 AM EST
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 11320 ms to process. Increasing delay to 3000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 11972 ms to process. Increasing delay to 4000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 11320 ms to process. Increasing delay to 3000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 11320 ms to process. Increasing delay to 3000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 12304 ms to process. Increasing delay to 2000 ms.
+// WARNING: HSwingWorker (Update Runs Swing Worker) is taking 8570 ms. Increasing delay to 5000 ms.
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 10868 ms. Increasing delay to 32604 ms.
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 29 ms. Decreasing delay to 2029 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 2784 ms to process. Increasing delay to 4000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 2784 ms to process. Increasing delay to 4000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 2784 ms to process. Increasing delay to 4000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 1741 ms to process. Increasing delay to 3000 ms.
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 2177 ms. Increasing delay to 6531 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 91 MB. Current time: 2/12/20, 2:19:26 AM EST
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 2191 ms to process. Increasing delay to 5000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 2187 ms to process. Increasing delay to 4000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 2191 ms to process. Increasing delay to 5000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 2191 ms to process. Increasing delay to 5000 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 2:49:26 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/12/20, 3:19:26 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/12/20, 3:49:27 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/12/20, 4:19:27 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/12/20, 4:49:27 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/12/20, 5:19:27 AM EST
+// Elapsed time: 67239 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v)]", 21, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v)]", 21, true, false, false, false, false, true); // B (D, cp) - Double Click - Node
+// Elapsed time: 17 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v), i_tx_core : axi_hdmi_tx_core (axi_hdmi_tx_core.v)]", 21); // B (D, cp)
+// Elapsed time: 25 seconds
+selectCodeEditor("axi_hdmi_tx_core.v", 133, 194); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx_core.v", 133, 194, false, false, false, false, true); // D (w, cp) - Double Click
+// Elapsed time: 10 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v)]", 17, true); // B (D, cp) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, system_top (system_top_ad40xx.v), i_system_wrapper : system_wrapper (system_wrapper.v), system_i : system (system.bd), system (system.v), axi_hdmi_core : system_axi_hdmi_core_0 (system_axi_hdmi_core_0.xci), system_axi_hdmi_core_0 (system_axi_hdmi_core_0.v), inst : axi_hdmi_tx (axi_hdmi_tx.v)]", 17, true, false, false, false, false, true); // B (D, cp) - Double Click - Node
+// Elapsed time: 17 seconds
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "bypass", true); // l (aT, cp)
+selectCodeEditor("axi_hdmi_tx.v", 199, 24); // D (w, cp)
+selectCodeEditor("axi_hdmi_tx.v", 199, 24, false, false, false, false, true); // D (w, cp) - Double Click
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 5:49:28 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 6:19:28 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 6:49:28 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 7:19:28 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 7:49:28 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 8:19:29 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 89 MB. Current time: 2/12/20, 8:49:29 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 9:19:29 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 9:49:29 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 10:19:30 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 10:49:30 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 11:19:30 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 11:49:30 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 12:19:31 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 12:49:31 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 1:19:31 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 1:49:31 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 2:19:32 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 91 MB. Current time: 2/12/20, 2:49:32 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 3:19:32 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 3:49:32 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 4:19:32 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 4:49:33 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 5:19:33 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 5:49:33 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 6:19:33 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 6:49:34 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 91 MB. Current time: 2/12/20, 7:19:34 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 7:49:34 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 8:19:34 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 8:49:35 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 9:19:35 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 9:49:35 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 10:19:35 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 10:49:35 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 11:19:36 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/12/20, 11:49:36 PM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/13/20, 12:19:36 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/13/20, 12:49:36 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/13/20, 1:19:37 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/13/20, 1:49:37 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/13/20, 2:19:37 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 973 MB. GUI used memory: 90 MB. Current time: 2/13/20, 2:49:37 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 90 MB. Current time: 2/13/20, 3:00:52 AM EST
+// [Engine Memory]: 1,062 MB (+81216kb) [68:29:08]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 90 MB. Current time: 2/13/20, 3:30:53 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 90 MB. Current time: 2/13/20, 4:00:53 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 90 MB. Current time: 2/13/20, 4:30:53 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 90 MB. Current time: 2/13/20, 5:00:53 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 90 MB. Current time: 2/13/20, 5:30:54 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 90 MB. Current time: 2/13/20, 6:00:54 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 90 MB. Current time: 2/13/20, 6:30:54 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 90 MB. Current time: 2/13/20, 7:00:54 AM EST
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 12612 ms to process. Increasing delay to 5000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 12509 ms to process. Increasing delay to 5000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 11627 ms to process. Increasing delay to 6000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 11627 ms to process. Increasing delay to 6000 ms.
+// WARNING: HSwingWorker (Monitor File Timestamp Swing Worker) is taking 11627 ms to process. Increasing delay to 6000 ms.
+// WARNING: HSwingWorker (Update Runs Swing Worker) is taking 11371 ms. Increasing delay to 6000 ms.
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 12512 ms. Increasing delay to 37536 ms.
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 29 ms. Decreasing delay to 2029 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 91 MB. Current time: 2/13/20, 7:30:54 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 90 MB. Current time: 2/13/20, 8:00:55 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 90 MB. Current time: 2/13/20, 8:30:55 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 90 MB. Current time: 2/13/20, 9:00:55 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 90 MB. Current time: 2/13/20, 9:30:55 AM EST
+// WARNING: HSwingWorker (Update Runs Swing Worker) is taking 2425843 ms. Increasing delay to 7000 ms.
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 2426253 ms. Increasing delay to 7278759 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1952 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 90 MB. Current time: 2/13/20, 10:13:32 AM EST
+// WARNING: HEventQueue.dispatchEvent() is taking  1868 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1594 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1176 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  2529 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1164 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 87 MB. Current time: 2/13/20, 10:43:32 AM EST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,062 MB. GUI used memory: 87 MB. Current time: 2/13/20, 11:13:33 AM EST

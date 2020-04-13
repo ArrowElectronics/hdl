@@ -22,7 +22,7 @@
 # ***************************************************************************
 
 source ../../scripts/adi_env.tcl
-source $ad_hdl_dir/library/scripts/adi_ip.tcl
+source $ad_hdl_dir/library/scripts/adi_ip_xilinx.tcl
 
 adi_ip_create ad_ip_jesd204_tpl_dac
 adi_ip_files ad_ip_jesd204_tpl_dac [list \
@@ -45,6 +45,7 @@ adi_ip_files ad_ip_jesd204_tpl_dac [list \
   "$ad_hdl_dir/library/xilinx/common/ad_rst_constr.xdc" \
   "$ad_hdl_dir/library/xilinx/common/up_xfer_status_constr.xdc" \
   "$ad_hdl_dir/library/xilinx/common/up_clock_mon_constr.xdc" \
+  "../ad_ip_jesd204_tpl_common/up_tpl_common.v" \
   "ad_ip_jesd204_tpl_dac_channel.v" \
   "ad_ip_jesd204_tpl_dac_core.v" \
   "ad_ip_jesd204_tpl_dac_framer.v" \
@@ -58,6 +59,8 @@ set cc [ipx::current_core]
 
 set_property display_name "JESD204 Transport Layer for DACs" $cc
 set_property description "JESD204 Transport Layer for DACs" $cc
+
+# ADD missing stuff #######################################################
 
 adi_add_bus "link" "master" \
   "xilinx.com:interface:axis_rtl:1.0" \
@@ -85,11 +88,12 @@ foreach p {DDS_CORDIC_DW DDS_CORDIC_PHASE_DW} {
 }
 
 foreach {p v} {
-  "NUM_LANES" "1 2 3 4 8" \
-  "NUM_CHANNELS" "1 2 4 6 8" \
-  "BITS_PER_SAMPLE" "12 16" \
-  "CONVERTER_RESOLUTION" "11 12 16" \
+  "NUM_LANES" "1 2 3 4 8 16" \
+  "NUM_CHANNELS" "1 2 4 6 8 16 32" \
+  "BITS_PER_SAMPLE" "8 12 16" \
+  "CONVERTER_RESOLUTION" "8 11 12 16" \
   "SAMPLES_PER_FRAME" "1 2 3 4 6 8 12 16" \
+  "OCTETS_PER_BEAT" "4 8" \
 } { \
   set_property -dict [list \
     "value_validation_type" "list" \
@@ -119,6 +123,7 @@ foreach {k v} { \
   "BITS_PER_SAMPLE" "Bits per Sample (N')" \
   "CONVERTER_RESOLUTION" "Converter Resolution (N)" \
   "SAMPLES_PER_FRAME" "Samples per Frame (S)" \
+  "OCTETS_PER_BEAT" "Octets per Beat" \
   } { \
   set p [ipgui::get_guiparamspec -name $k -component $cc]
   ipgui::move_param -component $cc -order $i $p -parent $framer_group

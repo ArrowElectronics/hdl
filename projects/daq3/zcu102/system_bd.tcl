@@ -1,15 +1,19 @@
 
 ## FIFO depth is 8Mb - 500k samples
-set dac_fifo_name axi_ad9152_fifo
 set dac_fifo_address_width 16
-set dac_data_width 128
-set dac_dma_data_width 128
 
 ## NOTE: With this configuration the #36Kb BRAM utilization is at ~28%
 
 source $ad_hdl_dir/projects/common/zcu102/zcu102_system_bd.tcl
 source $ad_hdl_dir/projects/common/xilinx/dacfifo_bd.tcl
 source ../common/daq3_bd.tcl
+
+#system ID
+ad_ip_parameter axi_sysid_0 CONFIG.ROM_ADDR_BITS 9
+ad_ip_parameter rom_sys_0 CONFIG.PATH_TO_FILE "[pwd]/mem_init_sys.txt"
+ad_ip_parameter rom_sys_0 CONFIG.ROM_ADDR_BITS 9
+set sys_cstring "sys rom custom string placeholder"
+sysid_gen_sys_init_file $sys_cstring
 
 # configure the CPLL's to support 12.33Gbps
 ad_ip_parameter util_daq3_xcvr CONFIG.CPLL_CFG0 0x03fe
@@ -18,10 +22,6 @@ ad_ip_parameter util_daq3_xcvr CONFIG.CPLL_CFG2 0x0203
 
 create_bd_port -dir I dac_fifo_bypass
 
-ad_ip_parameter axi_ad9152_xcvr CONFIG.XCVR_TYPE 2
-ad_ip_parameter axi_ad9680_xcvr CONFIG.XCVR_TYPE 2
-
-ad_ip_parameter util_daq3_xcvr CONFIG.XCVR_TYPE 2
 ad_ip_parameter util_daq3_xcvr CONFIG.QPLL_FBDIV 20
 ad_ip_parameter util_daq3_xcvr CONFIG.QPLL_REFCLK_DIV 1
 
@@ -67,9 +67,7 @@ ad_connect axi_ad9152_fifo/bypass dac_fifo_bypass
 
 ad_connect sys_dma_resetn axi_ad9680_dma/m_dest_axi_aresetn
 ad_connect axi_ad9680_dma/fifo_wr_clk util_daq3_xcvr/rx_out_clk_0
-ad_connect axi_ad9680_cpack/adc_data axi_ad9680_dma/fifo_wr_din
-ad_connect axi_ad9680_cpack/adc_valid axi_ad9680_dma/fifo_wr_en
-ad_connect axi_ad9680_cpack/adc_valid axi_ad9680_dma/fifo_wr_sync
+ad_connect axi_ad9680_cpack/packed_fifo_wr axi_ad9680_dma/fifo_wr
 
 ad_mem_hp0_interconnect sys_cpu_clk sys_ps7/S_AXI_HP0
 ad_mem_hp0_interconnect sys_cpu_clk axi_ad9680_xcvr/m_axi

@@ -42,8 +42,7 @@
 // is copyright © 2016-2017, Analog Devices, Inc.”
 //
 
-
-  reg clk = 1'b1;
+  reg clk = 1'b0;
   reg [3:0] reset_shift = 4'b1111;
   reg trigger_reset = 1'b0;
   wire reset;

@@ -41,7 +41,10 @@ module axi_ad9361 #(
 
   parameter   ID = 0,
   parameter   MODE_1R1T = 0,
-  parameter   DEVICE_TYPE = 0,
+  parameter   FPGA_TECHNOLOGY = 0,
+  parameter   FPGA_FAMILY = 0,
+  parameter   SPEED_GRADE = 0,
+  parameter   DEV_PACKAGE = 0,
   parameter   TDD_DISABLE = 0,
   parameter   PPS_RECEIVER_ENABLE = 0,
   parameter   CMOS_OR_LVDS_N = 0,
@@ -61,7 +64,10 @@ module axi_ad9361 #(
   parameter   DAC_DDS_CORDIC_PHASE_DW = 13,
   parameter   DAC_USERPORTS_DISABLE = 0,
   parameter   DAC_IQCORRECTION_DISABLE = 0,
-  parameter   IO_DELAY_GROUP = "dev_if_delay_group") (
+  parameter   IO_DELAY_GROUP = "dev_if_delay_group",
+  parameter   MIMO_ENABLE = 0,
+  parameter   USE_SSI_CLK = 1,
+  parameter   DELAY_REFCLK_FREQUENCY = 200) (
 
   // physical interface (receive-lvds)
 
@@ -247,6 +253,7 @@ module axi_ad9361 #(
   wire            dac_data_q0_s;
   wire            dac_data_i1_s;
   wire            dac_data_q1_s;
+  wire            dac_sync_enable;
   wire    [12:0]  up_adc_dld_s;
   wire    [64:0]  up_adc_dwdata_s;
   wire    [64:0]  up_adc_drdata_s;
@@ -324,9 +331,12 @@ module axi_ad9361 #(
   assign tx_data_out_n = 6'h3f;
 
   axi_ad9361_cmos_if #(
-    .DEVICE_TYPE (DEVICE_TYPE),
+    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
     .DAC_IODELAY_ENABLE (DAC_IODELAY_ENABLE),
-    .IO_DELAY_GROUP (IO_DELAY_GROUP))
+    .IO_DELAY_GROUP (IO_DELAY_GROUP),
+    .CLK_DESKEW (MIMO_ENABLE),
+    .USE_SSI_CLK (USE_SSI_CLK),
+    .DELAY_REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY))
   i_dev_if (
     .rx_clk_in (rx_clk_in),
     .rx_frame_in (rx_frame_in),
@@ -385,9 +395,12 @@ module axi_ad9361 #(
   assign up_dac_drdata_s[79:50] = 30'd0;
 
   axi_ad9361_lvds_if #(
-    .DEVICE_TYPE (DEVICE_TYPE),
+    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
     .DAC_IODELAY_ENABLE (DAC_IODELAY_ENABLE),
-    .IO_DELAY_GROUP (IO_DELAY_GROUP))
+    .IO_DELAY_GROUP (IO_DELAY_GROUP),
+    .CLK_DESKEW (MIMO_ENABLE),
+    .USE_SSI_CLK (USE_SSI_CLK),
+    .DELAY_REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY))
   i_dev_if (
     .rx_clk_in_p (rx_clk_in_p),
     .rx_clk_in_n (rx_clk_in_n),
@@ -497,6 +510,7 @@ module axi_ad9361 #(
   assign up_wack_tdd_s  = 1'b0;
   assign up_rack_tdd_s  = 1'b0;
   assign up_rdata_tdd_s = 32'b0;
+  assign dac_sync_enable = adc_valid_s;
   end
   endgenerate
 
@@ -536,6 +550,9 @@ module axi_ad9361 #(
     .up_raddr (up_raddr_s),
     .up_rdata (up_rdata_tdd_s),
     .up_rack (up_rack_tdd_s));
+
+  assign dac_sync_enable = adc_valid_s || tdd_mode_s;
+
   end
   endgenerate
 
@@ -566,6 +583,10 @@ module axi_ad9361 #(
 
   axi_ad9361_rx #(
     .ID (ID),
+    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
+    .FPGA_FAMILY (FPGA_FAMILY),
+    .SPEED_GRADE (SPEED_GRADE),
+    .DEV_PACKAGE (DEV_PACKAGE),
     .MODE_1R1T (MODE_1R1T),
     .CMOS_OR_LVDS_N (CMOS_OR_LVDS_N),
     .PPS_RECEIVER_ENABLE (PPS_RECEIVER_ENABLE),
@@ -631,6 +652,10 @@ module axi_ad9361 #(
 
   axi_ad9361_tx #(
     .ID (ID),
+    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
+    .FPGA_FAMILY (FPGA_FAMILY),
+    .SPEED_GRADE (SPEED_GRADE),
+    .DEV_PACKAGE (DEV_PACKAGE),
     .MODE_1R1T (MODE_1R1T),
     .CLK_EDGE_SEL (DAC_CLK_EDGE_SEL),
     .CMOS_OR_LVDS_N (CMOS_OR_LVDS_N),
@@ -656,6 +681,7 @@ module axi_ad9361 #(
     .delay_clk (delay_clk),
     .delay_rst (),
     .delay_locked (delay_locked_s),
+    .dac_sync_enable (dac_sync_enable),
     .dac_sync_in (dac_sync_in),
     .dac_sync_out (dac_sync_out),
     .dac_enable_i0 (dac_enable_i0),

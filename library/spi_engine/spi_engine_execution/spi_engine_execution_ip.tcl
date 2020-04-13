@@ -1,6 +1,6 @@
 
 source ../../scripts/adi_env.tcl
-source $ad_hdl_dir/library/scripts/adi_ip.tcl
+source $ad_hdl_dir/library/scripts/adi_ip_xilinx.tcl
 
 adi_ip_create spi_engine_execution
 adi_ip_files spi_engine_execution [list \
@@ -50,7 +50,7 @@ adi_add_bus "spi" "master" \
 	}
 adi_add_bus_clock "clk" "spi" "resetn"
 
-foreach port {"sdi_1" "sdi_2" "sdi_3"} {
+foreach port {"sdi_1" "sdi_2" "sdi_3" "sdi_4" "sdi_5" "sdi_6" "sdi_7"} {
   set_property DRIVER_VALUE "0" [ipx::get_ports $port]
 }
 adi_set_ports_dependency "sdi_1" \

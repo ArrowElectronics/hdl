@@ -1,9 +1,13 @@
 
 package require qsys
+package require quartus::device
+
 source ../scripts/adi_env.tcl
-source ../scripts/adi_ip_alt.tcl
+source ../scripts/adi_ip_intel.tcl
 
 ad_ip_create axi_ad9684 {AXI AD9684 Interface} axi_ad9684_elab
+set_module_property VALIDATION_CALLBACK info_param_validate
+
 ad_ip_files axi_ad9684 [list \
     $ad_hdl_dir/library/common/ad_rst.v \
     $ad_hdl_dir/library/common/ad_datafmt.v \
@@ -19,10 +23,10 @@ ad_ip_files axi_ad9684 [list \
     axi_ad9684_if.v \
     axi_ad9684_channel.v \
     axi_ad9684.v \
-    $ad_hdl_dir/library/altera/common/up_xfer_cntrl_constr.sdc \
-    $ad_hdl_dir/library/altera/common/up_xfer_status_constr.sdc \
-    $ad_hdl_dir/library/altera/common/up_clock_mon_constr.sdc \
-    $ad_hdl_dir/library/altera/common/up_rst_constr.sdc \
+    $ad_hdl_dir/library/intel/common/up_xfer_cntrl_constr.sdc \
+    $ad_hdl_dir/library/intel/common/up_xfer_status_constr.sdc \
+    $ad_hdl_dir/library/intel/common/up_clock_mon_constr.sdc \
+    $ad_hdl_dir/library/intel/common/up_rst_constr.sdc \
     axi_ad9684_constr.sdc] \
     axi_ad9684_fileset
 
@@ -36,13 +40,13 @@ set_parameter_property ID DESCRIPTION "Instance ID"
 set_parameter_property ID UNITS None
 set_parameter_property ID HDL_PARAMETER true
 
-add_parameter DEVICE_TYPE INTEGER 0
-set_parameter_property DEVICE_TYPE DEFAULT_VALUE 0
-set_parameter_property DEVICE_TYPE DISPLAY_NAME DEVICE_TYPE
-set_parameter_property DEVICE_TYPE TYPE INTEGER
-set_parameter_property DEVICE_TYPE DESCRIPTION "Specify the FPGA device type"
-set_parameter_property DEVICE_TYPE UNITS None
-set_parameter_property DEVICE_TYPE HDL_PARAMETER true
+add_parameter FPGA_TECHNOLOGY INTEGER 0
+set_parameter_property FPGA_TECHNOLOGY DEFAULT_VALUE 0
+set_parameter_property FPGA_TECHNOLOGY DISPLAY_NAME FPGA_TECHNOLOGY
+set_parameter_property FPGA_TECHNOLOGY TYPE INTEGER
+set_parameter_property FPGA_TECHNOLOGY DESCRIPTION "Specify the FPGA device type"
+set_parameter_property FPGA_TECHNOLOGY UNITS None
+set_parameter_property FPGA_TECHNOLOGY HDL_PARAMETER true
 
 add_parameter OR_STATUS INTEGER 1
 set_parameter_property OR_STATUS DEFAULT_VALUE 1
@@ -51,6 +55,8 @@ set_parameter_property OR_STATUS TYPE INTEGER
 set_parameter_property OR_STATUS DESCRIPTION "This parameter enables the OVER RANGE line at the physical interface"
 set_parameter_property OR_STATUS UNITS None
 set_parameter_property OR_STATUS HDL_PARAMETER true
+
+adi_add_auto_fpga_spec_params
 
 # axi4 slave
 
@@ -69,8 +75,8 @@ add_interface_port device_if adc_data_in_n adc_data_in_n Input 14
 
 # dma interface
 
-ad_alt_intf clock adc_clk output 1
-ad_alt_intf reset adc_rst output 1 if_adc_clk
+ad_interface clock adc_clk output 1
+ad_interface reset adc_rst output 1 if_adc_clk
 
 add_interface adc_ch_0 conduit end
 add_interface_port adc_ch_0 adc_valid_0   valid   Output 1
@@ -86,17 +92,17 @@ add_interface_port adc_ch_1 adc_data_1   data    Output 32
 set_interface_property adc_ch_1 associatedClock if_adc_clk
 set_interface_property adc_ch_1 associatedReset none
 
-ad_alt_intf signal adc_dovf input 1 ovf
+ad_interface signal adc_dovf input 1 ovf
 
 # SERDES instances and configurations
 
-add_hdl_instance ad_serdes_clk_core_rx alt_serdes
+add_hdl_instance ad_serdes_clk_core_rx intel_serdes
 set_instance_parameter_value ad_serdes_clk_core_rx {MODE} {CLK}
 set_instance_parameter_value ad_serdes_clk_core_rx {DDR_OR_SDR_N} {1}
 set_instance_parameter_value ad_serdes_clk_core_rx {SERDES_FACTOR} {4}
 set_instance_parameter_value ad_serdes_clk_core_rx {CLKIN_FREQUENCY} {500.0}
 
-add_hdl_instance ad_serdes_in_core alt_serdes
+add_hdl_instance ad_serdes_in_core intel_serdes
 set_instance_parameter_value ad_serdes_in_core {MODE} {IN}
 set_instance_parameter_value ad_serdes_in_core {DDR_OR_SDR_N} {1}
 set_instance_parameter_value ad_serdes_in_core {SERDES_FACTOR} {4}

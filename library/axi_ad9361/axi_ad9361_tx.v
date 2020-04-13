@@ -40,6 +40,10 @@ module axi_ad9361_tx #(
   // parameters
 
   parameter   ID = 0,
+  parameter   FPGA_TECHNOLOGY = 0,
+  parameter   FPGA_FAMILY = 0,
+  parameter   SPEED_GRADE = 0,
+  parameter   DEV_PACKAGE = 0,
   parameter   MODE_1R1T = 0,
   parameter   CLK_EDGE_SEL = 0,
   parameter   CMOS_OR_LVDS_N = 0,
@@ -73,6 +77,7 @@ module axi_ad9361_tx #(
 
   // master/slave
 
+  input           dac_sync_enable,
   input           dac_sync_in,
   output          dac_sync_out,
 
@@ -156,6 +161,7 @@ module axi_ad9361_tx #(
   // master/slave
 
   assign dac_data_sync_s = (ID == 0) ? dac_sync_out : dac_sync_in;
+  assign dac_sync_out = dac_sync & dac_sync_enable;
 
   always @(posedge dac_clk) begin
     dac_data_sync <= dac_data_sync_s;
@@ -354,6 +360,10 @@ module axi_ad9361_tx #(
 
   up_dac_common #(
     .ID (ID),
+    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
+    .FPGA_FAMILY (FPGA_FAMILY),
+    .SPEED_GRADE (SPEED_GRADE),
+    .DEV_PACKAGE (DEV_PACKAGE),
     .CONFIG (CONFIG),
     .CLK_EDGE_SEL (CLK_EDGE_SEL),
     .DRP_DISABLE (1),
@@ -363,7 +373,7 @@ module axi_ad9361_tx #(
     .mmcm_rst (),
     .dac_clk (dac_clk),
     .dac_rst (dac_rst),
-    .dac_sync (dac_sync_out),
+    .dac_sync (dac_sync),
     .dac_frame (),
     .dac_clksel (dac_clksel),
     .dac_par_type (),

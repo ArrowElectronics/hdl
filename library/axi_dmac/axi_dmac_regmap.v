@@ -56,7 +56,7 @@ module axi_dmac_regmap #(
 
   input s_axi_awvalid,
   output s_axi_awready,
-  input [11:0] s_axi_awaddr,
+  input [10:0] s_axi_awaddr,
   input [2:0] s_axi_awprot,
 
   input s_axi_wvalid,
@@ -70,7 +70,7 @@ module axi_dmac_regmap #(
 
   input s_axi_arvalid,
   output s_axi_arready,
-  input [11:0] s_axi_araddr,
+  input [10:0] s_axi_araddr,
   input [2:0] s_axi_arprot,
 
   output s_axi_rvalid,
@@ -112,7 +112,7 @@ module axi_dmac_regmap #(
   input [31:0] dbg_ids1
 );
 
-localparam PCORE_VERSION = 'h00040261;
+localparam PCORE_VERSION = 'h00040262;
 
 // Register interface signals
 reg [31:0] up_rdata = 32'h00;
@@ -261,8 +261,7 @@ axi_dmac_regmap_request #(
 );
 
 up_axi #(
-  .AXI_ADDRESS_WIDTH (12),
-  .ADDRESS_WIDTH (9)
+  .AXI_ADDRESS_WIDTH (11)
 ) i_up_axi (
   .up_rstn(s_axi_aresetn),
   .up_clk(s_axi_aclk),

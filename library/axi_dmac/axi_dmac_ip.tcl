@@ -1,11 +1,11 @@
 # ip
 
 source ../scripts/adi_env.tcl
-source $ad_hdl_dir/library/scripts/adi_ip.tcl
+source $ad_hdl_dir/library/scripts/adi_ip_xilinx.tcl
 
 adi_ip_create axi_dmac
 adi_ip_files axi_dmac [list \
-  "$ad_hdl_dir/library/common/ad_mem.v" \
+  "$ad_hdl_dir/library/common/ad_mem_asym.v" \
   "$ad_hdl_dir/library/common/up_axi.v" \
   "inc_id.vh" \
   "resp.vh" \
@@ -57,8 +57,12 @@ adi_add_bus "s_axis" "slave" \
 	[list {"s_axis_ready" "TREADY"} \
 	  {"s_axis_valid" "TVALID"} \
 	  {"s_axis_data" "TDATA"} \
-	  {"s_axis_last" "TLAST"} \
-	  {"s_axis_user" "TUSER"} ]
+	  {"s_axis_strb" "TSTRB"} \
+	  {"s_axis_keep" "TKEEP"} \
+	  {"s_axis_user" "TUSER"} \
+	  {"s_axis_id" "TID"} \
+	  {"s_axis_dest" "TDEST"} \
+	  {"s_axis_last" "TLAST"}]
 adi_add_bus_clock "s_axis_aclk" "s_axis"
 
 adi_add_bus "m_axis" "master" \
@@ -67,7 +71,12 @@ adi_add_bus "m_axis" "master" \
 	[list {"m_axis_ready" "TREADY"} \
 	  {"m_axis_valid" "TVALID"} \
 	  {"m_axis_data" "TDATA"} \
-	  {"m_axis_last" "TLAST"} ]
+	  {"m_axis_strb" "TSTRB"} \
+	  {"m_axis_keep" "TKEEP"} \
+	  {"m_axis_user" "TUSER"} \
+	  {"m_axis_id" "TID"} \
+	  {"m_axis_dest" "TDEST"} \
+	  {"m_axis_last" "TLAST"}]
 adi_add_bus_clock "m_axis_aclk" "m_axis"
 
 adi_set_bus_dependency "m_src_axi" "m_src_axi" \
@@ -83,7 +92,7 @@ adi_set_ports_dependency "fifo_rd" \
 adi_set_ports_dependency "dest_diag_level_bursts" \
 	"(spirit:decode(id('MODELPARAM_VALUE.ENABLE_DIAGNOSTICS_IF')) = 1)"
 
-# These are in the design to keep the Altera tools happy which can't handle
+# These are in the design to keep the Intel tools happy which can't handle
 # uni-directional AXI interfaces. The Xilinx tools can and do a better job when
 # they know that the interface is uni-directional, so disable the ports.
 set dummy_axi_ports [list \
@@ -119,7 +128,7 @@ set dummy_axi_ports [list \
 	"m_src_axi_bresp" \
 ]
 
-# These are in the design to keep the Altera tools happy which require
+# These are in the design to keep the Intel tools happy which require
 # certain signals in AXI3 mode even if these are defined as optinal in the standard.
 lappend dummy_axi_ports \
 	"m_dest_axi_awid" \
@@ -190,6 +199,9 @@ foreach port {"m_dest_axi_aresetn" "m_src_axi_aresetn" \
 foreach port {"s_axis_user" "fifo_wr_sync"} {
 	set_property DRIVER_VALUE "1" [ipx::get_ports $port]
 }
+
+# Infer interrupt
+ipx::infer_bus_interface irq xilinx.com:signal:interrupt_rtl:1.0 [ipx::current_core]
 
 set cc [ipx::current_core]
 
@@ -391,7 +403,9 @@ set_property -dict [list \
 ipgui::remove_param -component $cc [ipgui::get_guiparamspec -name "DMA_AXI_ADDR_WIDTH" -component $cc]
 ipgui::remove_param -component $cc [ipgui::get_guiparamspec -name "AXI_ID_WIDTH_SRC" -component $cc]
 ipgui::remove_param -component $cc [ipgui::get_guiparamspec -name "AXI_ID_WIDTH_DEST" -component $cc]
-
+ipgui::remove_param -component $cc [ipgui::get_guiparamspec -name "ALLOW_ASYM_MEM" -component $cc]
+ipgui::remove_param -component $cc [ipgui::get_guiparamspec -name "DMA_AXIS_ID_W" -component $cc]
+ipgui::remove_param -component $cc [ipgui::get_guiparamspec -name "DMA_AXIS_DEST_W" -component $cc]
 
 ipx::create_xgui_files [ipx::current_core]
 ipx::save_core $cc

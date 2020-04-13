@@ -45,7 +45,7 @@
 package require qsys
 
 source ../../scripts/adi_env.tcl
-source $ad_hdl_dir/library/scripts/adi_ip_alt.tcl
+source $ad_hdl_dir/library/scripts/adi_ip_intel.tcl
 
 ad_ip_create jesd204_rx "ADI JESD204 Receive" jesd204_rx_elaboration_callback
 
@@ -80,6 +80,11 @@ add_parameter NUM_LINKS INTEGER 1
 set_parameter_property NUM_LINKS DISPLAY_NAME "Number of Links"
 set_parameter_property NUM_LINKS ALLOWED_RANGES 1:8
 set_parameter_property NUM_LINKS HDL_PARAMETER true
+
+add_parameter NUM_INPUT_PIPELINE INTEGER 1
+set_parameter_property NUM_INPUT_PIPELINE DISPLAY_NAME "Number of input pipeline stages"
+set_parameter_property NUM_INPUT_PIPELINE ALLOWED_RANGES 1:3
+set_parameter_property NUM_INPUT_PIPELINE HDL_PARAMETER true
 
 #ad_ip_parameter PORT_ENABLE_RX_EOF BOOLEAN false false
 #ad_ip_parameter PORT_ENABLE_LMFC_CLK BOOLEAN false false

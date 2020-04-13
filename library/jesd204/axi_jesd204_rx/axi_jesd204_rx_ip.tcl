@@ -43,21 +43,22 @@
 #
 
 source ../../scripts/adi_env.tcl
-source $ad_hdl_dir/library/scripts/adi_ip.tcl
+source $ad_hdl_dir/library/scripts/adi_ip_xilinx.tcl
 
 adi_ip_create axi_jesd204_rx
 adi_ip_files axi_jesd204_rx [list \
-  "../../xilinx/common/up_clock_mon_constr.xdc" \
   "../../common/up_axi.v" \
-  "../../common/up_clock_mon.v" \
   "jesd204_up_rx.v" \
   "jesd204_up_rx_lane.v" \
   "jesd204_up_ilas_mem.v" \
   "axi_jesd204_rx_constr.xdc" \
+  "axi_jesd204_rx_ooc.ttcl" \
   "axi_jesd204_rx.v" \
 ]
 
 adi_ip_properties axi_jesd204_rx
+
+adi_ip_ttcl axi_jesd204_rx "axi_jesd204_rx_ooc.ttcl"
 
 set_property PROCESSING_ORDER LATE [ipx::get_files axi_jesd204_rx_constr.xdc \
   -of_objects [ipx::get_file_groups -of_objects [ipx::current_core] \
@@ -65,7 +66,6 @@ set_property PROCESSING_ORDER LATE [ipx::get_files axi_jesd204_rx_constr.xdc \
 
 adi_ip_add_core_dependencies { \
   analog.com:user:axi_jesd204_common:1.0 \
-  analog.com:user:util_cdc:1.0 \
 }
 
 set_property display_name "ADI JESD204B Receive AXI Interface" [ipx::current_core]

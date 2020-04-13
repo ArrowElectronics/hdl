@@ -88,14 +88,21 @@ module axi_adxcvr_es (
   parameter   integer XCVR_TYPE = 0;
   parameter   integer TX_OR_RX_N = 0;
 
+  // local parameters
+
+  localparam GTXE2 = 2;
+  localparam GTHE3 = 5;
+  localparam GTHE4 = 8;
+  localparam GTYE4 = 9;
+
   // addresses
 
-  localparam  [11:0]  ES_DRP_CTRL_ADDR    = (XCVR_TYPE != 0) ? 12'h03c : 12'h03d; // GTH-7 12'h03d
-  localparam  [11:0]  ES_DRP_HOFFSET_ADDR = (XCVR_TYPE != 0) ? 12'h04f : 12'h03c; // GTH-7 12'h03c
-  localparam  [11:0]  ES_DRP_VOFFSET_ADDR = (XCVR_TYPE != 0) ? 12'h097 : 12'h03b; // GTH-7 12'h03b
-  localparam  [11:0]  ES_DRP_STATUS_ADDR  = (XCVR_TYPE != 0) ? 12'h153 : 12'h151; // GTH-7 12'h153
-  localparam  [11:0]  ES_DRP_SCNT_ADDR    = (XCVR_TYPE != 0) ? 12'h152 : 12'h150; // GTH-7 12'h152
-  localparam  [11:0]  ES_DRP_ECNT_ADDR    = (XCVR_TYPE != 0) ? 12'h151 : 12'h14f; // GTH-7 12'h151
+  localparam  [11:0]  ES_DRP_CTRL_ADDR    = (XCVR_TYPE == GTXE2) ? 12'h03d : (XCVR_TYPE == GTHE3) ? 12'h03c : 12'h03c;
+  localparam  [11:0]  ES_DRP_HOFFSET_ADDR = (XCVR_TYPE == GTXE2) ? 12'h03c : (XCVR_TYPE == GTHE3) ? 12'h04f : 12'h04f;
+  localparam  [11:0]  ES_DRP_VOFFSET_ADDR = (XCVR_TYPE == GTXE2) ? 12'h03b : (XCVR_TYPE == GTHE3) ? 12'h097 : 12'h097;
+  localparam  [11:0]  ES_DRP_STATUS_ADDR  = (XCVR_TYPE == GTXE2) ? 12'h151 : (XCVR_TYPE == GTHE3) ? 12'h153 : 12'h253;
+  localparam  [11:0]  ES_DRP_SCNT_ADDR    = (XCVR_TYPE == GTXE2) ? 12'h150 : (XCVR_TYPE == GTHE3) ? 12'h152 : 12'h252;
+  localparam  [11:0]  ES_DRP_ECNT_ADDR    = (XCVR_TYPE == GTXE2) ? 12'h14f : (XCVR_TYPE == GTHE3) ? 12'h151 : 12'h251;
 
   // fsm-states
 
@@ -313,7 +320,7 @@ module axi_adxcvr_es (
       up_ack <= 1'b0;
     end else begin
       up_req_d <= up_es_req;
-      if (up_fsm == ES_FSM_UPDATE) begin 
+      if (up_fsm == ES_FSM_UPDATE) begin
         up_ack <= up_eos_s | ~up_es_req;
       end else begin
         up_ack <= 1'b0;
@@ -328,77 +335,77 @@ module axi_adxcvr_es (
       up_fsm <= ES_FSM_IDLE;
     end else begin
       case (up_fsm)
-        ES_FSM_IDLE: begin 
+        ES_FSM_IDLE: begin
           if (up_start_s == 1'b1) begin
             up_fsm <= ES_FSM_HOFFSET_READ;
           end else begin
             up_fsm <= ES_FSM_IDLE;
           end
         end
-        ES_FSM_HOFFSET_READ: begin 
+        ES_FSM_HOFFSET_READ: begin
           up_fsm <= ES_FSM_HOFFSET_RRDY;
         end
-        ES_FSM_HOFFSET_RRDY: begin 
+        ES_FSM_HOFFSET_RRDY: begin
           if (up_es_ready == 1'b1) begin
             up_fsm <= ES_FSM_HOFFSET_WRITE;
           end else begin
             up_fsm <= ES_FSM_HOFFSET_RRDY;
           end
         end
-        ES_FSM_HOFFSET_WRITE: begin 
+        ES_FSM_HOFFSET_WRITE: begin
           up_fsm <= ES_FSM_HOFFSET_WRDY;
         end
-        ES_FSM_HOFFSET_WRDY: begin 
+        ES_FSM_HOFFSET_WRDY: begin
           if (up_es_ready == 1'b1) begin
             up_fsm <= ES_FSM_VOFFSET_READ;
           end else begin
             up_fsm <= ES_FSM_HOFFSET_WRDY;
           end
         end
-        ES_FSM_VOFFSET_READ: begin 
+        ES_FSM_VOFFSET_READ: begin
           up_fsm <= ES_FSM_VOFFSET_RRDY;
         end
-        ES_FSM_VOFFSET_RRDY: begin 
+        ES_FSM_VOFFSET_RRDY: begin
           if (up_es_ready == 1'b1) begin
             up_fsm <= ES_FSM_VOFFSET_WRITE;
           end else begin
             up_fsm <= ES_FSM_VOFFSET_RRDY;
           end
         end
-        ES_FSM_VOFFSET_WRITE: begin 
+        ES_FSM_VOFFSET_WRITE: begin
           up_fsm <= ES_FSM_VOFFSET_WRDY;
         end
-        ES_FSM_VOFFSET_WRDY: begin 
+        ES_FSM_VOFFSET_WRDY: begin
           if (up_es_ready == 1'b1) begin
             up_fsm <= ES_FSM_CTRL_READ;
           end else begin
             up_fsm <= ES_FSM_VOFFSET_WRDY;
           end
         end
-        ES_FSM_CTRL_READ: begin 
+        ES_FSM_CTRL_READ: begin
           up_fsm <= ES_FSM_CTRL_RRDY;
         end
-        ES_FSM_CTRL_RRDY: begin 
+        ES_FSM_CTRL_RRDY: begin
           if (up_es_ready == 1'b1) begin
             up_fsm <= ES_FSM_START_WRITE;
           end else begin
             up_fsm <= ES_FSM_CTRL_RRDY;
           end
         end
-        ES_FSM_START_WRITE: begin 
+        ES_FSM_START_WRITE: begin
           up_fsm <= ES_FSM_START_WRDY;
         end
-        ES_FSM_START_WRDY: begin 
+        ES_FSM_START_WRDY: begin
           if (up_es_ready == 1'b1) begin
             up_fsm <= ES_FSM_STATUS_READ;
           end else begin
             up_fsm <= ES_FSM_START_WRDY;
           end
         end
-        ES_FSM_STATUS_READ: begin 
+        ES_FSM_STATUS_READ: begin
           up_fsm <= ES_FSM_STATUS_RRDY;
         end
-        ES_FSM_STATUS_RRDY: begin 
+        ES_FSM_STATUS_RRDY: begin
           if (up_es_ready == 1'b0) begin
             up_fsm <= ES_FSM_STATUS_RRDY;
           end else if (up_es_rdata[3:0] == 4'b0101) begin
@@ -407,47 +414,47 @@ module axi_adxcvr_es (
             up_fsm <= ES_FSM_STATUS_READ;
           end
         end
-        ES_FSM_STOP_WRITE: begin 
+        ES_FSM_STOP_WRITE: begin
           up_fsm <= ES_FSM_STOP_WRDY;
         end
-        ES_FSM_STOP_WRDY: begin 
+        ES_FSM_STOP_WRDY: begin
           if (up_es_ready == 1'b1) begin
             up_fsm <= ES_FSM_SCNT_READ;
           end else begin
             up_fsm <= ES_FSM_STOP_WRDY;
           end
         end
-        ES_FSM_SCNT_READ: begin 
+        ES_FSM_SCNT_READ: begin
           up_fsm <= ES_FSM_SCNT_RRDY;
         end
-        ES_FSM_SCNT_RRDY: begin 
+        ES_FSM_SCNT_RRDY: begin
           if (up_es_ready == 1'b1) begin
             up_fsm <= ES_FSM_ECNT_READ;
           end else begin
             up_fsm <= ES_FSM_SCNT_RRDY;
           end
         end
-        ES_FSM_ECNT_READ: begin 
+        ES_FSM_ECNT_READ: begin
           up_fsm <= ES_FSM_ECNT_RRDY;
         end
-        ES_FSM_ECNT_RRDY: begin 
+        ES_FSM_ECNT_RRDY: begin
           if (up_es_ready == 1'b1) begin
             up_fsm <= ES_FSM_AXI_WRITE;
           end else begin
             up_fsm <= ES_FSM_ECNT_RRDY;
           end
         end
-        ES_FSM_AXI_WRITE: begin 
+        ES_FSM_AXI_WRITE: begin
           up_fsm <= ES_FSM_AXI_READY;
         end
-        ES_FSM_AXI_READY: begin 
+        ES_FSM_AXI_READY: begin
           if (up_axi_bvalid == 1'b1) begin
             up_fsm <= ES_FSM_UPDATE;
           end else begin
             up_fsm <= ES_FSM_AXI_READY;
           end
         end
-        ES_FSM_UPDATE: begin 
+        ES_FSM_UPDATE: begin
           if ((up_eos_s == 1'b1) || (up_es_req == 1'b0)) begin
             up_fsm <= ES_FSM_IDLE;
           end else if (up_ut == 1'b1) begin
@@ -483,7 +490,7 @@ module axi_adxcvr_es (
           up_enb <= 1'b1;
           up_addr <= ES_DRP_HOFFSET_ADDR;
           up_wr <= 1'b1;
-          if (XCVR_TYPE != 0) begin
+          if (XCVR_TYPE != GTXE2) begin
           up_data <= {up_hindex, up_hdata[3:0]};
           end else begin
           up_data <= {up_hdata[15:12], up_hindex};
@@ -499,7 +506,7 @@ module axi_adxcvr_es (
           up_enb <= 1'b1;
           up_addr <= ES_DRP_VOFFSET_ADDR;
           up_wr <= 1'b1;
-          if (XCVR_TYPE != 0) begin
+          if (XCVR_TYPE != GTXE2) begin
           up_data <= {up_vdata[15:11], up_vindex_s[7], up_ut_s, up_vindex_s[6:0], up_es_vrange};
           end else begin
           up_data <= {up_es_pscale, up_vdata[10:9], up_ut_s, up_vindex_s};
@@ -515,7 +522,7 @@ module axi_adxcvr_es (
           up_enb <= 1'b1;
           up_addr <= ES_DRP_CTRL_ADDR;
           up_wr <= 1'b1;
-          if (XCVR_TYPE != 0) begin
+          if (XCVR_TYPE != GTXE2) begin
           up_data <= {6'd1, 2'b11, up_cdata[7:5], up_es_pscale};
           end else begin
           up_data <= {up_cdata[15:10], 2'b11, up_cdata[7:6], 6'd1};
@@ -531,7 +538,7 @@ module axi_adxcvr_es (
           up_enb <= 1'b1;
           up_addr <= ES_DRP_CTRL_ADDR;
           up_wr <= 1'b1;
-          if (XCVR_TYPE != 0) begin
+          if (XCVR_TYPE != GTXE2) begin
           up_data <= {6'd0, 2'b11, up_cdata[7:5], up_es_pscale};
           end else begin
           up_data <= {up_cdata[15:10], 2'b11, up_cdata[7:6], 6'd0};

@@ -43,7 +43,7 @@
 #
 
 source ../../scripts/adi_env.tcl
-source $ad_hdl_dir/library/scripts/adi_ip.tcl
+source $ad_hdl_dir/library/scripts/adi_ip_xilinx.tcl
 
 adi_ip_create jesd204_tx
 adi_ip_files jesd204_tx [list \
@@ -73,7 +73,7 @@ adi_add_bus "tx_data" "slave" \
     { "tx_data" "TDATA" } \
   }
 
-adi_add_multi_bus 8 "tx_phy" "master" \
+adi_add_multi_bus 16 "tx_phy" "master" \
   "xilinx.com:display_jesd204:jesd204_tx_bus_rtl:1.0" \
   "xilinx.com:display_jesd204:jesd204_tx_bus:1.0" \
   [list \

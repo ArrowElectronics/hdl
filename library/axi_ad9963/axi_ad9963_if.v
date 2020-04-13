@@ -39,9 +39,10 @@ module axi_ad9963_if #(
 
   // this parameter controls the buffer type based on the target device.
 
-  parameter   DEVICE_TYPE = 0,
+  parameter   FPGA_TECHNOLOGY = 0,
   parameter   ADC_IODELAY_ENABLE = 0,
-  parameter   IO_DELAY_GROUP = "dev_if_delay_group") (
+  parameter   IO_DELAY_GROUP = "dev_if_delay_group",
+  parameter   DELAY_REFCLK_FREQUENCY = 200) (
 
   // physical interface (receive)
 
@@ -153,10 +154,11 @@ module axi_ad9963_if #(
   for (l_inst = 0; l_inst <= 11; l_inst = l_inst + 1) begin: g_rx_data
   ad_data_in #(
     .SINGLE_ENDED (1),
-    .DEVICE_TYPE (DEVICE_TYPE),
+    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
     .IODELAY_ENABLE (ADC_IODELAY_ENABLE),
     .IODELAY_CTRL (0),
-    .IODELAY_GROUP (IO_DELAY_GROUP))
+    .IODELAY_GROUP (IO_DELAY_GROUP),
+    .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY))
   i_rx_data (
     .rx_clk (adc_clk),
     .rx_data_in_p (trx_data[l_inst]),
@@ -177,7 +179,7 @@ module axi_ad9963_if #(
 
   ad_data_in #(
     .SINGLE_ENDED (1),
-    .DEVICE_TYPE (DEVICE_TYPE),
+    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
     .IODELAY_ENABLE (ADC_IODELAY_ENABLE),
     .IODELAY_CTRL (1),
     .IODELAY_GROUP (IO_DELAY_GROUP))

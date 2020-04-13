@@ -37,7 +37,6 @@
 
 module up_axi #(
 
-  parameter   ADDRESS_WIDTH = 14,
   parameter   AXI_ADDRESS_WIDTH = 16) (
 
   // reset and clocks
@@ -68,11 +67,11 @@ module up_axi #(
   // pcore interface
 
   output                            up_wreq,
-  output  [(ADDRESS_WIDTH-1):0]     up_waddr,
+  output  [(AXI_ADDRESS_WIDTH-3):0] up_waddr,
   output  [31:0]                    up_wdata,
   input                             up_wack,
   output                            up_rreq,
-  output  [(ADDRESS_WIDTH-1):0]     up_raddr,
+  output  [(AXI_ADDRESS_WIDTH-3):0] up_raddr,
   input   [31:0]                    up_rdata,
   input                             up_rack);
 
@@ -84,7 +83,7 @@ module up_axi #(
   reg                               up_wack_d = 'd0;
   reg                               up_wsel = 'd0;
   reg                               up_wreq_int = 'd0;
-  reg     [(ADDRESS_WIDTH-1):0]     up_waddr_int = 'd0;
+  reg     [(AXI_ADDRESS_WIDTH-3):0] up_waddr_int = 'd0;
   reg     [31:0]                    up_wdata_int = 'd0;
   reg     [ 4:0]                    up_wcount = 'd0;
   reg                               up_axi_arready_int = 'd0;
@@ -94,7 +93,7 @@ module up_axi #(
   reg     [31:0]                    up_rdata_d = 'd0;
   reg                               up_rsel = 'd0;
   reg                               up_rreq_int = 'd0;
-  reg     [(ADDRESS_WIDTH-1):0]     up_raddr_int = 'd0;
+  reg     [(AXI_ADDRESS_WIDTH-3):0] up_raddr_int = 'd0;
   reg     [ 4:0]                    up_rcount = 'd0;
 
   // internal signals
@@ -154,12 +153,10 @@ module up_axi #(
           up_wsel <= 1'b0;
         end
         up_wreq_int <= 1'b0;
-        up_waddr_int <= up_waddr_int;
-        up_wdata_int <= up_wdata_int;
       end else begin
         up_wsel <= up_axi_awvalid & up_axi_wvalid;
         up_wreq_int <= up_axi_awvalid & up_axi_wvalid;
-        up_waddr_int <= up_axi_awaddr[(ADDRESS_WIDTH+1):2];
+        up_waddr_int <= up_axi_awaddr[(AXI_ADDRESS_WIDTH-1):2];
         up_wdata_int <= up_axi_wdata;
       end
       if (up_wack_s == 1'b1) begin
@@ -221,11 +218,10 @@ module up_axi #(
           up_rsel <= 1'b0;
         end
         up_rreq_int <= 1'b0;
-        up_raddr_int <= up_raddr_int;
       end else begin
         up_rsel <= up_axi_arvalid;
         up_rreq_int <= up_axi_arvalid;
-        up_raddr_int <= up_axi_araddr[(ADDRESS_WIDTH+1):2];
+        up_raddr_int <= up_axi_araddr[(AXI_ADDRESS_WIDTH-1):2];
       end
       if (up_rack_s == 1'b1) begin
         up_rcount <= 5'h00;

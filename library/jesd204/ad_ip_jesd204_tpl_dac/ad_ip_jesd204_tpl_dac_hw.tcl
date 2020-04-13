@@ -23,12 +23,12 @@
 
 package require qsys
 source ../../scripts/adi_env.tcl
-source ../../scripts/adi_ip_alt.tcl
+source ../../scripts/adi_ip_intel.tcl
 
 ad_ip_create ad_ip_jesd204_tpl_dac "JESD204 Transport Layer for DACs" p_ad_ip_jesd204_tpl_dac_elab
 set_module_property VALIDATION_CALLBACK p_ad_ip_jesd204_tpl_dac_validate
 ad_ip_files ad_ip_jesd204_tpl_dac [list \
-  $ad_hdl_dir/library/altera/common/ad_mul.v \
+  $ad_hdl_dir/library/intel/common/ad_mul.v \
   $ad_hdl_dir/library/common/ad_dds_sine.v \
   $ad_hdl_dir/library/common/ad_dds_cordic_pipe.v \
   $ad_hdl_dir/library/common/ad_dds_sine_cordic.v \
@@ -44,10 +44,10 @@ ad_ip_files ad_ip_jesd204_tpl_dac [list \
   $ad_hdl_dir/library/common/up_dac_common.v \
   $ad_hdl_dir/library/common/up_dac_channel.v \
   \
-  $ad_hdl_dir/library/altera/common/up_xfer_cntrl_constr.sdc \
-  $ad_hdl_dir/library/altera/common/up_xfer_status_constr.sdc \
-  $ad_hdl_dir/library/altera/common/up_clock_mon_constr.sdc \
-  $ad_hdl_dir/library/altera/common/up_rst_constr.sdc \
+  $ad_hdl_dir/library/intel/common/up_xfer_cntrl_constr.sdc \
+  $ad_hdl_dir/library/intel/common/up_xfer_status_constr.sdc \
+  $ad_hdl_dir/library/intel/common/up_clock_mon_constr.sdc \
+  $ad_hdl_dir/library/intel/common/up_rst_constr.sdc \
   \
   ad_ip_jesd204_tpl_dac.v \
   ad_ip_jesd204_tpl_dac_channel.v \
@@ -55,6 +55,7 @@ ad_ip_files ad_ip_jesd204_tpl_dac [list \
   ad_ip_jesd204_tpl_dac_framer.v \
   ad_ip_jesd204_tpl_dac_pn.v \
   ad_ip_jesd204_tpl_dac_regmap.v \
+  ../ad_ip_jesd204_tpl_common/up_tpl_common.v \
 ]
 
 # parameters
@@ -104,14 +105,14 @@ ad_ip_parameter NUM_CHANNELS INTEGER 1 true [list \
 
 ad_ip_parameter BITS_PER_SAMPLE INTEGER 16 false [list \
   DISPLAY_NAME "Bits per Sample (N')" \
-  ALLOWED_RANGES {12 16} \
+  ALLOWED_RANGES {8 12 16} \
   UNITS bits \
   GROUP $group \
 ]
 
 ad_ip_parameter CONVERTER_RESOLUTION INTEGER 16 true [list \
   DISPLAY_NAME "Converter Resolution (N)" \
-  ALLOWED_RANGES {11 12 16} \
+  ALLOWED_RANGES {8 11 12 16} \
   UNITS bits \
   GROUP $group \
 ]
@@ -503,5 +504,5 @@ proc p_ad_ip_jesd204_tpl_dac_elab {} {
     set_interface_property dac_ch_$i associatedClock link_clk
   }
 
-  ad_alt_intf signal  dac_dunf  input  1 unf
+  ad_interface signal  dac_dunf  input  1 unf
 }

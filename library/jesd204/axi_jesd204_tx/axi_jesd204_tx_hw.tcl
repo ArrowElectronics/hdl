@@ -45,7 +45,7 @@
 package require qsys
 
 source ../../scripts/adi_env.tcl
-source $ad_hdl_dir/library/scripts/adi_ip_alt.tcl
+source $ad_hdl_dir/library/scripts/adi_ip_intel.tcl
 
 ad_ip_create axi_jesd204_tx "ADI JESD204 Transmit AXI Interface"
 
@@ -65,7 +65,7 @@ ad_ip_files axi_jesd204_tx [list \
   $ad_hdl_dir/library/util_cdc/sync_data.v \
   $ad_hdl_dir/library/util_cdc/sync_event.v \
   $ad_hdl_dir/library/util_cdc/util_cdc_constr.tcl \
-  $ad_hdl_dir/library/altera/common/up_clock_mon_constr.sdc \
+  $ad_hdl_dir/library/intel/common/up_clock_mon_constr.sdc \
 ]
 
 # parameters

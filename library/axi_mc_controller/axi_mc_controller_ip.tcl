@@ -1,7 +1,7 @@
 # ip
 
 source ../scripts/adi_env.tcl
-source $ad_hdl_dir/library/scripts/adi_ip.tcl
+source $ad_hdl_dir/library/scripts/adi_ip_xilinx.tcl
 
 adi_ip_create axi_mc_controller
 adi_ip_files axi_mc_controller [list \
@@ -9,6 +9,7 @@ adi_ip_files axi_mc_controller [list \
   "motor_driver.v" \
   "delay.v" \
   "control_registers.v" \
+  "axi_mc_controller_constr.xdc" \
   "axi_mc_controller.v" ]
 
 adi_ip_properties axi_mc_controller

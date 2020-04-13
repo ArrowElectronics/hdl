@@ -38,6 +38,10 @@
 module axi_ad9152 #(
 
   parameter   ID = 0,
+  parameter   FPGA_TECHNOLOGY = 0,
+  parameter   FPGA_FAMILY = 0,
+  parameter   SPEED_GRADE = 0,
+  parameter   DEV_PACKAGE = 0,
   parameter   DAC_DDS_TYPE = 1,
   parameter   DAC_DDS_CORDIC_DW = 16,
   parameter   DAC_DDS_CORDIC_PHASE_DW = 16,
@@ -67,7 +71,7 @@ module axi_ad9152 #(
   input                   s_axi_aclk,
   input                   s_axi_aresetn,
   input                   s_axi_awvalid,
-  input       [ 15:0]     s_axi_awaddr,
+  input       [ 11:0]     s_axi_awaddr,
   input       [ 2:0]      s_axi_awprot,
   output                  s_axi_awready,
   input                   s_axi_wvalid,
@@ -78,7 +82,7 @@ module axi_ad9152 #(
   output      [ 1:0]      s_axi_bresp,
   input                   s_axi_bready,
   input                   s_axi_arvalid,
-  input       [ 15:0]     s_axi_araddr,
+  input       [ 11:0]     s_axi_araddr,
   input       [ 2:0]      s_axi_arprot,
   output                  s_axi_arready,
   output                  s_axi_rvalid,
@@ -90,6 +94,10 @@ module axi_ad9152 #(
 
   ad_ip_jesd204_tpl_dac #(
     .ID(ID),
+    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
+    .FPGA_FAMILY (FPGA_FAMILY),
+    .SPEED_GRADE (SPEED_GRADE),
+    .DEV_PACKAGE (DEV_PACKAGE),
     .NUM_LANES(4),
     .NUM_CHANNELS(2),
     .CONVERTER_RESOLUTION (16),

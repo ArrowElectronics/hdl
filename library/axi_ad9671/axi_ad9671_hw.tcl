@@ -1,14 +1,17 @@
 
 
 package require qsys
+package require quartus::device
+
 source ../scripts/adi_env.tcl
-source ../scripts/adi_ip_alt.tcl
+source ../scripts/adi_ip_intel.tcl
 
 set_module_property NAME axi_ad9671
 set_module_property DESCRIPTION "AXI AD9671 Interface"
 set_module_property VERSION 1.0
 set_module_property GROUP "Analog Devices"
 set_module_property DISPLAY_NAME axi_ad9671
+set_module_property VALIDATION_CALLBACK info_param_validate
 
 # files
 
@@ -29,10 +32,10 @@ add_fileset_file axi_ad9671_pnmon.v   VERILOG PATH axi_ad9671_pnmon.v
 add_fileset_file axi_ad9671_if.v      VERILOG PATH axi_ad9671_if.v
 add_fileset_file axi_ad9671_channel.v VERILOG PATH axi_ad9671_channel.v
 add_fileset_file axi_ad9671.v         VERILOG PATH axi_ad9671.v TOP_LEVEL_FILE
-add_fileset_file up_xfer_cntrl_constr.sdc   SDC PATH  $ad_hdl_dir/library/altera/common/up_xfer_cntrl_constr.sdc
-add_fileset_file up_xfer_status_constr.sdc  SDC PATH  $ad_hdl_dir/library/altera/common/up_xfer_status_constr.sdc
-add_fileset_file up_clock_mon_constr.sdc    SDC PATH  $ad_hdl_dir/library/altera/common/up_clock_mon_constr.sdc
-add_fileset_file up_rst_constr.sdc          SDC PATH  $ad_hdl_dir/library/altera/common/up_rst_constr.sdc
+add_fileset_file up_xfer_cntrl_constr.sdc   SDC PATH  $ad_hdl_dir/library/intel/common/up_xfer_cntrl_constr.sdc
+add_fileset_file up_xfer_status_constr.sdc  SDC PATH  $ad_hdl_dir/library/intel/common/up_xfer_status_constr.sdc
+add_fileset_file up_clock_mon_constr.sdc    SDC PATH  $ad_hdl_dir/library/intel/common/up_clock_mon_constr.sdc
+add_fileset_file up_rst_constr.sdc          SDC PATH  $ad_hdl_dir/library/intel/common/up_rst_constr.sdc
 
 # parameters
 
@@ -50,14 +53,16 @@ set_parameter_property QUAD_OR_DUAL_N TYPE INTEGER
 set_parameter_property QUAD_OR_DUAL_N UNITS None
 set_parameter_property QUAD_OR_DUAL_N HDL_PARAMETER true
 
+adi_add_auto_fpga_spec_params
+
 # axi4 slave
 
 ad_ip_intf_s_axi s_axi_aclk s_axi_aresetn
 
 # transceiver interface
 
-ad_alt_intf clock   rx_clk        input   1
-ad_alt_intf signal  rx_sof        input   4 export
+ad_interface clock   rx_clk        input   1
+ad_interface signal  rx_sof        input   4 export
 
 add_interface if_rx_data avalon_streaming sink
 add_interface_port if_rx_data rx_data  data  input 64*QUAD_OR_DUAL_N+64
@@ -75,8 +80,8 @@ add_interface_port if_sync adc_raddr_out raddr_out Output 4
 
 # dma interface
 
-ad_alt_intf clock   adc_clk     output  1
-ad_alt_intf reset   adc_rst     output  1 if_adc_clk
+ad_interface clock   adc_clk     output  1
+ad_interface reset   adc_rst     output  1 if_adc_clk
 
 add_interface adc_ch conduit end
 add_interface_port adc_ch adc_enable  enable  Output 8
@@ -86,5 +91,5 @@ add_interface_port adc_ch adc_data    data    Output 128
 set_interface_property adc_ch associatedClock if_rx_clk
 set_interface_property adc_ch associatedReset none
 
-ad_alt_intf signal  adc_dovf      input   1     ovf
+ad_interface signal  adc_dovf      input   1     ovf
 

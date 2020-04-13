@@ -66,6 +66,9 @@ ad_ip_parameter sys_mb_debug CONFIG.C_USE_UART 1
 # instance: system reset/clocks
 
 ad_ip_instance proc_sys_reset sys_rstgen
+ad_ip_parameter sys_rstgen CONFIG.C_EXT_RST_WIDTH 1
+ad_ip_instance proc_sys_reset sys_200m_rstgen
+ad_ip_parameter sys_200m_rstgen CONFIG.C_EXT_RST_WIDTH 1
 
 # instance: ddr (mig)
 
@@ -154,6 +157,15 @@ ad_connect  sys_ilmb_cntlr/BRAM_PORT  sys_lmb_bram/BRAM_PORTB
 ad_connect  sys_mb/DLMB   sys_dlmb/LMB_M
 ad_connect  sys_mb/ILMB   sys_ilmb/LMB_M
 
+# system id
+
+ad_ip_instance axi_sysid axi_sysid_0
+ad_ip_instance sysid_rom rom_sys_0
+
+ad_connect  axi_sysid_0/rom_addr   	rom_sys_0/rom_addr
+ad_connect  axi_sysid_0/sys_rom_data   	rom_sys_0/rom_data
+ad_connect  sys_cpu_clk                 rom_sys_0/clk
+
 # microblaze debug & interrupt
 
 ad_connect sys_mb_debug/MBDEBUG_0   sys_mb/DEBUG
@@ -164,14 +176,31 @@ ad_connect sys_concat_intc/dout   axi_intc/intr
 
 ad_connect axi_ddr_cntrl/device_temp_i GND
 ad_connect axi_ddr_cntrl/mmcm_locked   sys_rstgen/dcm_locked
+ad_connect axi_ddr_cntrl/mmcm_locked   sys_200m_rstgen/dcm_locked
 
 ad_connect sys_cpu_clk    axi_ddr_cntrl/ui_addn_clk_0
 ad_connect sys_200m_clk   axi_ddr_cntrl/ui_clk
 ad_connect sys_cpu_resetn axi_ddr_cntrl/aresetn
 ad_connect sys_cpu_reset  sys_rstgen/peripheral_reset
 ad_connect sys_cpu_resetn sys_rstgen/peripheral_aresetn
+ad_connect sys_200m_reset  sys_200m_rstgen/peripheral_reset
+ad_connect sys_200m_resetn sys_200m_rstgen/peripheral_aresetn
+
+# generic system clocks pointers
+
+set sys_cpu_clk      [get_bd_nets sys_cpu_clk]
+set sys_dma_clk      [get_bd_nets sys_200m_clk]
+set sys_iodelay_clk  [get_bd_nets sys_200m_clk]
+
+set sys_cpu_reset         [get_bd_nets sys_cpu_reset]
+set sys_cpu_resetn        [get_bd_nets sys_cpu_resetn]
+set sys_dma_reset         [get_bd_nets sys_200m_reset]
+set sys_dma_resetn        [get_bd_nets sys_200m_resetn]
+set sys_iodelay_reset     [get_bd_nets sys_200m_reset]
+set sys_iodelay_resetn    [get_bd_nets sys_200m_resetn]
 
 ad_connect sys_cpu_clk  sys_rstgen/slowest_sync_clk
+ad_connect sys_200m_clk sys_200m_rstgen/slowest_sync_clk
 ad_connect sys_cpu_clk  sys_mb/Clk
 ad_connect sys_cpu_clk  sys_dlmb/LMB_Clk
 ad_connect sys_cpu_clk  sys_ilmb/LMB_Clk
@@ -202,10 +231,12 @@ ad_connect sys_concat_intc/In15   GND
 
 ad_connect  sys_rst sys_rstgen/ext_reset_in
 ad_connect  sys_rst axi_ddr_cntrl/sys_rst
+ad_connect  sys_200m_rst sys_200m_rstgen/ext_reset_in
+ad_connect  sys_200m_rst axi_ddr_cntrl/ui_clk_sync_rst
 ad_connect  sys_clk_p axi_ddr_cntrl/sys_clk_p
 ad_connect  sys_clk_n axi_ddr_cntrl/sys_clk_n
 ad_connect  ddr3 axi_ddr_cntrl/DDR3
-ad_connect  sys_cpu_clk axi_ethernet/ref_clk
+ad_connect  sys_200m_clk axi_ethernet/ref_clk
 ad_connect  sys_cpu_clk axi_ethernet/axis_clk
 ad_connect  phy_sd axi_ethernet/signal_detect
 ad_connect  phy_rstn axi_ethernet/phy_rst_n
@@ -260,6 +291,7 @@ ad_cpu_interconnect 0x41200000 axi_intc
 ad_cpu_interconnect 0x41C00000 axi_timer
 ad_cpu_interconnect 0x40600000 axi_uart
 ad_cpu_interconnect 0x41600000 axi_iic_main
+ad_cpu_interconnect 0x45000000 axi_sysid_0
 ad_cpu_interconnect 0x40000000 axi_gpio
 ad_cpu_interconnect 0x44A70000 axi_spi
 ad_cpu_interconnect 0x60000000 axi_linear_flash

@@ -9,6 +9,7 @@ GENERIC_DEPS += axi_spi_engine.v
 
 XILINX_DEPS += ../../common/ad_rst.v
 XILINX_DEPS += ../../common/up_axi.v
+XILINX_DEPS += axi_spi_engine_constr.ttcl
 XILINX_DEPS += axi_spi_engine_ip.tcl
 
 XILINX_DEPS += ../../spi_engine/interfaces/spi_engine_ctrl.xml

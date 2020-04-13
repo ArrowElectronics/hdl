@@ -37,9 +37,13 @@
 
 module axi_ad9467#(
 
-  parameter ID = 0,
-  parameter DEVICE_TYPE = 0,
-  parameter IO_DELAY_GROUP = "dev_if_delay_group") (
+  parameter   ID = 0,
+  parameter   FPGA_TECHNOLOGY = 0,
+  parameter   FPGA_FAMILY = 0,
+  parameter   SPEED_GRADE = 0,
+  parameter   DEV_PACKAGE = 0,
+  parameter   IO_DELAY_GROUP = "dev_if_delay_group",
+  parameter   DELAY_REFCLK_FREQUENCY = 200) (
 
   // physical interface
 
@@ -144,8 +148,9 @@ module axi_ad9467#(
   // main (device interface)
 
   axi_ad9467_if #(
-    .DEVICE_TYPE (DEVICE_TYPE),
-    .IO_DELAY_GROUP (IO_DELAY_GROUP))
+    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
+    .IO_DELAY_GROUP (IO_DELAY_GROUP),
+    .DELAY_REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY))
   i_if (
     .adc_clk_in_p (adc_clk_in_p),
     .adc_clk_in_n (adc_clk_in_n),
@@ -211,7 +216,11 @@ module axi_ad9467#(
   // common processor control
 
   up_adc_common #(
-    .ID(ID),
+    .ID (ID),
+    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
+    .FPGA_FAMILY (FPGA_FAMILY),
+    .SPEED_GRADE (SPEED_GRADE),
+    .DEV_PACKAGE (DEV_PACKAGE),
     .CONFIG (0),
     .COMMON_ID (6'h00),
     .DRP_DISABLE (6'h00),

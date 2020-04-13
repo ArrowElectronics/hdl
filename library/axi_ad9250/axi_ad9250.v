@@ -36,7 +36,11 @@
 `timescale 1ns/100ps
 
 module axi_ad9250 #(
-  parameter ID = 0
+  parameter ID = 0,
+  parameter   FPGA_TECHNOLOGY = 0,
+  parameter   FPGA_FAMILY = 0,
+  parameter   SPEED_GRADE = 0,
+  parameter   DEV_PACKAGE = 0
 ) (
 
   // jesd interface
@@ -64,7 +68,7 @@ module axi_ad9250 #(
   input                   s_axi_aclk,
   input                   s_axi_aresetn,
   input                   s_axi_awvalid,
-  input       [15:0]      s_axi_awaddr,
+  input       [11:0]      s_axi_awaddr,
   input       [ 2:0]      s_axi_awprot,
   output                  s_axi_awready,
   input                   s_axi_wvalid,
@@ -75,7 +79,7 @@ module axi_ad9250 #(
   output      [ 1:0]      s_axi_bresp,
   input                   s_axi_bready,
   input                   s_axi_arvalid,
-  input       [15:0]      s_axi_araddr,
+  input       [11:0]      s_axi_araddr,
   input       [ 2:0]      s_axi_arprot,
   output                  s_axi_arready,
   output                  s_axi_rvalid,
@@ -87,9 +91,16 @@ module axi_ad9250 #(
 
   ad_ip_jesd204_tpl_adc #(
     .ID (ID),
+    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
+    .FPGA_FAMILY (FPGA_FAMILY),
+    .SPEED_GRADE (SPEED_GRADE),
+    .DEV_PACKAGE (DEV_PACKAGE),
     .NUM_LANES (2),
     .NUM_CHANNELS (2),
-    .CHANNEL_WIDTH (14),
+    .SAMPLES_PER_FRAME (1),
+    .CONVERTER_RESOLUTION (14),
+    .BITS_PER_SAMPLE (16),
+    .OCTETS_PER_BEAT (4),
     .TWOS_COMPLEMENT (1)
   ) i_adc_jesd204 (
     .link_clk (rx_clk),

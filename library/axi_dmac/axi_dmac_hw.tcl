@@ -2,7 +2,7 @@
 
 package require qsys
 source ../scripts/adi_env.tcl
-source ../scripts/adi_ip_alt.tcl
+source ../scripts/adi_ip_intel.tcl
 
 set_module_property NAME axi_dmac
 set_module_property DESCRIPTION "AXI DMA Controller"
@@ -20,7 +20,7 @@ ad_ip_files axi_dmac [list \
   $ad_hdl_dir/library/common/up_axi.v \
   $ad_hdl_dir/library/util_axis_fifo/util_axis_fifo.v \
   $ad_hdl_dir/library/util_axis_fifo/address_sync.v \
-  $ad_hdl_dir/library/common/ad_mem.v \
+  $ad_hdl_dir/library/common/ad_mem_asym.v \
   inc_id.vh \
   resp.vh \
   axi_dmac_burst_memory.v \
@@ -106,12 +106,6 @@ foreach {suffix group} { \
   set_parameter_property DMA_DATA_WIDTH_$suffix HDL_PARAMETER true
   set_parameter_property DMA_DATA_WIDTH_$suffix ALLOWED_RANGES {16 32 64 128 256 512 1024}
   set_parameter_property DMA_DATA_WIDTH_$suffix GROUP $group
-
-  add_parameter USE_TLAST_$suffix INTEGER 0
-  set_parameter_property USE_TLAST_$suffix DISPLAY_NAME "Use TLAST"
-  set_parameter_property USE_TLAST_$suffix HDL_PARAMETER false
-  set_parameter_property USE_TLAST_$suffix DISPLAY_HINT boolean
-  set_parameter_property USE_TLAST_$suffix GROUP $group
 
   add_parameter AXI_SLICE_$suffix INTEGER 0
   set_parameter_property AXI_SLICE_$suffix DISPLAY_NAME "Insert Register Slice"
@@ -200,7 +194,7 @@ foreach domain [list {*}$src_clks {*}$dest_clks] {
 
 # axi4 slave
 
-ad_ip_intf_s_axi s_axi_aclk s_axi_aresetn 12
+ad_ip_intf_s_axi s_axi_aclk s_axi_aresetn 11
 
 add_interface interrupt_sender interrupt end
 set_interface_property interrupt_sender associatedAddressablePoint s_axi
@@ -271,13 +265,6 @@ proc axi_dmac_validate {} {
     set_parameter_property DMA_AXI_PROTOCOL_$suffix VISIBLE $show_axi_protocol
   }
 
-  foreach suffix {SRC DEST} {
-    if {[get_parameter_value DMA_TYPE_$suffix] == 1} {
-      set_parameter_property USE_TLAST_$suffix VISIBLE true
-    } else {
-      set_parameter_property USE_TLAST_$suffix VISIBLE false
-    }
-  }
   set_parameter_property MAX_BYTES_PER_BURST ALLOWED_RANGES "1:$max_burst"
 }
 
@@ -302,36 +289,53 @@ add_interface_port m_src_axi_reset m_src_axi_aresetn reset_n Input 1
 
 # axis destination/source
 
-ad_alt_intf clock   m_axis_aclk       input   1                       clk
-ad_alt_intf signal  m_axis_valid      output  1                       valid
-ad_alt_intf signal  m_axis_data       output  DMA_DATA_WIDTH_DEST     data
-ad_alt_intf signal  m_axis_ready      input   1                       ready
-ad_alt_intf signal  m_axis_last       output  1                       last
-ad_alt_intf signal  m_axis_xfer_req   output  1                       xfer_req
+ad_interface clock   m_axis_aclk       input   1                       clk
+ad_interface signal  m_axis_xfer_req   output  1                       xfer_req
 
-ad_alt_intf clock   s_axis_aclk       input   1                       clk
-ad_alt_intf signal  s_axis_valid      input   1                       valid
-ad_alt_intf signal  s_axis_data       input   DMA_DATA_WIDTH_SRC      data
-ad_alt_intf signal  s_axis_ready      output  1                       ready
-ad_alt_intf signal  s_axis_last       input   1                       last
-ad_alt_intf signal  s_axis_xfer_req   output  1                       xfer_req
-ad_alt_intf signal  s_axis_user       input   1                       user
+add_interface m_axis axi4stream start
+set_interface_property m_axis associatedClock if_m_axis_aclk
+set_interface_property m_axis associatedReset s_axi_reset
+add_interface_port m_axis  m_axis_valid tvalid Output 1
+add_interface_port m_axis  m_axis_last  tlast  Output 1
+add_interface_port m_axis  m_axis_ready tready Input  1
+add_interface_port m_axis  m_axis_data  tdata  Output DMA_DATA_WIDTH_DEST
+add_interface_port m_axis  m_axis_user  tuser  Output 1
+add_interface_port m_axis  m_axis_id    tid    Output DMA_AXIS_ID_W
+add_interface_port m_axis  m_axis_dest  tdest  Output DMA_AXIS_DEST_W
+add_interface_port m_axis  m_axis_strb  tstrb  Output DMA_DATA_WIDTH_DEST/8
+add_interface_port m_axis  m_axis_keep  tkeep  Output DMA_DATA_WIDTH_DEST/8
+
+ad_interface clock   s_axis_aclk       input   1                       clk
+ad_interface signal  s_axis_xfer_req   output  1                       xfer_req
+
+add_interface s_axis axi4stream end
+set_interface_property s_axis associatedClock if_s_axis_aclk
+set_interface_property s_axis associatedReset s_axi_reset
+add_interface_port s_axis  s_axis_valid tvalid Input   1
+add_interface_port s_axis  s_axis_last  tlast  Input   1
+add_interface_port s_axis  s_axis_ready tready Output  1
+add_interface_port s_axis  s_axis_data  tdata  Input   DMA_DATA_WIDTH_SRC
+add_interface_port s_axis  s_axis_user  tuser  Input   1
+add_interface_port s_axis  s_axis_id    tid    Input   DMA_AXIS_ID_W
+add_interface_port s_axis  s_axis_dest  tdest  Input   DMA_AXIS_DEST_W
+add_interface_port s_axis  s_axis_strb  tstrb  Input   DMA_DATA_WIDTH_SRC/8
+add_interface_port s_axis  s_axis_keep  tkeep  Input   DMA_DATA_WIDTH_SRC/8
 
 # fifo destination/source
 
-ad_alt_intf clock   fifo_rd_clk       input   1                       clk
-ad_alt_intf signal  fifo_rd_en        input   1                       valid
-ad_alt_intf signal  fifo_rd_valid     output  1                       valid
-ad_alt_intf signal  fifo_rd_dout      output  DMA_DATA_WIDTH_DEST     data
-ad_alt_intf signal  fifo_rd_underflow output  1                       unf
-ad_alt_intf signal  fifo_rd_xfer_req  output  1                       xfer_req
+ad_interface clock   fifo_rd_clk       input   1                       clk
+ad_interface signal  fifo_rd_en        input   1                       valid
+ad_interface signal  fifo_rd_valid     output  1                       valid
+ad_interface signal  fifo_rd_dout      output  DMA_DATA_WIDTH_DEST     data
+ad_interface signal  fifo_rd_underflow output  1                       unf
+ad_interface signal  fifo_rd_xfer_req  output  1                       xfer_req
 
-ad_alt_intf clock   fifo_wr_clk       input   1                       clk
-ad_alt_intf signal  fifo_wr_en        input   1                       valid
-ad_alt_intf signal  fifo_wr_din       input   DMA_DATA_WIDTH_SRC      data
-ad_alt_intf signal  fifo_wr_overflow  output  1                       ovf
-ad_alt_intf signal  fifo_wr_sync      input   1                       sync
-ad_alt_intf signal  fifo_wr_xfer_req  output  1                       xfer_req
+ad_interface clock   fifo_wr_clk       input   1                       clk
+ad_interface signal  fifo_wr_en        input   1                       valid
+ad_interface signal  fifo_wr_din       input   DMA_DATA_WIDTH_SRC      data
+ad_interface signal  fifo_wr_overflow  output  1                       ovf
+ad_interface signal  fifo_wr_sync      input   1                       sync
+ad_interface signal  fifo_wr_xfer_req  output  1                       xfer_req
 
 proc add_axi_master_interface {axi_type port suffix} {
   add_interface $port $axi_type start
@@ -366,7 +370,7 @@ proc add_axi_master_interface {axi_type port suffix} {
   add_interface_port $port ${port}_arburst arburst Output 2
   add_interface_port $port ${port}_arcache arcache Output 4
   add_interface_port $port ${port}_arprot arprot Output 3
-  # Some signals are mandatory in Altera's implementation of AXI3
+  # Some signals are mandatory in Intel's implementation of AXI3
   # awid, awlock, wid, bid, arid, arlock, rid, rlast
   # Hide them in AXI4
   add_interface_port $port ${port}_awid awid Output 1
@@ -423,32 +427,57 @@ proc axi_dmac_elaborate {} {
   # axis destination/source
 
   if {[get_parameter_value DMA_TYPE_DEST] != 1} {
-    lappend disabled_intfs \
-      if_m_axis_aclk if_m_axis_valid if_m_axis_data if_m_axis_ready \
-	  if_m_axis_last if_m_axis_xfer_req
-  }
-
-  if {[get_parameter_value DMA_TYPE_DEST] == 1 &&
-      [get_parameter_value USE_TLAST_DEST] == 0} {
-    set_port_property m_axis_last termination true
+    lappend disabled_intfs if_m_axis_aclk if_m_axis_xfer_req m_axis
+  } else {
+    if {[get_parameter_value HAS_AXIS_TSTRB] == 0} {
+      set_port_property m_axis_strb termination true
+    }
+    if {[get_parameter_value HAS_AXIS_TKEEP] == 0} {
+      set_port_property m_axis_keep termination true
+    }
+    if {[get_parameter_value HAS_AXIS_TLAST] == 0} {
+      set_port_property m_axis_last termination true
+    }
+    if {[get_parameter_value HAS_AXIS_TID] == 0} {
+      set_port_property m_axis_id termination true
+    }
+    if {[get_parameter_value HAS_AXIS_TDEST] == 0} {
+      set_port_property m_axis_dest termination true
+    }
+    if {[get_parameter_value HAS_AXIS_TUSER] == 0} {
+      set_port_property m_axis_user termination true
+    }
   }
 
   if {[get_parameter_value DMA_TYPE_SRC] != 1} {
-    lappend disabled_intfs \
-      if_s_axis_aclk if_s_axis_valid if_s_axis_data if_s_axis_ready \
-	  if_s_axis_xfer_req if_s_axis_user if_s_axis_last
-  }
-
-  if {[get_parameter_value DMA_TYPE_SRC] == 1 &&
-      [get_parameter_value SYNC_TRANSFER_START] == 0} {
-    set_port_property s_axis_user termination true
-    set_port_property s_axis_user termination_value 1
-  }
-
-  if {[get_parameter_value DMA_TYPE_SRC] == 1 &&
-      [get_parameter_value USE_TLAST_SRC] == 0} {
-    set_port_property s_axis_last termination true
-    set_port_property s_axis_last termination_value 0
+    lappend disabled_intfs if_s_axis_aclk if_s_axis_xfer_req s_axis
+  } else {
+    if {[get_parameter_value HAS_AXIS_TSTRB] == 0} {
+      set_port_property s_axis_strb termination true
+      set_port_property s_axis_strb termination_value 0xFF
+    }
+    if {[get_parameter_value HAS_AXIS_TKEEP] == 0} {
+      set_port_property s_axis_keep termination true
+      set_port_property s_axis_keep termination_value 0xFF
+    }
+    if {[get_parameter_value HAS_AXIS_TLAST] == 0} {
+      set_port_property s_axis_last termination true
+      set_port_property s_axis_last termination_value 0
+    }
+    if {[get_parameter_value HAS_AXIS_TID] == 0} {
+      set_port_property s_axis_id termination true
+      set_port_property s_axis_id termination_value 0
+    }
+    if {[get_parameter_value HAS_AXIS_TDEST] == 0} {
+      set_port_property s_axis_dest termination true
+      set_port_property s_axis_dest termination_value 0
+    }
+    if {[get_parameter_value HAS_AXIS_TUSER] == 0} {
+      if {[get_parameter_value SYNC_TRANSFER_START] == 0} {
+        set_port_property s_axis_user termination true
+        set_port_property s_axis_user termination_value 0
+      }
+    }
   }
 
   # fifo destination/source
@@ -496,3 +525,51 @@ set_parameter_property ENABLE_DIAGNOSTICS_IF GROUP $group
 
 add_interface diagnostics_if conduit end
 add_interface_port diagnostics_if dest_diag_level_bursts dest_diag_level_bursts Output "8"
+
+set group "AXI Stream interface common configuration"
+
+add_parameter HAS_AXIS_TSTRB INTEGER 0
+set_parameter_property HAS_AXIS_TSTRB DISPLAY_NAME "AXI Stream interface has TSTRB"
+set_parameter_property HAS_AXIS_TSTRB DISPLAY_HINT boolean
+set_parameter_property HAS_AXIS_TSTRB HDL_PARAMETER false
+set_parameter_property HAS_AXIS_TSTRB GROUP $group
+
+add_parameter HAS_AXIS_TKEEP INTEGER 0
+set_parameter_property HAS_AXIS_TKEEP DISPLAY_NAME "AXI Stream interface has TKEEP"
+set_parameter_property HAS_AXIS_TKEEP DISPLAY_HINT boolean
+set_parameter_property HAS_AXIS_TKEEP HDL_PARAMETER false
+set_parameter_property HAS_AXIS_TKEEP GROUP $group
+
+add_parameter HAS_AXIS_TLAST INTEGER 0
+set_parameter_property HAS_AXIS_TLAST DISPLAY_NAME "AXI Stream interface has TLAST"
+set_parameter_property HAS_AXIS_TLAST DISPLAY_HINT boolean
+set_parameter_property HAS_AXIS_TLAST HDL_PARAMETER false
+set_parameter_property HAS_AXIS_TLAST GROUP $group
+
+add_parameter HAS_AXIS_TID INTEGER 0
+set_parameter_property HAS_AXIS_TID DISPLAY_NAME "AXI Stream interface has TID"
+set_parameter_property HAS_AXIS_TID DISPLAY_HINT boolean
+set_parameter_property HAS_AXIS_TID HDL_PARAMETER false
+set_parameter_property HAS_AXIS_TID GROUP $group
+
+add_parameter DMA_AXIS_ID_W INTEGER 8
+set_parameter_property DMA_AXIS_ID_W DISPLAY_NAME "AXI Stream TID width"
+set_parameter_property DMA_AXIS_ID_W HDL_PARAMETER true
+set_parameter_property DMA_AXIS_ID_W GROUP $group
+
+add_parameter HAS_AXIS_TDEST INTEGER 0
+set_parameter_property HAS_AXIS_TDEST DISPLAY_NAME "AXI Stream interface has TDEST"
+set_parameter_property HAS_AXIS_TDEST DISPLAY_HINT boolean
+set_parameter_property HAS_AXIS_TDEST HDL_PARAMETER false
+set_parameter_property HAS_AXIS_TDEST GROUP $group
+
+add_parameter DMA_AXIS_DEST_W INTEGER 4
+set_parameter_property DMA_AXIS_DEST_W DISPLAY_NAME "AXI Stream TDEST width"
+set_parameter_property DMA_AXIS_DEST_W HDL_PARAMETER true
+set_parameter_property DMA_AXIS_DEST_W GROUP $group
+
+add_parameter HAS_AXIS_TUSER INTEGER 0
+set_parameter_property HAS_AXIS_TUSER DISPLAY_NAME "AXI Stream interface has TUSER"
+set_parameter_property HAS_AXIS_TUSER DISPLAY_HINT boolean
+set_parameter_property HAS_AXIS_TUSER HDL_PARAMETER false
+set_parameter_property HAS_AXIS_TUSER GROUP $group

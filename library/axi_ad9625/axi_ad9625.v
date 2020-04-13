@@ -37,7 +37,12 @@
 
 module axi_ad9625 #(
 
-  parameter ID = 0) (
+  parameter ID = 0,
+  parameter FPGA_TECHNOLOGY = 0,
+  parameter FPGA_FAMILY = 0,
+  parameter SPEED_GRADE = 0,
+  parameter DEV_PACKAGE = 0,
+  parameter DELAY_REFCLK_FREQUENCY = 200) (
 
   // jesd interface
   // rx_clk is (line-rate/40)
@@ -180,6 +185,10 @@ module axi_ad9625 #(
 
   up_adc_common #(
     .ID(ID),
+    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
+    .FPGA_FAMILY (FPGA_FAMILY),
+    .SPEED_GRADE (SPEED_GRADE),
+    .DEV_PACKAGE (DEV_PACKAGE),
     .CONFIG(0),
     .COMMON_ID(6'h0),
     .DRP_DISABLE(1),

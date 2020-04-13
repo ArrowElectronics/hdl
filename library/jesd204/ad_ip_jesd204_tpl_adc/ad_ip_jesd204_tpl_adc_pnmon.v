@@ -24,14 +24,14 @@
 `timescale 1ns/100ps
 
 module ad_ip_jesd204_tpl_adc_pnmon #(
-  parameter CHANNEL_WIDTH = 16,
+  parameter CONVERTER_RESOLUTION = 16,
   parameter DATA_PATH_WIDTH = 1,
   parameter TWOS_COMPLEMENT = 1
 ) (
   input clk,
 
   // data interface
-  input [CHANNEL_WIDTH*DATA_PATH_WIDTH-1:0] data,
+  input [CONVERTER_RESOLUTION*DATA_PATH_WIDTH-1:0] data,
 
   // pn out of sync and error
   output pn_oos,
@@ -41,14 +41,18 @@ module ad_ip_jesd204_tpl_adc_pnmon #(
   input [3:0] pn_seq_sel
 );
 
-  localparam DW = DATA_PATH_WIDTH*CHANNEL_WIDTH-1;
+  localparam DW = DATA_PATH_WIDTH*CONVERTER_RESOLUTION-1;
+
+  // Max width of largest PN and data width
+  localparam PN_W = DW > 22 ? DW : 22;
 
   // internal registers
-  reg [DW:0] pn_data_pn = 'd0;
+  reg [PN_W:0] pn_data_pn = 'd0;
 
   // internal signals
-  wire [DW:0] pn_data_pn_s;
+  wire [PN_W:0] pn_data_pn_s;
   wire [DW:0] pn_data_in_s;
+  wire [PN_W:0] pn_data_init;
 
   wire [DW:0] pn23;
   wire [DW+23:0] full_state_pn23;
@@ -56,18 +60,28 @@ module ad_ip_jesd204_tpl_adc_pnmon #(
   wire [DW+9:0] full_state_pn9;
 
   // pn sequence select
+  generate if (PN_W > DW) begin
+    reg [PN_W-DW-1:0] pn_data_in_d = 'd0;
+    always @(posedge clk) begin
+      pn_data_in_d <= pn_data_in_s[PN_W-DW-1:0];
+    end
+    assign pn_data_init = {pn_data_in_d, pn_data_in_s};
+  end else begin
+    assign pn_data_init = pn_data_in_s;
+  end
+  endgenerate
 
-  assign pn_data_pn_s = (pn_oos == 1'b1) ? pn_data_in_s : pn_data_pn;
+  assign pn_data_pn_s = (pn_oos == 1'b1) ? pn_data_init : pn_data_pn;
 
   wire tc = TWOS_COMPLEMENT ? 1'b1 : 1'b0;
 
   generate
   genvar i;
   for (i = 0; i < DATA_PATH_WIDTH; i = i + 1) begin: g_pn_swizzle
-    localparam src_lsb = i * CHANNEL_WIDTH;
-    localparam src_msb = src_lsb + CHANNEL_WIDTH - 1;
-    localparam dst_lsb = (DATA_PATH_WIDTH - i - 1) * CHANNEL_WIDTH;
-    localparam dst_msb = dst_lsb + CHANNEL_WIDTH - 1;
+    localparam src_lsb = i * CONVERTER_RESOLUTION;
+    localparam src_msb = src_lsb + CONVERTER_RESOLUTION - 1;
+    localparam dst_lsb = (DATA_PATH_WIDTH - i - 1) * CONVERTER_RESOLUTION;
+    localparam dst_msb = dst_lsb + CONVERTER_RESOLUTION - 1;
 
     assign pn_data_in_s[dst_msb] = tc ^ data[src_msb];
     assign pn_data_in_s[dst_msb-1:dst_lsb] = data[src_msb-1:src_lsb];
@@ -84,11 +98,12 @@ module ad_ip_jesd204_tpl_adc_pnmon #(
 
   always @(posedge clk) begin
     if (pn_seq_sel == 4'd0) begin
-      pn_data_pn <= pn9;
+      pn_data_pn <= PN_W > DW ? {pn_data_pn[PN_W-DW-1:0],pn9} : pn9;
     end else begin
-      pn_data_pn <= pn23;
+      pn_data_pn <= PN_W > DW ? {pn_data_pn[PN_W-DW-1:0],pn23} : pn23;
     end
   end
+
 
   // pn oos & pn err
 
@@ -98,7 +113,7 @@ module ad_ip_jesd204_tpl_adc_pnmon #(
     .adc_clk (clk),
     .adc_valid_in (1'b1),
     .adc_data_in (pn_data_in_s),
-    .adc_data_pn (pn_data_pn),
+    .adc_data_pn (pn_data_pn[DW:0]),
     .adc_pn_oos (pn_oos),
     .adc_pn_err (pn_err)
   );

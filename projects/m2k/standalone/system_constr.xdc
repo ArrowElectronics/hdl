@@ -68,13 +68,12 @@ create_clock -period 12.500 -name data_clk [get_ports {data_bd[0]}]
 
 create_clock -name clk_fpga_0 -period 36 [get_pins "i_system_wrapper/system_i/sys_ps7/inst/PS7_i/FCLKCLK[0]"]
 create_clock -name clk_fpga_1 -period  5 [get_pins "i_system_wrapper/system_i/sys_ps7/inst/PS7_i/FCLKCLK[1]"]
-create_clock -name clk_fpga_2 -period 10 [get_pins "i_system_wrapper/system_i/sys_ps7/inst/PS7_i/FCLKCLK[2]"]
 create_clock -name clk_fpga_3 -period 18 [get_pins "i_system_wrapper/system_i/sys_ps7/inst/PS7_i/FCLKCLK[3]"]
 
-set_false_path -from [get_clocks data_clk] -to [get_pins {i_system_wrapper/system_i/logic_analyzer/inst/data_m1_reg[0]/D}]
+set_false_path -from [get_clocks data_clk] -to [get_cells {i_system_wrapper/system_i/logic_analyzer/inst/genblk*data_m*}]
 
 set_clock_groups -name exclusive_ -physically_exclusive \
--group  [get_clocks data_clk] -group  [get_clocks clk_fpga_2]
+-group  [get_clocks data_clk] -group  [get_clocks rx_clk]
 
 set_input_jitter clk_fpga_0 0.3
 set_input_jitter clk_fpga_1 0.15
@@ -208,3 +207,7 @@ set_property PACKAGE_PIN F2 [get_ports ddr_dqs_n[1]]
 
 set_switching_activity -static_probability 1 -toggle_rate 0 [get_nets i_system_wrapper/system_i/sys_cpu_resetn]
 set_switching_activity -static_probability 0 -toggle_rate 0 [get_nets i_system_wrapper/system_i/logic_analyzer_reset_bus_struct_reset]
+
+# Define SPI clock
+create_clock -name spi0_clk      -period 40   [get_pins -hier */EMIOSPI0SCLKO]
+

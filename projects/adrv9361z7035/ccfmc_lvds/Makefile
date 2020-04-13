@@ -17,16 +17,18 @@ M_DEPS += ../../../library/axi_ad9361/axi_ad9361_delay.tcl
 LIB_DEPS += axi_ad9361
 LIB_DEPS += axi_clkgen
 LIB_DEPS += axi_dmac
+LIB_DEPS += axi_sysid
+LIB_DEPS += sysid_rom
 LIB_DEPS += axi_gpreg
 LIB_DEPS += axi_hdmi_tx
 LIB_DEPS += axi_i2s_adi
 LIB_DEPS += axi_spdif_tx
-LIB_DEPS += util_clkdiv
-LIB_DEPS += util_cpack
+LIB_DEPS += util_pack/util_cpack2
+LIB_DEPS += util_pack/util_upack2
 LIB_DEPS += util_rfifo
 LIB_DEPS += util_tdd_sync
-LIB_DEPS += util_upack
 LIB_DEPS += util_wfifo
 LIB_DEPS += xilinx/axi_xcvrlb
+LIB_DEPS += xilinx/util_clkdiv
 
 include ../../scripts/project-xilinx.mk

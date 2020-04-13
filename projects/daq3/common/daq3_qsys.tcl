@@ -1,3 +1,6 @@
+set dac_fifo_name avl_ad9152_fifo
+set dac_data_width 128
+set dac_dma_data_width 128
 
 # ad9152-xcvr
 
@@ -31,24 +34,29 @@ add_connection sys_clk.clk axi_ad9152_core.s_axi_clock
 
 # ad9152-unpack
 
-add_instance util_ad9152_upack util_upack
-set_instance_parameter_value util_ad9152_upack {CHANNEL_DATA_WIDTH} {64}
+add_instance util_ad9152_upack util_upack2
 set_instance_parameter_value util_ad9152_upack {NUM_OF_CHANNELS} {2}
+set_instance_parameter_value util_ad9152_upack {SAMPLES_PER_CHANNEL} {4}
+set_instance_parameter_value util_ad9152_upack {SAMPLE_DATA_WIDTH} {16}
+set_instance_parameter_value util_ad9152_upack {INTERFACE_TYPE} {1}
 
-add_connection ad9152_jesd204.link_clk util_ad9152_upack.if_dac_clk
+add_connection ad9152_jesd204.link_clk util_ad9152_upack.clk
+add_connection ad9152_jesd204.link_reset util_ad9152_upack.reset
 add_connection axi_ad9152_core.dac_ch_0 util_ad9152_upack.dac_ch_0
 add_connection axi_ad9152_core.dac_ch_1 util_ad9152_upack.dac_ch_1
 
 # dac fifo
+
+ad_dacfifo_create $dac_fifo_name $dac_data_width $dac_dma_data_width $dac_fifo_address_width
 
 add_interface tx_fifo_bypass conduit end
 set_interface_property tx_fifo_bypass EXPORT_OF avl_ad9152_fifo.if_bypass
 
 add_connection ad9152_jesd204.link_clk avl_ad9152_fifo.if_dac_clk
 add_connection ad9152_jesd204.link_reset avl_ad9152_fifo.if_dac_rst
-add_connection util_ad9152_upack.if_dac_valid avl_ad9152_fifo.if_dac_valid
-add_connection avl_ad9152_fifo.if_dac_data util_ad9152_upack.if_dac_data
-#add_connection avl_ad9152_fifo.if_dac_dunf util_ad9152_upack.if_dac_dunf
+add_connection util_ad9152_upack.if_packed_fifo_rd_en avl_ad9152_fifo.if_dac_valid
+add_connection avl_ad9152_fifo.if_dac_data util_ad9152_upack.if_packed_fifo_rd_data
+add_connection avl_ad9152_fifo.if_dac_dunf axi_ad9152_core.if_dac_dunf
 
 # ad9152-dma
 
@@ -60,16 +68,13 @@ set_instance_parameter_value axi_ad9152_dma {SYNC_TRANSFER_START} {0}
 set_instance_parameter_value axi_ad9152_dma {DMA_TYPE_DEST} {1}
 set_instance_parameter_value axi_ad9152_dma {DMA_TYPE_SRC} {0}
 set_instance_parameter_value axi_ad9152_dma {FIFO_SIZE} {16}
-set_instance_parameter_value axi_ad9152_dma {USE_TLAST_DEST} {1}
+set_instance_parameter_value axi_ad9152_dma {HAS_AXIS_TLAST} {1}
 
 add_connection sys_clk.clk avl_ad9152_fifo.if_dma_clk
 add_connection sys_clk.clk_reset avl_ad9152_fifo.if_dma_rst
 add_connection sys_clk.clk axi_ad9152_dma.if_m_axis_aclk
-add_connection axi_ad9152_dma.if_m_axis_valid avl_ad9152_fifo.if_dma_valid
-add_connection axi_ad9152_dma.if_m_axis_data avl_ad9152_fifo.if_dma_data
-add_connection axi_ad9152_dma.if_m_axis_last avl_ad9152_fifo.if_dma_xfer_last
+add_connection axi_ad9152_dma.m_axis avl_ad9152_fifo.s_axis
 add_connection axi_ad9152_dma.if_m_axis_xfer_req avl_ad9152_fifo.if_dma_xfer_req
-add_connection avl_ad9152_fifo.if_dma_ready axi_ad9152_dma.if_m_axis_ready
 add_connection sys_clk.clk_reset axi_ad9152_dma.s_axi_reset
 add_connection sys_clk.clk axi_ad9152_dma.s_axi_clock
 add_connection sys_clk.clk_reset axi_ad9152_dma.m_src_axi_reset
@@ -107,12 +112,13 @@ add_connection sys_clk.clk axi_ad9680_core.s_axi_clock
 
 # ad9680-pack
 
-add_instance util_ad9680_cpack util_cpack
-set_instance_parameter_value util_ad9680_cpack {CHANNEL_DATA_WIDTH} {64}
+add_instance util_ad9680_cpack util_cpack2
 set_instance_parameter_value util_ad9680_cpack {NUM_OF_CHANNELS} {2}
+set_instance_parameter_value util_ad9680_cpack {SAMPLES_PER_CHANNEL} {4}
+set_instance_parameter_value util_ad9680_cpack {SAMPLE_DATA_WIDTH} {16}
 
-add_connection sys_clk.clk_reset util_ad9680_cpack.if_adc_rst
-add_connection ad9680_jesd204.link_clk util_ad9680_cpack.if_adc_clk
+add_connection ad9680_jesd204.link_clk util_ad9680_cpack.clk
+add_connection ad9680_jesd204.link_reset util_ad9680_cpack.reset
 add_connection axi_ad9680_core.adc_ch_0 util_ad9680_cpack.adc_ch_0
 add_connection axi_ad9680_core.adc_ch_1 util_ad9680_cpack.adc_ch_1
 
@@ -125,8 +131,8 @@ set_instance_parameter_value ad9680_adcfifo {DMA_ADDRESS_WIDTH} {16}
 
 add_connection sys_clk.clk_reset ad9680_adcfifo.if_adc_rst
 add_connection ad9680_jesd204.link_clk ad9680_adcfifo.if_adc_clk
-add_connection util_ad9680_cpack.if_adc_valid ad9680_adcfifo.if_adc_wr
-add_connection util_ad9680_cpack.if_adc_data ad9680_adcfifo.if_adc_wdata
+add_connection util_ad9680_cpack.if_packed_fifo_wr_en ad9680_adcfifo.if_adc_wr
+add_connection util_ad9680_cpack.if_packed_fifo_wr_data ad9680_adcfifo.if_adc_wdata
 add_connection sys_clk.clk ad9680_adcfifo.if_dma_clk
 
 # ad9680-dma
@@ -142,9 +148,7 @@ set_instance_parameter_value axi_ad9680_dma {DMA_TYPE_DEST} {0}
 set_instance_parameter_value axi_ad9680_dma {DMA_TYPE_SRC} {1}
 
 add_connection sys_clk.clk axi_ad9680_dma.if_s_axis_aclk
-add_connection ad9680_adcfifo.if_dma_wr axi_ad9680_dma.if_s_axis_valid
-add_connection ad9680_adcfifo.if_dma_wdata axi_ad9680_dma.if_s_axis_data
-add_connection ad9680_adcfifo.if_dma_wready axi_ad9680_dma.if_s_axis_ready
+add_connection ad9680_adcfifo.m_axis axi_ad9680_dma.s_axis
 add_connection ad9680_adcfifo.if_dma_xfer_req axi_ad9680_dma.if_s_axis_xfer_req
 add_connection ad9680_adcfifo.if_adc_wovf axi_ad9680_core.if_adc_dovf
 add_connection sys_clk.clk_reset axi_ad9680_dma.s_axi_reset
@@ -173,7 +177,7 @@ ad_cpu_interconnect 0x00429000 avl_adxcfg_1.rcfg_s0
 ad_cpu_interconnect 0x0042a000 avl_adxcfg_2.rcfg_s0
 ad_cpu_interconnect 0x0042b000 avl_adxcfg_3.rcfg_s0
 ad_cpu_interconnect 0x0042c000 axi_ad9152_dma.s_axi
-ad_cpu_interconnect 0x00430000 axi_ad9152_core.s_axi
+ad_cpu_interconnect 0x00434000 axi_ad9152_core.s_axi
 
 ad_cpu_interconnect 0x00440000 ad9680_jesd204.link_reconfig
 ad_cpu_interconnect 0x00444000 ad9680_jesd204.link_management

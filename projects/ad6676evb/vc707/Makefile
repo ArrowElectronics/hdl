@@ -15,9 +15,11 @@ M_DEPS += ../../../library/common/ad_sysref_gen.v
 
 LIB_DEPS += axi_ad6676
 LIB_DEPS += axi_dmac
+LIB_DEPS += axi_sysid
 LIB_DEPS += jesd204/axi_jesd204_rx
 LIB_DEPS += jesd204/jesd204_rx
-LIB_DEPS += util_cpack
+LIB_DEPS += sysid_rom
+LIB_DEPS += util_pack/util_cpack2
 LIB_DEPS += xilinx/axi_adxcvr
 LIB_DEPS += xilinx/util_adxcvr
 

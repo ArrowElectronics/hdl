@@ -1,15 +1,13 @@
 # ip
 
 source ../scripts/adi_env.tcl
-source $ad_hdl_dir/library/scripts/adi_ip.tcl
+source $ad_hdl_dir/library/scripts/adi_ip_xilinx.tcl
 
 adi_ip_create axi_hdmi_tx
 adi_ip_files axi_hdmi_tx [list \
   "$ad_hdl_dir/library/common/ad_mem.v" \
   "$ad_hdl_dir/library/common/ad_rst.v" \
-  "$ad_hdl_dir/library/common/ad_csc_1_mul.v" \
-  "$ad_hdl_dir/library/common/ad_csc_1_add.v" \
-  "$ad_hdl_dir/library/common/ad_csc_1.v" \
+  "$ad_hdl_dir/library/common/ad_csc.v" \
   "$ad_hdl_dir/library/common/ad_csc_RGB2CrYCb.v" \
   "$ad_hdl_dir/library/common/ad_ss_444to422.v" \
   "$ad_hdl_dir/library/common/up_axi.v" \
@@ -29,6 +27,9 @@ adi_ip_files axi_hdmi_tx [list \
   "axi_hdmi_tx.v" ]
 
 adi_ip_properties axi_hdmi_tx
+
+adi_init_bd_tcl
+adi_ip_bd axi_hdmi_tx "bd/bd.tcl"
 
 set_property driver_value 0 [ipx::get_ports *hsync* -of_objects [ipx::current_core]]
 set_property driver_value 0 [ipx::get_ports *vsync* -of_objects [ipx::current_core]]
@@ -67,6 +68,10 @@ ipx::infer_bus_interface hdmi_out_clk xilinx.com:signal:clock_rtl:1.0 [ipx::curr
 ipx::infer_bus_interface vdma_clk xilinx.com:signal:clock_rtl:1.0 [ipx::current_core]
 
 ipx::associate_bus_interfaces -busif s_axis -clock vdma_clk [ipx::current_core]
+
+
+adi_add_auto_fpga_spec_params
+ipx::create_xgui_files [ipx::current_core]
 
 ipx::save_core [ipx::current_core]
 

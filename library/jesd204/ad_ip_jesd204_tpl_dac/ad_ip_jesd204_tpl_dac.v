@@ -25,11 +25,16 @@
 
 module ad_ip_jesd204_tpl_dac #(
   parameter ID = 0,
+  parameter FPGA_TECHNOLOGY = 0,
+  parameter FPGA_FAMILY = 0,
+  parameter SPEED_GRADE = 0,
+  parameter DEV_PACKAGE = 0,
   parameter NUM_LANES = 4,
   parameter NUM_CHANNELS = 2,
   parameter SAMPLES_PER_FRAME = 1,
   parameter CONVERTER_RESOLUTION = 16,
   parameter BITS_PER_SAMPLE = 16,
+  parameter OCTETS_PER_BEAT = 4,
   parameter DDS_TYPE = 1,
   parameter DDS_CORDIC_DW = 16,
   parameter DDS_CORDIC_PHASE_DW = 16,
@@ -41,13 +46,13 @@ module ad_ip_jesd204_tpl_dac #(
   input link_clk,
   output link_valid,
   input link_ready,
-  output [NUM_LANES*32-1:0] link_data,
+  output [NUM_LANES*8*OCTETS_PER_BEAT-1:0] link_data,
 
   // dma interface
   output [NUM_CHANNELS-1:0] enable,
 
   output [NUM_CHANNELS-1:0] dac_valid,
-  input [NUM_LANES*32-1:0] dac_ddata,
+  input [NUM_LANES*8*OCTETS_PER_BEAT-1:0] dac_ddata,
   input dac_dunf,
 
   // axi interface
@@ -57,7 +62,7 @@ module ad_ip_jesd204_tpl_dac #(
 
   input s_axi_awvalid,
   output s_axi_awready,
-  input [15:0] s_axi_awaddr,
+  input [11:0] s_axi_awaddr,
   input [2:0] s_axi_awprot,
 
   input s_axi_wvalid,
@@ -71,7 +76,7 @@ module ad_ip_jesd204_tpl_dac #(
 
   input s_axi_arvalid,
   output s_axi_arready,
-  input [15:0] s_axi_araddr,
+  input [11:0] s_axi_araddr,
   input [2:0] s_axi_arprot,
 
   output s_axi_rvalid,
@@ -80,12 +85,11 @@ module ad_ip_jesd204_tpl_dac #(
   output [1:0] s_axi_rresp
 );
 
-  /* Static for now */
-  localparam OCTETS_PER_BEAT = 4;
-
   localparam DATA_PATH_WIDTH = OCTETS_PER_BEAT * 8 * NUM_LANES / NUM_CHANNELS / BITS_PER_SAMPLE;
   localparam LINK_DATA_WIDTH = NUM_LANES * OCTETS_PER_BEAT * 8;
-  localparam DMA_DATA_WIDTH = 16 * DATA_PATH_WIDTH * NUM_CHANNELS;
+  localparam DMA_DATA_WIDTH = BITS_PER_SAMPLE * DATA_PATH_WIDTH * NUM_CHANNELS;
+
+  localparam BYTES_PER_FRAME = (NUM_CHANNELS * BITS_PER_SAMPLE * SAMPLES_PER_FRAME) / ( 8 * NUM_LANES);
 
   // internal signals
 
@@ -106,8 +110,13 @@ module ad_ip_jesd204_tpl_dac #(
 
   ad_ip_jesd204_tpl_dac_regmap #(
     .ID (ID),
+    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
+    .FPGA_FAMILY (FPGA_FAMILY),
+    .SPEED_GRADE (SPEED_GRADE),
+    .DEV_PACKAGE (DEV_PACKAGE),
     .NUM_CHANNELS (NUM_CHANNELS),
-    .DATA_PATH_WIDTH (DATA_PATH_WIDTH)
+    .DATA_PATH_WIDTH (DATA_PATH_WIDTH),
+    .NUM_PROFILES(1)
   ) i_regmap (
     .s_axi_aclk (s_axi_aclk),
     .s_axi_aresetn (s_axi_aresetn),
@@ -147,7 +156,15 @@ module ad_ip_jesd204_tpl_dac #(
     .dac_dds_incr_1 (dac_dds_incr_1_s),
     .dac_pat_data_0 (dac_pat_data_0_s),
     .dac_pat_data_1 (dac_pat_data_1_s),
-    .dac_data_sel (dac_data_sel_s)
+    .dac_data_sel (dac_data_sel_s),
+
+    .jesd_m (NUM_CHANNELS),
+    .jesd_l (NUM_LANES),
+    .jesd_s (SAMPLES_PER_FRAME),
+    .jesd_f (BYTES_PER_FRAME),
+    .jesd_n (CONVERTER_RESOLUTION),
+    .jesd_np (BITS_PER_SAMPLE),
+    .up_profile_sel ()
   );
 
   // core
@@ -156,6 +173,8 @@ module ad_ip_jesd204_tpl_dac #(
     .DATAPATH_DISABLE (DATAPATH_DISABLE),
     .NUM_LANES (NUM_LANES),
     .NUM_CHANNELS (NUM_CHANNELS),
+    .BITS_PER_SAMPLE (BITS_PER_SAMPLE),
+    .CONVERTER_RESOLUTION (CONVERTER_RESOLUTION),
     .SAMPLES_PER_FRAME (SAMPLES_PER_FRAME),
     .OCTETS_PER_BEAT (OCTETS_PER_BEAT),
     .DATA_PATH_WIDTH (DATA_PATH_WIDTH),

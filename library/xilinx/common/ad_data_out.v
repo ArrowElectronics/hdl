@@ -37,11 +37,12 @@
 
 module ad_data_out #(
 
-  parameter   DEVICE_TYPE = 0,
+  parameter   FPGA_TECHNOLOGY = 0,
   parameter   SINGLE_ENDED = 0,
   parameter   IODELAY_ENABLE = 0,
   parameter   IODELAY_CTRL = 0,
-  parameter   IODELAY_GROUP = "dev_if_delay_group") (
+  parameter   IODELAY_GROUP = "dev_if_delay_group",
+  parameter   REFCLK_FREQUENCY = 200) (
 
   // data interface
 
@@ -65,17 +66,17 @@ module ad_data_out #(
   output              delay_locked);
 
   localparam  NONE = -1;
-  localparam  VIRTEX7 = 0;
-  localparam  ULTRASCALE_PLUS = 2;
-  localparam  ULTRASCALE = 3;
+  localparam  SEVEN_SERIES = 1;
+  localparam  ULTRASCALE = 2;
+  localparam  ULTRASCALE_PLUS = 3;
 
   localparam  IODELAY_CTRL_ENABLED = (IODELAY_ENABLE == 1) ? IODELAY_CTRL : 0;
-  localparam  IODELAY_CTRL_SIM_DEVICE = (DEVICE_TYPE == ULTRASCALE_PLUS) ? "ULTRASCALE" :
-    (DEVICE_TYPE == ULTRASCALE) ? "ULTRASCALE" : "7SERIES";
+  localparam  IODELAY_CTRL_SIM_DEVICE = (FPGA_TECHNOLOGY == ULTRASCALE_PLUS) ? "ULTRASCALE" :
+    (FPGA_TECHNOLOGY == ULTRASCALE) ? "ULTRASCALE" : "7SERIES";
 
-  localparam  IODELAY_DEVICE_TYPE = (IODELAY_ENABLE == 1) ? DEVICE_TYPE : NONE;
-  localparam  IODELAY_SIM_DEVICE = (DEVICE_TYPE == ULTRASCALE_PLUS) ? "ULTRASCALE_PLUS_ES1" :
-    (DEVICE_TYPE == ULTRASCALE) ? "ULTRASCALE" : "7SERIES";
+  localparam  IODELAY_FPGA_TECHNOLOGY = (IODELAY_ENABLE == 1) ? FPGA_TECHNOLOGY : NONE;
+  localparam  IODELAY_SIM_DEVICE = (FPGA_TECHNOLOGY == ULTRASCALE_PLUS) ? "ULTRASCALE_PLUS_ES1" :
+    (FPGA_TECHNOLOGY == ULTRASCALE) ? "ULTRASCALE" : "7SERIES";
 
   // internal signals
 
@@ -99,7 +100,7 @@ module ad_data_out #(
   // transmit data interface, oddr -> odelay -> obuf
 
   generate
-  if ((DEVICE_TYPE == ULTRASCALE) || (DEVICE_TYPE == ULTRASCALE_PLUS)) begin
+  if ((FPGA_TECHNOLOGY == ULTRASCALE) || (FPGA_TECHNOLOGY == ULTRASCALE_PLUS)) begin
   ODDRE1 i_tx_data_oddr (
     .SR (1'b0),
     .C (tx_clk),
@@ -110,7 +111,7 @@ module ad_data_out #(
   endgenerate
 
   generate
-  if (DEVICE_TYPE == VIRTEX7) begin
+  if (FPGA_TECHNOLOGY == SEVEN_SERIES) begin
   ODDR #(.DDR_CLK_EDGE ("SAME_EDGE")) i_tx_data_oddr (
     .CE (1'b1),
     .R (1'b0),
@@ -123,9 +124,9 @@ module ad_data_out #(
   endgenerate
 
   // odelay
- 
+
   generate
-  if (IODELAY_DEVICE_TYPE == VIRTEX7) begin
+  if (IODELAY_FPGA_TECHNOLOGY == SEVEN_SERIES) begin
   (* IODELAY_GROUP = IODELAY_GROUP *)
   ODELAYE2 #(
     .CINVCTRL_SEL ("FALSE"),
@@ -133,7 +134,7 @@ module ad_data_out #(
     .HIGH_PERFORMANCE_MODE ("FALSE"),
     .ODELAY_TYPE ("VAR_LOAD"),
     .ODELAY_VALUE (0),
-    .REFCLK_FREQUENCY (200.0),
+    .REFCLK_FREQUENCY (REFCLK_FREQUENCY),
     .PIPE_SEL ("FALSE"),
     .SIGNAL_PATTERN ("DATA"))
   i_tx_data_odelay (
@@ -153,7 +154,7 @@ module ad_data_out #(
   endgenerate
 
   generate
-  if (IODELAY_DEVICE_TYPE == NONE) begin
+  if (IODELAY_FPGA_TECHNOLOGY == NONE) begin
   assign up_drdata = 5'd0;
   assign tx_data_odelay_s = tx_data_oddr_s;
   end

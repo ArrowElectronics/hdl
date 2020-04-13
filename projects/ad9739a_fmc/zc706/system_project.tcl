@@ -2,10 +2,10 @@
 
 
 source ../../scripts/adi_env.tcl
-source $ad_hdl_dir/projects/scripts/adi_project.tcl
+source $ad_hdl_dir/projects/scripts/adi_project_xilinx.tcl
 source $ad_hdl_dir/projects/scripts/adi_board.tcl
 
-adi_project_xilinx ad9739a_fmc_zc706
+adi_project ad9739a_fmc_zc706
 adi_project_files ad9739a_fmc_zc706 [list \
   "system_top.v" \
   "system_constr.xdc"\
