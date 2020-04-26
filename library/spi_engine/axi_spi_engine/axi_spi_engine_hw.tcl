@@ -21,6 +21,7 @@ add_fileset_file address_gray_pipelined.v VERILOG PATH $ad_hdl_dir/library/util_
 add_fileset_file sync_gray.v VERILOG PATH $ad_hdl_dir/library/util_cdc/sync_gray.v VERILOG
 add_fileset_file ad_mem.v VERILOG PATH $ad_hdl_dir/library/common/ad_mem.v VERILOG
 add_fileset_file address_sync.v VERILOG PATH $ad_hdl_dir/library/util_axis_fifo/address_sync.v VERILOG
+add_fileset_file axi_spi_engine_constr.sdc     SDC PATH axi_spi_engine_constr.sdc
 
 # parameters
 

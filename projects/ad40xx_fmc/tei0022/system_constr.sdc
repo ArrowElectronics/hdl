@@ -18,6 +18,7 @@ set_false_path -from * -to [get_ports {qspi_clk}]
 set_false_path -from * -to [get_ports {sdio_clk}] 
 set_false_path -from * -to [get_ports {usb1_stp}] 
 set_false_path -from * -to [get_ports {uart0_tx}] 
+set_false_path -from * -to [get_ports {uart0_rx}]
 
 set_false_path -from * -to [get_ports {eth1_mdio}] 
 set_false_path -from * -to [get_ports {qspi_io[0]}] 
@@ -39,8 +40,15 @@ set_false_path -from * -to [get_ports {usb1_d[6]}]
 set_false_path -from * -to [get_ports {usb1_d[7]}] 
 set_false_path -from * -to [get_ports {hps_sda}] 
 set_false_path -from * -to [get_ports {hps_scl}]
-set_false_path -from * -to [get_ports {fmc_sda}] 
-set_false_path -from * -to [get_ports {fmc_scl}]
+
+# removed temporarily for prototype hardware, resinsert for alpha hardware
+#set_false_path -from * -to [get_ports {fmc_sda}] 
+#set_false_path -from * -to [get_ports {fmc_scl}]
+
+# added temporarily for prototype hardware, remove for alpha hardware
+set_false_path -from * -to [get_ports {hdmi_i2c_sda}] 
+set_false_path -from * -to [get_ports {hdmi_i2c_scl}]
+
 set_false_path -from * -to [get_ports {link_st}] 
 set_false_path -from * -to [get_ports {rx_er}] 
 set_false_path -from * -to [get_ports {phy_int}] 
@@ -80,8 +88,15 @@ set_false_path -from [get_ports {usb1_d[6]}] -to *
 set_false_path -from [get_ports {usb1_d[7]}] -to *
 set_false_path -from [get_ports {hps_scl}] -to *
 set_false_path -from [get_ports {hps_sda}] -to *
-set_false_path -from [get_ports {fmc_scl}] -to *
-set_false_path -from [get_ports {fmc_sda}] -to *
+
+# removed temporarily for prototype hardware, resinsert for alpha hardware
+#set_false_path -from [get_ports {fmc_scl}] -to *
+#set_false_path -from [get_ports {fmc_sda}] -to *
+
+# added temporarily for prototype hardware, remove for alpha hardware
+#set_false_path -from [get_ports {hdmi_i2c_scl}] -to *
+#set_false_path -from [get_ports {hdmi_i2c_sda}] -to *
+
 set_false_path -from [get_ports {link_st}] -to *
 set_false_path -from [get_ports {rx_er}] -to *
 set_false_path -from [get_ports {phy_int}] -to *
@@ -111,10 +126,14 @@ set_false_path -from [get_ports {usb1_clk}] -to *
 set_false_path -from [get_ports {usb1_dir}] -to *
 set_false_path -from [get_ports {usb1_nxt}] -to *
 set_false_path -from [get_ports {uart0_tx}] -to *
+set_false_path -from [get_ports {uart0_rx}] -to *
 
 
 
 # frame reader seems to use the wrong reset!
 
 set_false_path -from [get_registers *altera_reset_synchronizer:alt_rst_sync_uq1|altera_reset_synchronizer_int_chain_out*]
+
+
+
 
