@@ -115,9 +115,6 @@ module system_top (
   output  reg          	hdmi_vsync,
   output  [  23:0]		hdmi_data,
   
-  inout					hdmi_i2c_scl,
-  inout					hdmi_i2c_sda,
-  
   output            	hdmi_spdif,
   input             	hdmi_spdifout,
   input             	hdmi_int,
@@ -127,8 +124,8 @@ module system_top (
 
   // fmc interface
 
-  //inout             	fmc_scl,
-  //inout             	fmc_sda,
+  inout             	fmc_scl,
+  inout             	fmc_sda,
 
   output            	ad40xx_spi_csn,
   output            	ad40xx_spi_clk,
@@ -160,17 +157,6 @@ module system_top (
   assign ct_hpd = 1'b1;
   assign ls_oe = 1'b1;  
   assign cec_clk = 1'b0;
-  
-  // hps_i2c0 (cloaked as i2c1) routed to fmc via fpga io
-  
-  wire              hps_i2c1_scl;
-  wire              hps_i2c1_scl_oe;
-  wire              hps_i2c1_sda;
-  wire              hps_i2c1_sda_oe;  
-
-  ALT_IOBUF scl_iobuf (.i(1'b0), .oe(hps_i2c1_scl_oe), .o(hps_i2c1_scl), .io(hdmi_i2c_scl));
-  ALT_IOBUF sda_iobuf (.i(1'b0), .oe(hps_i2c1_sda_oe), .o(hps_i2c1_sda), .io(hdmi_i2c_sda));
-  
   
   // hdmi retiming
   
@@ -233,12 +219,10 @@ module system_top (
     .sys_hps_hps_io_hps_io_usb1_inst_NXT (usb1_nxt),
     .sys_hps_hps_io_hps_io_uart0_inst_RX (uart0_rx),
     .sys_hps_hps_io_hps_io_uart0_inst_TX (uart0_tx),
-//    .sys_hps_hps_io_hps_io_i2c0_inst_SDA (fmc_sda),
-//    .sys_hps_hps_io_hps_io_i2c0_inst_SCL (fmc_scl),
-    .sys_hps_i2c0_scl_in_clk (hps_i2c1_scl),
-    .sys_hps_i2c0_clk_clk (hps_i2c1_scl_oe),
-    .sys_hps_i2c0_out_data (hps_i2c1_sda_oe),	
-    .sys_hps_i2c0_sda (hps_i2c1_sda),
+	.sys_hps_hps_io_hps_io_i2c0_inst_SDA (fmc_sda),
+	.sys_hps_hps_io_hps_io_i2c0_inst_SCL (fmc_scl),
+	.sys_hps_hps_io_hps_io_i2c1_inst_SDA (hps_sda),
+	.sys_hps_hps_io_hps_io_i2c1_inst_SCL (hps_scl),	
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO00 (link_st),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO09 (rx_er),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO35 (phy_int),

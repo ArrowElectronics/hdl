@@ -41,9 +41,9 @@ set_instance_parameter_value sys_hps {UART0_Mode} {No Flow Control}
 set_instance_parameter_value sys_hps {UART1_PinMuxing} {Unused}
 set_instance_parameter_value sys_hps {UART1_Mode} {N/A}
 set_instance_parameter_value sys_hps {I2C0_Mode} {Full}
-set_instance_parameter_value sys_hps {I2C0_PinMuxing} {FPGA}
-set_instance_parameter_value sys_hps {I2C1_Mode} {N/A}
-set_instance_parameter_value sys_hps {I2C1_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {I2C0_PinMuxing} {HPS I/O Set 0}
+set_instance_parameter_value sys_hps {I2C1_Mode} {Full}
+set_instance_parameter_value sys_hps {I2C1_PinMuxing} {HPS I/O Set 0}
 set_instance_parameter_value sys_hps {GPIO_Enable} {Yes No No No No No No No No Yes No No No No No No No No No No No No No No No No No No No No No No No No No Yes No No No No Yes Yes Yes Yes Yes No No No Yes No No No No Yes Yes Yes Yes Yes Yes Yes No Yes No No No Yes No No No No No No No No No No No No No No No No No No No No No No No No No No No No No No No No No No}
 set_instance_parameter_value sys_hps {desired_cfg_clk_mhz} {80.0}
 set_instance_parameter_value sys_hps {S2FCLK_USER0CLK_Enable} {1}
@@ -98,12 +98,6 @@ set_instance_parameter_value sys_hps {TIMING_BOARD_SKEW_BETWEEN_DQS} {0.08}
 set_instance_parameter_value sys_hps {TIMING_BOARD_DQ_TO_DQS_SKEW} {0.0}
 set_instance_parameter_value sys_hps {TIMING_BOARD_AC_SKEW} {0.03}
 set_instance_parameter_value sys_hps {TIMING_BOARD_AC_TO_CK_SKEW} {0.0}
-add_interface sys_hps_i2c0 conduit end
-set_interface_property sys_hps_i2c0 EXPORT_OF sys_hps.i2c0
-add_interface sys_hps_i2c0_clk clock source
-set_interface_property sys_hps_i2c0_clk EXPORT_OF sys_hps.i2c0_clk
-add_interface sys_hps_i2c0_scl_in clock sink
-set_interface_property sys_hps_i2c0_scl_in EXPORT_OF sys_hps.i2c0_scl_in
 add_interface sys_hps_memory conduit end
 set_interface_property sys_hps_memory EXPORT_OF sys_hps.memory
 add_interface sys_hps_hps_io conduit end

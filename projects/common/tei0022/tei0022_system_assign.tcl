@@ -429,8 +429,11 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to uart0_tx
 
 # i2c
 
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to hps_scl
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to hps_sda
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to fmc_scl
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to fmc_sda
+
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hps_sda
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hps_scl
 
 # vga
 
@@ -471,9 +474,6 @@ set_location_assignment PIN_Y21   -to ct_hpd
 set_location_assignment PIN_AB23  -to ls_oe
 set_location_assignment PIN_Y23   -to cec_clk
 
-set_location_assignment PIN_AD30  -to hdmi_i2c_sda
-set_location_assignment PIN_AC30  -to hdmi_i2c_scl
-
 # add pullup values for i2c sda, scl
 
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hdmi_clk
@@ -512,9 +512,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hdmi_int
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ct_hpd
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ls_oe
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cec_clk
-
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hdmi_i2c_sda
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hdmi_i2c_scl
 
 # misc
 
