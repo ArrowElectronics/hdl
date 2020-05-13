@@ -45,6 +45,7 @@ module axi_adc_trigger #(
   // interface
 
   input                 clk,
+  input                 reset,
 
   input                 trigger_in,
 
@@ -127,6 +128,9 @@ module axi_adc_trigger #(
   wire         [16:0]   trigger_out_control;
   wire         [31:0]   trigger_delay;
 
+  wire         [31:0]   trigger_holdoff;
+  wire         [19:0]   trigger_out_hold_pins;
+
   wire signed  [DW:0]   data_a_cmp;
   wire signed  [DW:0]   data_b_cmp;
   wire signed  [DW:0]   limit_a_cmp;
@@ -134,10 +138,6 @@ module axi_adc_trigger #(
 
   wire                  comp_low_a_s; // signal is over the limit
   wire                  comp_low_b_s; // signal is over the limit
-  wire                  passthrough_high_a_s; // trigger when rising through the limit
-  wire                  passthrough_low_a_s;  // trigger when fallingh thorugh the limit
-  wire                  passthrough_high_b_s; // trigger when rising through the limit
-  wire                  passthrough_low_b_s;  // trigger when fallingh thorugh the limit
   wire                  trigger_a_fall_edge;
   wire                  trigger_a_rise_edge;
   wire                  trigger_b_fall_edge;
@@ -146,6 +146,8 @@ module axi_adc_trigger #(
   wire                  trigger_b_any_edge;
   wire                  trigger_out_delayed;
   wire         [ 1:0]   trigger_up_o_s;
+  wire                  trigger_out_holdoff;
+  wire                  holdoff_cnt_en;
   wire                  streaming;
   wire                  trigger_out_s;
   wire                  embedded_trigger;
@@ -159,16 +161,20 @@ module axi_adc_trigger #(
   reg                   trigger_b_d3;
   reg                   comp_high_a;  // signal is over the limit
   reg                   old_comp_high_a;   // t + 1 version of comp_high_a
-  reg                   first_a_h_trigger; // valid hysteresis range on passthrough high trigger limit
-  reg                   first_a_l_trigger; // valid hysteresis range on passthrough low trigger limit
+  reg                   hyst_high_limit_pass_a; // valid hysteresis range on passthrough high trigger limit
+  reg                   hyst_low_limit_pass_a; // valid hysteresis range on passthrough low trigger limit
   reg signed [DW:0]     hyst_a_high_limit;
   reg signed [DW:0]     hyst_a_low_limit;
   reg                   comp_high_b;       // signal is over the limit
   reg                   old_comp_high_b;   // t + 1 version of comp_high_b
-  reg                   first_b_h_trigger; // valid hysteresis range on passthrough high trigger limit
-  reg                   first_b_l_trigger; // valid hysteresis range on passthrough low trigger limit
+  reg                   hyst_high_limit_pass_b; // valid hysteresis range on passthrough high trigger limit
+  reg                   hyst_low_limit_pass_b; // valid hysteresis range on passthrough low trigger limit
   reg signed [DW:0]     hyst_b_high_limit;
   reg signed [DW:0]     hyst_b_low_limit;
+  reg                   passthrough_high_a; // trigger when rising through the limit
+  reg                   passthrough_low_a;  // trigger when fallingh thorugh the limit
+  reg                   passthrough_high_b; // trigger when rising through the limit
+  reg                   passthrough_low_b;  // trigger when fallingh thorugh the limit
 
   reg                   trigger_pin_a;
   reg                   trigger_pin_b;
@@ -176,8 +182,8 @@ module axi_adc_trigger #(
 
   reg                   trig_o_hold_0 = 1'b0;
   reg                   trig_o_hold_1 = 1'b0;
-  reg        [16:0]     trig_o_hold_cnt_0 = 17'd0;
-  reg        [16:0]     trig_o_hold_cnt_1 = 17'd0;
+  reg        [19:0]     trig_o_hold_cnt_0 = 20'd0;
+  reg        [19:0]     trig_o_hold_cnt_1 = 20'd0;
 
   reg                   trigger_adc_a;
   reg                   trigger_adc_b;
@@ -195,7 +201,8 @@ module axi_adc_trigger #(
   reg                   up_triggered_reset_d1;
   reg                   up_triggered_reset_d2;
 
-  reg        [31:0]     trigger_delay_counter;
+  reg        [31:0]     trigger_delay_counter = 32'h0;
+  reg        [31:0]     trigger_holdoff_counter = 32'h0;
   reg                   triggered;
   reg                   trigger_out_m1;
   reg                   trigger_out_m2;
@@ -251,18 +258,18 @@ module axi_adc_trigger #(
 
   always @(posedge clk) begin
     // trigger_o[0] hold start
-    if (trig_o_hold_cnt_0 != 17'd0) begin
-      trig_o_hold_cnt_0 <= trig_o_hold_cnt_0 - 17'd1;
+    if (trig_o_hold_cnt_0 != 20'd0) begin
+      trig_o_hold_cnt_0 <= trig_o_hold_cnt_0 - 20'd1;
     end else if (trig_o_hold_0 != trigger_o_m[0]) begin
-      trig_o_hold_cnt_0 <= OUT_PIN_HOLD_N;
+      trig_o_hold_cnt_0 <= trigger_out_hold_pins;
       trig_o_hold_0 <= trigger_o_m[0];
     end
 
     // trigger_o[1] hold start
-    if (trig_o_hold_cnt_1 != 17'd0) begin
-      trig_o_hold_cnt_1 <= trig_o_hold_cnt_1 - 17'd1;
+    if (trig_o_hold_cnt_1 != 20'd0) begin
+      trig_o_hold_cnt_1 <= trig_o_hold_cnt_1 - 20'd1;
     end else if (trig_o_hold_1 != trigger_o_m[1]) begin
-      trig_o_hold_cnt_1 <= OUT_PIN_HOLD_N;
+      trig_o_hold_cnt_1 <= trigger_out_hold_pins;
       trig_o_hold_1 <= trigger_o_m[1];
     end
 
@@ -272,23 +279,35 @@ module axi_adc_trigger #(
   end
 
 
-  // keep data in sync with the trigger. The trigger bypasses the variable fifo.
-  // The data goes through and it is delayed with 4 clock cycles)
+  // 1. keep data in sync with the trigger. The trigger bypasses the variable
+  // fifo. The data goes through and it is delayed with 4 clock cycles)
+  // 2. For non max sample rate of the ADC, the trigger signal that originates
+  // from an external source is stored until the valid acknowledges the trigger.
   always @(posedge clk) begin
-    trigger_out_m1 <= trigger_out_s;
-    trigger_out_m2 <= trigger_out_m1;
-    if (trigger_out_m1 & ~trigger_out_s) begin
-      trigger_out_hold <= 1'b1;
-    end
-    if (trigger_out_ack) begin
+    if (reset == 1'b1) begin
+      trigger_out_m1 <= 1'b0;
+      trigger_out_m2 <= 1'b0;
+      trigger_out_ack <= 1'b0;
       trigger_out_hold <= 1'b0;
+    end else begin
+      if (data_out_valid == 1'b1) begin
+        trigger_out_m1 <= trigger_out_s | trigger_out_hold;
+        trigger_out_m2 <= trigger_out_m1;
+        trigger_out_ack <= trigger_out_hold;
+      end
+      if (~trigger_out_m1 & trigger_out_s & ~data_out_valid) begin
+        trigger_out_hold <= 1'b1;
+      end
+      if (trigger_out_ack) begin
+        trigger_out_hold <= 1'b0;
+      end
     end
-
-    trigger_out_ack <= trigger_out_hold & (data_valid_a | data_valid_b);
   end
 
+  assign data_out_valid = data_valid_a | data_valid_b;
+
   assign trigger_out_la = trigger_out_mixed;
-  assign trigger_out = trigger_out_hold | trigger_out_m2;
+  assign trigger_out = trigger_out_m2;
 
   always @(posedge clk) begin
     data_a_trig <= (embedded_trigger == 1'h0) ? {data_a[14],data_a[14:0]} : {trigger_out_s,data_a[14:0]};
@@ -299,21 +318,23 @@ module axi_adc_trigger #(
   end
 
   assign embedded_trigger = trigger_out_control[16];
-  assign trigger_out_s = (trigger_delay == 32'h0) ? (trigger_out_mixed | streaming_on) :
-                                                  (trigger_out_delayed | streaming_on);
+  assign trigger_out_s = (trigger_delay == 32'h0) ? (trigger_out_holdoff | streaming_on) :
+                                                    (trigger_out_delayed | streaming_on);
+
   assign trigger_out_delayed = (trigger_delay_counter == 32'h0) ? 1 : 0;
 
+  // delay out trigger
   always @(posedge clk) begin
     if (trigger_delay == 0) begin
       trigger_delay_counter <= 32'h0;
     end else begin
       if (data_valid_a == 1'b1) begin
-        triggered <= trigger_out_mixed | triggered;
+        triggered <= trigger_out_holdoff | triggered;
         if (trigger_delay_counter == 0) begin
           trigger_delay_counter <= trigger_delay;
           triggered <= 1'b0;
         end else begin
-          if(triggered == 1'b1 || trigger_out_mixed == 1'b1) begin
+          if(triggered == 1'b1 || trigger_out_holdoff == 1'b1) begin
             trigger_delay_counter <= trigger_delay_counter - 1;
           end
         end
@@ -321,9 +342,10 @@ module axi_adc_trigger #(
     end
   end
 
+
   always @(posedge clk) begin
     if (trigger_delay == 0) begin
-      if (streaming == 1'b1 && data_valid_a == 1'b1 && trigger_out_mixed == 1'b1) begin
+      if (streaming == 1'b1 && data_valid_a == 1'b1 && trigger_out_holdoff == 1'b1) begin
         streaming_on <= 1'b1;
       end else if (streaming == 1'b0) begin
         streaming_on <= 1'b0;
@@ -337,8 +359,25 @@ module axi_adc_trigger #(
     end
   end
 
+  // hold off trigger
+  assign trigger_out_holdoff = (trigger_holdoff_counter != 0) ? 0 : trigger_out_mixed;
+
   always @(posedge clk) begin
-    if (data_valid_a == 1'b1 && trigger_out_mixed == 1'b1) begin
+    if (reset == 1'b1) begin
+      trigger_holdoff_counter <= 0;
+    end else begin
+      if (trigger_holdoff_counter != 0) begin
+        trigger_holdoff_counter <= trigger_holdoff_counter - 1'b1;
+      end else if (trigger_out_holdoff == 1'b1) begin
+        trigger_holdoff_counter <= trigger_holdoff;
+      end else begin
+        trigger_holdoff_counter <= trigger_holdoff_counter;
+      end
+    end
+  end
+
+  always @(posedge clk) begin
+    if (data_valid_a == 1'b1 && trigger_out_holdoff == 1'b1) begin
       up_triggered_set <= 1'b1;
     end else if (up_triggered_reset == 1'b1) begin
       up_triggered_set <= 1'b0;
@@ -384,22 +423,22 @@ module axi_adc_trigger #(
     endcase
   end
 
-  always @(posedge clk) begin
+  always @(*) begin
     case(function_a)
       2'h0: trigger_adc_a = comp_low_a_s;
       2'h1: trigger_adc_a = comp_high_a;
-      2'h2: trigger_adc_a = passthrough_high_a_s;
-      2'h3: trigger_adc_a = passthrough_low_a_s;
+      2'h2: trigger_adc_a = passthrough_high_a;
+      2'h3: trigger_adc_a = passthrough_low_a;
       default: trigger_adc_a = comp_low_a_s;
     endcase
   end
 
-  always @(posedge clk) begin
+  always @(*) begin
     case(function_b)
       2'h0: trigger_adc_b = comp_low_b_s;
       2'h1: trigger_adc_b = comp_high_b;
-      2'h2: trigger_adc_b = passthrough_high_b_s;
-      2'h3: trigger_adc_b = passthrough_low_b_s;
+      2'h2: trigger_adc_b = passthrough_high_b;
+      2'h3: trigger_adc_b = passthrough_low_b;
       default: trigger_adc_b = comp_low_b_s;
     endcase
   end
@@ -445,55 +484,85 @@ module axi_adc_trigger #(
   end
 
   always @(posedge clk) begin
-    if (data_valid_a == 1'b1) begin
-      hyst_a_high_limit <= limit_a_cmp + hysteresis_a[DW:0];
-      hyst_a_low_limit  <= limit_a_cmp - hysteresis_a[DW:0];
+    if (reset == 1'b1) begin
+      comp_high_a <= 1'b0;
+      old_comp_high_a <= 1'b0;
+      passthrough_high_a <= 1'b0;
+      passthrough_low_a <= 1'b0;
+      hyst_a_high_limit <= {DW{1'b0}};
+      hyst_a_low_limit  <= {DW{1'b0}};
+      hyst_high_limit_pass_a <= 1'b0;
+      hyst_low_limit_pass_a <= 1'b0;
+    end else begin
+      if (data_valid_a == 1'b1) begin
+        hyst_a_high_limit <= limit_a_cmp + hysteresis_a[DW:0];
+        hyst_a_low_limit  <= limit_a_cmp - hysteresis_a[DW:0];
 
-      if (data_a_cmp >= limit_a_cmp) begin
-        comp_high_a <= 1'b1;
-        first_a_h_trigger <= passthrough_high_a_s ? 0 : first_a_h_trigger;
+        if (data_a_cmp >= limit_a_cmp) begin
+          comp_high_a <= 1'b1;
+        end else begin
+          comp_high_a <= 1'b0;
+        end
+
         if (data_a_cmp > hyst_a_high_limit) begin
-          first_a_l_trigger <= 1'b1;
+          hyst_low_limit_pass_a <= 1'b1;
+        end else begin
+          hyst_low_limit_pass_a <= (passthrough_low_a) ? 1'b0 : hyst_low_limit_pass_a;
         end
-      end else begin
-        comp_high_a <= 1'b0;
-        first_a_l_trigger <= (passthrough_low_a_s) ? 0 : first_a_l_trigger;
         if (data_a_cmp < hyst_a_low_limit) begin
-          first_a_h_trigger <= 1'b1;
+          hyst_high_limit_pass_a <= 1'b1;
+        end else begin
+          hyst_high_limit_pass_a <= passthrough_high_a ? 1'b0 : hyst_high_limit_pass_a;
         end
+
+        old_comp_high_a <= comp_high_a;
+        passthrough_high_a <= !old_comp_high_a & comp_high_a & hyst_high_limit_pass_a;
+        passthrough_low_a <= old_comp_high_a & !comp_high_a & hyst_low_limit_pass_a;
       end
-      old_comp_high_a <= comp_high_a;
     end
   end
 
-  assign passthrough_high_a_s = !old_comp_high_a & comp_high_a & first_a_h_trigger;
-  assign passthrough_low_a_s = old_comp_high_a & !comp_high_a & first_a_l_trigger;
   assign comp_low_a_s = !comp_high_a;
 
   always @(posedge clk) begin
-    if (data_valid_b == 1'b1) begin
-      hyst_b_high_limit <= limit_b_cmp + hysteresis_b[DW:0];
-      hyst_b_low_limit  <= limit_b_cmp - hysteresis_b[DW:0];
+    if (reset == 1'b1) begin
+      comp_high_b <= 1'b0;
+      old_comp_high_b <= 1'b0;
+      passthrough_high_b <= 1'b0;
+      passthrough_low_b <= 1'b0;
+      hyst_b_high_limit <= {DW{1'b0}};
+      hyst_b_low_limit  <= {DW{1'b0}};
+      hyst_high_limit_pass_b <= 1'b0;
+      hyst_low_limit_pass_b <= 1'b0;
+    end else begin
+      if (data_valid_b == 1'b1) begin
+        hyst_b_high_limit <= limit_b_cmp + hysteresis_b[DW:0];
+        hyst_b_low_limit  <= limit_b_cmp - hysteresis_b[DW:0];
 
-      if (data_b_cmp >= limit_b_cmp) begin
-        comp_high_b <= 1'b1;
-        first_b_h_trigger <= (passthrough_high_b_s == 1) ? 0 : first_b_h_trigger;
+        if (data_b_cmp >= limit_b_cmp) begin
+          comp_high_b <= 1'b1;
+        end else begin
+          comp_high_b <= 1'b0;
+        end
+
         if (data_b_cmp > hyst_b_high_limit) begin
-          first_b_l_trigger <= 1'b1;
+          hyst_low_limit_pass_b <= 1'b1;
+        end else begin
+          hyst_low_limit_pass_b <= (passthrough_low_b) ? 1'b0 : hyst_low_limit_pass_b;
         end
-      end else begin
-        comp_high_b <= 1'b0;
-        first_b_l_trigger <= (passthrough_low_b_s == 1) ? 0 : first_b_l_trigger;
         if (data_b_cmp < hyst_b_low_limit) begin
-          first_b_h_trigger <= 1'b1;
+          hyst_high_limit_pass_b <= 1'b1;
+        end else begin
+          hyst_high_limit_pass_b <= passthrough_high_b ? 1'b0 : hyst_high_limit_pass_b;
         end
+
+        old_comp_high_b <= comp_high_b;
+        passthrough_high_b <= !old_comp_high_b & comp_high_b & hyst_high_limit_pass_b;
+        passthrough_low_b <= old_comp_high_b & !comp_high_b & hyst_low_limit_pass_b;
       end
-      old_comp_high_b <= comp_high_b;
     end
   end
 
-  assign passthrough_high_b_s = !old_comp_high_b & comp_high_b & first_b_h_trigger;
-  assign passthrough_low_b_s = old_comp_high_b & !comp_high_b & first_b_l_trigger;
   assign comp_low_b_s = !comp_high_b;
 
   axi_adc_trigger_reg adc_trigger_registers (
@@ -522,6 +591,8 @@ module axi_adc_trigger #(
 
   .trigger_out_control(trigger_out_control),
   .trigger_delay(trigger_delay),
+  .trigger_holdoff (trigger_holdoff),
+  .trigger_out_hold_pins (trigger_out_hold_pins),
 
   .fifo_depth(fifo_depth),
 

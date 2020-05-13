@@ -30,6 +30,8 @@ set_location_assignment PIN_U27  -to "tx_serial_data[2](n)" ; ## C03  FMC_HPC_DP
 set_location_assignment PIN_N28  -to tx_serial_data[3]      ; ## A30  FMC_HPC_DP3_C2M_P (tx_serial_data_p[2])
 set_location_assignment PIN_N27  -to "tx_serial_data[3](n)" ; ## A31  FMC_HPC_DP3_C2M_N (tx_serial_data_n[2])
 
+set_instance_assignment -name XCVR_A10_RX_ADP_VGA_SEL RADP_VGA_SEL_4 -to rx_serial_data
+
 set_instance_assignment -name XCVR_VCCR_VCCT_VOLTAGE 1_0V -to rx_serial_data
 set_instance_assignment -name XCVR_VCCR_VCCT_VOLTAGE 1_0V -to tx_serial_data
 

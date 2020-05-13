@@ -227,6 +227,7 @@ ad_connect adc_trigger/data_a_trig       ad9963_adc_concat/In0
 ad_connect adc_trigger/data_b_trig       ad9963_adc_concat/In1
 ad_connect adc_trigger/data_valid_a_trig adc_trigger_fifo/data_in_valid
 ad_connect ad9963_adc_concat/dout        adc_trigger_fifo/data_in
+ad_connect axi_ad9963/adc_rst            adc_trigger/reset
 
 ad_connect adc_trigger_fifo/depth        adc_trigger/fifo_depth
 
@@ -253,6 +254,10 @@ ad_connect ad9963_dac_dmac_a/fifo_rd_valid        axi_dac_interpolate/dma_valid_
 ad_connect axi_dac_interpolate/dac_data_b         ad9963_dac_dmac_b/fifo_rd_dout
 ad_connect axi_dac_interpolate/dac_int_valid_b    ad9963_dac_dmac_b/fifo_rd_en
 ad_connect ad9963_dac_dmac_b/fifo_rd_valid        axi_dac_interpolate/dma_valid_b
+
+ad_connect axi_dac_interpolate/trigger_i   trigger_i
+ad_connect axi_dac_interpolate/trigger_adc adc_trigger/trigger_out_la
+ad_connect axi_dac_interpolate/trigger_la  logic_analyzer/trigger_out_adc
 
 ad_connect /axi_ad9963/tx_data    txd
 ad_connect /axi_ad9963/tx_iq      txiq

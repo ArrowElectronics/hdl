@@ -13,7 +13,7 @@ index b7f7963433..41cafe49a9 100755
  					 CONFIG_SYS_INIT_RAM_SIZE  - SIZEOF_MMUPAGETABLE)
  /* Default load address */
 -#define CONFIG_SYS_LOAD_ADDR		0x8000
-+#define CONFIG_SYS_LOAD_ADDR		0xC000
++#define CONFIG_SYS_LOAD_ADDR		0x10000
  
  /*
   * Display CPU and Board Info
@@ -22,7 +22,7 @@ index b7f7963433..41cafe49a9 100755
  #define CONFIG_BOOTCOMMAND " run core_rbf_prog; run callscript; run mmcload;" \
  	"run set_initswstate; run mmcboot"
 -#define CONFIG_LINUX_DTB_NAME	socfpga_arria10_socdk_sdmmc.dtb
-+#define CONFIG_LINUX_DTB_NAME	mitysom_a10s_devkit_adrv9371.dtb
++#define CONFIG_LINUX_DTB_NAME	mitysom_a10s_devkit_gen1_adrv9371.dtb
  #elif defined(CONFIG_CADENCE_QSPI)
  #define CONFIG_BOOTCOMMAND "run qspirbfcore_rbf_prog; run qspiload;" \
  	"run set_initswstate; run qspiboot"

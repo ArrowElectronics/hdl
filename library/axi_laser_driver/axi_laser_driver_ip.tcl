@@ -6,12 +6,13 @@ source $ad_hdl_dir/library/scripts/adi_ip_xilinx.tcl
 adi_ip_create axi_laser_driver
 adi_ip_files axi_laser_driver [list \
   "$ad_hdl_dir/library/common/up_clock_mon.v" \
+  "$ad_hdl_dir/library/xilinx/common/up_clock_mon_constr.xdc" \
   "axi_laser_driver_constr.xdc" \
   "axi_laser_driver_regmap.v" \
   "axi_laser_driver.v"]
 
 adi_ip_properties axi_laser_driver
-adi_ip_ttcl axi_laser_driver "$ad_hdl_dir/library/axi_pulse_gen/axi_pulse_gen_constr.ttcl"
+adi_ip_ttcl axi_laser_driver "../axi_pulse_gen/axi_pulse_gen_constr.ttcl"
 
 adi_ip_add_core_dependencies { \
 	analog.com:user:util_cdc:1.0 \

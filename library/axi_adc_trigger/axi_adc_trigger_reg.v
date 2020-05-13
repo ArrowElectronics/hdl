@@ -62,6 +62,8 @@ module axi_adc_trigger_reg (
   output      [16:0]  trigger_out_control,
   output      [31:0]  fifo_depth,
   output      [31:0]  trigger_delay,
+  output      [31:0]  trigger_holdoff,
+  output      [19:0]  trigger_out_hold_pins,
 
   output              streaming,
 
@@ -77,6 +79,8 @@ module axi_adc_trigger_reg (
   input       [ 4:0]  up_raddr,
   output reg  [31:0]  up_rdata,
   output reg          up_rack);
+
+  localparam DEFAULT_OUT_HOLD = 100000; // 1ms
 
   // internal signals
 
@@ -100,6 +104,8 @@ module axi_adc_trigger_reg (
   reg     [16:0]  up_trigger_out_control = 17'h0;
   reg     [31:0]  up_fifo_depth = 32'h0;
   reg     [31:0]  up_trigger_delay = 32'h0;
+  reg     [31:0]  up_trigger_holdoff = 32'h0;
+  reg     [19:0]  up_trigger_out_hold_pins = DEFAULT_OUT_HOLD;
   reg             up_triggered = 1'h0;
   reg             up_streaming = 1'h0;
 
@@ -129,6 +135,8 @@ module axi_adc_trigger_reg (
       up_trigger_out_control <= 'd0;
       up_triggered <= 1'd0;
       up_streaming <= 1'd0;
+      up_trigger_holdoff <= 32'h0;
+      up_trigger_out_hold_pins <= DEFAULT_OUT_HOLD;
     end else begin
       up_wack <= up_wreq;
       if ((up_wreq == 1'b1) && (up_waddr[4:0] == 5'h1)) begin
@@ -184,6 +192,12 @@ module axi_adc_trigger_reg (
       if ((up_wreq == 1'b1) && (up_waddr[4:0] == 5'h11)) begin
         up_streaming <= up_wdata[0];
       end
+      if ((up_wreq == 1'b1) && (up_waddr[4:0] == 5'h12)) begin
+        up_trigger_holdoff <= up_wdata[31:0];
+      end
+      if ((up_wreq == 1'b1) && (up_waddr[4:0] == 5'h13)) begin
+        up_trigger_out_hold_pins <= up_wdata[19:0];
+      end
     end
   end
 
@@ -215,6 +229,8 @@ module axi_adc_trigger_reg (
           5'hf: up_rdata <= {31'h0,up_triggered};
           5'h10: up_rdata <= up_trigger_delay;
           5'h11: up_rdata <= {31'h0,up_streaming};
+          5'h12: up_rdata <= up_trigger_holdoff;
+          5'h13: up_rdata <= {12'h0,up_trigger_out_hold_pins};
           default: up_rdata <= 0;
         endcase
       end else begin
@@ -223,43 +239,47 @@ module axi_adc_trigger_reg (
     end
   end
 
-   up_xfer_cntrl #(.DATA_WIDTH(210)) i_xfer_cntrl (
+   up_xfer_cntrl #(.DATA_WIDTH(262)) i_xfer_cntrl (
     .up_rstn (up_rstn),
     .up_clk (up_clk),
-    .up_data_cntrl ({ up_streaming,           // 1
-                      up_trigger_o,           // 2
-                      up_io_selection,        // 8
-                      up_config_trigger_i,    // 10
-                      up_limit_a,             // 16
-                      up_function_a,          // 2
-                      up_hysteresis_a,        // 32
-                      up_trigger_l_mix_a,     // 4
-                      up_limit_b,             // 16
-                      up_function_b,          // 2
-                      up_hysteresis_b,        // 32
-                      up_trigger_l_mix_b,     // 4
-                      up_trigger_out_control, // 17
-                      up_fifo_depth,          // 32
-                      up_trigger_delay}),     // 32
+    .up_data_cntrl ({ up_streaming,             // 1
+                      up_trigger_o,             // 2
+                      up_io_selection,          // 8
+                      up_config_trigger_i,      // 10
+                      up_limit_a,               // 16
+                      up_function_a,            // 2
+                      up_hysteresis_a,          // 32
+                      up_trigger_l_mix_a,       // 4
+                      up_limit_b,               // 16
+                      up_function_b,            // 2
+                      up_hysteresis_b,          // 32
+                      up_trigger_l_mix_b,       // 4
+                      up_trigger_out_control,   // 17
+                      up_fifo_depth,            // 32
+                      up_trigger_holdoff,       // 32
+                      up_trigger_out_hold_pins, // 20
+                      up_trigger_delay}),       // 32
 
     .up_xfer_done (),
     .d_rst (1'b0),
     .d_clk (clk),
-    .d_data_cntrl ({  streaming,          // 1
-                      trigger_o,          // 2
-                      io_selection,       // 8
-                      config_trigger_i,   // 10
-                      limit_a,            // 16
-                      function_a,         // 2
-                      hysteresis_a,       // 32
-                      trigger_l_mix_a,    // 4
-                      limit_b,            // 16
-                      function_b,         // 2
-                      hysteresis_b,       // 32
-                      trigger_l_mix_b,    // 4
-                      trigger_out_control,// 17
-                      fifo_depth,         // 32
-                      trigger_delay}));   // 32
+    .d_data_cntrl ({  streaming,             // 1
+                      trigger_o,             // 2
+                      io_selection,          // 8
+                      config_trigger_i,      // 10
+                      limit_a,               // 16
+                      function_a,            // 2
+                      hysteresis_a,          // 32
+                      trigger_l_mix_a,       // 4
+                      limit_b,               // 16
+                      function_b,            // 2
+                      hysteresis_b,          // 32
+                      trigger_l_mix_b,       // 4
+                      trigger_out_control,   // 17
+                      fifo_depth,            // 32
+                      trigger_holdoff,       // 32
+                      trigger_out_hold_pins, // 20
+                      trigger_delay}));      // 32
 
 endmodule
 
