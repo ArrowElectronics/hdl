@@ -75,7 +75,7 @@ set_interface_property trigger_gen_0_load_config EXPORT_OF trigger_gen_0.load_co
 
 # spi engine
 
-add_instance axi_spi_engine_0 axi_spi_engine_v1_0 1.0
+add_instance axi_spi_engine_0 axi_spi_engine_v1_0 1.1
 set_instance_parameter_value axi_spi_engine_0 {ASYNC_SPI_CLK} {1}
 set_instance_parameter_value axi_spi_engine_0 {CMD_FIFO_ADDRESS_WIDTH} {4}
 set_instance_parameter_value axi_spi_engine_0 {DATA_WIDTH} {20}
