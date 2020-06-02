@@ -49,6 +49,7 @@ add_fileset_file address_gray_pipelined.v VERILOG PATH ../../util_axis_fifo/addr
 add_fileset_file sync_gray.v VERILOG PATH ../../util_cdc/sync_gray.v
 add_fileset_file ad_mem.v VERILOG PATH ../../common/ad_mem.v
 add_fileset_file address_sync.v VERILOG PATH ../../util_axis_fifo/address_sync.v
+add_fileset_file axi_spi_engine_constr.sdc SDC PATH axi_spi_engine_constr.sdc
 
 
 # 
