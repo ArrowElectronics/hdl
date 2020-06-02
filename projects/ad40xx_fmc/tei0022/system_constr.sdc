@@ -131,18 +131,3 @@ set_false_path -from [get_ports {uart0_rx}] -to *
 # frame reader seems to use the wrong reset!
 
 set_false_path -from [get_registers *altera_reset_synchronizer:alt_rst_sync_uq1|altera_reset_synchronizer_int_chain_out*]
-
-# added temporarily until axi_spi_engine_constr.sdc functions as part of the component in platform designer
-
-set_false_path  -from [get_registers **cdc_sync_stage0*]                                  -to [get_registers *cdc_sync_stage1*]
-set_false_path  -from [get_registers *offload0_enable*]                                   -to [get_registers *cdc_sync_stage1*]
-set_false_path  -from *																	  -to [get_registers *i_offload_enabled_sync|cdc_sync_stage1*]
-set_false_path  -from [get_registers *offload0_mem_reset*]                                -to [get_registers *cdc_sync_stage1*]
-
-set_false_path  -from [get_registers *up_sw_reset*]    		                              -to [get_registers *rst_async_d1*]
-set_false_path  -from [get_registers *up_sw_reset*]    		                              -to [get_registers *rst_async_d2*]
-set_false_path  -from [get_registers *up_sw_reset*]    		                              -to [get_registers *rst_sync*]
-
-
-
-
