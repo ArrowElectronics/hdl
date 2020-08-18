@@ -11,7 +11,7 @@ set_module_property DESCRIPTION "AXI HDMI Transmit Interface"
 set_module_property VERSION 1.0
 set_module_property GROUP "Analog Devices"
 set_module_property DISPLAY_NAME axi_hdmi_tx
-set_module_property VALIDATION_CALLBACK info_param_validate
+#set_module_property VALIDATION_CALLBACK info_param_validate
 
 # files
 
@@ -47,28 +47,31 @@ set_parameter_property ID TYPE INTEGER
 set_parameter_property ID UNITS None
 set_parameter_property ID HDL_PARAMETER true
 
-add_parameter CR_CB_N INTEGER 0
-set_parameter_property CR_CB_N DEFAULT_VALUE 0
-set_parameter_property CR_CB_N DISPLAY_NAME CR_CB_N
-set_parameter_property CR_CB_N TYPE INTEGER
-set_parameter_property CR_CB_N UNITS None
-set_parameter_property CR_CB_N HDL_PARAMETER true
+ad_ip_parameter FPGA_TECHNOLOGY INTEGER 101 true { \
+  DISPLAY_HINT "FPGA_TECHNOLOGY" \
+  DISPLAY_NAME "FPGA_TECHNOLOGY" \
+  ALLOWED_RANGES { "101:Cyclone V" }
+}
 
-#add_parameter FPGA_TECHNOLOGY INTEGER 0
-#set_parameter_property FPGA_TECHNOLOGY DEFAULT_VALUE 16
-#set_parameter_property FPGA_TECHNOLOGY DISPLAY_NAME FPGA_TECHNOLOGY
-#set_parameter_property FPGA_TECHNOLOGY TYPE INTEGER
-#set_parameter_property FPGA_TECHNOLOGY UNITS None
-#set_parameter_property FPGA_TECHNOLOGY HDL_PARAMETER true
+ad_ip_parameter INTERFACE STRING "16_BIT" true { \
+  DISPLAY_HINT "interface" \
+  DISPLAY_NAME "SYNCHRONIZATION" \
+  ALLOWED_RANGES { "16_BIT:Separate" "16_BIT_EMBEDDED_SYNC:Embedded" }
+}
 
-add_parameter EMBEDDED_SYNC INTEGER 0
-set_parameter_property EMBEDDED_SYNC DEFAULT_VALUE 0
-set_parameter_property EMBEDDED_SYNC DISPLAY_NAME EMBEDDED_SYNC
-set_parameter_property EMBEDDED_SYNC TYPE INTEGER
-set_parameter_property EMBEDDED_SYNC UNITS None
-set_parameter_property EMBEDDED_SYNC HDL_PARAMETER true
+ad_ip_parameter CR_CB_N INTEGER 0 true { \
+  DISPLAY_HINT "CR_CB_N" \
+  DISPLAY_NAME "CR_CB_N" \
+  ALLOWED_RANGES { "0:Blue component first" "1:Red component first" }
+}
 
-adi_add_auto_fpga_spec_params
+ad_ip_parameter OUT_CLK_POLARITY INTEGER 0 true { \
+  DISPLAY_HINT "HDMI CLOCK POLARITY" \
+  DISPLAY_NAME "HDMI CLOCK POLARITY" \
+  ALLOWED_RANGES { "0:Launch on rising edge" "1:Launch on falling edge" }
+}
+
+#adi_add_auto_fpga_spec_params
 
 # axi4 slave
 
@@ -101,15 +104,15 @@ add_interface_port hdmi_if hdmi_36_data h36_data Output 36
 add_interface vdma_clock  clock end
 add_interface_port vdma_clock vdma_clk clk Input 1
 
-# sjk add_interface vdma_if avalon_streaming end
+add_interface vdma_reset reset end
+add_interface_port vdma_reset s_axi_aresetn reset_n Input 1
+set_interface_property vdma_reset associatedClock vdma_clock
+
+# axi4 streaming slave
 add_interface vdma_if axi4stream end
 set_interface_property vdma_if associatedClock vdma_clock
+set_interface_property vdma_if associatedReset vdma_reset
+add_interface_port vdma_if vdma_end_of_frame tlast Input 1
 add_interface_port vdma_if vdma_valid tvalid Input 1
 add_interface_port vdma_if vdma_data tdata Input 64
 add_interface_port vdma_if vdma_ready tready Output 1
-
-# frame sync
-
-ad_interface signal  vdma_fs       output  1
-ad_interface signal  vdma_fs_ret   input   1
-
