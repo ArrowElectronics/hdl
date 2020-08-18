@@ -31,7 +31,6 @@
 *_html
 *.sld
 *.txt
-*.qsys
 *.csv
 xst
 netgen
