@@ -55,8 +55,6 @@ db
 *.fit.*
 *.map.*
 *.sta.*
-*.qsf
-*.qpf
 *.qws
 *.sof
 *.rbf
