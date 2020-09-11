@@ -13,11 +13,56 @@
    {
       datum _sortIndex
       {
+         value = "8";
+         type = "int";
+      }
+   }
+   element axi_dmac_0.s_axi
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+   }
+   element axi_hdmi_tx_0
+   {
+      datum _sortIndex
+      {
+         value = "9";
+         type = "int";
+      }
+   }
+   element axi_hdmi_tx_0.s_axi
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+   }
+   element button_pio
+   {
+      datum _sortIndex
+      {
          value = "4";
          type = "int";
       }
    }
-   element axi_hdmi_tx_0
+   element button_pio.s1
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "65568";
+         type = "String";
+      }
+   }
+   element dipsw_pio
    {
       datum _sortIndex
       {
@@ -25,12 +70,67 @@
          type = "int";
       }
    }
+   element dipsw_pio.s1
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "65584";
+         type = "String";
+      }
+   }
    element hdmi_pll
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
+   element jtag_uart
    {
       datum _sortIndex
       {
          value = "3";
          type = "int";
+      }
+   }
+   element jtag_uart.avalon_jtag_slave
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "65552";
+         type = "String";
+      }
+   }
+   element led_pio
+   {
+      datum _sortIndex
+      {
+         value = "6";
+         type = "int";
+      }
+   }
+   element led_pio.s1
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "65600";
+         type = "String";
       }
    }
    element sys_clk
@@ -55,6 +155,14 @@
       {
          value = "2";
          type = "int";
+      }
+   }
+   element sys_id.control_slave
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
       }
    }
    element system_bd
@@ -215,7 +323,7 @@
  <parameter name="hideFromIPCatalog" value="false" />
  <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="4" />
- <parameter name="projectName">ad40xx_fmc_tei0022.qpf</parameter>
+ <parameter name="projectName" value="tei0022_ghrd.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="testBenchDutName" value="" />
@@ -223,8 +331,23 @@
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface
+   name="button_pio_external_connection"
+   internal="button_pio.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="dipsw_pio_external_connection"
+   internal="dipsw_pio.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
    name="hdmi_out"
    internal="axi_hdmi_tx_0.hdmi_if"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="led_pio_external_connection"
+   internal="led_pio.external_connection"
    type="conduit"
    dir="end" />
  <interface name="sys_clk" internal="sys_clk.clk_in" type="clock" dir="end" />
@@ -245,7 +368,6 @@
    dir="end" />
  <interface name="sys_rst" internal="sys_clk.clk_in_reset" type="reset" dir="end" />
  <module name="axi_dmac_0" kind="axi_dmac" version="1.0" enabled="1">
-  <parameter name="ALLOW_ASYM_MEM" value="1" />
   <parameter name="ASYNC_CLK_DEST_REQ_MANUAL" value="1" />
   <parameter name="ASYNC_CLK_REQ_SRC_MANUAL" value="1" />
   <parameter name="ASYNC_CLK_SRC_DEST_MANUAL" value="1" />
@@ -289,6 +411,34 @@
   <parameter name="ID" value="0" />
   <parameter name="INTERFACE" value="16_BIT" />
   <parameter name="OUT_CLK_POLARITY" value="0" />
+ </module>
+ <module name="button_pio" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="true" />
+  <parameter name="clockRate" value="100000000" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="FALLING" />
+  <parameter name="generateIRQ" value="true" />
+  <parameter name="irqType" value="EDGE" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="1" />
+ </module>
+ <module name="dipsw_pio" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="true" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="true" />
+  <parameter name="clockRate" value="100000000" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="ANY" />
+  <parameter name="generateIRQ" value="true" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="2" />
  </module>
  <module name="hdmi_pll" kind="altera_pll" version="18.1" enabled="1">
   <parameter name="debug_print_output" value="false" />
@@ -492,6 +642,39 @@
   <parameter name="gui_switchover_delay" value="0" />
   <parameter name="gui_switchover_mode">Automatic Switchover</parameter>
   <parameter name="gui_use_locked" value="false" />
+ </module>
+ <module
+   name="jtag_uart"
+   kind="altera_avalon_jtag_uart"
+   version="18.1"
+   enabled="1">
+  <parameter name="allowMultipleConnections" value="false" />
+  <parameter name="avalonSpec" value="2.0" />
+  <parameter name="clkFreq" value="100000000" />
+  <parameter name="hubInstanceID" value="0" />
+  <parameter name="readBufferDepth" value="64" />
+  <parameter name="readIRQThreshold" value="8" />
+  <parameter name="simInputCharacterStream" value="" />
+  <parameter name="simInteractiveOptions">NO_INTERACTIVE_WINDOWS</parameter>
+  <parameter name="useRegistersForReadBuffer" value="false" />
+  <parameter name="useRegistersForWriteBuffer" value="false" />
+  <parameter name="useRelativePathForSimFile" value="false" />
+  <parameter name="writeBufferDepth" value="64" />
+  <parameter name="writeIRQThreshold" value="8" />
+ </module>
+ <module name="led_pio" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="100000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="2" />
  </module>
  <module name="sys_clk" kind="clock_source" version="18.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
@@ -1040,9 +1223,45 @@
    kind="avalon"
    version="18.1"
    start="sys_hps.h2f_lw_axi_master"
+   end="jtag_uart.avalon_jtag_slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00010010" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="sys_hps.h2f_lw_axi_master"
    end="sys_id.control_slave">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00010000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="sys_hps.h2f_lw_axi_master"
+   end="button_pio.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00010020" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="sys_hps.h2f_lw_axi_master"
+   end="dipsw_pio.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00010030" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="sys_hps.h2f_lw_axi_master"
+   end="led_pio.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00010040" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1082,6 +1301,26 @@
    version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="sys_id.clk" />
+ <connection
+   kind="clock"
+   version="18.1"
+   start="sys_hps.h2f_user1_clock"
+   end="jtag_uart.clk" />
+ <connection
+   kind="clock"
+   version="18.1"
+   start="sys_hps.h2f_user1_clock"
+   end="button_pio.clk" />
+ <connection
+   kind="clock"
+   version="18.1"
+   start="sys_hps.h2f_user1_clock"
+   end="dipsw_pio.clk" />
+ <connection
+   kind="clock"
+   version="18.1"
+   start="sys_hps.h2f_user1_clock"
+   end="led_pio.clk" />
  <connection
    kind="clock"
    version="18.1"
@@ -1155,6 +1394,55 @@
   <parameter name="irqNumber" value="4" />
  </connection>
  <connection
+   kind="interrupt"
+   version="18.1"
+   start="sys_hps.f2h_irq0"
+   end="jtag_uart.irq">
+  <parameter name="irqNumber" value="0" />
+ </connection>
+ <connection
+   kind="interrupt"
+   version="18.1"
+   start="sys_hps.f2h_irq0"
+   end="button_pio.irq">
+  <parameter name="irqNumber" value="1" />
+ </connection>
+ <connection
+   kind="interrupt"
+   version="18.1"
+   start="sys_hps.f2h_irq0"
+   end="dipsw_pio.irq">
+  <parameter name="irqNumber" value="2" />
+ </connection>
+ <connection
+   kind="interrupt"
+   version="18.1"
+   start="sys_hps.f2h_irq1"
+   end="axi_dmac_0.interrupt_sender">
+  <parameter name="irqNumber" value="4" />
+ </connection>
+ <connection
+   kind="interrupt"
+   version="18.1"
+   start="sys_hps.f2h_irq1"
+   end="jtag_uart.irq">
+  <parameter name="irqNumber" value="0" />
+ </connection>
+ <connection
+   kind="interrupt"
+   version="18.1"
+   start="sys_hps.f2h_irq1"
+   end="button_pio.irq">
+  <parameter name="irqNumber" value="1" />
+ </connection>
+ <connection
+   kind="interrupt"
+   version="18.1"
+   start="sys_hps.f2h_irq1"
+   end="dipsw_pio.irq">
+  <parameter name="irqNumber" value="2" />
+ </connection>
+ <connection
    kind="reset"
    version="18.1"
    start="sys_clk.clk_reset"
@@ -1169,6 +1457,26 @@
    version="18.1"
    start="sys_clk.clk_reset"
    end="sys_id.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="sys_clk.clk_reset"
+   end="jtag_uart.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="sys_clk.clk_reset"
+   end="button_pio.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="sys_clk.clk_reset"
+   end="dipsw_pio.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="sys_clk.clk_reset"
+   end="led_pio.reset" />
  <connection
    kind="reset"
    version="18.1"
