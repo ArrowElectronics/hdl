@@ -530,6 +530,20 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to status
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to as_rst
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to qspi_rst
 
+# user pb, dipsw, leds
+
+set_location_assignment PIN_AD24 -to user_dipsw_fpga[0]
+set_location_assignment PIN_AE24 -to user_dipsw_fpga[1]
+set_location_assignment PIN_AB21  -to user_pb_fpga
+set_location_assignment PIN_AC28 -to user_led_fpga[0]
+set_location_assignment PIN_AC29 -to user_led_fpga[1]
+
+set_instance_assignment -name IO_STANDARD "1.5 V" -to user_dipsw_fpga[0]
+set_instance_assignment -name IO_STANDARD "1.5 V" -to user_dipsw_fpga[1]
+set_instance_assignment -name IO_STANDARD "1.5 V" -to user_pb_fpga
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to user_led_fpga[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to user_led_fpga[1]
+
 # globals
 
 set_global_assignment -name USE_DLL_FREQUENCY_FOR_DQS_DELAY_CHAIN ON
@@ -544,7 +558,7 @@ set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS ON
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_global_assignment -name TIMEQUEST_DO_REPORT_TIMING ON
 set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
-set_global_assignment -name TIMEQUEST_REPORT_SCRIPT $ad_hdl_dir/projects/scripts/adi_tquest.tcl
+# set_global_assignment -name TIMEQUEST_REPORT_SCRIPT $ad_hdl_dir/projects/scripts/adi_tquest.tcl
 set_global_assignment -name ON_CHIP_BITSTREAM_DECOMPRESSION OFF
 set_global_assignment -name OPTIMIZATION_MODE "AGGRESSIVE PERFORMANCE"
 
