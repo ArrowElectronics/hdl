@@ -634,10 +634,9 @@ set_location_assignment PIN_AD24 -to user_dipsw_fpga[0]
 set_location_assignment PIN_AE24 -to user_dipsw_fpga[1]
 set_location_assignment PIN_AC28 -to user_led_fpga[0]
 set_location_assignment PIN_AC29 -to user_led_fpga[1]
-set_location_assignment PIN_G12 -to user_pb_fpga
+set_location_assignment PIN_AB21 -to user_pb_fpga
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to user_led_fpga[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to user_led_fpga[1]
-
 set_instance_assignment -name IO_STANDARD "1.5 V" -to user_pb_fpga
 set_instance_assignment -name IO_STANDARD "1.5 V" -to user_dipsw_fpga[0]
 set_instance_assignment -name IO_STANDARD "1.5 V" -to user_dipsw_fpga[1]
