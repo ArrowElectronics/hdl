@@ -140,7 +140,13 @@ module system_top (
   inout             	user_btn_hps,
   inout             	status,
   inout             	as_rst,
-  inout            	 	qspi_rst 
+  inout            	 	qspi_rst,
+
+// user led, pb, dipsw
+
+  input	 [1:0]   		user_dipsw_fpga,     
+  output [1:0]   		user_led_fpga,
+  input	        		user_pb_fpga  
 );
 
   // internal signals
@@ -247,7 +253,10 @@ module system_top (
     .hdmi_out_h16_hsync (hdmi_hsync),
     .hdmi_out_h16_vsync (hdmi_vsync),
     .hdmi_out_h16_data_e (hdmi_de),
-    .hdmi_out_h16_data (hdmi_data_pd));
+    .hdmi_out_h16_data (hdmi_data_pd),
+    .led_pio_external_connection_export  (user_led_fpga),   						 
+    .dipsw_pio_external_connection_export  (user_dipsw_fpga),                 		 
+    .button_pio_external_connection_export (user_pb_fpga));
 
 endmodule
 
