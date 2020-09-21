@@ -26,7 +26,7 @@
       }
       datum baseAddress
       {
-         value = "196608";
+         value = "655360";
          type = "String";
       }
    }
@@ -105,7 +105,7 @@
       }
       datum baseAddress
       {
-         value = "131072";
+         value = "589824";
          type = "String";
       }
    }
@@ -1704,16 +1704,7 @@
    start="sys_hps.h2f_lw_axi_master"
    end="axi_hdmi_tx_0.s_axi">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00030000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="18.1"
-   start="sys_hps.h2f_lw_axi_master"
-   end="hdmi_dmac_0.s_axi">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00020000" />
+  <parameter name="baseAddress" value="0x000a0000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1732,6 +1723,15 @@
    end="spi_dmac_0.s_axi">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00050000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="sys_hps.h2f_lw_axi_master"
+   end="hdmi_dmac_0.s_axi">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00090000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
