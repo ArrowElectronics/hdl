@@ -94,11 +94,11 @@ add_connection sys_clk.clk_reset axi_spi_engine_0.s_axi_aresetn
 add_connection axi_spi_engine_0.spi_engine_ctrl spi_engine_interconnect_0.s1_ctrl 
 add_connection sys_hps.h2f_lw_axi_master axi_spi_engine_0.s_axi
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_spi_engine_0.s_axi arbitrationPriority {1}
-set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_spi_engine_0.s_axi baseAddress {0x00120000}
+set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_spi_engine_0.s_axi baseAddress {0x0040000}
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_spi_engine_0.s_axi defaultConnection {0}
 add_connection axi_spi_engine_0.spi_engine_offload_ctrl0 spi_engine_offload_0.spi_engine_offload_ctrl
 add_connection sys_hps.f2h_irq0 axi_spi_engine_0.irq
-set_connection_parameter_value sys_hps.f2h_irq0/axi_spi_engine_0.irq irqNumber {3}
+set_connection_parameter_value sys_hps.f2h_irq0/axi_spi_engine_0.irq irqNumber {6}
 add_connection axi_spi_engine_0.spi_resetn spi_engine_offload_0.spi_resetn
 add_connection axi_spi_engine_0.spi_resetn spi_engine_execution_0.resetn
 add_connection axi_spi_engine_0.spi_resetn spi_engine_interconnect_0.resetn
@@ -107,52 +107,52 @@ add_connection axi_spi_engine_0.spi_resetn trigger_gen_0.rstn
 
 # adc-dma
 
-add_instance dma_0 axi_dmac 1.0
-set_instance_parameter_value dma_0 {ASYNC_CLK_DEST_REQ_MANUAL} {1}
-set_instance_parameter_value dma_0 {ASYNC_CLK_REQ_SRC_MANUAL} {1}
-set_instance_parameter_value dma_0 {ASYNC_CLK_SRC_DEST_MANUAL} {1}
-set_instance_parameter_value dma_0 {AUTO_ASYNC_CLK} {1}
-set_instance_parameter_value dma_0 {AXI_SLICE_DEST} {1}
-set_instance_parameter_value dma_0 {AXI_SLICE_SRC} {0}
-set_instance_parameter_value dma_0 {CYCLIC} {0}
-set_instance_parameter_value dma_0 {DISABLE_DEBUG_REGISTERS} {0}
-set_instance_parameter_value dma_0 {DMA_2D_TRANSFER} {0}
-set_instance_parameter_value dma_0 {DMA_AXIS_DEST_W} {4}
-set_instance_parameter_value dma_0 {DMA_AXIS_ID_W} {8}
-set_instance_parameter_value dma_0 {DMA_AXI_PROTOCOL_DEST} {1}
-set_instance_parameter_value dma_0 {DMA_AXI_PROTOCOL_SRC} {1}
-set_instance_parameter_value dma_0 {DMA_DATA_WIDTH_DEST} {64}
-set_instance_parameter_value dma_0 {DMA_DATA_WIDTH_SRC} {32}
-set_instance_parameter_value dma_0 {DMA_LENGTH_WIDTH} {24}
-set_instance_parameter_value dma_0 {DMA_TYPE_DEST} {0}
-set_instance_parameter_value dma_0 {DMA_TYPE_SRC} {1}
-set_instance_parameter_value dma_0 {ENABLE_DIAGNOSTICS_IF} {0}
-set_instance_parameter_value dma_0 {FIFO_SIZE} {8}
-set_instance_parameter_value dma_0 {HAS_AXIS_TDEST} {0}
-set_instance_parameter_value dma_0 {HAS_AXIS_TID} {0}
-set_instance_parameter_value dma_0 {HAS_AXIS_TKEEP} {0}
-set_instance_parameter_value dma_0 {HAS_AXIS_TLAST} {0}
-set_instance_parameter_value dma_0 {HAS_AXIS_TSTRB} {0}
-set_instance_parameter_value dma_0 {HAS_AXIS_TUSER} {0}
-set_instance_parameter_value dma_0 {ID} {0}
-set_instance_parameter_value dma_0 {MAX_BYTES_PER_BURST} {128}
-set_instance_parameter_value dma_0 {SYNC_TRANSFER_START} {0}
-add_connection sys_hps.h2f_user1_clock dma_0.m_dest_axi_clock
-add_connection sys_hps.h2f_user1_clock dma_0.s_axi_clock
-add_connection spi_engine_pll.outclk0 dma_0.if_s_axis_aclk 
-add_connection sys_clk.clk_reset dma_0.m_dest_axi_reset
-add_connection sys_clk.clk_reset dma_0.s_axi_reset
-add_connection upscale_converter_0.m_axis dma_0.s_axis
-add_connection dma_0.m_dest_axi sys_hps.f2h_sdram1_data
-set_connection_parameter_value dma_0.m_dest_axi/sys_hps.f2h_sdram1_data arbitrationPriority {1}
-set_connection_parameter_value dma_0.m_dest_axi/sys_hps.f2h_sdram1_data baseAddress {0x0000}
-set_connection_parameter_value dma_0.m_dest_axi/sys_hps.f2h_sdram1_data defaultConnection {0}
-add_connection sys_hps.f2h_irq0 dma_0.interrupt_sender
-set_connection_parameter_value sys_hps.f2h_irq0/dma_0.interrupt_sender irqNumber {2}
-add_connection sys_hps.h2f_lw_axi_master dma_0.s_axi
-set_connection_parameter_value sys_hps.h2f_lw_axi_master/dma_0.s_axi arbitrationPriority {1}
-set_connection_parameter_value sys_hps.h2f_lw_axi_master/dma_0.s_axi baseAddress {0x00100000}
-set_connection_parameter_value sys_hps.h2f_lw_axi_master/dma_0.s_axi defaultConnection {0}
+add_instance spi_dmac_0 axi_dmac 1.0
+set_instance_parameter_value spi_dmac_0 {ASYNC_CLK_DEST_REQ_MANUAL} {1}
+set_instance_parameter_value spi_dmac_0 {ASYNC_CLK_REQ_SRC_MANUAL} {1}
+set_instance_parameter_value spi_dmac_0 {ASYNC_CLK_SRC_DEST_MANUAL} {1}
+set_instance_parameter_value spi_dmac_0 {AUTO_ASYNC_CLK} {1}
+set_instance_parameter_value spi_dmac_0 {AXI_SLICE_DEST} {1}
+set_instance_parameter_value spi_dmac_0 {AXI_SLICE_SRC} {0}
+set_instance_parameter_value spi_dmac_0 {CYCLIC} {0}
+set_instance_parameter_value spi_dmac_0 {DISABLE_DEBUG_REGISTERS} {0}
+set_instance_parameter_value spi_dmac_0 {DMA_2D_TRANSFER} {0}
+set_instance_parameter_value spi_dmac_0 {DMA_AXIS_DEST_W} {4}
+set_instance_parameter_value spi_dmac_0 {DMA_AXIS_ID_W} {8}
+set_instance_parameter_value spi_dmac_0 {DMA_AXI_PROTOCOL_DEST} {1}
+set_instance_parameter_value spi_dmac_0 {DMA_AXI_PROTOCOL_SRC} {1}
+set_instance_parameter_value spi_dmac_0 {DMA_DATA_WIDTH_DEST} {64}
+set_instance_parameter_value spi_dmac_0 {DMA_DATA_WIDTH_SRC} {32}
+set_instance_parameter_value spi_dmac_0 {DMA_LENGTH_WIDTH} {24}
+set_instance_parameter_value spi_dmac_0 {DMA_TYPE_DEST} {0}
+set_instance_parameter_value spi_dmac_0 {DMA_TYPE_SRC} {1}
+set_instance_parameter_value spi_dmac_0 {ENABLE_DIAGNOSTICS_IF} {0}
+set_instance_parameter_value spi_dmac_0 {FIFO_SIZE} {8}
+set_instance_parameter_value spi_dmac_0 {HAS_AXIS_TDEST} {0}
+set_instance_parameter_value spi_dmac_0 {HAS_AXIS_TID} {0}
+set_instance_parameter_value spi_dmac_0 {HAS_AXIS_TKEEP} {0}
+set_instance_parameter_value spi_dmac_0 {HAS_AXIS_TLAST} {0}
+set_instance_parameter_value spi_dmac_0 {HAS_AXIS_TSTRB} {0}
+set_instance_parameter_value spi_dmac_0 {HAS_AXIS_TUSER} {0}
+set_instance_parameter_value spi_dmac_0 {ID} {0}
+set_instance_parameter_value spi_dmac_0 {MAX_BYTES_PER_BURST} {128}
+set_instance_parameter_value spi_dmac_0 {SYNC_TRANSFER_START} {0}
+add_connection sys_hps.h2f_user1_clock spi_dmac_0.m_dest_axi_clock
+add_connection sys_hps.h2f_user1_clock spi_dmac_0.s_axi_clock
+add_connection spi_engine_pll.outclk0 spi_dmac_0.if_s_axis_aclk 
+add_connection sys_clk.clk_reset spi_dmac_0.m_dest_axi_reset
+add_connection sys_clk.clk_reset spi_dmac_0.s_axi_reset
+add_connection upscale_converter_0.m_axis spi_dmac_0.s_axis
+add_connection spi_dmac_0.m_dest_axi sys_hps.f2h_sdram1_data
+set_connection_parameter_value spi_dmac_0.m_dest_axi/sys_hps.f2h_sdram1_data arbitrationPriority {1}
+set_connection_parameter_value spi_dmac_0.m_dest_axi/sys_hps.f2h_sdram1_data baseAddress {0x0000}
+set_connection_parameter_value spi_dmac_0.m_dest_axi/sys_hps.f2h_sdram1_data defaultConnection {0}
+add_connection sys_hps.f2h_irq0 spi_dmac_0.interrupt_sender
+set_connection_parameter_value sys_hps.f2h_irq0/spi_dmac_0.interrupt_sender irqNumber {5}
+add_connection sys_hps.h2f_lw_axi_master spi_dmac_0.s_axi
+set_connection_parameter_value sys_hps.h2f_lw_axi_master/spi_dmac_0.s_axi arbitrationPriority {1}
+set_connection_parameter_value sys_hps.h2f_lw_axi_master/spi_dmac_0.s_axi baseAddress {0x0050000}
+set_connection_parameter_value sys_hps.h2f_lw_axi_master/spi_dmac_0.s_axi defaultConnection {0}
 
 
 

@@ -46,11 +46,11 @@ set_instance_parameter_value sys_hps {I2C1_Mode} {I2C}
 set_instance_parameter_value sys_hps {I2C1_PinMuxing} {HPS I/O Set 0}
 set_instance_parameter_value sys_hps {GPIO_Enable} {Yes No No No No No No No No Yes No No No No No No No No No No No No No No No No No No No No No No No No No Yes No No No No Yes Yes Yes Yes Yes No No No Yes No No No No Yes Yes Yes Yes Yes Yes Yes No Yes No No No Yes No No No No No No No No No No No No No No No No No No No No No No No No No No No No No No No No No No}
 set_instance_parameter_value sys_hps {desired_cfg_clk_mhz} {80.0}
-set_instance_parameter_value sys_hps {S2FCLK_USER0CLK_Enable} {1}
+set_instance_parameter_value sys_hps {S2FCLK_USER0CLK_Enable} {0}
 set_instance_parameter_value sys_hps {S2FCLK_USER1CLK_Enable} {1}
 set_instance_parameter_value sys_hps {S2FCLK_USER1CLK_FREQ} {100.0}
 set_instance_parameter_value sys_hps {S2FCLK_USER2CLK} {4}
-set_instance_parameter_value sys_hps {S2FCLK_USER2CLK_Enable} {1}
+set_instance_parameter_value sys_hps {S2FCLK_USER2CLK_Enable} {0}
 set_instance_parameter_value sys_hps {S2FCLK_USER2CLK_FREQ} {100.0}
 set_instance_parameter_value sys_hps {HPS_PROTOCOL} {DDR3}
 set_instance_parameter_value sys_hps {MEM_CLK_FREQ} {333.3}
@@ -104,9 +104,12 @@ add_interface sys_hps_hps_io conduit end
 set_interface_property sys_hps_hps_io EXPORT_OF sys_hps.hps_io
 add_interface sys_hps_h2f_reset reset source
 set_interface_property sys_hps_h2f_reset EXPORT_OF sys_hps.h2f_reset
-add_connection sys_hps.h2f_user0_clock sys_hps.h2f_axi_clock
-add_connection sys_hps.h2f_user0_clock sys_hps.f2h_axi_clock
-add_connection sys_hps.h2f_user0_clock sys_hps.h2f_lw_axi_clock
+add_connection sys_hps.h2f_user1_clock sys_hps.h2f_axi_clock
+add_connection sys_hps.h2f_user1_clock sys_hps.f2h_axi_clock
+add_connection sys_hps.h2f_user1_clock sys_hps.h2f_lw_axi_clock
+add_connection sys_hps.h2f_user1_clock sys_hps.f2h_sdram0_clock
+add_connection sys_hps.h2f_user1_clock sys_hps.f2h_sdram1_clock
+add_connection sys_hps.h2f_user1_clock sys_hps.f2h_sdram2_clock
 
 # cpu/hps handling
 
@@ -134,147 +137,97 @@ proc ad_dma_interconnect {m_port m_id} {
   set_connection_parameter_value ${m_port}/sys_hps.f2h_sdram2_data baseAddress {0x0000}
 }
 
-# common dma interfaces
-
-add_instance sys_dma_clk clock_source
-add_connection sys_hps.h2f_user0_clock sys_dma_clk.clk_in
-add_connection sys_clk.clk_reset sys_dma_clk.clk_in_reset
-add_connection sys_dma_clk.clk sys_hps.f2h_sdram1_clock
-add_connection sys_dma_clk.clk sys_hps.f2h_sdram2_clock
-
 # display (hdmi-pll)
 
 add_instance hdmi_pll altera_pll
 set_instance_parameter_value hdmi_pll {gui_device_speed_grade} {8}
-set_instance_parameter_value hdmi_pll {gui_reference_clock_frequency} {80.0}
+set_instance_parameter_value hdmi_pll {gui_reference_clock_frequency} {100.0}
 set_instance_parameter_value hdmi_pll {gui_use_locked} {0}
 set_instance_parameter_value hdmi_pll {gui_number_of_clocks} {1}
-set_instance_parameter_value hdmi_pll {gui_output_clock_frequency0} {74.25}
-add_connection sys_hps.h2f_user0_clock hdmi_pll.refclk
+set_instance_parameter_value hdmi_pll {gui_output_clock_frequency0} {148.5}
+add_connection sys_hps.h2f_user1_clock hdmi_pll.refclk
 add_connection sys_clk.clk_reset hdmi_pll.reset
-add_connection hdmi_pll.outclk0 sys_hps.f2h_sdram0_clock
 
 
-# display (hdmi-clock-out)
+# display (dmac)
 
-add_instance hdmi_clock_out clock_source 18.1
-set_instance_parameter_value hdmi_clock_out {clockFrequency} {74250000.0}
-set_instance_parameter_value hdmi_clock_out {clockFrequencyKnown} {1}
-set_instance_parameter_value hdmi_clock_out {resetSynchronousEdges} {NONE}
-add_connection hdmi_pll.outclk0 hdmi_clock_out.clk_in
-add_interface hdmi clock source
-set_interface_property hdmi EXPORT_OF hdmi_clock_out.clk
+add_instance hdmi_dmac_0 axi_dmac 1.0
+set_instance_parameter_value hdmi_dmac_0 {ASYNC_CLK_DEST_REQ_MANUAL} {1}
+set_instance_parameter_value hdmi_dmac_0 {ASYNC_CLK_REQ_SRC_MANUAL} {1}
+set_instance_parameter_value hdmi_dmac_0 {ASYNC_CLK_SRC_DEST_MANUAL} {1}
+set_instance_parameter_value hdmi_dmac_0 {AUTO_ASYNC_CLK} {1}
+set_instance_parameter_value hdmi_dmac_0 {AXI_SLICE_DEST} {0}
+set_instance_parameter_value hdmi_dmac_0 {AXI_SLICE_SRC} {0}
+set_instance_parameter_value hdmi_dmac_0 {CYCLIC} {1}
+set_instance_parameter_value hdmi_dmac_0 {DISABLE_DEBUG_REGISTERS} {0}
+set_instance_parameter_value hdmi_dmac_0 {DMA_2D_TRANSFER} {1}
+set_instance_parameter_value hdmi_dmac_0 {DMA_AXIS_DEST_W} {4}
+set_instance_parameter_value hdmi_dmac_0 {DMA_AXIS_ID_W} {8}
+set_instance_parameter_value hdmi_dmac_0 {DMA_AXI_PROTOCOL_DEST} {1}
+set_instance_parameter_value hdmi_dmac_0 {DMA_AXI_PROTOCOL_SRC} {1}
+set_instance_parameter_value hdmi_dmac_0 {DMA_DATA_WIDTH_DEST} {64}
+set_instance_parameter_value hdmi_dmac_0 {DMA_DATA_WIDTH_SRC} {64}
+set_instance_parameter_value hdmi_dmac_0 {DMA_LENGTH_WIDTH} {24}
+set_instance_parameter_value hdmi_dmac_0 {DMA_TYPE_DEST} {1}
+set_instance_parameter_value hdmi_dmac_0 {DMA_TYPE_SRC} {0}
+set_instance_parameter_value hdmi_dmac_0 {ENABLE_DIAGNOSTICS_IF} {0}
+set_instance_parameter_value hdmi_dmac_0 {FIFO_SIZE} {8}
+set_instance_parameter_value hdmi_dmac_0 {HAS_AXIS_TDEST} {0}
+set_instance_parameter_value hdmi_dmac_0 {HAS_AXIS_TID} {0}
+set_instance_parameter_value hdmi_dmac_0 {HAS_AXIS_TKEEP} {0}
+set_instance_parameter_value hdmi_dmac_0 {HAS_AXIS_TLAST} {1}
+set_instance_parameter_value hdmi_dmac_0 {HAS_AXIS_TSTRB} {0}
+set_instance_parameter_value hdmi_dmac_0 {HAS_AXIS_TUSER} {0}
+set_instance_parameter_value hdmi_dmac_0 {ID} {0}
+set_instance_parameter_value hdmi_dmac_0 {MAX_BYTES_PER_BURST} {128}
+set_instance_parameter_value hdmi_dmac_0 {SYNC_TRANSFER_START} {0}
+add_connection sys_hps.h2f_user1_clock hdmi_dmac_0.s_axi_clock
+add_connection sys_hps.h2f_user1_clock hdmi_dmac_0.m_src_axi_clock
+add_connection sys_hps.h2f_user1_clock hdmi_dmac_0.if_m_axis_aclk
+add_connection sys_clk.clk_reset hdmi_dmac_0.s_axi_reset
+add_connection sys_clk.clk_reset hdmi_dmac_0.m_src_axi_reset
+add_connection sys_hps.h2f_lw_axi_master hdmi_dmac_0.s_axi
+set_connection_parameter_value sys_hps.h2f_lw_axi_master/hdmi_dmac_0.s_axi arbitrationPriority {1}
+set_connection_parameter_value sys_hps.h2f_lw_axi_master/hdmi_dmac_0.s_axi baseAddress {0x0090000}
+set_connection_parameter_value sys_hps.h2f_lw_axi_master/hdmi_dmac_0.s_axi defaultConnection {0}
+add_connection sys_hps.f2h_irq0 hdmi_dmac_0.interrupt_sender
+set_connection_parameter_value sys_hps.f2h_irq0/hdmi_dmac_0.interrupt_sender irqNumber {4}
+add_connection hdmi_dmac_0.m_src_axi sys_hps.f2h_sdram0_data
+set_connection_parameter_value hdmi_dmac_0.m_src_axi/sys_hps.f2h_sdram0_data arbitrationPriority {1}
+set_connection_parameter_value hdmi_dmac_0.m_src_axi/sys_hps.f2h_sdram0_data baseAddress {0x0000}
+set_connection_parameter_value hdmi_dmac_0.m_src_axi/sys_hps.f2h_sdram0_data defaultConnection {0}
 
-# display (hdmi-frame-reader)
+# display (hdmi_tx)
 
-add_instance hdmi_frame_reader alt_vip_cl_vfb 18.1
-set_instance_parameter_value hdmi_frame_reader {BITS_PER_SYMBOL} {8}
-set_instance_parameter_value hdmi_frame_reader {BURST_ALIGNMENT} {1}
-set_instance_parameter_value hdmi_frame_reader {CLOCKS_ARE_SEPARATE} {0}
-set_instance_parameter_value hdmi_frame_reader {COLOR_PLANES_ARE_IN_PARALLEL} {1}
-set_instance_parameter_value hdmi_frame_reader {CONTROLLED_DROP_REPEAT} {0}
-set_instance_parameter_value hdmi_frame_reader {DROP_FRAMES} {1}
-set_instance_parameter_value hdmi_frame_reader {DROP_INVALID_FIELDS} {0}
-set_instance_parameter_value hdmi_frame_reader {DROP_REPEAT_USER} {0}
-set_instance_parameter_value hdmi_frame_reader {INTERLACED_SUPPORT} {0}
-set_instance_parameter_value hdmi_frame_reader {IS_FRAME_READER} {1}
-set_instance_parameter_value hdmi_frame_reader {IS_FRAME_WRITER} {0}
-set_instance_parameter_value hdmi_frame_reader {IS_SYNC_MASTER} {0}
-set_instance_parameter_value hdmi_frame_reader {IS_SYNC_SLAVE} {0}
-set_instance_parameter_value hdmi_frame_reader {LINE_BASED_BUFFERING} {0}
-set_instance_parameter_value hdmi_frame_reader {MAX_HEIGHT} {720}
-set_instance_parameter_value hdmi_frame_reader {MAX_SYMBOLS_PER_PACKET} {10}
-set_instance_parameter_value hdmi_frame_reader {MAX_WIDTH} {1280}
-set_instance_parameter_value hdmi_frame_reader {MEM_BASE_ADDR} {0}
-set_instance_parameter_value hdmi_frame_reader {MEM_BUFFER_OFFSET} {16777216}
-set_instance_parameter_value hdmi_frame_reader {MEM_PORT_WIDTH} {128}
-set_instance_parameter_value hdmi_frame_reader {MULTI_FRAME_DELAY} {1}
-set_instance_parameter_value hdmi_frame_reader {NUMBER_OF_COLOR_PLANES} {4}
-set_instance_parameter_value hdmi_frame_reader {PIXELS_IN_PARALLEL} {1}
-set_instance_parameter_value hdmi_frame_reader {PRIORITIZE_FMAX} {0}
-set_instance_parameter_value hdmi_frame_reader {READER_RUNTIME_CONTROL} {1}
-set_instance_parameter_value hdmi_frame_reader {READY_LATENCY} {1}
-set_instance_parameter_value hdmi_frame_reader {READ_BURST_TARGET} {32}
-set_instance_parameter_value hdmi_frame_reader {READ_FIFO_DEPTH} {64}
-set_instance_parameter_value hdmi_frame_reader {REPEAT_FRAMES} {1}
-set_instance_parameter_value hdmi_frame_reader {TEST_INIT} {0}
-set_instance_parameter_value hdmi_frame_reader {USER_PACKETS_MAX_STORAGE} {0}
-set_instance_parameter_value hdmi_frame_reader {USE_BUFFER_OFFSET} {0}
-set_instance_parameter_value hdmi_frame_reader {WRITER_RUNTIME_CONTROL} {0}
-set_instance_parameter_value hdmi_frame_reader {WRITE_BURST_TARGET} {32}
-set_instance_parameter_value hdmi_frame_reader {WRITE_FIFO_DEPTH} {64}
-
-add_connection hdmi_pll.outclk0 hdmi_frame_reader.main_clock
-add_connection sys_clk.clk_reset hdmi_frame_reader.main_reset
-add_connection hdmi_frame_reader.mem_master_rd sys_hps.f2h_sdram0_data
-set_connection_parameter_value hdmi_frame_reader.mem_master_rd/sys_hps.f2h_sdram0_data baseAddress {0x0000}
-
-
-# display (hdmi-out-data)
-
-add_instance hdmi_out_data alt_vip_cl_cvo 18.1
-set_instance_parameter_value hdmi_out_data {ACCEPT_COLOURS_IN_SEQ} {0}
-set_instance_parameter_value hdmi_out_data {ACCEPT_SYNC} {0}
-set_instance_parameter_value hdmi_out_data {ANC_LINE} {0}
-set_instance_parameter_value hdmi_out_data {AP_LINE} {0}
-set_instance_parameter_value hdmi_out_data {BPS} {8}
-set_instance_parameter_value hdmi_out_data {CLOCKS_ARE_SAME} {0}
-set_instance_parameter_value hdmi_out_data {COLOUR_PLANES_ARE_IN_PARALLEL} {1}
-set_instance_parameter_value hdmi_out_data {CONTEXT_WIDTH} {8}
-set_instance_parameter_value hdmi_out_data {COUNT_STEP_IS_PIP_VALUE} {0}
-set_instance_parameter_value hdmi_out_data {DST_WIDTH} {8}
-set_instance_parameter_value hdmi_out_data {FIELD0_ANC_LINE} {0}
-set_instance_parameter_value hdmi_out_data {FIELD0_V_BACK_PORCH} {0}
-set_instance_parameter_value hdmi_out_data {FIELD0_V_BLANK} {0}
-set_instance_parameter_value hdmi_out_data {FIELD0_V_FRONT_PORCH} {0}
-set_instance_parameter_value hdmi_out_data {FIELD0_V_RISING_EDGE} {0}
-set_instance_parameter_value hdmi_out_data {FIELD0_V_SYNC_LENGTH} {0}
-set_instance_parameter_value hdmi_out_data {FIFO_DEPTH} {1920}
-set_instance_parameter_value hdmi_out_data {F_FALLING_EDGE} {0}
-set_instance_parameter_value hdmi_out_data {F_RISING_EDGE} {0}
-set_instance_parameter_value hdmi_out_data {GENERATE_SYNC} {0}
-set_instance_parameter_value hdmi_out_data {H_ACTIVE_PIXELS} {1280}
-set_instance_parameter_value hdmi_out_data {H_BACK_PORCH} {110}
-set_instance_parameter_value hdmi_out_data {H_BLANK} {0}
-set_instance_parameter_value hdmi_out_data {H_FRONT_PORCH} {220}
-set_instance_parameter_value hdmi_out_data {H_SYNC_LENGTH} {40}
-set_instance_parameter_value hdmi_out_data {INTERLACED} {0}
-set_instance_parameter_value hdmi_out_data {LOW_LATENCY} {0}
-set_instance_parameter_value hdmi_out_data {NO_OF_CHANNELS} {1}
-set_instance_parameter_value hdmi_out_data {NO_OF_MODES} {1}
-set_instance_parameter_value hdmi_out_data {NUMBER_OF_COLOUR_PLANES} {4}
-set_instance_parameter_value hdmi_out_data {PIXELS_IN_PARALLEL} {1}
-set_instance_parameter_value hdmi_out_data {SRC_WIDTH} {8}
-set_instance_parameter_value hdmi_out_data {STD_WIDTH} {1}
-set_instance_parameter_value hdmi_out_data {TASK_WIDTH} {8}
-set_instance_parameter_value hdmi_out_data {THRESHOLD} {1919}
-set_instance_parameter_value hdmi_out_data {USE_CONTROL} {0}
-set_instance_parameter_value hdmi_out_data {USE_EMBEDDED_SYNCS} {0}
-set_instance_parameter_value hdmi_out_data {V_ACTIVE_LINES} {720}
-set_instance_parameter_value hdmi_out_data {V_BACK_PORCH} {20}
-set_instance_parameter_value hdmi_out_data {V_BLANK} {0}
-set_instance_parameter_value hdmi_out_data {V_FRONT_PORCH} {5}
-set_instance_parameter_value hdmi_out_data {V_SYNC_LENGTH} {5}
-
-add_connection hdmi_pll.outclk0 hdmi_out_data.main_clock
-add_connection sys_clk.clk_reset hdmi_out_data.main_reset
-add_connection hdmi_frame_reader.dout hdmi_out_data.din
-add_interface hdmi_out_data conduit end
-set_interface_property hdmi_out_data EXPORT_OF hdmi_out_data.clocked_video
+add_instance axi_hdmi_tx_0 axi_hdmi_tx 1.0
+set_instance_parameter_value axi_hdmi_tx_0 {CR_CB_N} {0}
+set_instance_parameter_value axi_hdmi_tx_0 {FPGA_TECHNOLOGY} {101}
+set_instance_parameter_value axi_hdmi_tx_0 {ID} {0}
+set_instance_parameter_value axi_hdmi_tx_0 {INTERFACE} {16_BIT}
+set_instance_parameter_value axi_hdmi_tx_0 {OUT_CLK_POLARITY} {0}
+add_connection sys_hps.h2f_user1_clock axi_hdmi_tx_0.s_axi_clock
+add_connection sys_clk.clk_reset axi_hdmi_tx_0.s_axi_reset
+add_connection sys_hps.h2f_lw_axi_master axi_hdmi_tx_0.s_axi
+set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_hdmi_tx_0.s_axi arbitrationPriority {1}
+set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_hdmi_tx_0.s_axi baseAddress {0x00a0000}
+set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_hdmi_tx_0.s_axi defaultConnection {0}
+add_connection hdmi_pll.outclk0 axi_hdmi_tx_0.hdmi_clock
+add_interface hdmi_out conduit end
+set_interface_property hdmi_out EXPORT_OF axi_hdmi_tx_0.hdmi_if
+add_connection sys_hps.h2f_user1_clock axi_hdmi_tx_0.vdma_clock
+add_connection sys_clk.clk_reset axi_hdmi_tx_0.vdma_reset
+add_connection hdmi_dmac_0.m_axis axi_hdmi_tx_0.vdma_if
 
 # id
 
 add_instance sys_id altera_avalon_sysid_qsys
 set_instance_parameter_value sys_id {id} {-1395322110}
-add_connection sys_hps.h2f_user0_clock sys_id.clk
+add_connection sys_hps.h2f_user1_clock sys_id.clk
 add_connection sys_clk.clk_reset sys_id.reset
 
 # interrupts
 
-ad_cpu_interrupt 4 hdmi_frame_reader.control_interrupt
-
 # cpu interconnects
 
-ad_cpu_interconnect 0x00090000 hdmi_frame_reader.control
 ad_cpu_interconnect 0x00010000 sys_id.control_slave
 

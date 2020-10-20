@@ -110,9 +110,9 @@ module system_top (
   // display
 
   output            	hdmi_clk,
-  output  reg          	hdmi_de,
-  output  reg          	hdmi_hsync,
-  output  reg          	hdmi_vsync,
+  output	          	hdmi_de,
+  output	          	hdmi_hsync,
+  output	          	hdmi_vsync,
   output  [  23:0]		hdmi_data,
   
   output            	hdmi_spdif,
@@ -126,12 +126,12 @@ module system_top (
 
   inout             	fmc_scl,
   inout             	fmc_sda,
-
+  
   output            	ad40xx_spi_csn,
   output            	ad40xx_spi_clk,
   output            	ad40xx_spi_mosi,
   input             	ad40xx_spi_miso,
-  
+
   // misc
   
   inout             	fmc_pg_c2m,
@@ -151,29 +151,18 @@ module system_top (
   // internal signals
 
   wire              	sys_resetn;
+  
+  wire	[15:0]			hdmi_data_pd;
 
   // defaults
 
   assign ct_hpd = 1'b1;
   assign ls_oe = 1'b1;  
   assign cec_clk = 1'b0;
+ 
+  // yuv422, separate sync, x1 clk, style 1, table 18, 1080p, hdmi_clk 148.5M
   
-  // hdmi retiming
-  
-  wire [7:0]			hdmi_red_i;
-  wire [7:0]			hdmi_grn_i; 
-  wire [7:0]			hdmi_blu_i;  
-  
-    ddr12 (
-	.aclr(1'b0),
-	.outclock(hdmi_clk),
-	.datain_l({hdmi_red_i[7:4], hdmi_blu_i[3:0], hdmi_grn_i[7:4]}),
-    .datain_h({hdmi_grn_i[3:0], hdmi_blu_i[7:4], hdmi_red_i[3:0]}),
-    .dataout(hdmi_data[11:0])
-  );
-  
-  assign hdmi_data [23:12] = {12{1'b0}};
-  
+  assign hdmi_data [23:0] = {hdmi_data_pd, {8{1'b0}}};
 
   // instantiations
   system_bd i_system_bd (
@@ -271,17 +260,11 @@ module system_top (
     .upscale_converter_0_dfmt_se_dfmt_se         (1'b1),
     .upscale_converter_0_dfmt_type_dfmt_type     (1'b0),
 	.sys_rst_reset_n (sys_resetn),
-    .hdmi_clk (hdmi_clk),
-    .hdmi_out_data_vid_clk (hdmi_clk),
-    .hdmi_out_data_vid_data ({hdmi_red_i, hdmi_grn_i, hdmi_blu_i}),
-    .hdmi_out_data_underflow (),
-    .hdmi_out_data_vid_datavalid (hdmi_de),
-    .hdmi_out_data_vid_v_sync (hdmi_vsync),
-    .hdmi_out_data_vid_h_sync (hdmi_hsync),
-    .hdmi_out_data_vid_f (),
-    .hdmi_out_data_vid_h (),
-    .hdmi_out_data_vid_v ());	
-
+    .hdmi_out_h_clk (hdmi_clk),
+    .hdmi_out_h16_hsync (hdmi_hsync),
+    .hdmi_out_h16_vsync (hdmi_vsync),
+    .hdmi_out_h16_data_e (hdmi_de),
+    .hdmi_out_h16_data (hdmi_data_pd));
 
 endmodule
 
