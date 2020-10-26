@@ -136,15 +136,17 @@ module system_top (
   output                spi_mosi,
   input             	spi_miso,
 
-  output             	gpio_0_mode_0,
-  output             	gpio_1_mode_1,
-  output             	gpio_2_mode_2,
-  output             	gpio_3_mode_3,
-  output             	gpio_4_filter,
-  output             	reset_n,
-  output             	start_n,
-  //inout             	sync_n,
-  inout             	sync_in_n,
+  // default to input when in spi mode, otherwise inout
+  
+  input             	gpio_0_mode_0,		
+  input             	gpio_1_mode_1,
+  input             	gpio_2_mode_2,
+  input             	gpio_3_mode_3,
+  input             	gpio_4_filter,
+  input             	reset_n,
+  input             	start_n,
+  input             	sync_n,
+  input             	sync_in_n,
   output                mclk,
 
   // misc
@@ -203,18 +205,21 @@ module system_top (
   assign gpio_i[4:0] = 5'b0;
   assign gpio_i[7:5] = gpio_o[7:5];
   assign gpio_i[15:12] = gpio_o[15:12];
-  assign gpio_i[31:21] = gpio_o[31:21];  
+  assign gpio_i[31:21] = gpio_o[31:21];
+
+  // not driven when in spi mode, otherwise driven by gpio_o
   
-  assign gpio_4_filter = gpio_o[20];        // 20
-  assign gpio_3_mode_3 = gpio_o[19];        // 19
-  assign gpio_2_mode_2 = gpio_o[18];        // 18
-  assign gpio_1_mode_1 = gpio_o[17];        // 17
-  assign gpio_0_mode_0 = gpio_o[16];        // 16
-  assign sync_in_n = gpio_o[11];            // 11
-  assign start_n = gpio_o[9];               // 9
-  assign reset_n = gpio_o[8];               // 8
+  //assign gpio_4_filter = gpio_o[20];        // 20
+  //assign gpio_3_mode_3 = gpio_o[19];        // 19
+  //assign gpio_2_mode_2 = gpio_o[18];        // 18
+  //assign gpio_1_mode_1 = gpio_o[17];        // 17
+  //assign gpio_0_mode_0 = gpio_o[16];        // 16
+  //assign sync_in_n = gpio_o[11];            // 11
+  //assign sync_n = gpio_o[10];               // 10  
+  //assign start_n = gpio_o[9];               // 9
+  //assign reset_n = gpio_o[8];               // 8
   
-  //              sync_n,               // 10
+
   
     ad7768_if i_ad7768_if (
     .clk_in (clk_in),
@@ -313,6 +318,10 @@ module system_top (
     .sys_hps_memory_mem_odt (ddr3_odt),
     .sys_hps_memory_mem_dm (ddr3_dm),
     .sys_hps_memory_oct_rzqin (ddr3_rzq),
+	.spi_0_external_MISO (spi_miso),
+	.spi_0_external_MOSI (spi_mosi),
+	.spi_0_external_SCLK (spi_clk),
+	.spi_0_external_SS_n (spi_csn),
     .adc_clk_clk (adc_clk),
     .adc_din_data (adc_data),
     .adc_valid_valid (adc_valid),	
