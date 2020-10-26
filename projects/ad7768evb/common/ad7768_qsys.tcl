@@ -159,6 +159,37 @@ set_interface_property adc_gpio_1_o EXPORT_OF adc_gpio_1_o.external_connection
 
 ad_cpu_interconnect 0x00020050 adc_gpio_1_o.s1
 
+# adc-spi
+
+add_instance spi_0 altera_avalon_spi
+set_instance_parameter_value spi_0 {clockPhase} {0}
+set_instance_parameter_value spi_0 {clockPolarity} {0}
+set_instance_parameter_value spi_0 {dataWidth} {16}
+set_instance_parameter_value spi_0 {disableAvalonFlowControl} {0}
+set_instance_parameter_value spi_0 {insertDelayBetweenSlaveSelectAndSClk} {0}
+set_instance_parameter_value spi_0 {insertSync} {0}
+set_instance_parameter_value spi_0 {lsbOrderedFirst} {0}
+set_instance_parameter_value spi_0 {masterSPI} {1}
+set_instance_parameter_value spi_0 {numberOfSlaves} {1}
+set_instance_parameter_value spi_0 {syncRegDepth} {2}
+set_instance_parameter_value spi_0 {targetClockRate} {1000000.0}
+set_instance_parameter_value spi_0 {targetSlaveSelectToSClkDelay} {0.0}
+
+add_connection sys_clk.clk_reset spi_0.reset
+add_connection sys_hps.h2f_user1_clock spi_0.clk
+
+add_connection sys_hps.h2f_lw_axi_master spi_0.spi_control_port avalon
+set_connection_parameter_value sys_hps.h2f_lw_axi_master/spi_0.spi_control_port arbitrationPriority {1}
+set_connection_parameter_value sys_hps.h2f_lw_axi_master/spi_0.spi_control_port baseAddress {0x00020060}
+set_connection_parameter_value sys_hps.h2f_lw_axi_master/spi_0.spi_control_port defaultConnection {0}
+
+add_connection sys_hps.f2h_irq0 spi_0.irq interrupt
+set_connection_parameter_value sys_hps.f2h_irq0/spi_0.irq irqNumber {5}
+
+add_interface spi_0_external conduit end
+set_interface_property spi_0_external EXPORT_OF spi_0.external
+
+
 
 
 
