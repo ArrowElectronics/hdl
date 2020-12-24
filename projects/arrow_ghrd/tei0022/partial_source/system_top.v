@@ -127,12 +127,10 @@ module system_top (
   inout             	fmc_scl,
   inout             	fmc_sda,
   
-  /* uncomment this section when adding the AD40xx
   output            	ad40xx_spi_csn,
   output            	ad40xx_spi_clk,
   output            	ad40xx_spi_mosi,
   input             	ad40xx_spi_miso,
-  */  
 
   // misc
   
@@ -254,9 +252,6 @@ module system_top (
     .sys_hps_memory_mem_odt (ddr3_odt),
     .sys_hps_memory_mem_dm (ddr3_dm),
     .sys_hps_memory_oct_rzqin (ddr3_rzq),
-	
-	/* uncomment this section when adding the AD40xx
-	
 	.axi_spi_engine_0_irq_irq (), 
 	.spi_engine_execution_0_spi_out_three_wire (), 
 	.spi_engine_execution_0_spi_out_sdo_t (),      
@@ -270,9 +265,6 @@ module system_top (
     .upscale_converter_0_dfmt_enable_dfmt_enable (1'b1),
     .upscale_converter_0_dfmt_se_dfmt_se         (1'b1),
     .upscale_converter_0_dfmt_type_dfmt_type     (1'b0),
-	
-	*/
-	
 	.sys_rst_reset_n (sys_resetn),
     .hdmi_out_h_clk (hdmi_clk),
     .hdmi_out_h16_hsync (hdmi_hsync),
