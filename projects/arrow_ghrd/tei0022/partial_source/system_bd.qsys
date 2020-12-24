@@ -412,7 +412,7 @@
   <parameter name="INTERFACE" value="16_BIT" />
   <parameter name="OUT_CLK_POLARITY" value="0" />
  </module>
- <module name="button_pio" kind="altera_avalon_pio" version="20.1" enabled="1">
+ <module name="button_pio" kind="altera_avalon_pio" version="18.1" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="true" />
@@ -426,7 +426,7 @@
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="1" />
  </module>
- <module name="dipsw_pio" kind="altera_avalon_pio" version="20.1" enabled="1">
+ <module name="dipsw_pio" kind="altera_avalon_pio" version="18.1" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="true" />
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="true" />
@@ -440,7 +440,7 @@
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="2" />
  </module>
- <module name="hdmi_pll" kind="altera_pll" version="20.1" enabled="1">
+ <module name="hdmi_pll" kind="altera_pll" version="18.1" enabled="1">
   <parameter name="debug_print_output" value="false" />
   <parameter name="debug_use_rbc_taf_method" value="false" />
   <parameter name="device" value="5CSEMA5F31C8" />
@@ -503,7 +503,7 @@
   <parameter name="gui_cascade_outclk_index" value="0" />
   <parameter name="gui_channel_spacing" value="0.0" />
   <parameter name="gui_clk_bad" value="false" />
-  <parameter name="gui_device_speed_grade" value="2" />
+  <parameter name="gui_device_speed_grade" value="8" />
   <parameter name="gui_divide_factor_c0" value="1" />
   <parameter name="gui_divide_factor_c1" value="1" />
   <parameter name="gui_divide_factor_c10" value="1" />
@@ -646,7 +646,7 @@
  <module
    name="jtag_uart"
    kind="altera_avalon_jtag_uart"
-   version="20.1"
+   version="18.1"
    enabled="1">
   <parameter name="allowMultipleConnections" value="false" />
   <parameter name="avalonSpec" value="2.0" />
@@ -662,7 +662,7 @@
   <parameter name="writeBufferDepth" value="64" />
   <parameter name="writeIRQThreshold" value="8" />
  </module>
- <module name="led_pio" kind="altera_avalon_pio" version="20.1" enabled="1">
+ <module name="led_pio" kind="altera_avalon_pio" version="18.1" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="false" />
@@ -676,13 +676,13 @@
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="2" />
  </module>
- <module name="sys_clk" kind="clock_source" version="20.1" enabled="1">
+ <module name="sys_clk" kind="clock_source" version="18.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
- <module name="sys_hps" kind="altera_hps" version="20.1" enabled="1">
+ <module name="sys_hps" kind="altera_hps" version="18.1" enabled="1">
   <parameter name="ABSTRACT_REAL_COMPARE_TEST" value="false" />
   <parameter name="ABS_RAM_MEM_INIT_FILENAME" value="meminit" />
   <parameter name="ACV_PHY_CLK_ADD_FR_PHASE" value="0.0" />
@@ -1215,13 +1215,13 @@
  <module
    name="sys_id"
    kind="altera_avalon_sysid_qsys"
-   version="20.1"
+   version="18.1"
    enabled="1">
   <parameter name="id" value="-1395322110" />
  </module>
  <connection
    kind="avalon"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_lw_axi_master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1230,7 +1230,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_lw_axi_master"
    end="sys_id.control_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1239,7 +1239,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_lw_axi_master"
    end="button_pio.s1">
   <parameter name="arbitrationPriority" value="1" />
@@ -1248,7 +1248,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_lw_axi_master"
    end="dipsw_pio.s1">
   <parameter name="arbitrationPriority" value="1" />
@@ -1257,7 +1257,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_lw_axi_master"
    end="led_pio.s1">
   <parameter name="arbitrationPriority" value="1" />
@@ -1266,7 +1266,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_lw_axi_master"
    end="axi_hdmi_tx_0.s_axi">
   <parameter name="arbitrationPriority" value="1" />
@@ -1275,7 +1275,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_lw_axi_master"
    end="axi_dmac_0.s_axi">
   <parameter name="arbitrationPriority" value="1" />
@@ -1284,7 +1284,7 @@
  </connection>
  <connection
    kind="avalon"
-   version="20.1"
+   version="18.1"
    start="axi_dmac_0.m_src_axi"
    end="sys_hps.f2h_sdram0_data">
   <parameter name="arbitrationPriority" value="1" />
@@ -1293,203 +1293,203 @@
  </connection>
  <connection
    kind="axi4stream"
-   version="20.1"
+   version="18.1"
    start="axi_dmac_0.m_axis"
    end="axi_hdmi_tx_0.vdma_if" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="sys_id.clk" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="jtag_uart.clk" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="button_pio.clk" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="dipsw_pio.clk" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="led_pio.clk" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="sys_hps.f2h_axi_clock" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="sys_hps.f2h_sdram0_clock" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="sys_hps.f2h_sdram1_clock" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="sys_hps.f2h_sdram2_clock" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="sys_hps.h2f_axi_clock" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="sys_hps.h2f_lw_axi_clock" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="axi_dmac_0.if_m_axis_aclk" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="axi_dmac_0.m_src_axi_clock" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="hdmi_pll.refclk" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="axi_dmac_0.s_axi_clock" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="axi_hdmi_tx_0.s_axi_clock" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="sys_hps.h2f_user1_clock"
    end="axi_hdmi_tx_0.vdma_clock" />
  <connection
    kind="clock"
-   version="20.1"
+   version="18.1"
    start="hdmi_pll.outclk0"
    end="axi_hdmi_tx_0.hdmi_clock" />
  <connection
    kind="interrupt"
-   version="20.1"
+   version="18.1"
    start="sys_hps.f2h_irq0"
    end="axi_dmac_0.interrupt_sender">
   <parameter name="irqNumber" value="4" />
  </connection>
  <connection
    kind="interrupt"
-   version="20.1"
+   version="18.1"
    start="sys_hps.f2h_irq0"
    end="jtag_uart.irq">
   <parameter name="irqNumber" value="0" />
  </connection>
  <connection
    kind="interrupt"
-   version="20.1"
+   version="18.1"
    start="sys_hps.f2h_irq0"
    end="button_pio.irq">
   <parameter name="irqNumber" value="1" />
  </connection>
  <connection
    kind="interrupt"
-   version="20.1"
+   version="18.1"
    start="sys_hps.f2h_irq0"
    end="dipsw_pio.irq">
   <parameter name="irqNumber" value="2" />
  </connection>
  <connection
    kind="interrupt"
-   version="20.1"
+   version="18.1"
    start="sys_hps.f2h_irq1"
    end="axi_dmac_0.interrupt_sender">
   <parameter name="irqNumber" value="4" />
  </connection>
  <connection
    kind="interrupt"
-   version="20.1"
+   version="18.1"
    start="sys_hps.f2h_irq1"
    end="jtag_uart.irq">
   <parameter name="irqNumber" value="0" />
  </connection>
  <connection
    kind="interrupt"
-   version="20.1"
+   version="18.1"
    start="sys_hps.f2h_irq1"
    end="button_pio.irq">
   <parameter name="irqNumber" value="1" />
  </connection>
  <connection
    kind="interrupt"
-   version="20.1"
+   version="18.1"
    start="sys_hps.f2h_irq1"
    end="dipsw_pio.irq">
   <parameter name="irqNumber" value="2" />
  </connection>
  <connection
    kind="reset"
-   version="20.1"
+   version="18.1"
    start="sys_clk.clk_reset"
    end="axi_dmac_0.m_src_axi_reset" />
  <connection
    kind="reset"
-   version="20.1"
+   version="18.1"
    start="sys_clk.clk_reset"
    end="hdmi_pll.reset" />
  <connection
    kind="reset"
-   version="20.1"
+   version="18.1"
    start="sys_clk.clk_reset"
    end="sys_id.reset" />
  <connection
    kind="reset"
-   version="20.1"
+   version="18.1"
    start="sys_clk.clk_reset"
    end="jtag_uart.reset" />
  <connection
    kind="reset"
-   version="20.1"
+   version="18.1"
    start="sys_clk.clk_reset"
    end="button_pio.reset" />
  <connection
    kind="reset"
-   version="20.1"
+   version="18.1"
    start="sys_clk.clk_reset"
    end="dipsw_pio.reset" />
  <connection
    kind="reset"
-   version="20.1"
+   version="18.1"
    start="sys_clk.clk_reset"
    end="led_pio.reset" />
  <connection
    kind="reset"
-   version="20.1"
+   version="18.1"
    start="sys_clk.clk_reset"
    end="axi_hdmi_tx_0.s_axi_reset" />
  <connection
    kind="reset"
-   version="20.1"
+   version="18.1"
    start="sys_clk.clk_reset"
    end="axi_dmac_0.s_axi_reset" />
  <connection
    kind="reset"
-   version="20.1"
+   version="18.1"
    start="sys_clk.clk_reset"
    end="axi_hdmi_tx_0.vdma_reset" />
  <interconnectRequirement

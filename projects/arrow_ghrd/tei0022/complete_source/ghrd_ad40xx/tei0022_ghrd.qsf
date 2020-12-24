@@ -41,7 +41,7 @@ set_global_assignment -name DEVICE 5CSEMA5F31C8
 set_global_assignment -name TOP_LEVEL_ENTITY system_top
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "12:41:27  JUNE 02, 2020"
-set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
 set_global_assignment -name MESSAGE_DISABLE 17951
 set_global_assignment -name MESSAGE_DISABLE 18655
 set_global_assignment -name MESSAGE_DISABLE 114001
@@ -627,9 +627,6 @@ set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name ENABLE_SIGNALTAP OFF
-set_global_assignment -name QIP_FILE system_bd/synthesis/system_bd.qip
-set_global_assignment -name VERILOG_FILE system_top.v
-set_global_assignment -name SDC_FILE system_constr.sdc
 set_location_assignment PIN_AD24 -to user_dipsw_fpga[0]
 set_location_assignment PIN_AE24 -to user_dipsw_fpga[1]
 set_location_assignment PIN_AC28 -to user_led_fpga[0]
@@ -640,4 +637,8 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to user_led_fpga[1]
 set_instance_assignment -name IO_STANDARD "1.5 V" -to user_pb_fpga
 set_instance_assignment -name IO_STANDARD "1.5 V" -to user_dipsw_fpga[0]
 set_instance_assignment -name IO_STANDARD "1.5 V" -to user_dipsw_fpga[1]
+set_global_assignment -name IP_SEARCH_PATHS /home/soceds/datastorm_daq/hdl/library/**/*
+set_global_assignment -name QSYS_FILE system_bd.qsys
+set_global_assignment -name VERILOG_FILE system_top.v
+set_global_assignment -name SDC_FILE system_constr.sdc
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
