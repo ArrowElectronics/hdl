@@ -1,0 +1,105 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "hdmi_de",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_hsync",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_vsync",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[8]",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[9]",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[10]",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[11]",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[12]",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[13]",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[14]",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[15]",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[16]",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[17]",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[18]",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[19]",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[20]",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[21]",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[22]",
+					"strict" : false
+				},
+				{
+					"name" : "hdmi_data[23]",
+					"strict" : false
+				},
+				{
+					"name" : "user_led_fpga[0]",
+					"strict" : false
+				},
+				{
+					"name" : "user_led_fpga[1]",
+					"strict" : false
+				},
+				{
+					"name" : "user_dipsw_fpga[0]",
+					"strict" : false
+				},
+				{
+					"name" : "user_dipsw_fpga[1]",
+					"strict" : false
+				},
+				{
+					"name" : "user_pb_fpga",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
