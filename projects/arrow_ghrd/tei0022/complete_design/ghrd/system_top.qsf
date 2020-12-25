@@ -42,6 +42,7 @@ set_global_assignment -name TOP_LEVEL_ENTITY system_top
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "12:41:27  JUNE 02, 2020"
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MESSAGE_DISABLE 17951
 set_global_assignment -name MESSAGE_DISABLE 18655
 set_global_assignment -name MESSAGE_DISABLE 114001
@@ -63,8 +64,6 @@ set_global_assignment -name SYNCHRONIZER_IDENTIFICATION AUTO
 set_global_assignment -name ENABLE_ADVANCED_IO_TIMING ON
 set_global_assignment -name TIMING_ANALYZER_DO_REPORT_TIMING ON
 set_global_assignment -name TIMING_ANALYZER_DO_CCPP_REMOVAL ON
-set_global_assignment -name TIMING_ANALYZER_REPORT_SCRIPT ../../scripts/adi_tquest.tcl
-set_global_assignment -name ON_CHIP_BITSTREAM_DECOMPRESSION OFF
 set_location_assignment PIN_AF14 -to sys_clk
 set_instance_assignment -name IO_STANDARD "1.5 V" -to sys_clk
 set_location_assignment PIN_F26 -to ddr3_a[0]
@@ -641,4 +640,5 @@ set_global_assignment -name IP_SEARCH_PATHS /home/soceds/datastorm_daq/hdl/libra
 set_global_assignment -name QSYS_FILE system_bd.qsys
 set_global_assignment -name VERILOG_FILE system_top.v
 set_global_assignment -name SDC_FILE system_constr.sdc
+
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
