@@ -49,7 +49,6 @@ xgui
 *_dump.txt
 *.os
 *webtalk*
-*.xml
 *.hw
 gui
 .timestamp_altera
