@@ -157,7 +157,7 @@ add_connection hdmi_pll.outclk0 sys_hps.f2h_sdram0_clock
 
 # display (hdmi-clock-out)
 
-add_instance hdmi_clock_out clock_source 18.1
+add_instance hdmi_clock_out clock_source
 set_instance_parameter_value hdmi_clock_out {clockFrequency} {74250000.0}
 set_instance_parameter_value hdmi_clock_out {clockFrequencyKnown} {1}
 set_instance_parameter_value hdmi_clock_out {resetSynchronousEdges} {NONE}
@@ -167,7 +167,7 @@ set_interface_property hdmi EXPORT_OF hdmi_clock_out.clk
 
 # display (hdmi-frame-reader)
 
-add_instance hdmi_frame_reader alt_vip_cl_vfb 18.1
+add_instance hdmi_frame_reader alt_vip_cl_vfb
 set_instance_parameter_value hdmi_frame_reader {BITS_PER_SYMBOL} {8}
 set_instance_parameter_value hdmi_frame_reader {BURST_ALIGNMENT} {1}
 set_instance_parameter_value hdmi_frame_reader {CLOCKS_ARE_SEPARATE} {0}
@@ -212,7 +212,7 @@ set_connection_parameter_value hdmi_frame_reader.mem_master_rd/sys_hps.f2h_sdram
 
 # display (hdmi-out-data)
 
-add_instance hdmi_out_data alt_vip_cl_cvo 18.1
+add_instance hdmi_out_data alt_vip_cl_cvo
 set_instance_parameter_value hdmi_out_data {ACCEPT_COLOURS_IN_SEQ} {0}
 set_instance_parameter_value hdmi_out_data {ACCEPT_SYNC} {0}
 set_instance_parameter_value hdmi_out_data {ANC_LINE} {0}
