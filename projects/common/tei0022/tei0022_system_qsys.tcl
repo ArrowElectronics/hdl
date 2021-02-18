@@ -225,6 +225,60 @@ set_instance_parameter_value sys_id {id} {-1395322110}
 add_connection sys_hps.h2f_user1_clock sys_id.clk
 add_connection sys_clk.clk_reset sys_id.reset
 
+# gpio-bd
+
+add_instance sys_gpio_bd altera_avalon_pio
+set_instance_parameter_value sys_gpio_bd {direction} {InOut}
+set_instance_parameter_value sys_gpio_bd {edgeType} {RISING}
+set_instance_parameter_value sys_gpio_bd {generateIRQ} {1}
+set_instance_parameter_value sys_gpio_bd {irqType} {LEVEL}
+set_instance_parameter_value sys_gpio_bd {width} {32}
+
+add_connection sys_clk.clk_reset sys_gpio_bd.reset
+add_connection sys_hps.h2f_user1_clock sys_gpio_bd.clk
+add_interface sys_gpio_bd conduit end
+set_interface_property sys_gpio_bd EXPORT_OF sys_gpio_bd.external_connection
+
+add_connection sys_hps.f2h_irq0 sys_gpio_bd.irq interrupt
+set_connection_parameter_value sys_hps.f2h_irq0/sys_gpio_bd.irq irqNumber {0}
+
+ad_cpu_interconnect 0x00020000 sys_gpio_bd.s1
+
+
+# gpio_in
+
+add_instance sys_gpio_in altera_avalon_pio
+set_instance_parameter_value sys_gpio_in {direction} {Input}
+set_instance_parameter_value sys_gpio_in {edgeType} {RISING}
+set_instance_parameter_value sys_gpio_in {generateIRQ} {1}
+set_instance_parameter_value sys_gpio_in {irqType} {LEVEL}
+set_instance_parameter_value sys_gpio_in {width} {32}
+
+add_connection sys_clk.clk_reset sys_gpio_in.reset
+add_connection sys_hps.h2f_user1_clock sys_gpio_in.clk
+add_interface sys_gpio_in conduit end
+set_interface_property sys_gpio_in EXPORT_OF sys_gpio_in.external_connection
+
+add_connection sys_hps.f2h_irq0 sys_gpio_in.irq interrupt
+set_connection_parameter_value sys_hps.f2h_irq0/sys_gpio_in.irq irqNumber {1}
+
+ad_cpu_interconnect 0x00020010 sys_gpio_in.s1
+
+# gpio_out
+
+add_instance sys_gpio_out altera_avalon_pio
+set_instance_parameter_value sys_gpio_out {direction} {Output}
+set_instance_parameter_value sys_gpio_out {generateIRQ} {0}
+set_instance_parameter_value sys_gpio_out {width} {32}
+
+add_connection sys_clk.clk_reset sys_gpio_out.reset
+add_connection sys_hps.h2f_user1_clock sys_gpio_out.clk
+add_interface sys_gpio_out conduit end
+set_interface_property sys_gpio_out EXPORT_OF sys_gpio_out.external_connection
+
+ad_cpu_interconnect 0x00020020 sys_gpio_out.s1
+
+
 # interrupts
 
 # cpu interconnects
