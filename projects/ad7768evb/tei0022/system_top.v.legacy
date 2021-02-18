@@ -173,26 +173,16 @@ module system_top (
   
   wire            	adc_clk;
   wire            	adc_valid;
-  wire            	adc_valid_pp;
-  wire            	adc_sync;
-  wire  [31:0]  	adc_data;
-  wire  [31:0]  	adc_data_0;
-  wire  [31:0]  	adc_data_1;
-  wire  [31:0]  	adc_data_2;
-  wire  [31:0]  	adc_data_3;
-  wire  [31:0]  	adc_data_4;
-  wire  [31:0]  	adc_data_5;
-  wire  [31:0]  	adc_data_6;
-  wire  [31:0]  	adc_data_7;
+  wire    [31:0]  	adc_data;
   wire            	up_sshot;
-  wire  [ 1:0]  	up_format;
+  wire    [ 1:0]  	up_format;
   wire            	up_crc_enable;
   wire            	up_crc_4_or_16_n;
-  wire  [63:0] 		adc_gpio_i;
-  wire  [63:0] 		adc_gpio_o;
-  wire  [63:0]  	gpio_i;
-  wire  [63:0]  	gpio_o;
-  wire  [31:0]		ad7768_o;
+  wire    [63:0] 	adc_gpio_i;
+  wire    [63:0] 	adc_gpio_o;
+  wire    [63:0]  	gpio_i;
+  wire    [63:0]  	gpio_o;
+  wire    [31:0]	ad7768_o;
 
 
   // defaults
@@ -205,7 +195,6 @@ module system_top (
   
   assign hdmi_data [23:0] = {hdmi_data_pd, {8{1'b0}}};
 
-  // ad7768evb fmc signals
 
   assign gpio_4_filter = ad7768_o[20];        // 20
   assign gpio_3_mode_3 = ad7768_o[19];        // 19
@@ -217,9 +206,10 @@ module system_top (
   assign start_n = ad7768_o[9];               // 9
   assign reset_n = ad7768_o[8];               // 8
   
-  assign mclk = 1'b0;			      // use external xtal on evb
+  // use crystal
 
-  // internal signals for ad7768_if module
+  assign mclk = 1'b0;
+
 
   assign up_sshot = gpio_o[4];
   assign up_format = gpio_o[3:2];
@@ -236,23 +226,14 @@ module system_top (
   assign gpio_i[47:44] = gpio_o[47:44];
   assign gpio_i[63:53] = gpio_o[63:53];
   
+  
     ad7768_if i_ad7768_if (
     .clk_in (clk_in),
     .ready_in (ready_in),
     .data_in (data_in),
     .adc_clk (adc_clk),
     .adc_valid (adc_valid),
-    .adc_valid_pp (adc_valid_pp),
-    .adc_sync (adc_sync),
     .adc_data (adc_data),
-    .adc_data_0 (adc_data_0),
-    .adc_data_1 (adc_data_1),
-    .adc_data_2 (adc_data_2),
-    .adc_data_3 (adc_data_3),
-    .adc_data_4 (adc_data_4),
-    .adc_data_5 (adc_data_5),
-    .adc_data_6 (adc_data_6),
-    .adc_data_7 (adc_data_7),
     .up_sshot (up_sshot),
     .up_format (up_format),
     .up_crc_enable (up_crc_enable),
@@ -260,7 +241,8 @@ module system_top (
     .up_status_clr (adc_gpio_o[32:0]),
     .up_status (adc_gpio_i[32:0]));
 
-  // platform designer instantiation
+
+  // instantiations
   system_bd i_system_bd (
     .sys_clk_clk (sys_clk),
     .sys_hps_h2f_reset_reset_n (sys_resetn),
@@ -350,17 +332,7 @@ module system_top (
     .hdmi_out_h16_data (hdmi_data_pd),
     .adc_clk_clk (adc_clk),
     .adc_din_data (adc_data),
-    .adc_data_0_data (adc_data_0),
-    .adc_data_1_data (adc_data_1),
-    .adc_data_2_data (adc_data_2),
-    .adc_data_3_data (adc_data_3),
-    .adc_data_4_data (adc_data_4),
-    .adc_data_5_data (adc_data_5),
-    .adc_data_6_data (adc_data_6),
-    .adc_data_7_data (adc_data_7),
-    .adc_valid_valid (adc_valid),
-    .adc_valid_pp_fifo_wr_en (adc_valid_pp),
-    .adc_sync_sync (adc_sync),
+    .adc_valid_valid (adc_valid),	
     .sys_gpio_bd_in_port (gpio_bd_i),
     .sys_gpio_bd_out_port (gpio_bd_o),
     .sys_gpio_in_export (gpio_i),
