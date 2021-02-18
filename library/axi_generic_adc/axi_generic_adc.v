@@ -35,7 +35,10 @@
 
 `timescale 1ns/100ps
 
-module axi_generic_adc (
+module axi_generic_adc #(
+  parameter NUM_OF_CHANNELS = 2;
+  parameter ID = 0)(
+
   input adc_clk,
   output [NUM_OF_CHANNELS-1:0] adc_enable,
   input adc_dovf,
@@ -64,8 +67,6 @@ module axi_generic_adc (
 
 );
 
-parameter NUM_OF_CHANNELS = 2;
-parameter ID = 0;
 
 reg  [31:0] up_rdata = 'd0;
 reg        up_rack = 'd0;
@@ -196,7 +197,7 @@ up_axi i_up_axi (
 generate
 genvar i;
 
-for (i = 0; i < NUM_OF_CHANNELS; i=i+1) begin
+for (i = 0; i < NUM_OF_CHANNELS; i=i+1) begin: generate_adc_channels
   up_adc_channel #(.CHANNEL_ID(i)) i_up_adc_channel (
     .adc_clk (adc_clk),
     .adc_rst (adc_rst),
