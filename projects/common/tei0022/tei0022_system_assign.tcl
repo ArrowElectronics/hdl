@@ -461,14 +461,14 @@ set_location_assignment PIN_W20   -to hdmi_data[15]
 set_location_assignment PIN_AF29  -to hdmi_data[16]
 set_location_assignment PIN_AF30  -to hdmi_data[17]
 set_location_assignment PIN_AA24  -to hdmi_data[18]
-set_location_assignment PIN_AA28  -to hdmi_data[19]
+set_location_assignment PIN_AF28  -to hdmi_data[19]
 set_location_assignment PIN_Y24   -to hdmi_data[20]
 set_location_assignment PIN_W21   -to hdmi_data[21]
-set_location_assignment PIN_W25   -to hdmi_data[22]
+set_location_assignment PIN_AB25  -to hdmi_data[22]
 set_location_assignment PIN_V23   -to hdmi_data[23]
 
-set_location_assignment PIN_AF28  -to hdmi_spdif
-set_location_assignment PIN_AB25  -to hdmi_spdifout
+set_location_assignment PIN_AA30  -to hdmi_spdif
+set_location_assignment PIN_AB30  -to hdmi_spdifout
 set_location_assignment PIN_AC25  -to hdmi_int
 set_location_assignment PIN_Y21   -to ct_hpd
 set_location_assignment PIN_AB23  -to ls_oe
