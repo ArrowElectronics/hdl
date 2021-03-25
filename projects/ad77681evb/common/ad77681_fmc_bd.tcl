@@ -1,13 +1,9 @@
-
-
 create_bd_intf_port -mode Master -vlnv analog.com:interface:spi_master_rtl:1.0 ad7768_1_spi
 create_bd_port -dir I ad7768_1_drdy
 
 create_bd_intf_pin -mode Slave -vlnv xilinx.com:interface:axis_rtl:1.0 S_AXIS_SAMPLE
 
 create_bd_intf_pin -mode Master -vlnv xilinx.com:interface:axis_rtl:1.0 M_AXIS_SAMPLE
-
-
 
 # create a SPI Engine architecture for ADC
 
@@ -26,7 +22,6 @@ current_bd_instance /spi_ad7768_1
   create_bd_pin -dir O m_axis_tvalid
   create_bd_pin -dir I m_axis_tready
   create_bd_pin -dir O -from 31 -to 0 m_axis_tdata
-
 
   ad_ip_instance spi_engine_execution execution
   ad_ip_parameter execution CONFIG.DATA_WIDTH 32
@@ -51,26 +46,12 @@ current_bd_instance /spi_ad7768_1
   ad_ip_parameter interconnect CONFIG.DATA_WIDTH 32
   ad_ip_parameter interconnect CONFIG.NUM_OF_SDI 1
 
-  #ad_ip_instance util_axis_upscale axis_upscaler
-  #ad_ip_parameter axis_upscaler CONFIG.NUM_OF_CHANNELS 1
-  #ad_ip_parameter axis_upscaler CONFIG.DATA_WIDTH 32
-  #ad_ip_parameter axis_upscaler CONFIG.UDATA_WIDTH 32
-  #ad_connect axis_upscaler/dfmt_enable VCC
-  #ad_connect axis_upscaler/dfmt_type GND
-  #ad_connect axis_upscaler/dfmt_se VCC
-
   ad_connect axi/spi_engine_offload_ctrl0 offload/spi_engine_offload_ctrl
   ad_connect offload/spi_engine_ctrl interconnect/s0_ctrl
   ad_connect axi/spi_engine_ctrl interconnect/s1_ctrl
   ad_connect interconnect/m_ctrl execution/ctrl
  
-  #ad_connect offload/offload_sdi axis_upscaler/s_axis
   ad_connect offload/offload_sdi SPI_AXIS_SAMPLE
-  #ad_connect axis_upscaler/m_axis_valid m_axis_tvalid
-  #ad_connect axis_upscaler/m_axis_ready m_axis_tready
-  #ad_connect axis_upscaler/m_axis_data m_axis_tdata
-  #ad_connect spi_clk axis_upscaler/clk
-  #ad_connect axi/spi_resetn axis_upscaler/resetn
 
   ad_connect execution/spi m_spi
 
@@ -116,11 +97,7 @@ ad_connect  spi_clk axi_ad77681_dma/s_axis_aclk
 
 ad_connect  spi_clk spi_ad7768_1/spi_clk
 ad_connect  spi_ad7768_1/m_spi ad7768_1_spi
-
 ad_connect  axi_ad77681_dma/s_axis S_AXIS_SAMPLE
-#ad_connect  axi_ad77681_dma/s_axis_valid spi_ad7768_1/m_axis_tvalid
-#ad_connect  axi_ad77681_dma/s_axis_data spi_ad7768_1/m_axis_tdata
-#ad_connect  spi_ad7768_1/m_axis_tready VCC
 
 # AXI address definitions
 

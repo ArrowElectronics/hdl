@@ -10,6 +10,7 @@ set_instance_parameter_value spi_engine_pll {gui_output_clock_frequency0} {166.6
 set_instance_parameter_value spi_engine_pll {gui_output_clock_frequency1} {16.34}
 set_interface_property spi_engine_pll_outclk1 EXPORT_OF spi_engine_pll.outclk1 
 
+#clock bridge for outclock0
 add_instance spi_engine_clk altera_clock_bridge
 add_connection spi_engine_pll.outclk0 spi_engine_clk.in_clk
 set_interface_property SPI_engine_clk_clk EXPORT_OF spi_engine_clk.out_clk
@@ -39,20 +40,6 @@ set_instance_parameter_value spi_engine_interconnect_0 {NUM_OF_SDI} {1}
 add_connection spi_engine_pll.outclk0 spi_engine_interconnect_0.clk
 add_connection spi_engine_interconnect_0.m_ctrl spi_engine_execution_0.ctrl 
 
-# upscaler
-
-#add_instance upscale_converter_0 util_axis_upscale_v1_0 1.0
-#set_instance_parameter_value upscale_converter_0 {DATA_WIDTH} {32}
-#set_instance_parameter_value upscale_converter_0 {NUM_OF_CHANNELS} {1}
-#set_instance_parameter_value upscale_converter_0 {UDATA_WIDTH} {32}
-#add_connection spi_engine_pll.outclk0 upscale_converter_0.clk
-#add_interface upscale_converter_0_dfmt_enable conduit end
-#set_interface_property upscale_converter_0_dfmt_enable EXPORT_OF upscale_converter_0.dfmt_enable
-#add_interface upscale_converter_0_dfmt_type conduit end
-#set_interface_property upscale_converter_0_dfmt_type EXPORT_OF upscale_converter_0.dfmt_type
-#add_interface upscale_converter_0_dfmt_se conduit end
-#set_interface_property upscale_converter_0_dfmt_se EXPORT_OF upscale_converter_0.dfmt_se
-
 # engine offload
 
 add_instance spi_engine_offload_0 spi_engine_offload_v1_0 1.0
@@ -62,13 +49,11 @@ set_instance_parameter_value spi_engine_offload_0 {CMD_MEM_ADDRESS_WIDTH} {4}
 set_instance_parameter_value spi_engine_offload_0 {DATA_WIDTH} {32}
 set_instance_parameter_value spi_engine_offload_0 {NUM_OF_SDI} {1}
 set_instance_parameter_value spi_engine_offload_0 {SDO_MEM_ADDRESS_WIDTH} {4}
-#add_connection spi_engine_offload_0.offload_sdi upscale_converter_0.s_axis 
 add_connection spi_engine_offload_0.spi_engine_ctrl spi_engine_interconnect_0.s0_ctrl 
 add_connection spi_engine_pll.outclk0 spi_engine_offload_0.ctrl_clk
 add_connection spi_engine_pll.outclk0 spi_engine_offload_0.spi_clk
 add_interface spi_engine_offload_0_trigger conduit end
 set_interface_property spi_engine_offload_0_trigger  EXPORT_OF spi_engine_offload_0.trigger
-
 set_interface_property spi_engine_offload_0_offload_sdi  EXPORT_OF spi_engine_offload_0.offload_sdi
 
 # spi engine
@@ -100,8 +85,6 @@ set_connection_parameter_value sys_hps.f2h_irq0/axi_spi_engine_0.irq irqNumber {
 add_connection axi_spi_engine_0.spi_resetn spi_engine_offload_0.spi_resetn
 add_connection axi_spi_engine_0.spi_resetn spi_engine_execution_0.resetn
 add_connection axi_spi_engine_0.spi_resetn spi_engine_interconnect_0.resetn
-#add_connection axi_spi_engine_0.spi_resetn upscale_converter_0.resetn
-
 set_interface_property axi_spi_engine_0_spi_resetn EXPORT_OF axi_spi_engine_0.spi_resetn
 
 
@@ -142,7 +125,6 @@ add_connection sys_hps.h2f_user1_clock spi_dmac_0.s_axi_clock
 add_connection spi_engine_pll.outclk0 spi_dmac_0.if_s_axis_aclk 
 add_connection sys_clk.clk_reset spi_dmac_0.m_dest_axi_reset
 add_connection sys_clk.clk_reset spi_dmac_0.s_axi_reset
-#add_connection upscale_converter_0.m_axis spi_dmac_0.s_axis
 add_connection spi_dmac_0.m_dest_axi sys_hps.f2h_sdram1_data
 set_connection_parameter_value spi_dmac_0.m_dest_axi/sys_hps.f2h_sdram1_data arbitrationPriority {1}
 set_connection_parameter_value spi_dmac_0.m_dest_axi/sys_hps.f2h_sdram1_data baseAddress {0x0000}

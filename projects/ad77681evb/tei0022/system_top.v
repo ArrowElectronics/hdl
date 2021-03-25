@@ -139,10 +139,6 @@ module system_top (
   inout          	ad77681_sync_in,
   inout     [3:0]     	ad77681_gpio,
 
-
-
-
-
   // misc
   
   inout             	fmc_pg_c2m,
@@ -300,22 +296,15 @@ module system_top (
 	.spi_engine_execution_0_spi_out_sclk (ad77681_spi_clk),  
 	.spi_engine_offload_0_trigger_pulse (ad77681_drdy),
         .spi_engine_pll_outclk1_clk (ad77681_MCLK),
-
 	.SPI_engine_clk_clk_clk  (SPI_pll_clk),
 	.axi_spi_engine_0_spi_resetn_reset_n (SPI_resetn),
-
         .spi_engine_offload_0_offload_sdi_ready (saxis_ready),
         .spi_engine_offload_0_offload_sdi_valid (saxis_valid),
         .spi_engine_offload_0_offload_sdi_data (saxis_data),
-
         .spi_dmac_0_s_axis_tready (maxis_ready),
         .spi_dmac_0_s_axis_tvalid (maxis_valid),
         .spi_dmac_0_s_axis_tdata (maxis_data),
-
-    //.upscale_converter_0_dfmt_enable_dfmt_enable (1'b1),
-    //.upscale_converter_0_dfmt_se_dfmt_se         (1'b1),
-   // .upscale_converter_0_dfmt_type_dfmt_type     (1'b0),
-    //.ad7768_1_gpio_export(ad77681_o[31:0]),
+        .ad7768_1_gpio_export(ad77681_o[31:0]),
 	.sys_rst_reset_n (sys_resetn),
     .hdmi_out_h_clk (hdmi_clk),
     .hdmi_out_h16_hsync (hdmi_hsync),
