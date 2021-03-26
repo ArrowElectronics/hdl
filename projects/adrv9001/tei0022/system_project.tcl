@@ -34,8 +34,8 @@ set_location_assignment PIN_E8   -to rx1_enable          ; ## FMCA_HPC_LA10_P
 set_location_assignment PIN_A3   -to rx2_enable          ; ## FMCA_HPC_LA26_N
 set_location_assignment PIN_J14  -to sm_fan_tach         ; ## FMCA_HPC_CLK0_M2C_N
 set_location_assignment PIN_A9   -to spi_clk             ; ## FMCA_HPC_LA12_P
-set_location_assignment PIN_H7   -to spi_miso            ; ## FMCA_HPC_LA29_N
-set_location_assignment PIN_A8   -to spi_mosi            ; ## FMCA_HPC_LA12_N
+set_location_assignment PIN_A8   -to spi_miso            ; ## FMCA_HPC_LA12_N
+set_location_assignment PIN_H7   -to spi_mosi            ; ## FMCA_HPC_LA29_N
 set_location_assignment PIN_H14  -to spi_csn             ; ## FMCA_HPC_LA15_P
 set_location_assignment PIN_E9   -to tx1_enable          ; ## FMCA_HPC_LA09_P
 set_location_assignment PIN_J7   -to tx2_enable          ; ## FMCA_HPC_LA29_P
@@ -77,6 +77,94 @@ set_location_assignment PIN_G8   -to tx2_qdata_out_n     ; ## FMCA_HPC_LA25_N
 set_location_assignment PIN_H8   -to tx2_qdata_out_p     ; ## FMCA_HPC_LA25_P
 set_location_assignment PIN_B3   -to tx2_strobe_out_n    ; ## FMCA_HPC_LA24_N
 set_location_assignment PIN_C3   -to tx2_strobe_out_p    ; ## FMCA_HPC_LA24_P
+
+set_location_assignment PIN_W25  -to fmc_pg_c2m_fpga     ; ## FMCA_PG_C2M
+
+set_instance_assignment -name IO_STANDARD "1.8V" -to dev_clk_in
+set_instance_assignment -name IO_STANDARD "1.8V" -to dev_mcs_fpga_out_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to dev_mcs_fpga_out_p 
+set_instance_assignment -name IO_STANDARD "1.8V" -to dgpio_0 
+set_instance_assignment -name IO_STANDARD "1.8V" -to dgpio_1 
+set_instance_assignment -name IO_STANDARD "1.8V" -to dgpio_2 
+set_instance_assignment -name IO_STANDARD "1.8V" -to dgpio_3 
+set_instance_assignment -name IO_STANDARD "1.8V" -to dgpio_4 
+set_instance_assignment -name IO_STANDARD "1.8V" -to dgpio_5 
+set_instance_assignment -name IO_STANDARD "1.8V" -to dgpio_6 
+set_instance_assignment -name IO_STANDARD "1.8V" -to dgpio_7
+set_instance_assignment -name IO_STANDARD "1.8V" -to dgpio_8
+set_instance_assignment -name IO_STANDARD "1.8V" -to dgpio_9
+set_instance_assignment -name IO_STANDARD "1.8V" -to dgpio_10
+set_instance_assignment -name IO_STANDARD "1.8V" -to dgpio_11
+set_instance_assignment -name IO_STANDARD "1.8V" -to fpga_mcs_in_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to fpga_mcs_in_p
+set_instance_assignment -name IO_STANDARD "1.8V" -to fpga_ref_clk_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to fpga_ref_clk_p
+set_instance_assignment -name IO_STANDARD "1.8V" -to gp_int
+set_instance_assignment -name IO_STANDARD "1.8V" -to mode
+set_instance_assignment -name IO_STANDARD "1.8V" -to reset_trx
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx1_enable
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx2_enable
+
+set_instance_assignment -name IO_STANDARD "1.8V" -to sm_fan_tach
+set_instance_assignment -name IO_STANDARD "1.8V" -to spi_clk
+set_instance_assignment -name IO_STANDARD "1.8V" -to spi_miso 
+set_instance_assignment -name IO_STANDARD "1.8V" -to spi_mosi 
+set_instance_assignment -name IO_STANDARD "1.8V" -to spi_csn 
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx1_enable 
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx2_enable 
+set_instance_assignment -name IO_STANDARD "1.8V" -to vadj_err 
+set_instance_assignment -name IO_STANDARD "1.8V" -to platform_status 
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx1_dclk_in_n 
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx1_dclk_in_p
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx1_idata_in_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx1_idata_in_p
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx1_qdata_in_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx1_qdata_in_p
+
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx1_strobe_in_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx1_strobe_in_p
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx2_dclk_in_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx2_dclk_in_p
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx2_idata_in_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx2_idata_in_p
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx2_qdata_in_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx2_qdata_in_p
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx2_strobe_in_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to rx2_strobe_in_p
+
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx1_dclk_out_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx1_dclk_out_p
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx1_dclk_in_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx1_dclk_in_p
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx1_idata_out_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx1_idata_out_p
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx1_qdata_out_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx1_qdata_out_p
+
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx1_strobe_out_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx1_strobe_out_p
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx2_dclk_out_n 
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx2_dclk_out_p 
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx2_dclk_in_n 
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx2_dclk_in_p 
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx2_idata_out_n 
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx2_idata_out_p 
+
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx2_qdata_out_n
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx2_qdata_out_p
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx2_strobe_out_n 
+set_instance_assignment -name IO_STANDARD "1.8V" -to tx2_strobe_out_p 
+
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to spi_csn
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to spi_clk
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to spi_mosi
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to spi_miso
+
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fmc_scl
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fmc_sda
+
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fmc_pg_c2m_fpga
+
 
 execute_flow -compile
 
