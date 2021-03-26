@@ -383,11 +383,8 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to eth1_rx_d[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to eth1_mdc
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to eth1_mdio
 
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to link_st
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to rx_er
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to phy_int
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to eth_rst
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to phy_led1
 
 # qspi
 
@@ -421,6 +418,7 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to usb1_d[4]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to usb1_d[5]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to usb1_d[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to usb1_d[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to usb1_rst
 
 # uart
 
@@ -517,18 +515,19 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cec_clk
 
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fmc_pg_c2m
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fmc_prsnt_m2c
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to usb1_rst
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpu_gpio_0
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpu_gpio_1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpu_gpio_2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpu_gpio_3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpu_gpio_4
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_hps_1
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_hps_2
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to therm_n
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to therm_n
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to alert_n
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to user_btn_hps
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to status
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to as_rst
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to qspi_rst
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nc1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nc2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nc3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nc4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nc5
 
 # globals
 
