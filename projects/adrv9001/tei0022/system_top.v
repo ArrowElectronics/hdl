@@ -244,7 +244,7 @@ module system_top (
   wire             	gpio_tx1_enable_in;
   wire              	gpio_tx2_enable_in;
 
-  wire			ssi-sync;		// added to satisfy devicetree. does not do anything
+  wire			ssi_sync;		// added to satisfy devicetree. does not do anything
 
 
   // defaults
@@ -270,7 +270,7 @@ module system_top (
 
   //assign gpio_i[31:12] = gpio_o[31:12];
   assign gpio_i[31:13] = gpio_o[31:13];
-  assign gpio_i[12] = ssi-sync;
+  assign gpio_i[12] = ssi_sync;
   assign gpio_i[11: 4] = gpio_bd_i;
   assign gpio_i[ 3: 0] = gpio_o[ 3: 0];
 
@@ -413,7 +413,7 @@ module system_top (
     .spi_0_external_SCLK (spi_clk),
     .spi_0_external_SS_n (spi_csn),
 
-    .adrv9001_gpio_export({ssi-sync,
+    .adrv9001_gpio_export({ssi_sync,
 			   gpio_tx2_enable_in,
                            gpio_tx1_enable_in,
                            gpio_rx2_enable_in,
