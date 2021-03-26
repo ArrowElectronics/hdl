@@ -2,7 +2,7 @@
 
 add_instance spi_0 altera_avalon_spi
 set_instance_parameter_value spi_0 {clockPhase} {0}
-set_instance_parameter_value spi_0 {clockPolarity} {1}
+set_instance_parameter_value spi_0 {clockPolarity} {0}
 set_instance_parameter_value spi_0 {dataWidth} {8}
 set_instance_parameter_value spi_0 {disableAvalonFlowControl} {0}
 set_instance_parameter_value spi_0 {insertDelayBetweenSlaveSelectAndSClk} {0}
@@ -11,7 +11,7 @@ set_instance_parameter_value spi_0 {lsbOrderedFirst} {0}
 set_instance_parameter_value spi_0 {masterSPI} {1}
 set_instance_parameter_value spi_0 {numberOfSlaves} {1}
 set_instance_parameter_value spi_0 {syncRegDepth} {2}
-set_instance_parameter_value spi_0 {targetClockRate} {1000000.0}
+set_instance_parameter_value spi_0 {targetClockRate} {10000000.0}
 set_instance_parameter_value spi_0 {targetSlaveSelectToSClkDelay} {0.0}
 
 add_connection sys_clk.clk_reset spi_0.reset
@@ -37,7 +37,7 @@ add_interface adrv9001_if conduit end
 set_interface_property adrv9001_if EXPORT_OF axi_adrv9001.device_if
 add_interface adrv9001_tdd_if conduit end
 set_interface_property adrv9001_tdd_if EXPORT_OF axi_adrv9001.tdd_if
-add_connection sys_clk.clk axi_adrv9001.s_axi_clock
+add_connection sys_hps.h2f_user1_clock axi_adrv9001.s_axi_clock
 add_connection sys_clk.clk_reset axi_adrv9001.s_axi_reset
 
 # adc-wfifo
@@ -105,7 +105,7 @@ add_connection util_dac_upack.if_fifo_rd_underflow util_dac_rfifo.if_din_unf
 add_instance axi_adc_dma axi_dmac
 set_instance_parameter_value axi_adc_dma {ID} {0}
 set_instance_parameter_value axi_adc_dma {DMA_DATA_WIDTH_SRC} {64}
-set_instance_parameter_value axi_adc_dma {DMA_DATA_WIDTH_DEST} {128}
+set_instance_parameter_value axi_adc_dma {DMA_DATA_WIDTH_DEST} {64}
 set_instance_parameter_value axi_adc_dma {DMA_LENGTH_WIDTH} {24}
 set_instance_parameter_value axi_adc_dma {DMA_2D_TRANSFER} {0}
 set_instance_parameter_value axi_adc_dma {AXI_SLICE_DEST} {0}
@@ -115,7 +115,7 @@ set_instance_parameter_value axi_adc_dma {CYCLIC} {0}
 set_instance_parameter_value axi_adc_dma {DMA_TYPE_DEST} {0}
 set_instance_parameter_value axi_adc_dma {DMA_TYPE_SRC} {2}
 set_instance_parameter_value axi_adc_dma {FIFO_SIZE} {4}
-add_connection sys_clk.clk axi_adc_dma.s_axi_clock
+add_connection sys_hps.h2f_user1_clock axi_adc_dma.s_axi_clock
 add_connection sys_clk.clk_reset axi_adc_dma.s_axi_reset
 add_connection sys_hps.h2f_user1_clock axi_adc_dma.m_dest_axi_clock
 add_connection sys_clk.clk_reset axi_adc_dma.m_dest_axi_reset
@@ -140,7 +140,7 @@ set_instance_parameter_value axi_dac_dma {CYCLIC} {1}
 set_instance_parameter_value axi_dac_dma {DMA_TYPE_DEST} {1}
 set_instance_parameter_value axi_dac_dma {DMA_TYPE_SRC} {0}
 set_instance_parameter_value axi_dac_dma {FIFO_SIZE} {4}
-add_connection sys_clk.clk axi_dac_dma.s_axi_clock
+add_connection sys_hps.h2f_user1_clock axi_dac_dma.s_axi_clock
 add_connection sys_clk.clk_reset axi_dac_dma.s_axi_reset
 add_connection sys_hps.h2f_user1_clock axi_dac_dma.m_src_axi_clock
 add_connection sys_clk.clk_reset axi_dac_dma.m_src_axi_reset
@@ -153,8 +153,8 @@ add_connection axi_dac_dma.m_axis util_dac_upack.s_axis
 add_instance avl_adrv9001_gpio altera_avalon_pio
 set_instance_parameter_value avl_adrv9001_gpio {direction} {Bidir}
 set_instance_parameter_value avl_adrv9001_gpio {generateIRQ} {1}
-set_instance_parameter_value avl_adrv9001_gpio {width} {19}
-add_connection sys_clk.clk avl_adrv9001_gpio.clk
+set_instance_parameter_value avl_adrv9001_gpio {width} {20}
+add_connection sys_hps.h2f_user1_clock avl_adrv9001_gpio.clk
 add_connection sys_clk.clk_reset avl_adrv9001_gpio.reset
 add_interface adrv9001_gpio conduit end
 set_interface_property adrv9001_gpio EXPORT_OF avl_adrv9001_gpio.external_connection
