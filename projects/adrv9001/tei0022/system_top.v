@@ -70,11 +70,8 @@ module system_top (
   input   [  3:0]   	eth1_rx_d,
   output            	eth1_mdc,
   inout             	eth1_mdio,
-  inout			link_st,
-  inout			rx_er,
-  inout			phy_int,
   inout			eth_rst,
-  inout			phy_led1,
+  inout			phy_int,
   
   // hps-qspi
 
@@ -216,14 +213,19 @@ module system_top (
   inout             	fmc_prsnt_m2c,
   inout             	cpu_gpio_0,
   inout             	cpu_gpio_1,
+  inout             	cpu_gpio_2,
+  inout             	cpu_gpio_3,
+  inout             	cpu_gpio_4,
   inout             	led_hps_1,
   inout             	led_hps_2,
-  inout             	therm_n,
-  inout             	alert_n,
   inout             	user_btn_hps,
-  inout             	status,
-  inout             	as_rst,
-  inout            	qspi_rst 
+  inout             	nc1,
+  inout            	nc2,
+  inout			nc3,
+  inout			nc4,
+  inout			nc5,
+
+  output		fmc_pg_c2m_fpga
 );
 
   // internal signals
@@ -242,6 +244,8 @@ module system_top (
   wire             	gpio_tx1_enable_in;
   wire              	gpio_tx2_enable_in;
 
+  wire			ssi-sync;		// added to satisfy devicetree. does not do anything
+
 
   // defaults
 
@@ -256,6 +260,7 @@ module system_top (
   // assignments
 
   assign platform_status = vadj_err;
+  assign fmc_pg_c2m_fpga = 1'b1;
 
   assign gpio_i[54:32] = gpio_o[54:32];
   assign gpio_i[55] = vadj_err;
@@ -263,7 +268,9 @@ module system_top (
 
   // board stuff (max-v-u21)
 
-  assign gpio_i[31:12] = gpio_o[31:12];
+  //assign gpio_i[31:12] = gpio_o[31:12];
+  assign gpio_i[31:13] = gpio_o[31:13];
+  assign gpio_i[12] = ssi-sync;
   assign gpio_i[11: 4] = gpio_bd_i;
   assign gpio_i[ 3: 0] = gpio_o[ 3: 0];
 
@@ -317,24 +324,24 @@ module system_top (
     .sys_hps_hps_io_hps_io_i2c0_inst_SCL (fmc_scl),
     .sys_hps_hps_io_hps_io_i2c1_inst_SDA (hps_sda),
     .sys_hps_hps_io_hps_io_i2c1_inst_SCL (hps_scl),	
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO00 (link_st),
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO09 (rx_er),
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO00 (nc3),
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO09 (nc4),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO35 (phy_int),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO40 (fmc_pg_c2m),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO41 (fmc_prsnt_m2c),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO42 (usb1_rst),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO43 (eth_rst),
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO44 (phy_led1),
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO44 (nc5),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO48 (cpu_gpio_0),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO53 (led_hps_1),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO54 (led_hps_2),
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO55 (therm_n),
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO56 (alert_n),
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO55 (cpu_gpio_2),
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO56 (cpu_gpio_3),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO57 (user_btn_hps),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO58 (cpu_gpio_1),
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO59 (status),
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO61 (as_rst),
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO65 (qspi_rst),
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO59 (nc1),
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO61 (cpu_gpio_4),
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO65 (nc2),
     .sys_hps_memory_mem_a (ddr3_a),
     .sys_hps_memory_mem_ba (ddr3_ba),
     .sys_hps_memory_mem_ck (ddr3_ck_p),
@@ -406,7 +413,8 @@ module system_top (
     .spi_0_external_SCLK (spi_clk),
     .spi_0_external_SS_n (spi_csn),
 
-    .adrv9001_gpio_export({gpio_tx2_enable_in,
+    .adrv9001_gpio_export({ssi-sync,
+			   gpio_tx2_enable_in,
                            gpio_tx1_enable_in,
                            gpio_rx2_enable_in,
                            gpio_rx1_enable_in,
