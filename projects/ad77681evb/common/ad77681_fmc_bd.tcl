@@ -18,11 +18,6 @@ current_bd_instance /spi_ad7768_1
   create_bd_intf_pin -mode Master -vlnv analog.com:interface:spi_master_rtl:1.0 m_spi
   create_bd_intf_pin -mode Master -vlnv xilinx.com:interface:axis_rtl:1.0 SPI_AXIS_SAMPLE
 
-  # Master AXI Stream interface
-  create_bd_pin -dir O m_axis_tvalid
-  create_bd_pin -dir I m_axis_tready
-  create_bd_pin -dir O -from 31 -to 0 m_axis_tdata
-
   ad_ip_instance spi_engine_execution execution
   ad_ip_parameter execution CONFIG.DATA_WIDTH 32
   ad_ip_parameter execution CONFIG.NUM_OF_CS 1
@@ -97,6 +92,7 @@ ad_connect  spi_clk axi_ad77681_dma/s_axis_aclk
 
 ad_connect  spi_clk spi_ad7768_1/spi_clk
 ad_connect  spi_ad7768_1/m_spi ad7768_1_spi
+
 ad_connect  axi_ad77681_dma/s_axis S_AXIS_SAMPLE
 
 # AXI address definitions

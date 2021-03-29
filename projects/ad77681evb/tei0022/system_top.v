@@ -192,18 +192,18 @@ module system_top (
   wire maxis_valid,maxis_ready;
   wire[31:0] maxis_data;
 
-    ad77681_upscale  i_ad77681_upscale (
+  ad77681_upscale  i_ad77681_upscale (
     .clk(SPI_pll_clk),
     .resetn (SPI_resetn),
     .s_axis_valid (saxis_valid),
     .s_axis_ready (saxis_ready),
-    .s_axis_data (saxis_data),
+   .s_axis_data (saxis_data),
     .m_axis_valid (maxis_valid),
     .m_axis_ready (1'b1),
     .m_axis_data (maxis_data),
     .dfmt_enable (1'b1),
     .dfmt_type (1'b0),
-    .dfmt_se (1'b1));
+   .dfmt_se (1'b1));
 
   // instantiations
   system_bd i_system_bd (

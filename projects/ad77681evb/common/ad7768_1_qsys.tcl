@@ -139,7 +139,6 @@ set_connection_parameter_value sys_hps.h2f_lw_axi_master/spi_dmac_0.s_axi defaul
 set_interface_property spi_dmac_0_s_axis EXPORT_OF spi_dmac_0.s_axis
 
 
-
 # ad7768_1_gpio
 
 add_instance ad7768_1_gpio altera_avalon_pio
