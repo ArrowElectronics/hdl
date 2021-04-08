@@ -25,7 +25,7 @@ package require qsys
 source ../../scripts/adi_env.tcl
 source ../../scripts/adi_ip_intel.tcl
 
-ad_ip_create util_cpack2 {Channel Pack Utility v2} util_cpack_elab
+ad_ip_create util_cpack2.1 {Channel Pack Utility v2.1} util_cpack_elab
 ad_ip_files util_cpack2_impl [list \
   $ad_hdl_dir/library/common/ad_perfect_shuffle.v \
   ../util_pack_common/pack_ctrl.v \
@@ -70,15 +70,22 @@ proc util_cpack_elab {} {
   ad_interface signal packed_fifo_wr_data output $total_data_width data
   ad_interface signal packed_fifo_wr_overflow input 1 ovf
 
+  add_interface fifo_wr_en conduit end
+  add_interface_port fifo_wr_en fifo_wr_en fifo_wr_en Input 1
+  set_interface_property fifo_wr_en associatedClock clk
+  set_interface_property fifo_wr_en associatedReset ""
+
   ad_interface signal fifo_wr_overflow output 1 ovf
+
+  add_interface enable conduit end
+  add_interface_port enable enable enable Input $num_channels
+
+#  for {set n 0} {$n < $num_channels} {incr n} {
+#    add_interface_port enable enable_$n enable_$n Input 1
+#  }
 
   for {set n 0} {$n < $num_channels} {incr n} {
     add_interface adc_ch_$n conduit end
-    add_interface_port adc_ch_$n enable_$n enable Input 1
-    set_port_property enable_$n fragment_list [format "enable(%d:%d)" $n $n]
-
-    add_interface_port adc_ch_$n fifo_wr_en_$n valid Input 1
-    set_port_property fifo_wr_en_$n fragment_list [format "fifo_wr_en(%d)" $n]
     add_interface_port adc_ch_$n fifo_wr_data_$n data Input $channel_data_width
     set_port_property fifo_wr_data_$n fragment_list [format "fifo_wr_data(%d:%d)" \
       [expr ($n+1) * $channel_data_width - 1] [expr $n * $channel_data_width]]
