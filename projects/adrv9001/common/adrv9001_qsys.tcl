@@ -76,7 +76,7 @@ add_connection util_dac_rfifo.if_dout_unf axi_adrv9001.if_dac_1_dunf
 
 # adc-pack
 
-add_instance util_adc_pack util_cpack2
+add_instance util_adc_pack util_cpack2.1
 set_instance_parameter_value util_adc_pack {NUM_OF_CHANNELS} {4}
 set_instance_parameter_value util_adc_pack {SAMPLE_DATA_WIDTH} {16}
 add_connection sys_hps.h2f_user1_clock util_adc_pack.clk
