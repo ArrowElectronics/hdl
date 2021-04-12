@@ -70,11 +70,11 @@ module system_top (
   input   [  3:0]   	eth1_rx_d,
   output            	eth1_mdc,
   inout             	eth1_mdio,
-  inout			link_st,
-  inout			rx_er,
+ // inout			link_st,
+ // inout			rx_er,
   inout			phy_int,
   inout			eth_rst,
-  inout			phy_led1,
+ // inout			phy_led1,
   
   // hps-qspi
 
