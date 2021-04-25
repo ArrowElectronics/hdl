@@ -60,7 +60,7 @@ M_DEPS += $(HDL_PROJECT_PATH)scripts/adi_env.tcl
 M_DEPS += $(foreach dep,$(LIB_DEPS),$(HDL_LIBRARY_PATH)$(dep)/.timestamp_intel)
 
 .PHONY: all lib clean clean-all
-all: lib $(PROJECT_NAME).sof
+all:lib $(PROJECT_NAME).sof
 
 
 clean:
@@ -84,3 +84,4 @@ lib:
 	@for lib in $(LIB_DEPS); do \
 		$(MAKE) -C $(HDL_LIBRARY_PATH)$${lib} intel || exit $$?; \
 	done
+
