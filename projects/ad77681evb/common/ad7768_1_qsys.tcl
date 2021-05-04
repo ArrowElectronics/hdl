@@ -10,11 +10,8 @@ set_instance_parameter_value spi_engine_pll {gui_output_clock_frequency0} {166.6
 set_instance_parameter_value spi_engine_pll {gui_output_clock_frequency1} {16.34}
 set_interface_property spi_engine_pll_outclk1 EXPORT_OF spi_engine_pll.outclk1 
 
-#clock bridge for outclock0
-add_instance spi_engine_clk altera_clock_bridge
-add_connection spi_engine_pll.outclk0 spi_engine_clk.in_clk
-set_interface_property SPI_engine_clk_clk EXPORT_OF spi_engine_clk.out_clk
-
+add_interface spi_engine_pll_outclk1 clock source
+set_interface_property spi_engine_pll_outclk1 EXPORT_OF spi_engine_pll.outclk1
 add_connection sys_hps.h2f_user1_clock spi_engine_pll.refclk
 add_connection sys_clk.clk_reset spi_engine_pll.reset
 
@@ -29,7 +26,7 @@ set_instance_parameter_value spi_engine_execution_0 {NUM_OF_SDI} {1}
 set_instance_parameter_value spi_engine_execution_0 {SDI_DELAY} {1}
 set_instance_parameter_value spi_engine_execution_0 {SDO_DEFAULT} {1}
 add_connection spi_engine_pll.outclk0 spi_engine_execution_0.clk
-add_interface spi_engine_execution_0_spi conduit end
+add_interface spi_engine_execution_0_spi_out conduit end
 set_interface_property spi_engine_execution_0_spi_out EXPORT_OF spi_engine_execution_0.spi
 
 # interconnect
@@ -54,7 +51,6 @@ add_connection spi_engine_pll.outclk0 spi_engine_offload_0.ctrl_clk
 add_connection spi_engine_pll.outclk0 spi_engine_offload_0.spi_clk
 add_interface spi_engine_offload_0_trigger conduit end
 set_interface_property spi_engine_offload_0_trigger  EXPORT_OF spi_engine_offload_0.trigger
-set_interface_property spi_engine_offload_0_offload_sdi  EXPORT_OF spi_engine_offload_0.offload_sdi
 
 # spi engine
 
@@ -85,8 +81,6 @@ set_connection_parameter_value sys_hps.f2h_irq0/axi_spi_engine_0.irq irqNumber {
 add_connection axi_spi_engine_0.spi_resetn spi_engine_offload_0.spi_resetn
 add_connection axi_spi_engine_0.spi_resetn spi_engine_execution_0.resetn
 add_connection axi_spi_engine_0.spi_resetn spi_engine_interconnect_0.resetn
-set_interface_property axi_spi_engine_0_spi_resetn EXPORT_OF axi_spi_engine_0.spi_resetn
-
 
 # adc-dma
 
@@ -136,9 +130,6 @@ set_connection_parameter_value sys_hps.h2f_lw_axi_master/spi_dmac_0.s_axi arbitr
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/spi_dmac_0.s_axi baseAddress {0x0050000}
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/spi_dmac_0.s_axi defaultConnection {0}
 
-set_interface_property spi_dmac_0_s_axis EXPORT_OF spi_dmac_0.s_axis
-
-
 # ad7768_1_gpio
 
 add_instance ad7768_1_gpio altera_avalon_pio
@@ -156,6 +147,17 @@ set_interface_property ad7768_1_gpio EXPORT_OF ad7768_1_gpio.external_connection
 ad_cpu_interconnect 0x00020050 ad7768_1_gpio.s1
 
 
+# upscaler_converter_2 
+
+add_instance upscaler_converter_2 util_axis_upscale_v2_0 2.0
+set_instance_parameter_value upscaler_converter_2 {DATA_WIDTH} {32}
+set_instance_parameter_value upscaler_converter_2 {NUM_OF_CHANNELS} {1}
+set_instance_parameter_value upscaler_converter_2 {UDATA_WIDTH} {32}
+
+add_connection upscaler_converter_2.m_axis spi_dmac_0.s_axis
+add_connection spi_engine_offload_0.offload_sdi upscaler_converter_2.s_axis
+add_connection spi_engine_pll.outclk0 upscaler_converter_2.clk
+add_connection axi_spi_engine_0.spi_resetn upscaler_converter_2.resetn
 
 
 

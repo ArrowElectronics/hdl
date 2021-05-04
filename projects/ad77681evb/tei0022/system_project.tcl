@@ -3,8 +3,6 @@ source ../../scripts/adi_project_intel.tcl
 
 adi_project ad7768_1_fmc_tei0022
 
-set_global_assignment -name VERILOG_FILE ../common/ad77681_upscale.v
-
 source $ad_hdl_dir/projects/common/tei0022/tei0022_system_assign.tcl
 
 # ad7768-1 spi interface

@@ -40,7 +40,12 @@
 
 `timescale 1ns/100ps
 
-module ad77681_upscale (
+module util_axis_upscale_2 #(
+
+  parameter NUM_OF_CHANNELS = 4,
+  parameter DATA_WIDTH = 24,
+  parameter UDATA_WIDTH = 32)(
+
   input                                           clk,
   input                                           resetn,
 
@@ -61,9 +66,7 @@ module ad77681_upscale (
   wire    [(NUM_OF_CHANNELS*UDATA_WIDTH)-1:0] data_out_s;
 
 
-  localparam NUM_OF_CHANNELS = 1;
-  localparam DATA_WIDTH = 32;
-  localparam UDATA_WIDTH = 32; 
+
   localparam MSB_WIDTH = UDATA_WIDTH - DATA_WIDTH;
  
 

@@ -133,14 +133,14 @@ module system_top_si (
   input              ad7606b_busy,
   
   inout		   	   ad7606b_os0,
-  inout		   	   ad7606b_os1,
-  inout		     		ad7606b_os2,
-  inout		     		ad7606b_reset,
-  inout		     		ad7606b_frstdata,
-  inout		     		ad7606b_range,
-  inout		     		ad7606b_refsel,
-  inout		     		ad7606b_serpar,
-  inout		     		ad7606b_stby,
+  inout		   	ad7606b_os1,
+  inout		     	ad7606b_os2,
+  inout		     	ad7606b_reset,
+  inout		     	ad7606b_frstdata,
+  inout		     	ad7606b_range,
+  inout		     	ad7606b_refsel,
+  inout		     	ad7606b_serpar,
+  inout		     	ad7606b_stby,
 
   // misc
   
@@ -156,9 +156,9 @@ module system_top_si (
   inout             	user_btn_hps,
   inout             	nc1,
   inout            	nc2,
-  inout					nc3,
-  inout					nc4,
-  inout					nc5
+  inout			nc3,
+  inout			nc4,
+  inout			nc5
 );
 
   // internal signals

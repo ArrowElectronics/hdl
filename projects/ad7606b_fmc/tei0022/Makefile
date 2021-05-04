@@ -18,7 +18,7 @@ build:
 	@echo "Enter the interface type (serial OR parallel):"
 	@echo " *For serial enter '0' and For parallel enter '1'"
 	read -p " : " CONTINUE && echo "$$CONTINUE" > "interface_selection"; \
-	[ $$CONTINUE = 0 ] || [ $$CONTINUE = 1 ] ||(echo "wrong input Exiting..."; exit 1;)
+	[ $$CONTINUE = 0 ]|| [ $$CONTINUE = 1 ] ||(echo "wrong input Exiting..."; exit 1;)
 	make all
 
 

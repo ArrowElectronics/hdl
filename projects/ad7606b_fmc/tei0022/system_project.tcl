@@ -1,18 +1,6 @@
 source ../../scripts/adi_env.tcl
 source ../../scripts/adi_project_intel.tcl
 
-##--------------------------------------------------------------
-# IMPORTANT: Set ad7606b operation and interface mode
-#
-#    ad7606b_if  - Defines the interface type (serial OR parallel)
-#
-# LEGEND: Serial    - 0
-#         Parallel  - 1
-#
-# NOTE : This switch is a 'hardware' switch. Please reimplenent the
-# design if the variable has been changed.
-#
-##--------------------------------------------------------------
 set ad7606b_if 0
 set fp [open "interface_selection" r]
 set ad7606b_if [read $fp 1]

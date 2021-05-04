@@ -87,8 +87,8 @@ add_connection sys_clk.clk_reset spi_dmac.m_dest_axi_reset
 add_connection sys_clk.clk_reset spi_dmac.s_axi_reset
 add_connection sys_hps.f2h_irq0 spi_dmac.interrupt_sender
 set_connection_parameter_value sys_hps.f2h_irq0/spi_dmac.interrupt_sender irqNumber {5}
-add_connection sys_hps.f2h_irq1 spi_dmac.interrupt_sender
-set_connection_parameter_value sys_hps.f2h_irq1/spi_dmac.interrupt_sender irqNumber {5}
+#add_connection sys_hps.f2h_irq1 spi_dmac.interrupt_sender
+#set_connection_parameter_value sys_hps.f2h_irq1/spi_dmac.interrupt_sender irqNumber {5}
 
 add_connection sys_hps.h2f_user1_clock spi_dmac.if_fifo_wr_clk
 add_connection sys_hps.h2f_user1_clock spi_dmac.m_dest_axi_clock
