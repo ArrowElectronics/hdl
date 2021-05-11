@@ -91,7 +91,7 @@ module system_bd (
 		inout  wire        sys_hps_hps_io_hps_io_gpio_inst_GPIO59,      //                                .hps_io_gpio_inst_GPIO59
 		inout  wire        sys_hps_hps_io_hps_io_gpio_inst_GPIO61,      //                                .hps_io_gpio_inst_GPIO61
 		inout  wire        sys_hps_hps_io_hps_io_gpio_inst_GPIO65,      //                                .hps_io_gpio_inst_GPIO65
-		output wire [15:0] sys_hps_memory_mem_a,                        //                  sys_hps_memory.mem_a
+		output wire [14:0] sys_hps_memory_mem_a,                        //                  sys_hps_memory.mem_a
 		output wire [2:0]  sys_hps_memory_mem_ba,                       //                                .mem_ba
 		output wire        sys_hps_memory_mem_ck,                       //                                .mem_ck
 		output wire        sys_hps_memory_mem_ck_n,                     //                                .mem_ck_n

@@ -23,7 +23,6 @@ set_location_assignment PIN_C30   -to ddr3_a[11]
 set_location_assignment PIN_B30   -to ddr3_a[12]
 set_location_assignment PIN_C29   -to ddr3_a[13]
 set_location_assignment PIN_H25   -to ddr3_a[14]
-set_location_assignment PIN_G25   -to ddr3_a[15]
 set_location_assignment PIN_E29   -to ddr3_ba[0]
 set_location_assignment PIN_J24   -to ddr3_ba[1]
 set_location_assignment PIN_J23   -to ddr3_ba[2]
@@ -100,7 +99,6 @@ set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_a[
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_a[12]
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_a[13]
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_a[14]
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_a[15]
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_ba[0]
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_ba[1]
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to ddr3_ba[2]
@@ -194,7 +192,6 @@ set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_a[11]
 set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_a[12]
 set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_a[13]
 set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_a[14]
-set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_a[15]
 set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_ba[0]
 set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_ba[1]
 set_instance_assignment -name IO_STANDARD "SSTL-15 CLASS I" -to ddr3_ba[2]
@@ -305,7 +302,6 @@ set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to ddr3_a[11]
 set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to ddr3_a[12]
 set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to ddr3_a[13]
 set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to ddr3_a[14]
-set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to ddr3_a[15]
 set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to ddr3_ba[0]
 set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to ddr3_ba[1]
 set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to ddr3_ba[2]
@@ -383,11 +379,8 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to eth1_rx_d[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to eth1_mdc
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to eth1_mdio
 
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to link_st
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to rx_er
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to phy_int
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to eth_rst
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to phy_led1
 
 # qspi
 
@@ -421,6 +414,7 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to usb1_d[4]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to usb1_d[5]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to usb1_d[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to usb1_d[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to usb1_rst
 
 # uart
 
@@ -461,14 +455,14 @@ set_location_assignment PIN_W20   -to hdmi_data[15]
 set_location_assignment PIN_AF29  -to hdmi_data[16]
 set_location_assignment PIN_AF30  -to hdmi_data[17]
 set_location_assignment PIN_AA24  -to hdmi_data[18]
-set_location_assignment PIN_AA28  -to hdmi_data[19]
+set_location_assignment PIN_AF28  -to hdmi_data[19]
 set_location_assignment PIN_Y24   -to hdmi_data[20]
 set_location_assignment PIN_W21   -to hdmi_data[21]
-set_location_assignment PIN_W25   -to hdmi_data[22]
+set_location_assignment PIN_AB25  -to hdmi_data[22]
 set_location_assignment PIN_V23   -to hdmi_data[23]
 
-set_location_assignment PIN_AF28  -to hdmi_spdif
-set_location_assignment PIN_AB25  -to hdmi_spdifout
+set_location_assignment PIN_AA30  -to hdmi_spdif
+set_location_assignment PIN_AB30  -to hdmi_spdifout
 set_location_assignment PIN_AC25  -to hdmi_int
 set_location_assignment PIN_Y21   -to ct_hpd
 set_location_assignment PIN_AB23  -to ls_oe
@@ -517,24 +511,25 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cec_clk
 
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fmc_pg_c2m
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fmc_prsnt_m2c
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to usb1_rst
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpu_gpio_0
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpu_gpio_1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpu_gpio_2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpu_gpio_3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cpu_gpio_4
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_hps_1
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_hps_2
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to therm_n
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to therm_n
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to alert_n
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to user_btn_hps
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to status
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to as_rst
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to qspi_rst
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nc1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nc2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nc3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nc4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nc5
 
 # user pb, dipsw, leds
 
 set_location_assignment PIN_AD24 -to user_dipsw_fpga[0]
 set_location_assignment PIN_AE24 -to user_dipsw_fpga[1]
-set_location_assignment PIN_AB21  -to user_pb_fpga
+set_location_assignment PIN_AB21 -to user_pb_fpga
 set_location_assignment PIN_AC28 -to user_led_fpga[0]
 set_location_assignment PIN_AC29 -to user_led_fpga[1]
 
@@ -558,7 +553,7 @@ set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS ON
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_global_assignment -name TIMEQUEST_DO_REPORT_TIMING ON
 set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
-# set_global_assignment -name TIMEQUEST_REPORT_SCRIPT $ad_hdl_dir/projects/scripts/adi_tquest.tcl
+#set_global_assignment -name TIMEQUEST_REPORT_SCRIPT $ad_hdl_dir/projects/scripts/adi_tquest.tcl
 set_global_assignment -name ON_CHIP_BITSTREAM_DECOMPRESSION OFF
 set_global_assignment -name OPTIMIZATION_MODE "AGGRESSIVE PERFORMANCE"
 

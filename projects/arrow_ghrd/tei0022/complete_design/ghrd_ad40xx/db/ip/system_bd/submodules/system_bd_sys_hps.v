@@ -238,7 +238,7 @@ module system_bd_sys_hps #(
 		input  wire        f2h_sdram2_clk,           //  f2h_sdram2_clock.clk
 		input  wire [31:0] f2h_irq_p0,               //          f2h_irq0.irq
 		input  wire [31:0] f2h_irq_p1,               //          f2h_irq1.irq
-		output wire [15:0] mem_a,                    //            memory.mem_a
+		output wire [14:0] mem_a,                    //            memory.mem_a
 		output wire [2:0]  mem_ba,                   //                  .mem_ba
 		output wire        mem_ck,                   //                  .mem_ck
 		output wire        mem_ck_n,                 //                  .mem_ck_n

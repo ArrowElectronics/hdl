@@ -94,7 +94,7 @@
         <define name="RLDRAMX" value="0"/>
         <define name="RUNTIME_CAL_REPORT" value="0"/>
         <define name="RW_MGR_MEM_ADDRESS_MIRRORING" value="0"/>
-        <define name="RW_MGR_MEM_ADDRESS_WIDTH" value="16"/>
+        <define name="RW_MGR_MEM_ADDRESS_WIDTH" value="15"/>
         <define name="RW_MGR_MEM_BANK_WIDTH" value="3"/>
         <define name="RW_MGR_MEM_CHIP_SELECT_WIDTH" value="1"/>
         <define name="RW_MGR_MEM_CLK_EN_WIDTH" value="1"/>
@@ -161,7 +161,7 @@
         <define name="MEM_IF_DQSN_EN" value="true"/>
         <define name="MEM_IF_DQS_WIDTH" value="4"/>
         <define name="MEM_IF_RD_TO_WR_TURNAROUND_OCT" value="2"/>
-        <define name="MEM_IF_ROW_ADDR_WIDTH" value="16"/>
+        <define name="MEM_IF_ROW_ADDR_WIDTH" value="15"/>
         <define name="MEM_MIRROR_ADDRESSING" value="0"/>
         <define name="MEM_PD" value="DLL off"/>
         <define name="MEM_RTT_NOM" value="RZQ/6"/>

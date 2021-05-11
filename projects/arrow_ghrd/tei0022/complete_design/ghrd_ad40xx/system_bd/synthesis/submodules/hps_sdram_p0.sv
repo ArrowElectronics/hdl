@@ -164,7 +164,7 @@ parameter OCT_TERM_CONTROL_WIDTH   = 16;
 
 // PHY-Memory Interface
 // Memory device specific parameters, they are set according to the memory spec.
-parameter MEM_IF_ADDR_WIDTH			= 16;
+parameter MEM_IF_ADDR_WIDTH			= 15;
 parameter MEM_IF_BANKADDR_WIDTH     = 3;
 parameter MEM_IF_CK_WIDTH			= 1;
 parameter MEM_IF_CLK_EN_WIDTH		= 1;

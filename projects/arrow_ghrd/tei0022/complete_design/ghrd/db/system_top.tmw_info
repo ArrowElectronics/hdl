@@ -1,4 +1,5 @@
-start_analysis_synthesis:s:00:03:09
+start_analysis_synthesis:s:00:03:12
 start_analysis_elaboration:s
-start_fitter:s:00:05:19
-start_assembler:s:00:00:13
+start_fitter:s:00:06:29
+start_assembler:s:00:00:16-start_full_compilation
+start_timing_analyzer:s:00:00:56-start_full_compilation

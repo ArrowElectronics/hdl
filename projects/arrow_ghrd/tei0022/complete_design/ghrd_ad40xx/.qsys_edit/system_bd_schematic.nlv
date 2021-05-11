@@ -20,7 +20,7 @@ preplace inst system_bd.spi_engine_pll -pg 1 -lvl 2 -y 850
 preplace inst system_bd.sys_id -pg 1 -lvl 3 -y 910
 preplace inst system_bd.sys_hps.uart0 -pg 1
 preplace inst system_bd.sys_hps.uart1 -pg 1
-preplace inst system_bd.dipsw_pio -pg 1 -lvl 3 -y 490
+preplace inst system_bd.dipsw_pio -pg 1 -lvl 3 -y 450
 preplace inst system_bd.sys_hps.arm_a9_0 -pg 1
 preplace inst system_bd -pg 1 -lvl 1 -y 40 -regy -20
 preplace inst system_bd.sys_hps.arm_a9_1 -pg 1
@@ -40,7 +40,7 @@ preplace inst system_bd.sys_hps.l3regs -pg 1
 preplace inst system_bd.sys_hps.timer -pg 1
 preplace inst system_bd.sys_hps.axi_ocram -pg 1
 preplace inst system_bd.jtag_uart -pg 1 -lvl 3 -y 990
-preplace inst system_bd.button_pio -pg 1 -lvl 3 -y 330
+preplace inst system_bd.button_pio -pg 1 -lvl 3 -y 270
 preplace inst system_bd.sys_hps.dma -pg 1
 preplace inst system_bd.spi_dmac_0 -pg 1 -lvl 5 -y 540
 preplace inst system_bd.sys_hps.dcan0 -pg 1
@@ -65,42 +65,42 @@ preplace inst system_bd.sys_hps.f2s_sdram_ref_clk -pg 1
 preplace inst system_bd.sys_hps.hps_io.border -pg 1
 preplace inst system_bd.sys_hps.sysmgr -pg 1
 preplace inst system_bd.sys_hps.nand0 -pg 1
-preplace inst system_bd.spi_engine_offload_v1_0_0 -pg 1 -lvl 4 -y 1410
+preplace inst system_bd.spi_engine_offload_v1_0_0 -pg 1 -lvl 4 -y 1350
 preplace inst system_bd.sys_hps.rstmgr -pg 1
-preplace inst system_bd.trigger_gen_0 -pg 1 -lvl 4 -y 1250
+preplace inst system_bd.trigger_gen_0 -pg 1 -lvl 4 -y 1090
 preplace inst system_bd.sys_hps.sdrctl -pg 1
-preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)spi_engine_execution_0.spi,(SLAVE)system_bd.spi_engine_execution_0_spi_out) 1 0 4 NJ 1920 NJ 1920 NJ 1920 NJ
-preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)sys_hps.f2h_sdram0_data,(MASTER)hdmi_dmac_0.m_src_axi) 1 5 1 1650
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.dipsw_pio_external_connection,(SLAVE)dipsw_pio.external_connection) 1 0 3 NJ 480 NJ 480 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)upscale_converter_0.s_axis,(SLAVE)spi_engine_offload_v1_0_0.offload_sdi) 1 3 1 1050
+preplace netloc INTERCONNECT<net_container>system_bd</net_container>(SLAVE)jtag_uart.irq,(SLAVE)spi_dmac_0.interrupt_sender,(SLAVE)dipsw_pio.irq,(MASTER)sys_hps.f2h_irq0,(SLAVE)button_pio.irq,(MASTER)sys_hps.f2h_irq1,(SLAVE)hdmi_dmac_0.interrupt_sender,(SLAVE)axi_spi_engine_v1_0_0.irq) 1 2 5 650 400 NJ 400 1360 290 NJ 350 2120
 preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.upscale_converter_0_dfmt_type,(SLAVE)upscale_converter_0.dfmt_type) 1 0 4 NJ 1640 NJ 1640 NJ 1640 NJ
-preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)spi_engine_interconnect_0.s0_ctrl,(SLAVE)spi_engine_offload_v1_0_0.spi_engine_ctrl) 1 3 1 1030
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.spi_engine_execution_0_spi_out,(SLAVE)spi_engine_execution_0.spi) 1 0 4 NJ 1920 NJ 1920 NJ 1920 NJ
 preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)axi_hdmi_tx_0.hdmi_if,(SLAVE)system_bd.hdmi_out) 1 0 3 NJ 740 NJ 740 NJ
-preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)spi_engine_offload_v1_0_0.offload_sdi,(SLAVE)upscale_converter_0.s_axis) 1 3 1 1010
-preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)upscale_converter_0.dfmt_se,(SLAVE)system_bd.upscale_converter_0_dfmt_se) 1 0 4 NJ 1620 NJ 1620 NJ 1620 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.upscale_converter_0_dfmt_se,(SLAVE)upscale_converter_0.dfmt_se) 1 0 4 NJ 1620 NJ 1620 NJ 1620 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)trigger_gen_0.pulse_period,(SLAVE)system_bd.trigger_gen_0_pulse_period) 1 0 4 NJ 1340 NJ 1340 NJ 1340 NJ
 preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)sys_hps.hps_io,(SLAVE)system_bd.sys_hps_hps_io) 1 0 6 NJ 220 NJ 220 NJ 220 NJ 220 NJ 220 NJ
-preplace netloc INTERCONNECT<net_container>system_bd</net_container>(MASTER)sys_hps.f2h_irq0,(SLAVE)button_pio.irq,(MASTER)sys_hps.f2h_irq1,(SLAVE)axi_spi_engine_v1_0_0.irq,(SLAVE)spi_dmac_0.interrupt_sender,(SLAVE)dipsw_pio.irq,(SLAVE)hdmi_dmac_0.interrupt_sender,(SLAVE)jtag_uart.irq) 1 2 5 690 480 NJ 480 1300 510 NJ 510 2040
-preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.sys_clk,(SLAVE)sys_clk.clk_in) 1 0 1 NJ
-preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_hdmi_tx_0.vdma_if,(MASTER)hdmi_dmac_0.m_axis) 1 2 4 710 900 NJ 900 NJ 900 1610
-preplace netloc FAN_OUT<net_container>system_bd</net_container>(MASTER)spi_engine_pll.outclk0,(SLAVE)trigger_gen_0.clk,(SLAVE)spi_engine_interconnect_0.clk,(SLAVE)spi_engine_execution_0.clk,(SLAVE)spi_engine_offload_v1_0_0.spi_clk,(SLAVE)spi_engine_offload_v1_0_0.ctrl_clk,(SLAVE)spi_dmac_0.if_s_axis_aclk,(SLAVE)upscale_converter_0.clk,(SLAVE)axi_spi_engine_v1_0_0.spi_clk) 1 2 3 590 1300 970 920 1340
-preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)spi_engine_execution_0.ctrl,(SLAVE)spi_engine_interconnect_0.m_ctrl) 1 3 1 1050
-preplace netloc FAN_OUT<net_container>system_bd</net_container>(SLAVE)dipsw_pio.reset,(SLAVE)axi_hdmi_tx_0.s_axi_reset,(SLAVE)jtag_uart.reset,(SLAVE)button_pio.reset,(SLAVE)hdmi_dmac_0.m_src_axi_reset,(SLAVE)spi_dmac_0.s_axi_reset,(SLAVE)axi_hdmi_tx_0.vdma_reset,(SLAVE)spi_engine_pll.reset,(MASTER)sys_clk.clk_reset,(SLAVE)axi_spi_engine_v1_0_0.s_axi_aresetn,(SLAVE)hdmi_dmac_0.s_axi_reset,(SLAVE)sys_id.reset,(SLAVE)led_pio.reset,(SLAVE)hdmi_pll.reset,(SLAVE)spi_dmac_0.m_dest_axi_reset) 1 1 4 410 820 610 320 NJ 320 1320
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(MASTER)hdmi_pll.outclk0,(SLAVE)axi_hdmi_tx_0.hdmi_clock) 1 2 1 590
+preplace netloc FAN_OUT<net_container>system_bd</net_container>(SLAVE)upscale_converter_0.resetn,(SLAVE)spi_engine_offload_v1_0_0.spi_resetn,(SLAVE)spi_engine_execution_0.resetn,(MASTER)axi_spi_engine_v1_0_0.spi_resetn,(SLAVE)spi_engine_interconnect_0.resetn,(SLAVE)trigger_gen_0.rstn) 1 3 1 930
+preplace netloc FAN_OUT<net_container>system_bd</net_container>(SLAVE)led_pio.clk,(SLAVE)hdmi_pll.refclk,(SLAVE)spi_dmac_0.s_axi_clock,(SLAVE)sys_hps.f2h_sdram2_clock,(SLAVE)sys_hps.h2f_axi_clock,(SLAVE)hdmi_dmac_0.if_m_axis_aclk,(SLAVE)sys_hps.f2h_sdram0_clock,(SLAVE)sys_id.clk,(SLAVE)jtag_uart.clk,(SLAVE)button_pio.clk,(SLAVE)spi_dmac_0.m_dest_axi_clock,(SLAVE)spi_engine_pll.refclk,(SLAVE)hdmi_dmac_0.m_src_axi_clock,(SLAVE)axi_hdmi_tx_0.s_axi_clock,(SLAVE)axi_spi_engine_v1_0_0.s_axi_aclk,(MASTER)sys_hps.h2f_user1_clock,(SLAVE)sys_hps.f2h_sdram1_clock,(SLAVE)axi_hdmi_tx_0.vdma_clock,(SLAVE)dipsw_pio.clk,(SLAVE)sys_hps.h2f_lw_axi_clock,(SLAVE)sys_hps.f2h_axi_clock,(SLAVE)hdmi_dmac_0.s_axi_clock) 1 1 6 430 840 630 260 NJ 310 1420 310 1750 330 2080
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)spi_engine_execution_0.ctrl,(SLAVE)spi_engine_interconnect_0.m_ctrl) 1 3 1 1090
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)upscale_converter_0.dfmt_enable,(SLAVE)system_bd.upscale_converter_0_dfmt_enable) 1 0 4 NJ 1600 NJ 1600 NJ 1600 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)sys_hps.memory,(SLAVE)system_bd.sys_hps_memory) 1 0 6 NJ 240 NJ 240 NJ 240 NJ 240 NJ 240 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(MASTER)upscale_converter_0.m_axis,(SLAVE)spi_dmac_0.s_axis) 1 4 1 1460
+preplace netloc EXPORT<net_container>system_bd</net_container>(MASTER)sys_hps.h2f_reset,(MASTER)system_bd.sys_hps_h2f_reset) 1 6 1 N
+preplace netloc FAN_OUT<net_container>system_bd</net_container>(SLAVE)sys_id.control_slave,(SLAVE)spi_dmac_0.s_axi,(SLAVE)led_pio.s1,(SLAVE)axi_spi_engine_v1_0_0.s_axi,(SLAVE)dipsw_pio.s1,(MASTER)sys_hps.h2f_lw_axi_master,(SLAVE)axi_hdmi_tx_0.s_axi,(SLAVE)button_pio.s1,(SLAVE)jtag_uart.avalon_jtag_slave,(SLAVE)hdmi_dmac_0.s_axi) 1 2 5 670 440 NJ 440 1400 530 NJ 530 2100
 preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)trigger_gen_0.pulse_width,(SLAVE)system_bd.trigger_gen_0_pulse_width) 1 0 4 NJ 1360 NJ 1360 NJ 1360 NJ
-preplace netloc FAN_OUT<net_container>system_bd</net_container>(SLAVE)spi_engine_offload_v1_0_0.spi_resetn,(SLAVE)spi_engine_execution_0.resetn,(SLAVE)trigger_gen_0.rstn,(MASTER)axi_spi_engine_v1_0_0.spi_resetn,(SLAVE)upscale_converter_0.resetn,(SLAVE)spi_engine_interconnect_0.resetn) 1 3 1 930
-preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_hdmi_tx_0.hdmi_clock,(MASTER)hdmi_pll.outclk0) 1 2 1 630
-preplace netloc FAN_OUT<net_container>system_bd</net_container>(MASTER)sys_hps.h2f_lw_axi_master,(SLAVE)sys_id.control_slave,(SLAVE)button_pio.s1,(SLAVE)spi_dmac_0.s_axi,(SLAVE)jtag_uart.avalon_jtag_slave,(SLAVE)dipsw_pio.s1,(SLAVE)axi_hdmi_tx_0.s_axi,(SLAVE)axi_spi_engine_v1_0_0.s_axi,(SLAVE)led_pio.s1,(SLAVE)hdmi_dmac_0.s_axi) 1 2 5 670 300 NJ 300 1360 310 NJ 350 2020
-preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.upscale_converter_0_dfmt_enable,(SLAVE)upscale_converter_0.dfmt_enable) 1 0 4 NJ 1600 NJ 1600 NJ 1600 NJ
-preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_spi_engine_v1_0_0.spi_engine_offload_ctrl0,(SLAVE)spi_engine_offload_v1_0_0.spi_engine_offload_ctrl) 1 2 2 710 1500 NJ
-preplace netloc FAN_OUT<net_container>system_bd</net_container>(SLAVE)hdmi_pll.refclk,(SLAVE)sys_hps.f2h_sdram0_clock,(SLAVE)sys_hps.h2f_axi_clock,(SLAVE)axi_spi_engine_v1_0_0.s_axi_aclk,(SLAVE)sys_hps.f2h_sdram2_clock,(SLAVE)jtag_uart.clk,(SLAVE)led_pio.clk,(SLAVE)spi_dmac_0.s_axi_clock,(SLAVE)sys_id.clk,(SLAVE)axi_hdmi_tx_0.s_axi_clock,(SLAVE)sys_hps.h2f_lw_axi_clock,(SLAVE)spi_dmac_0.m_dest_axi_clock,(SLAVE)hdmi_dmac_0.m_src_axi_clock,(SLAVE)dipsw_pio.clk,(SLAVE)sys_hps.f2h_axi_clock,(SLAVE)hdmi_dmac_0.if_m_axis_aclk,(MASTER)sys_hps.h2f_user1_clock,(SLAVE)button_pio.clk,(SLAVE)axi_hdmi_tx_0.vdma_clock,(SLAVE)sys_hps.f2h_sdram1_clock,(SLAVE)hdmi_dmac_0.s_axi_clock,(SLAVE)spi_engine_pll.refclk) 1 1 6 430 840 650 460 NJ 460 1380 530 1630 330 2000
-preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.trigger_gen_0_pulse_period,(SLAVE)trigger_gen_0.pulse_period) 1 0 4 NJ 1340 NJ 1340 NJ 1340 NJ
-preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.sys_hps_memory,(SLAVE)sys_hps.memory) 1 0 6 NJ 280 NJ 280 NJ 280 NJ 280 NJ 280 NJ
-preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)dipsw_pio.external_connection,(SLAVE)system_bd.dipsw_pio_external_connection) 1 0 3 NJ 520 NJ 520 NJ
-preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)spi_dmac_0.s_axis,(MASTER)upscale_converter_0.m_axis) 1 4 1 1380
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)sys_clk.clk_in,(SLAVE)system_bd.sys_clk) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>system_bd</net_container>(MASTER)sys_clk.clk_reset,(SLAVE)hdmi_pll.reset,(SLAVE)axi_spi_engine_v1_0_0.s_axi_aresetn,(SLAVE)button_pio.reset,(SLAVE)dipsw_pio.reset,(SLAVE)sys_id.reset,(SLAVE)hdmi_dmac_0.s_axi_reset,(SLAVE)spi_dmac_0.s_axi_reset,(SLAVE)led_pio.reset,(SLAVE)axi_hdmi_tx_0.vdma_reset,(SLAVE)spi_dmac_0.m_dest_axi_reset,(SLAVE)hdmi_dmac_0.m_src_axi_reset,(SLAVE)axi_hdmi_tx_0.s_axi_reset,(SLAVE)jtag_uart.reset,(SLAVE)spi_engine_pll.reset) 1 1 4 410 820 610 420 NJ 420 1380
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)sys_clk.clk_in_reset,(SLAVE)system_bd.sys_rst) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>system_bd</net_container>(SLAVE)spi_engine_interconnect_0.clk,(MASTER)spi_engine_pll.outclk0,(SLAVE)trigger_gen_0.clk,(SLAVE)spi_engine_offload_v1_0_0.spi_clk,(SLAVE)axi_spi_engine_v1_0_0.spi_clk,(SLAVE)spi_engine_offload_v1_0_0.ctrl_clk,(SLAVE)spi_dmac_0.if_s_axis_aclk,(SLAVE)spi_engine_execution_0.clk,(SLAVE)upscale_converter_0.clk) 1 2 3 590 1380 1010 1520 1440
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_spi_engine_v1_0_0.spi_engine_offload_ctrl0,(SLAVE)spi_engine_offload_v1_0_0.spi_engine_offload_ctrl) 1 2 2 690 1440 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(MASTER)hdmi_dmac_0.m_axis,(SLAVE)axi_hdmi_tx_0.vdma_if) 1 2 4 690 590 NJ 590 NJ 510 1690
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)spi_engine_offload_v1_0_0.spi_engine_ctrl,(SLAVE)spi_engine_interconnect_0.s0_ctrl) 1 3 1 1070
 preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)trigger_gen_0.load_config,(SLAVE)system_bd.trigger_gen_0_load_config) 1 0 4 NJ 1320 NJ 1320 NJ 1320 NJ
-preplace netloc EXPORT<net_container>system_bd</net_container>(MASTER)system_bd.sys_hps_h2f_reset,(MASTER)sys_hps.h2f_reset) 1 6 1 N
-preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)spi_engine_interconnect_0.s1_ctrl,(SLAVE)axi_spi_engine_v1_0_0.spi_engine_ctrl) 1 2 2 690 1800 NJ
-preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.button_pio_external_connection,(SLAVE)button_pio.external_connection) 1 0 3 NJ 360 NJ 360 NJ
-preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.sys_rst,(SLAVE)sys_clk.clk_in_reset) 1 0 1 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)spi_engine_interconnect_0.s1_ctrl,(SLAVE)axi_spi_engine_v1_0_0.spi_engine_ctrl) 1 2 2 670 1800 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)button_pio.external_connection,(SLAVE)system_bd.button_pio_external_connection) 1 0 3 NJ 300 NJ 300 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(MASTER)hdmi_dmac_0.m_src_axi,(SLAVE)sys_hps.f2h_sdram0_data) 1 5 1 1710
 preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)led_pio.external_connection,(SLAVE)system_bd.led_pio_external_connection) 1 0 3 NJ 640 NJ 640 NJ
-preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(MASTER)spi_dmac_0.m_dest_axi,(SLAVE)sys_hps.f2h_sdram1_data) 1 5 1 1690
-preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)trigger_gen_0.pulse,(SLAVE)spi_engine_offload_v1_0_0.trigger) 1 3 1 990
-levelinfo -pg 1 0 200 2200
-levelinfo -hier system_bd 210 240 460 740 1120 1410 1810 2060
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(MASTER)spi_dmac_0.m_dest_axi,(SLAVE)sys_hps.f2h_sdram1_data) 1 5 1 1770
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)trigger_gen_0.pulse,(SLAVE)spi_engine_offload_v1_0_0.trigger) 1 3 1 1030
+levelinfo -pg 1 0 200 2280
+levelinfo -hier system_bd 210 240 460 740 1160 1490 1890 2140

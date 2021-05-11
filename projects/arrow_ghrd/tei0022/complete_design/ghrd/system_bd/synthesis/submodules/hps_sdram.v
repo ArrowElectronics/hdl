@@ -10,7 +10,7 @@ module hps_sdram (
 		input  wire        pll_ref_clk,    //  pll_ref_clk.clk
 		input  wire        global_reset_n, // global_reset.reset_n
 		input  wire        soft_reset_n,   //   soft_reset.reset_n
-		output wire [15:0] mem_a,          //       memory.mem_a
+		output wire [14:0] mem_a,          //       memory.mem_a
 		output wire [2:0]  mem_ba,         //             .mem_ba
 		output wire [0:0]  mem_ck,         //             .mem_ck
 		output wire [0:0]  mem_ck_n,       //             .mem_ck_n
@@ -245,7 +245,7 @@ module hps_sdram (
 		.CSR_ADDR_WIDTH                          (10),
 		.CSR_DATA_WIDTH                          (8),
 		.CSR_BE_WIDTH                            (1),
-		.AVL_ADDR_WIDTH                          (28),
+		.AVL_ADDR_WIDTH                          (27),
 		.AVL_DATA_WIDTH                          (64),
 		.AVL_SIZE_WIDTH                          (3),
 		.AVL_DATA_WIDTH_PORT_0                   (1),
@@ -384,7 +384,7 @@ module hps_sdram (
 		.ENUM_MEM_IF_DQS_WIDTH                   ("DQS_WIDTH_4"),
 		.ENUM_MEM_IF_DWIDTH                      ("MEM_IF_DWIDTH_32"),
 		.ENUM_MEM_IF_MEMTYPE                     ("DDR3_SDRAM"),
-		.ENUM_MEM_IF_ROWADDR_WIDTH               ("ADDR_WIDTH_16"),
+		.ENUM_MEM_IF_ROWADDR_WIDTH               ("ADDR_WIDTH_15"),
 		.ENUM_MEM_IF_SPEEDBIN                    ("DDR3_1600_8_8_8"),
 		.ENUM_MEM_IF_TCCD                        ("TCCD_4"),
 		.ENUM_MEM_IF_TCL                         ("TCL_5"),
@@ -612,7 +612,7 @@ module hps_sdram (
 		.ENUM_ENABLE_BURST_INTERRUPT             ("DISABLED"),
 		.ENUM_ENABLE_BURST_TERMINATE             ("DISABLED"),
 		.AFI_RATE_RATIO                          (1),
-		.AFI_ADDR_WIDTH                          (16),
+		.AFI_ADDR_WIDTH                          (15),
 		.AFI_BANKADDR_WIDTH                      (3),
 		.AFI_CONTROL_WIDTH                       (1),
 		.AFI_CS_WIDTH                            (1),

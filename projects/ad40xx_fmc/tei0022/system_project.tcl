@@ -31,5 +31,8 @@ set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to ad40xx_spi_mos
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fmc_scl
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to fmc_sda
 
+set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_EFFORT FAST
+
 execute_flow -compile
 

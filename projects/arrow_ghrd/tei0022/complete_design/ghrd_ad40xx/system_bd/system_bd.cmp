@@ -87,7 +87,7 @@
 			sys_hps_hps_io_hps_io_gpio_inst_GPIO59      : inout std_logic                     := 'X';             -- hps_io_gpio_inst_GPIO59
 			sys_hps_hps_io_hps_io_gpio_inst_GPIO61      : inout std_logic                     := 'X';             -- hps_io_gpio_inst_GPIO61
 			sys_hps_hps_io_hps_io_gpio_inst_GPIO65      : inout std_logic                     := 'X';             -- hps_io_gpio_inst_GPIO65
-			sys_hps_memory_mem_a                        : out   std_logic_vector(15 downto 0);                    -- mem_a
+			sys_hps_memory_mem_a                        : out   std_logic_vector(14 downto 0);                    -- mem_a
 			sys_hps_memory_mem_ba                       : out   std_logic_vector(2 downto 0);                     -- mem_ba
 			sys_hps_memory_mem_ck                       : out   std_logic;                                        -- mem_ck
 			sys_hps_memory_mem_ck_n                     : out   std_logic;                                        -- mem_ck_n

@@ -7,7 +7,7 @@
 
 `timescale 1 ps / 1 ps
 module system_bd_sys_hps_hps_io (
-		output wire [15:0] mem_a,                    // memory.mem_a
+		output wire [14:0] mem_a,                    // memory.mem_a
 		output wire [2:0]  mem_ba,                   //       .mem_ba
 		output wire        mem_ck,                   //       .mem_ck
 		output wire        mem_ck_n,                 //       .mem_ck_n

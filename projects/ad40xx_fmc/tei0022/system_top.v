@@ -43,7 +43,7 @@ module system_top (
 
   // hps-ddr
 
-  output  [ 15:0]   	ddr3_a,
+  output  [ 14:0]   	ddr3_a,
   output  [  2:0]   	ddr3_ba,
   output            	ddr3_reset_n,
   output            	ddr3_ck_p,
@@ -70,11 +70,8 @@ module system_top (
   input   [  3:0]   	eth1_rx_d,
   output            	eth1_mdc,
   inout             	eth1_mdio,
-  inout					link_st,
-  inout					rx_er,
-  inout					phy_int,
-  inout					eth_rst,
-  inout					phy_led1,
+  inout			eth_rst,
+  inout			phy_int,
   
   // hps-qspi
 
@@ -91,11 +88,11 @@ module system_top (
   // hps-usb
 
   input             	usb1_clk,
-  output           	 	usb1_stp,
+  output           	usb1_stp,
   input             	usb1_dir,
   input             	usb1_nxt,
   inout   [  7:0]   	usb1_d,
-  inout					usb1_rst,
+  inout			usb1_rst,
 
   // hps-uart
 
@@ -105,15 +102,15 @@ module system_top (
   // hps-i2c
 
   inout             	hps_scl,
-  inout            	 	hps_sda,
+  inout            	hps_sda,
 
   // display
 
   output            	hdmi_clk,
-  output	          	hdmi_de,
-  output	          	hdmi_hsync,
-  output	          	hdmi_vsync,
-  output  [  23:0]		hdmi_data,
+  output	        hdmi_de,
+  output	        hdmi_hsync,
+  output	        hdmi_vsync,
+  output  [  23:0]	hdmi_data,
   
   output            	hdmi_spdif,
   input             	hdmi_spdifout,
@@ -138,27 +135,34 @@ module system_top (
   inout             	fmc_prsnt_m2c,
   inout             	cpu_gpio_0,
   inout             	cpu_gpio_1,
+  inout             	cpu_gpio_2,
+  inout             	cpu_gpio_3,
+  inout             	cpu_gpio_4,
   inout             	led_hps_1,
   inout             	led_hps_2,
-  inout             	therm_n,
-  inout             	alert_n,
   inout             	user_btn_hps,
-  inout             	status,
-  inout             	as_rst,
-  inout            	 	qspi_rst 
+  inout             	nc1,
+  inout            	nc2,
+  inout			nc3,
+  inout			nc4,
+  inout			nc5,
+
+  output		fmc_pg_c2m_fpga
 );
 
   // internal signals
 
   wire              	sys_resetn;
   
-  wire	[15:0]			hdmi_data_pd;
+  wire	[15:0]		hdmi_data_pd;
 
   // defaults
 
   assign ct_hpd = 1'b1;
   assign ls_oe = 1'b1;  
   assign cec_clk = 1'b0;
+
+  assign fmc_pg_c2m_fpga = 1'b1;
  
   // yuv422, separate sync, x1 clk, style 1, table 18, 1080p, hdmi_clk 148.5M
   
@@ -208,28 +212,28 @@ module system_top (
     .sys_hps_hps_io_hps_io_usb1_inst_NXT (usb1_nxt),
     .sys_hps_hps_io_hps_io_uart0_inst_RX (uart0_rx),
     .sys_hps_hps_io_hps_io_uart0_inst_TX (uart0_tx),
-	.sys_hps_hps_io_hps_io_i2c0_inst_SDA (fmc_sda),
-	.sys_hps_hps_io_hps_io_i2c0_inst_SCL (fmc_scl),
-	.sys_hps_hps_io_hps_io_i2c1_inst_SDA (hps_sda),
-	.sys_hps_hps_io_hps_io_i2c1_inst_SCL (hps_scl),	
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO00 (link_st),
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO09 (rx_er),
+    .sys_hps_hps_io_hps_io_i2c0_inst_SDA (fmc_sda),
+    .sys_hps_hps_io_hps_io_i2c0_inst_SCL (fmc_scl),
+    .sys_hps_hps_io_hps_io_i2c1_inst_SDA (hps_sda),
+    .sys_hps_hps_io_hps_io_i2c1_inst_SCL (hps_scl),	
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO00 (nc3),
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO09 (nc4),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO35 (phy_int),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO40 (fmc_pg_c2m),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO41 (fmc_prsnt_m2c),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO42 (usb1_rst),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO43 (eth_rst),
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO44 (phy_led1),
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO44 (nc5),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO48 (cpu_gpio_0),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO53 (led_hps_1),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO54 (led_hps_2),
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO55 (therm_n),
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO56 (alert_n),
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO55 (cpu_gpio_2),
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO56 (cpu_gpio_3),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO57 (user_btn_hps),
     .sys_hps_hps_io_hps_io_gpio_inst_GPIO58 (cpu_gpio_1),
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO59 (status),
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO61 (as_rst),
-    .sys_hps_hps_io_hps_io_gpio_inst_GPIO65 (qspi_rst),
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO59 (nc1),
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO61 (cpu_gpio_4),
+    .sys_hps_hps_io_hps_io_gpio_inst_GPIO65 (nc2),
     .sys_hps_memory_mem_a (ddr3_a),
     .sys_hps_memory_mem_ba (ddr3_ba),
     .sys_hps_memory_mem_ck (ddr3_ck_p),
@@ -246,20 +250,20 @@ module system_top (
     .sys_hps_memory_mem_odt (ddr3_odt),
     .sys_hps_memory_mem_dm (ddr3_dm),
     .sys_hps_memory_oct_rzqin (ddr3_rzq),
-	.axi_spi_engine_0_irq_irq (), 
-	.spi_engine_execution_0_spi_out_three_wire (), 
-	.spi_engine_execution_0_spi_out_sdo_t (),      
-	.spi_engine_execution_0_spi_out_sdo (ad40xx_spi_mosi),       
-	.spi_engine_execution_0_spi_out_sdi (ad40xx_spi_miso),        
-	.spi_engine_execution_0_spi_out_cs (ad40xx_spi_csn),         
-	.spi_engine_execution_0_spi_out_sclk (ad40xx_spi_clk),      
+    .axi_spi_engine_0_irq_irq (), 
+    .spi_engine_execution_0_spi_out_three_wire (), 
+    .spi_engine_execution_0_spi_out_sdo_t (),      
+    .spi_engine_execution_0_spi_out_sdo (ad40xx_spi_mosi),       
+    .spi_engine_execution_0_spi_out_sdi (ad40xx_spi_miso),        
+    .spi_engine_execution_0_spi_out_cs (ad40xx_spi_csn),         
+    .spi_engine_execution_0_spi_out_sclk (ad40xx_spi_clk),      
     .trigger_gen_0_pulse_period_pulse_period     (32'b0),
     .trigger_gen_0_pulse_width_pulse_width       (32'b0),
-	.trigger_gen_0_load_config_load_config       (1'b0),
+    .trigger_gen_0_load_config_load_config       (1'b0),
     .upscale_converter_0_dfmt_enable_dfmt_enable (1'b1),
     .upscale_converter_0_dfmt_se_dfmt_se         (1'b1),
     .upscale_converter_0_dfmt_type_dfmt_type     (1'b0),
-	.sys_rst_reset_n (sys_resetn),
+    .sys_rst_reset_n (sys_resetn),
     .hdmi_out_h_clk (hdmi_clk),
     .hdmi_out_h16_hsync (hdmi_hsync),
     .hdmi_out_h16_vsync (hdmi_vsync),

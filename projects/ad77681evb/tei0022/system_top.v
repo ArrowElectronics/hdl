@@ -43,7 +43,7 @@ module system_top (
 
   // hps-ddr
 
-  output  [ 15:0]   	ddr3_a,
+  output  [ 14:0]   	ddr3_a,
   output  [  2:0]   	ddr3_ba,
   output            	ddr3_reset_n,
   output            	ddr3_ck_p,
@@ -70,11 +70,8 @@ module system_top (
   input   [  3:0]   	eth1_rx_d,
   output            	eth1_mdc,
   inout             	eth1_mdio,
- // inout			link_st,
- // inout			rx_er,
-  inout			phy_int,
   inout			eth_rst,
- // inout			phy_led1,
+  inout			phy_int,
   
   // hps-qspi
 
@@ -155,7 +152,9 @@ module system_top (
   inout            	nc2,
   inout			nc3,
   inout			nc4,
-  inout			nc5
+  inout			nc5,
+
+  output		fmc_pg_c2m_fpga
 );
 
   // internal signals
@@ -176,13 +175,15 @@ module system_top (
 
   wire              	sys_resetn;
   
-  wire	[15:0]			hdmi_data_pd;
+  wire	[15:0]		hdmi_data_pd;
 
   // defaults
 
   assign ct_hpd = 1'b1;
   assign ls_oe = 1'b1;  
   assign cec_clk = 1'b0;
+
+  assign fmc_pg_c2m_fpga = 1'b1;
  
   // yuv422, separate sync, x1 clk, style 1, table 18, 1080p, hdmi_clk 148.5M
   

@@ -1383,7 +1383,7 @@
       <pin name="parallelterminationcontrol[13]" direction="input" scope="internal" />
       <pin name="parallelterminationcontrol[14]" direction="input" scope="internal" />
       <pin name="parallelterminationcontrol[15]" direction="input" scope="internal" />
-      <pin name="mem_a[15..0]" direction="output" scope="external" />
+      <pin name="mem_a[14..0]" direction="output" scope="external" />
       <pin name="mem_a[0]" direction="output" scope="external" />
       <pin name="mem_a[1]" direction="output" scope="external" />
       <pin name="mem_a[2]" direction="output" scope="external" />
@@ -1399,7 +1399,6 @@
       <pin name="mem_a[12]" direction="output" scope="external" />
       <pin name="mem_a[13]" direction="output" scope="external" />
       <pin name="mem_a[14]" direction="output" scope="external" />
-      <pin name="mem_a[15]" direction="output" scope="external" />
       <pin name="mem_ba[2..0]" direction="output" scope="external" />
       <pin name="mem_ba[0]" direction="output" scope="external" />
       <pin name="mem_ba[1]" direction="output" scope="external" />

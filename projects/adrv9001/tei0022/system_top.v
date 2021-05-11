@@ -43,7 +43,7 @@ module system_top (
 
   // hps-ddr
 
-  output  [ 15:0]   	ddr3_a,
+  output  [ 14:0]   	ddr3_a,
   output  [  2:0]   	ddr3_ba,
   output            	ddr3_reset_n,
   output            	ddr3_ck_p,

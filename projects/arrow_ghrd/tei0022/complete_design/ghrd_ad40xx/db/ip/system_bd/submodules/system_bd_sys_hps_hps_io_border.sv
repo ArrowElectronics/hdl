@@ -13,7 +13,7 @@
 
 module system_bd_sys_hps_hps_io_border(
 // memory
-  output wire [16 - 1 : 0 ] mem_a
+  output wire [15 - 1 : 0 ] mem_a
  ,output wire [3 - 1 : 0 ] mem_ba
  ,output wire [1 - 1 : 0 ] mem_ck
  ,output wire [1 - 1 : 0 ] mem_ck_n
@@ -467,7 +467,7 @@ hps_sdram hps_sdram_inst(
     mem_ba[2:0] // 2:0
   })
 ,.mem_a({
-    mem_a[15:0] // 15:0
+    mem_a[14:0] // 14:0
   })
 ,.mem_cs_n({
     mem_cs_n[0:0] // 0:0

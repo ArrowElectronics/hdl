@@ -412,8 +412,8 @@ https://fpgasoftware.intel.com/eula.
 	(port
 		(pt 720 112)
 		(output)
-		(text "sys_hps_memory_mem_a[15..0]" (rect 0 0 138 12)(font "Arial" (font_size 8)))
-		(text "sys_hps_memory_mem_a[15..0]" (rect 560 101 722 112)(font "Arial" (font_size 8)))
+		(text "sys_hps_memory_mem_a[14..0]" (rect 0 0 139 12)(font "Arial" (font_size 8)))
+		(text "sys_hps_memory_mem_a[14..0]" (rect 560 101 722 112)(font "Arial" (font_size 8)))
 		(line (pt 720 112)(pt 464 112)(line_width 3))
 	)
 	(port

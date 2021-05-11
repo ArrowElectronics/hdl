@@ -58,7 +58,7 @@ set_instance_parameter_value sys_hps {REF_CLK_FREQ} {25.0}
 set_instance_parameter_value sys_hps {MEM_VOLTAGE} {1.5V DDR3}
 set_instance_parameter_value sys_hps {MEM_CLK_FREQ_MAX} {800.0}
 set_instance_parameter_value sys_hps {MEM_DQ_WIDTH} {32}
-set_instance_parameter_value sys_hps {MEM_ROW_ADDR_WIDTH} {16}
+set_instance_parameter_value sys_hps {MEM_ROW_ADDR_WIDTH} {15}
 set_instance_parameter_value sys_hps {MEM_COL_ADDR_WIDTH} {10}
 set_instance_parameter_value sys_hps {MEM_BANKADDR_WIDTH} {3}
 set_instance_parameter_value sys_hps {MEM_TCL} {5}
