@@ -132,14 +132,14 @@ module system_top_si (
   output             ad7606b_cnvst,
   input              ad7606b_busy,
   
-  inout		   	   ad7606b_os0,
+  inout		   	ad7606b_os0,
   inout		   	ad7606b_os1,
   inout		     	ad7606b_os2,
   inout		     	ad7606b_reset,
   inout		     	ad7606b_frstdata,
   inout		     	ad7606b_range,
   inout		     	ad7606b_refsel,
-  inout		     	ad7606b_serpar,
+  output	     	ad7606b_serpar,
   inout		     	ad7606b_stby,
 
   // misc
@@ -158,7 +158,12 @@ module system_top_si (
   inout            	nc2,
   inout			nc3,
   inout			nc4,
-  inout			nc5
+  inout			nc5,
+
+  output [3:0] test,
+  output [3:0] test1,
+  output [1:0] test2
+ 
 );
 
   // internal signals
@@ -175,7 +180,16 @@ module system_top_si (
   assign ad7606b_refsel = ad7606b_o[6];
   assign ad7606b_serpar = 1;//ad7606b_o[7];
   assign ad7606b_stby = ad7606b_o[8];
-  
+	
+  //assign ad7606b_cnvst=ad7606b_o[9];
+
+
+  wire temp1, temp2;
+  assign test2[0]=temp1;
+  assign test2[1]=temp2;
+  assign ad7606b_sclk=temp1;
+  assign ad7606b_sdo=temp2;
+
 ////////////
 
   wire            sys_resetn;
@@ -275,9 +289,9 @@ module system_top_si (
     .sys_hps_memory_mem_dm (ddr3_dm),
     .sys_hps_memory_oct_rzqin (ddr3_rzq),
 	 
-	 .axi_ad7606b_serial_interface_sclk (ad7606b_sclk),
+	 .axi_ad7606b_serial_interface_sclk (temp1),
 	 .axi_ad7606b_serial_interface_sdi (ad7606b_sdi[3:0]),
-	 .axi_ad7606b_serial_interface_sdo (ad7606b_sdo),
+	 .axi_ad7606b_serial_interface_sdo (temp2),
 	 .axi_ad7606b_control_interface_busy (ad7606b_busy),
 	 .axi_ad7606b_control_interface_cnvst (ad7606b_cnvst),
 	 .axi_ad7606b_control_interface_cs_n (ad7606b_csn),
@@ -287,6 +301,8 @@ module system_top_si (
 	 .axi_ad7606b_parallel_interface_wr_n ( ),
 	 .axi_ad7606b_parallel_interface_rd_n ( ),
          .ad7606b_gpio_export_export(ad7606b_o[15:0]),
+	 .test_test(test[3:0]),
+	 .test1_test1(test1[3:0]),
 		
     .sys_rst_reset_n (sys_resetn),
     .hdmi_out_h_clk (hdmi_clk),

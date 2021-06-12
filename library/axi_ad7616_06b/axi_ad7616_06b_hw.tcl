@@ -286,3 +286,24 @@ set_interface_property s_axi_aclk SVD_ADDRESS_GROUP ""
 
 add_interface_port s_axi_aclk s_axi_aclk clk Input 1
 
+
+# 
+# connection point spi_clk
+# 
+add_interface spi_clk clock sink
+set_interface_property spi_clk clockRate 0
+add_interface_port spi_clk spi_clk clk Input 1
+
+
+# 
+# connection point test 
+# 
+add_interface test conduit end
+set_interface_property test associatedClock s_axi_aclk
+set_interface_property test associatedReset ""
+add_interface_port test test test Output 4
+
+add_interface test1 conduit end
+set_interface_property test1 associatedClock s_axi_aclk
+set_interface_property test1 associatedReset ""
+add_interface_port test1 test1 test1 Output 4

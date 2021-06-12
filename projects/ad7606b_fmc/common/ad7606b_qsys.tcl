@@ -1,5 +1,19 @@
 global ad7606b_if 
 
+# spi engine pll
+
+add_instance spi_engine_pll altera_pll
+set_instance_parameter_value spi_engine_pll {gui_device_speed_grade} {8}
+set_instance_parameter_value spi_engine_pll {gui_reference_clock_frequency} {100.0}
+set_instance_parameter_value spi_engine_pll {gui_use_locked} {0}
+set_instance_parameter_value spi_engine_pll {gui_number_of_clocks} {1}
+set_instance_parameter_value spi_engine_pll {gui_output_clock_frequency0} {166.667}
+
+#add_interface clk_src clock source
+#set_interface_property clk_src EXPORT_OF spi_engine_pll.outclk0
+add_connection sys_hps.h2f_user1_clock spi_engine_pll.refclk
+add_connection sys_clk.clk_reset spi_engine_pll.reset
+
 # ad7606b_gpio
 
 add_instance ad7606b_gpio altera_avalon_pio
@@ -14,7 +28,7 @@ add_connection sys_hps.h2f_user1_clock ad7606b_gpio.clk
 add_interface ad7606b_gpio_export conduit end
 set_interface_property ad7606b_gpio_export EXPORT_OF ad7606b_gpio.external_connection
 
-ad_cpu_interconnect 0x00020050 ad7606b_gpio.s1
+ad_cpu_interconnect 0x00020060 ad7606b_gpio.s1
 
 # ad7606b_if 
 
@@ -36,11 +50,18 @@ set_connection_parameter_value sys_hps.f2h_irq0/axi_ad7606b.irq irqNumber {6}
 add_connection sys_hps.f2h_irq1 axi_ad7606b.irq
 set_connection_parameter_value sys_hps.f2h_irq1/axi_ad7606b.irq irqNumber {6}
 
+add_connection spi_engine_pll.outclk0 axi_ad7606b.spi_clk
+
 add_connection sys_hps.h2f_user1_clock axi_ad7606b.s_axi_aclk
 add_connection sys_hps.h2f_lw_axi_master axi_ad7606b.s_axi
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_ad7606b.s_axi arbitrationPriority {1}
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_ad7606b.s_axi baseAddress {0x00040000}
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_ad7606b.s_axi defaultConnection {0}
+
+add_interface test conduit end
+set_interface_property test EXPORT_OF axi_ad7606b.test 
+add_interface test1 conduit end
+set_interface_property test1 EXPORT_OF axi_ad7606b.test1 
 
 # spi-dma fifo
 

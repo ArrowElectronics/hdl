@@ -129,7 +129,7 @@ module system_top_pi (
   
   inout [15:0]       ad7606b_db,
   output             ad7606b_rdn,
-  output         		ad7606b_wrn,
+  output             ad7606b_wrn,
   
   output             ad7606b_csn,
   output             ad7606b_cnvst,
@@ -142,7 +142,7 @@ module system_top_pi (
   inout				   ad7606b_frstdata,
   inout				   ad7606b_range,
   inout				   ad7606b_refsel,
-  inout				   ad7606b_serpar,
+  output			   ad7606b_serpar,
   inout				   ad7606b_stby,
 
   // misc
@@ -161,9 +161,11 @@ module system_top_pi (
   inout            	nc2,
   inout					nc3,
   inout					nc4,
-  inout					nc5
-);
+  inout					nc5,
 
+output test
+);
+assign test =0;
   // internal signals
 
 //user added code
@@ -186,6 +188,7 @@ module system_top_pi (
   assign ad7606b_serpar= 0;//ad7606b_o[7];
   assign ad7606b_stby= ad7606b_o[8];
   
+
 ////////////
 
   wire              	sys_resetn;

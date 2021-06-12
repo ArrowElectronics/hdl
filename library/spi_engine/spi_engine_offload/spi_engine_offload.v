@@ -79,8 +79,16 @@ module spi_engine_offload #(
 
   output offload_sdi_valid,
   input offload_sdi_ready,
-  output [(NUM_OF_SDI * DATA_WIDTH-1):0] offload_sdi_data
+  output [(NUM_OF_SDI * DATA_WIDTH-1):0] offload_sdi_data,
+
+output[3:0] test
 );
+
+assign test[0]=trigger_s;
+assign test[1]=spi_enable;
+assign test[2]=spi_active;
+assign test[3]=spi_resetn?ctrl_cmd_wr_en:0;
+
 
 reg spi_active = 1'b0;
 

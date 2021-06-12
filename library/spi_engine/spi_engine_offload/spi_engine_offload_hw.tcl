@@ -134,3 +134,9 @@ add_interface_port offload_sdi offload_sdi_valid valid Output 1
 add_interface_port offload_sdi offload_sdi_data data Output NUM_OF_SDI*DATA_WIDTH
 
 
+# 
+# connection point test
+# 
+add_interface test conduit end
+set_interface_property test associatedClock spi_clk
+add_interface_port test test test output 4
