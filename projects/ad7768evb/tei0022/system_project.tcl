@@ -35,6 +35,13 @@ set_location_assignment PIN_B13  -to sync_n              ; ## H10  FMC_LPC_LA04_
 set_location_assignment PIN_H12  -to sync_in_n           ; ## D12  FMC_LPC_LA05_N     IO_L7N_T1_34              
 set_location_assignment PIN_F14  -to mclk                ; ## D09  FMC_LPC_LA01_CC_N  IO_L14N_T2_SRCC_34 
 
+set_location_assignment Pin_AD9  -to test[0]   ; ## D12  FMC_LA05_P 
+set_location_assignment Pin_AD11  -to test[1]   ; ## D12  FMC_LA05_P  
+set_location_assignment Pin_AD12  -to test[2]   ; ## D12  FMC_LA05_P  
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test[2]
+
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk_in
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ready_in
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to data_in[0] 

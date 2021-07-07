@@ -3,9 +3,9 @@
 ## Auto-generated, do not modify!
 ####################################################################################
 
-PROJECT_NAME := ad7768evb_tei0022
+PROJECT_NAME := ad7768_1_fmc_tei0022
 
-M_DEPS += ../common/ad7768_qsys.tcl
+M_DEPS += ../common/ad7768_1_qsys.tcl
 M_DEPS += ../../common/tei0022/tei0022_system_qsys.tcl
 M_DEPS += ../../common/tei0022/tei0022_system_assign.tcl
 

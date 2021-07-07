@@ -87,7 +87,7 @@ module axi_ad7616_06b #(
   // Write FIFO interface
 
   output                  adc_valid,
-  output      [15:0]      adc_data,
+  output [(NUM_OF_SDI * DATA_WIDTH-1):0] adc_data,
   output                  adc_sync,
 
   output      [3:0]       test,
@@ -135,7 +135,7 @@ module axi_ad7616_06b #(
   wire    [ 4:0]                    burst_length_s;
   wire                              m_axis_ready_s;
   wire                              m_axis_valid_s;
-  wire    [15:0]                    m_axis_data_s;
+  wire [(NUM_OF_SDI * DATA_WIDTH-1):0]  m_axis_data_s;
   wire                              m_axis_xfer_req_s;
 
   // defaults
@@ -144,6 +144,8 @@ module axi_ad7616_06b #(
  // assign up1_clk = spi_clk;//user added clock
   assign up_rstn = s_axi_aresetn;
   assign up_rst = ~s_axi_aresetn;
+
+
 
   // processor read interface
 
@@ -158,6 +160,11 @@ module axi_ad7616_06b #(
       up_rdata <= up_rdata_if_s | up_rdata_cntrl_s;
     end
   end
+
+  assign test1[0]=adc_valid;
+  assign test1[1]=adc_sync;
+  assign test1[2]=m_axis_valid_s;
+  assign test1[3]=m_axis_ready_s;
 
   generate if (IF_TYPE == SERIAL) begin
 
@@ -213,6 +220,9 @@ module axi_ad7616_06b #(
     wire                                    offload0_mem_reset_s;
     wire                                    offload0_enable_s;
     wire                                    offload0_enabled_s;
+
+    wire [127:0] data_temp;
+    assign data_temp[127:0]={16'h0707,16'h0606,16'h0505,16'h0404,16'h0303,16'h0202,16'h0101,16'h00ff};
 
     axi_spi_engine #(
       .DATA_WIDTH (DATA_WIDTH),
@@ -279,7 +289,8 @@ module axi_ad7616_06b #(
       .sdo_data (s1_sdo_data_s),
       .sdi_data_valid (s1_sdi_data_valid_s),
       .sdi_data_ready (s1_sdi_data_ready_s),
-      .sdi_data (s1_sdi_data_s),
+      //.sdi_data (s1_sdi_data_s),
+       .sdi_data (data_temp),
       .sync_valid (s1_sync_valid_s),
       .sync_ready (s1_sync_ready_s),
       .sync_data (s1_sync_s),
@@ -333,7 +344,8 @@ module axi_ad7616_06b #(
 
     spi_engine_execution #(
       .DATA_WIDTH (DATA_WIDTH),
-      .NUM_OF_SDI (NUM_OF_SDI)
+      .NUM_OF_SDI (NUM_OF_SDI),
+      .SDI_DELAY(2)
     ) i_spi_engine_execution (
       .clk (spi_clk),
       .resetn (spi_resetn_s),
@@ -375,6 +387,7 @@ module axi_ad7616_06b #(
       .fifo_wr_xfer_req(1'b1)
     );
 
+	
   end
   endgenerate
 
@@ -395,7 +408,7 @@ module axi_ad7616_06b #(
       .db_t (rx_db_t),
       .rd_n (rx_rd_n),
       .wr_n (rx_wr_n),
-      .adc_data (adc_data),
+      .adc_data (adc_data[15:0]),
       .adc_valid (adc_valid),
       .adc_sync (adc_sync),
       .end_of_conv (trigger_s),
@@ -436,7 +449,7 @@ module axi_ad7616_06b #(
     .up_raddr (up_raddr_s),
     .up_rdata (up_rdata_cntrl_s),
     .up_rack (up_rack_cntrl_s),
-    .test (test1[3:0]));
+    .test ());
 
   // up bus interface
 

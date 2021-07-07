@@ -240,7 +240,7 @@ set_interface_property adc_data PORT_NAME_MAP ""
 set_interface_property adc_data CMSIS_SVD_VARIABLES ""
 set_interface_property adc_data SVD_ADDRESS_GROUP ""
 
-add_interface_port adc_data adc_data data Output 16
+add_interface_port adc_data adc_data data Output "DATA_WIDTH - (NUM_OF_SDI-1)*(IF_TYPE-1)*DATA_WIDTH"
 
 
 # 

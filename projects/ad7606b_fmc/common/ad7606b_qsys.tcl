@@ -2,17 +2,17 @@ global ad7606b_if
 
 # spi engine pll
 
-add_instance spi_engine_pll altera_pll
-set_instance_parameter_value spi_engine_pll {gui_device_speed_grade} {8}
-set_instance_parameter_value spi_engine_pll {gui_reference_clock_frequency} {100.0}
-set_instance_parameter_value spi_engine_pll {gui_use_locked} {0}
-set_instance_parameter_value spi_engine_pll {gui_number_of_clocks} {1}
-set_instance_parameter_value spi_engine_pll {gui_output_clock_frequency0} {166.667}
+#add_instance spi_engine_pll altera_pll
+#set_instance_parameter_value spi_engine_pll {gui_device_speed_grade} {8}
+#set_instance_parameter_value spi_engine_pll {gui_reference_clock_frequency} {100.0}
+#set_instance_parameter_value spi_engine_pll {gui_use_locked} {0}
+#set_instance_parameter_value spi_engine_pll {gui_number_of_clocks} {1}
+#set_instance_parameter_value spi_engine_pll {gui_output_clock_frequency0} {100.00}
 
 #add_interface clk_src clock source
 #set_interface_property clk_src EXPORT_OF spi_engine_pll.outclk0
-add_connection sys_hps.h2f_user1_clock spi_engine_pll.refclk
-add_connection sys_clk.clk_reset spi_engine_pll.reset
+#add_connection sys_hps.h2f_user1_clock spi_engine_pll.refclk
+#add_connection sys_clk.clk_reset spi_engine_pll.reset
 
 # ad7606b_gpio
 
@@ -33,7 +33,7 @@ ad_cpu_interconnect 0x00020060 ad7606b_gpio.s1
 # ad7606b_if 
 
 add_instance axi_ad7606b axi_ad7616_06b
-set_instance_parameter_value axi_ad7606b {DATA_WIDTH} {16}
+set_instance_parameter_value axi_ad7606b {DATA_WIDTH} {32}
 set_instance_parameter_value axi_ad7606b {ID} {0}
 set_instance_parameter_value axi_ad7606b {IF_TYPE} {$ad7606b_if}
 set_instance_parameter_value axi_ad7606b {NUM_OF_SDI} {4}
@@ -47,10 +47,9 @@ set_interface_property axi_ad7606b_serial_interface EXPORT_OF axi_ad7606b.Serial
 add_connection sys_clk.clk_reset axi_ad7606b.s_axi_aresetn
 add_connection sys_hps.f2h_irq0 axi_ad7606b.irq
 set_connection_parameter_value sys_hps.f2h_irq0/axi_ad7606b.irq irqNumber {6}
-add_connection sys_hps.f2h_irq1 axi_ad7606b.irq
-set_connection_parameter_value sys_hps.f2h_irq1/axi_ad7606b.irq irqNumber {6}
 
-add_connection spi_engine_pll.outclk0 axi_ad7606b.spi_clk
+#add_connection spi_engine_pll.outclk0 axi_ad7606b.spi_clk
+add_connection sys_hps.h2f_user1_clock axi_ad7606b.spi_clk
 
 add_connection sys_hps.h2f_user1_clock axi_ad7606b.s_axi_aclk
 add_connection sys_hps.h2f_lw_axi_master axi_ad7606b.s_axi
@@ -70,7 +69,7 @@ set_instance_parameter_value spi_dmac {ASYNC_CLK_DEST_REQ_MANUAL} {1}
 set_instance_parameter_value spi_dmac {ASYNC_CLK_REQ_SRC_MANUAL} {1}
 set_instance_parameter_value spi_dmac {ASYNC_CLK_SRC_DEST_MANUAL} {1}
 set_instance_parameter_value spi_dmac {AUTO_ASYNC_CLK} {1}
-set_instance_parameter_value spi_dmac {AXI_SLICE_DEST} {1}
+set_instance_parameter_value spi_dmac {AXI_SLICE_DEST} {0}
 set_instance_parameter_value spi_dmac {AXI_SLICE_SRC} {0}
 set_instance_parameter_value spi_dmac {CYCLIC} {0}
 set_instance_parameter_value spi_dmac {DISABLE_DEBUG_REGISTERS} {0}
@@ -79,8 +78,8 @@ set_instance_parameter_value spi_dmac {DMA_AXIS_DEST_W} {4}
 set_instance_parameter_value spi_dmac {DMA_AXIS_ID_W} {8}
 set_instance_parameter_value spi_dmac {DMA_AXI_PROTOCOL_DEST} {1}
 set_instance_parameter_value spi_dmac {DMA_AXI_PROTOCOL_SRC} {1}
-set_instance_parameter_value spi_dmac {DMA_DATA_WIDTH_DEST} {64}
-set_instance_parameter_value spi_dmac {DMA_DATA_WIDTH_SRC} {16}
+set_instance_parameter_value spi_dmac {DMA_DATA_WIDTH_DEST} {128}
+set_instance_parameter_value spi_dmac {DMA_DATA_WIDTH_SRC} {128}
 set_instance_parameter_value spi_dmac {DMA_LENGTH_WIDTH} {24}
 set_instance_parameter_value spi_dmac {DMA_TYPE_DEST} {0}
 set_instance_parameter_value spi_dmac {DMA_TYPE_SRC} {2}
@@ -108,10 +107,9 @@ add_connection sys_clk.clk_reset spi_dmac.m_dest_axi_reset
 add_connection sys_clk.clk_reset spi_dmac.s_axi_reset
 add_connection sys_hps.f2h_irq0 spi_dmac.interrupt_sender
 set_connection_parameter_value sys_hps.f2h_irq0/spi_dmac.interrupt_sender irqNumber {5}
-#add_connection sys_hps.f2h_irq1 spi_dmac.interrupt_sender
-#set_connection_parameter_value sys_hps.f2h_irq1/spi_dmac.interrupt_sender irqNumber {5}
 
 add_connection sys_hps.h2f_user1_clock spi_dmac.if_fifo_wr_clk
+#add_connection spi_engine_pll.outclk0 spi_dmac.if_fifo_wr_clk
 add_connection sys_hps.h2f_user1_clock spi_dmac.m_dest_axi_clock
 add_connection sys_hps.h2f_user1_clock spi_dmac.s_axi_clock
 add_connection sys_hps.h2f_lw_axi_master spi_dmac.s_axi
@@ -119,3 +117,4 @@ set_connection_parameter_value sys_hps.h2f_lw_axi_master/spi_dmac.s_axi arbitrat
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/spi_dmac.s_axi baseAddress {0x00050000}
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/spi_dmac.s_axi defaultConnection {0}
 
+set_instance_parameter_value sys_hps {F2SDRAM_Width} {64 128 64}

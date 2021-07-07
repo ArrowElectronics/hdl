@@ -73,7 +73,7 @@ module axi_ad7616_maxis2wrfifo #(
       fifo_wr_en <= m_axis_valid;
       if (sync_in == 1'b1) begin
         fifo_wr_sync <= 1'b1;
-      end else if ((m_axis_valid == 1'b1) &&
+      end else if ((fifo_wr_en == 1'b1) &&
                    (fifo_wr_sync == 1'b1)) begin
         fifo_wr_sync <= 1'b0;
       end

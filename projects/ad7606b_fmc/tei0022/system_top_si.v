@@ -70,8 +70,8 @@ module system_top_si (
   input   [  3:0]   	eth1_rx_d,
   output            	eth1_mdc,
   inout             	eth1_mdio,
-  inout					phy_int,
-  inout					eth_rst,
+  inout			phy_int,
+  inout			eth_rst,
   
   // hps-qspi
 
@@ -92,7 +92,7 @@ module system_top_si (
   input             	usb1_dir,
   input             	usb1_nxt,
   inout   [  7:0]   	usb1_d,
-  inout					usb1_rst,
+  inout			usb1_rst,
 
   // hps-uart
 
@@ -107,9 +107,9 @@ module system_top_si (
   // display
 
   output            	hdmi_clk,
-  output					hdmi_de,
-  output					hdmi_hsync,
-  output					hdmi_vsync,
+  output		hdmi_de,
+  output		hdmi_hsync,
+  output		hdmi_vsync,
   output  [  23:0]	hdmi_data,
   
   output            	hdmi_spdif,
@@ -124,13 +124,13 @@ module system_top_si (
   inout             	fmc_scl,
   inout             	fmc_sda,
   
-  output             ad7606b_sclk,
-  output             ad7606b_sdo,
-  input  [3:0]       ad7606b_sdi,
+  output                ad7606b_sclk,
+  output                ad7606b_sdo,
+  input  [3:0]          ad7606b_sdi,
   
-  output             ad7606b_csn,
-  output             ad7606b_cnvst,
-  input              ad7606b_busy,
+  output                ad7606b_csn,
+  output                ad7606b_cnvst,
+  input                 ad7606b_busy,
   
   inout		   	ad7606b_os0,
   inout		   	ad7606b_os1,
