@@ -277,27 +277,35 @@ module ad7768_if (
     adc_data <= {{8{adc_data_int[23]}}, adc_data_int[23:0]};
     if (adc_ch_valid_0 == 1'b1) begin
       adc_data_0 <= adc_ch_data_0;
+		//adc_data_0 <= 32'h000000ff;
     end
     if (adc_ch_valid_1 == 1'b1) begin
       adc_data_1 <= adc_ch_data_1;
+		//adc_data_1 <= 32'h00000101;
     end
     if (adc_ch_valid_2 == 1'b1) begin
       adc_data_2 <= adc_ch_data_2;
+      //adc_data_2 <= 32'h00000202;
     end
     if (adc_ch_valid_3 == 1'b1) begin
       adc_data_3 <= adc_ch_data_3;
+		//adc_data_3 <= 32'h00000303;
     end
     if (adc_ch_valid_4 == 1'b1) begin
       adc_data_4 <= adc_ch_data_4;
+		//adc_data_4 <= 32'h00000404;
     end
     if (adc_ch_valid_5 == 1'b1) begin
       adc_data_5 <= adc_ch_data_5;
+		//adc_data_5 <= 32'h00000505;
     end
     if (adc_ch_valid_6 == 1'b1) begin
-      adc_data_6 <= adc_ch_data_6;
+     adc_data_6 <= adc_ch_data_6;
+		//adc_data_6 <= 32'h00000606;
     end
     if (adc_ch_valid_7 == 1'b1) begin
       adc_data_7 <= adc_ch_data_7;
+		//adc_data_7 <= 32'h00000707;
     end
     adc_seq <= adc_seq_int;
     adc_valid_0 <= adc_ch_valid_7;

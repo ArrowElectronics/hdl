@@ -9,7 +9,7 @@ set_module_property COMPOSITION_CALLBACK p_intel_serdes
 
 # parameters
 
-ad_ip_parameter DEVICE_FAMILY STRING {Arria 10}
+ad_ip_parameter DEVICE_FAMILY STRING {Cylcone V}
 ad_ip_parameter MODE STRING "CLK" false
 ad_ip_parameter DDR_OR_SDR_N INTEGER 1 false
 ad_ip_parameter SERDES_FACTOR INTEGER 8 false

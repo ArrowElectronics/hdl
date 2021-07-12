@@ -32,7 +32,7 @@ set_module_property EDITABLE true
 set_module_property REPORT_TO_TALKBACK false
 set_module_property ALLOW_GREYBOX_GENERATION false
 set_module_property REPORT_HIERARCHY false
-
+set_module_property ELABORATION_CALLBACK ad7606_elaborate
 
 # 
 # file sets
@@ -80,7 +80,7 @@ set_parameter_property IF_TYPE DEFAULT_VALUE 1
 set_parameter_property IF_TYPE DISPLAY_NAME IF_TYPE
 set_parameter_property IF_TYPE TYPE INTEGER
 set_parameter_property IF_TYPE UNITS None
-set_parameter_property IF_TYPE ALLOWED_RANGES -2147483648:2147483647
+set_parameter_property IF_TYPE ALLOWED_RANGES {0, 1}
 set_parameter_property IF_TYPE HDL_PARAMETER true
 
 add_parameter NUM_OF_SDI INTEGER 2 
@@ -88,7 +88,7 @@ set_parameter_property NUM_OF_SDI DEFAULT_VALUE 2
 set_parameter_property NUM_OF_SDI DISPLAY_NAME NUM_OF_SDI
 set_parameter_property NUM_OF_SDI TYPE INTEGER
 set_parameter_property NUM_OF_SDI UNITS None
-set_parameter_property NUM_OF_SDI ALLOWED_RANGES -2147483648:2147483647
+set_parameter_property NUM_OF_SDI ALLOWED_RANGES 1:8
 set_parameter_property NUM_OF_SDI HDL_PARAMETER true
 
 add_parameter DATA_WIDTH INTEGER 8
@@ -96,13 +96,35 @@ set_parameter_property DATA_WIDTH DEFAULT_VALUE 8
 set_parameter_property DATA_WIDTH DISPLAY_NAME DATA_WIDTH
 set_parameter_property DATA_WIDTH TYPE INTEGER
 set_parameter_property DATA_WIDTH UNITS None
-set_parameter_property DATA_WIDTH ALLOWED_RANGES -2147483648:2147483647
+set_parameter_property DATA_WIDTH ALLOWED_RANGES 8:64
 set_parameter_property DATA_WIDTH HDL_PARAMETER true
 
-# 
-# display items
-# 
 
+add_parameter ADC_RESOLUTION INTEGER 16
+set_parameter_property ADC_RESOLUTION DEFAULT_VALUE 16
+set_parameter_property ADC_RESOLUTION DISPLAY_NAME ADC_RESOLUTION 
+set_parameter_property ADC_RESOLUTION TYPE INTEGER
+set_parameter_property ADC_RESOLUTION UNITS None
+set_parameter_property ADC_RESOLUTION ALLOWED_RANGES 8:32
+set_parameter_property ADC_RESOLUTION HDL_PARAMETER true
+
+
+add_parameter ADC_TYPE INTEGER 0
+set_parameter_property ADC_TYPE DEFAULT_VALUE 0
+set_parameter_property ADC_TYPE DISPLAY_NAME ADC_TYPE 
+set_parameter_property ADC_TYPE TYPE INTEGER
+set_parameter_property ADC_TYPE UNITS None
+set_parameter_property ADC_TYPE ALLOWED_RANGES 0:16
+set_parameter_property ADC_TYPE HDL_PARAMETER true
+
+
+add_parameter NUM_OF_CHANNELS INTEGER 8
+set_parameter_property NUM_OF_CHANNELS DEFAULT_VALUE 8
+set_parameter_property NUM_OF_CHANNELS DISPLAY_NAME NUM_OF_CHANNELS 
+set_parameter_property NUM_OF_CHANNELS TYPE INTEGER
+set_parameter_property NUM_OF_CHANNELS UNITS None
+set_parameter_property NUM_OF_CHANNELS ALLOWED_RANGES {4, 6, 8, 10, 12, 14, 16}
+set_parameter_property NUM_OF_CHANNELS HDL_PARAMETER true
 
 # 
 # connection point s_axi
@@ -272,7 +294,6 @@ set_interface_property adc_valid SVD_ADDRESS_GROUP ""
 
 add_interface_port adc_valid adc_valid valid Output 1
 
-
 # 
 # connection point s_axi_aclk
 # 
@@ -294,6 +315,29 @@ add_interface spi_clk clock sink
 set_interface_property spi_clk clockRate 0
 add_interface_port spi_clk spi_clk clk Input 1
 
+# 
+# connection point adc_valid_pp
+# 
+add_interface adc_valid_pp conduit end
+set_interface_property adc_valid_pp associatedClock spi_clk
+set_interface_property adc_valid_pp associatedReset ""
+set_interface_property adc_valid_pp ENABLED true
+set_interface_property adc_valid_pp EXPORT_OF ""
+set_interface_property adc_valid_pp PORT_NAME_MAP ""
+set_interface_property adc_valid_pp CMSIS_SVD_VARIABLES ""
+set_interface_property adc_valid_pp SVD_ADDRESS_GROUP ""
+
+add_interface_port adc_valid_pp adc_valid_pp fifo_wr_en Output 1
+
+proc ad7606_elaborate {} {
+ set num_channels [get_parameter_value NUM_OF_CHANNELS]
+ for {set n 0} {$n < $num_channels} {incr n} {
+    add_interface adc_data_ch$n conduit end
+    set_interface_property adc_data_ch$n associatedClock spi_clk
+    set_interface_property adc_data_ch$n associatedReset ""
+    add_interface_port adc_data_ch$n adc_data_ch$n data output ADC_RESOLUTION
+ }
+}
 
 # 
 # connection point test 

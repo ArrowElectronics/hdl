@@ -37,7 +37,8 @@
 
 module axi_ad7616_maxis2wrfifo #(
 
-  parameter   DATA_WIDTH = 16) (
+  parameter   DATA_WIDTH = 16,
+  parameter   ADC_TYPE= 0) (
 
   input                   clk,
   input                   rstn,
@@ -69,7 +70,7 @@ module axi_ad7616_maxis2wrfifo #(
     end else begin
       m_axis_ready <= 1'b1;
       m_axis_xfer_req <= fifo_wr_xfer_req;
-      fifo_wr_data <= m_axis_data;
+      fifo_wr_data <= temp;
       fifo_wr_en <= m_axis_valid;
       if (sync_in == 1'b1) begin
         fifo_wr_sync <= 1'b1;
@@ -79,5 +80,25 @@ module axi_ad7616_maxis2wrfifo #(
       end
     end
   end
+
+localparam      AD7606B = 1;
+
+wire [DATA_WIDTH-1:0] temp;
+
+generate if (ADC_TYPE == 0) begin
+	assign temp = m_axis_data;end
+endgenerate
+
+generate if (ADC_TYPE == AD7606B) begin
+	assign temp[15:0] = m_axis_data[31:16];
+	assign temp[31:16] = m_axis_data[15:0];
+	assign temp[47:32] = m_axis_data[63:48];
+	assign temp[63:48] = m_axis_data[47:32];
+	assign temp[79:64] = m_axis_data[95:80];
+	assign temp[95:80] = m_axis_data[79:64];
+	assign temp[111:96] = m_axis_data[127:112];
+	assign temp[127:112] = m_axis_data[111:96];end
+endgenerate
+
 
 endmodule

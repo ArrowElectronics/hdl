@@ -34,12 +34,15 @@
 // ***************************************************************************
 
 `timescale 1ns/100ps
-
+	
 module axi_ad7616_06b #(
 
   parameter       ID = 0,
   parameter       IF_TYPE = 1,
   parameter       NUM_OF_SDI = 2,
+  parameter       NUM_OF_CHANNELS = 8,
+  parameter       ADC_TYPE = 0,
+  parameter       ADC_RESOLUTION = 16,
   parameter       DATA_WIDTH = 8) (
 
   // physical data interface
@@ -49,8 +52,8 @@ module axi_ad7616_06b #(
   output                  rx_sdo,
   input wire [(NUM_OF_SDI-1):0]   rx_sdi,
 
-  output      [15:0]      rx_db_o,
-  input       [15:0]      rx_db_i,
+  output  [ADC_RESOLUTION-1:0]  rx_db_o,
+  input   [ADC_RESOLUTION-1:0]  rx_db_i,
   output                  rx_db_t,
   output                  rx_rd_n,
   output                  rx_wr_n,
@@ -87,9 +90,29 @@ module axi_ad7616_06b #(
   // Write FIFO interface
 
   output                  adc_valid,
-  output [(NUM_OF_SDI * DATA_WIDTH-1):0] adc_data,
+  output [(ADC_RESOLUTION * NUM_OF_CHANNELS-1):0] adc_data,
   output                  adc_sync,
-
+  
+  output                  adc_valid_pp,
+  output [ADC_RESOLUTION-1:0] adc_data_ch0, 	
+  output [ADC_RESOLUTION-1:0] adc_data_ch1, 	
+  output [ADC_RESOLUTION-1:0] adc_data_ch2, 	
+  output [ADC_RESOLUTION-1:0] adc_data_ch3, 	
+  output [(ADC_RESOLUTION-1):0] adc_data_ch4, 	
+  output [(ADC_RESOLUTION-1):0] adc_data_ch5, 	
+  output [(ADC_RESOLUTION-1):0] adc_data_ch6, 	
+  output [(ADC_RESOLUTION-1):0] adc_data_ch7, 	
+  output [(ADC_RESOLUTION-1):0] adc_data_ch8, 	
+  output [(ADC_RESOLUTION-1):0] adc_data_ch9, 	
+  output [(ADC_RESOLUTION-1):0] adc_data_ch10, 	
+  output [(ADC_RESOLUTION-1):0] adc_data_ch11, 	
+  output [(ADC_RESOLUTION-1):0] adc_data_ch12, 	
+  output [(ADC_RESOLUTION-1):0] adc_data_ch13, 	
+  output [(ADC_RESOLUTION-1):0] adc_data_ch14,
+  output [(ADC_RESOLUTION-1):0] adc_data_ch15, 	  
+  
+  
+  // test interface
   output      [3:0]       test,
   output      [3:0]       test1,
 
@@ -100,6 +123,10 @@ module axi_ad7616_06b #(
   localparam      SERIAL = 0;
   localparam      PARALLEL = 1;
   localparam      NEG_EDGE = 1;
+  
+  //'define adc_chan[0] adc_data_ch15
+  
+  
 
   // internal registers
 
@@ -135,7 +162,7 @@ module axi_ad7616_06b #(
   wire    [ 4:0]                    burst_length_s;
   wire                              m_axis_ready_s;
   wire                              m_axis_valid_s;
-  wire [(NUM_OF_SDI * DATA_WIDTH-1):0]  m_axis_data_s;
+  wire [(ADC_RESOLUTION * NUM_OF_CHANNELS-1):0]  m_axis_data_s;
   wire                              m_axis_xfer_req_s;
 
   // defaults
@@ -165,7 +192,35 @@ module axi_ad7616_06b #(
   assign test1[1]=adc_sync;
   assign test1[2]=m_axis_valid_s;
   assign test1[3]=m_axis_ready_s;
-
+ 
+  assign adc_valid_pp = adc_valid ;
+   
+  generate 
+  if (NUM_OF_CHANNELS >= 4) begin 
+  assign adc_data_ch0 = adc_data[ADC_RESOLUTION*1-1:ADC_RESOLUTION*0];
+  assign adc_data_ch1 = adc_data[ADC_RESOLUTION*2-1:ADC_RESOLUTION*1];
+  assign adc_data_ch2 = adc_data[ADC_RESOLUTION*3-1:ADC_RESOLUTION*2];
+  assign adc_data_ch3 = adc_data[ADC_RESOLUTION*4-1:ADC_RESOLUTION*3];end
+  if (NUM_OF_CHANNELS >= 6) begin 
+  assign adc_data_ch4 = adc_data[ADC_RESOLUTION*5-1:ADC_RESOLUTION*4];
+  assign adc_data_ch5 = adc_data[ADC_RESOLUTION*6-1:ADC_RESOLUTION*5];end
+  if (NUM_OF_CHANNELS >= 8) begin 
+  assign adc_data_ch6 = adc_data[ADC_RESOLUTION*7-1:ADC_RESOLUTION*6];
+  assign adc_data_ch7 = adc_data[ADC_RESOLUTION*8-1:ADC_RESOLUTION*7];end
+  if (NUM_OF_CHANNELS >= 10) begin 
+  assign adc_data_ch8 = adc_data[ADC_RESOLUTION*9-1:ADC_RESOLUTION*8];
+  assign adc_data_ch9 = adc_data[ADC_RESOLUTION*10-1:ADC_RESOLUTION*9];end
+  if (NUM_OF_CHANNELS >= 12) begin 
+  assign adc_data_ch10 = adc_data[ADC_RESOLUTION*11-1:ADC_RESOLUTION*10];
+  assign adc_data_ch11 = adc_data[ADC_RESOLUTION*12-1:ADC_RESOLUTION*11];end
+  if (NUM_OF_CHANNELS >= 14) begin 
+  assign adc_data_ch12 = adc_data[ADC_RESOLUTION*13-1:ADC_RESOLUTION*12];
+  assign adc_data_ch13 = adc_data[ADC_RESOLUTION*14-1:ADC_RESOLUTION*13];end
+  if (NUM_OF_CHANNELS == 16) begin 
+  assign adc_data_ch14 = adc_data[ADC_RESOLUTION*15-1:ADC_RESOLUTION*14];
+  assign adc_data_ch15 = adc_data[ADC_RESOLUTION*16-1:ADC_RESOLUTION*15];end
+  endgenerate
+  
   generate if (IF_TYPE == SERIAL) begin
 
     // ground all parallel interface signals
@@ -290,7 +345,7 @@ module axi_ad7616_06b #(
       .sdi_data_valid (s1_sdi_data_valid_s),
       .sdi_data_ready (s1_sdi_data_ready_s),
       //.sdi_data (s1_sdi_data_s),
-       .sdi_data (data_temp),
+      .sdi_data (data_temp),
       .sync_valid (s1_sync_valid_s),
       .sync_ready (s1_sync_ready_s),
       .sync_data (s1_sync_s),
@@ -373,7 +428,8 @@ module axi_ad7616_06b #(
       .three_wire ());
 
     axi_ad7616_maxis2wrfifo #(
-      .DATA_WIDTH(DATA_WIDTH*NUM_OF_SDI)
+      .DATA_WIDTH(ADC_RESOLUTION * NUM_OF_CHANNELS),
+		.ADC_TYPE(ADC_TYPE)
     ) i_maxis2wrfifo (
       .clk(spi_clk),
       .rstn(up_rstn),
@@ -484,6 +540,8 @@ module axi_ad7616_06b #(
     .up_raddr (up_raddr_s),
     .up_rdata (up_rdata),
     .up_rack (up_rack));
+	 
+	 
 
 endmodule
 
