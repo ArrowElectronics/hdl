@@ -163,15 +163,17 @@ module system_top_pi (
   inout					nc4,
   inout					nc5,
 
-output test
+  output [3:0] test,
+  output [3:0] test1,
+  output [1:0] test2
 );
-assign test =0;
+
   // internal signals
 
 //user added code
   wire  [15:0]		db_i;
   wire  [15:0]		db_o;
-  wire  				db_t;
+  wire  		db_t;
 
   assign ad7606b_db = db_t?db_o : 15'hZ ;
   assign db_i = db_t? 15'hZ : ad7606b_db ;
@@ -300,6 +302,8 @@ assign test =0;
 	 .axi_ad7606b_parallel_interface_wr_n (ad7606b_wrn),
 	 .axi_ad7606b_parallel_interface_rd_n (ad7606b_rdn),
     	 .ad7606b_gpio_export_export(ad7606b_o[15:0]),
+	 .test_test(test[3:0]),
+	 .test1_test1(test1[3:0]),
 		
     .sys_rst_reset_n (sys_resetn),
     .hdmi_out_h_clk (hdmi_clk),

@@ -61,8 +61,8 @@ static const unsigned int ad7616_oversampling_avail[8] = {
 	1, 2, 4, 8, 16, 32, 64, 128,
 };
 
-static const struct axiadc_chip_info conv_chip_info = {
-	.name = "ad7606_axi_adc",
+static const struct axiadc_chip_info conv_chip_info[]= {
+	[ID_AD7606B] = {.name = "ad7606b_axi_adc",
 	.max_rate = 800000000UL,
 	.num_channels = 8,
 	.channel[0] = AD7606B_CHANNEL(0),
@@ -72,7 +72,45 @@ static const struct axiadc_chip_info conv_chip_info = {
 	.channel[4] = AD7606B_CHANNEL(4),
 	.channel[5] = AD7606B_CHANNEL(5),
 	.channel[6] = AD7606B_CHANNEL(6),
-	.channel[7] = AD7606B_CHANNEL(7),
+	.channel[7] = AD7606B_CHANNEL(7),},
+
+	[ID_AD7605_4] = {.name = "ad7605_4_axi_adc",
+	.max_rate = 800000000UL,
+	.num_channels = 4,
+	.channel[0] = AD7606B_CHANNEL(0),
+	.channel[1] = AD7606B_CHANNEL(1),
+	.channel[2] = AD7606B_CHANNEL(2),
+	.channel[3] = AD7606B_CHANNEL(3),},
+
+	[ID_AD7606_8] = {.name = "ad7606_8_axi_adc",
+	.max_rate = 800000000UL,
+	.num_channels = 8,
+	.channel[0] = AD7606B_CHANNEL(0),
+	.channel[1] = AD7606B_CHANNEL(1),
+	.channel[2] = AD7606B_CHANNEL(2),
+	.channel[3] = AD7606B_CHANNEL(3),
+	.channel[4] = AD7606B_CHANNEL(4),
+	.channel[5] = AD7606B_CHANNEL(5),
+	.channel[6] = AD7606B_CHANNEL(6),
+	.channel[7] = AD7606B_CHANNEL(7),},
+
+	[ID_AD7606_4] = {.name = "ad7606_4_axi_adc",
+	.max_rate = 800000000UL,
+	.num_channels = 4,
+	.channel[0] = AD7606B_CHANNEL(0),
+	.channel[1] = AD7606B_CHANNEL(1),
+	.channel[2] = AD7606B_CHANNEL(2),
+	.channel[3] = AD7606B_CHANNEL(3),},
+
+	[ID_AD7606_6] = {.name = "ad7606_6_axi_adc",
+	.max_rate = 800000000UL,
+	.num_channels = 6,
+	.channel[0] = AD7606B_CHANNEL(0),
+	.channel[1] = AD7606B_CHANNEL(1),
+	.channel[2] = AD7606B_CHANNEL(2),
+	.channel[3] = AD7606B_CHANNEL(3),
+	.channel[4] = AD7606B_CHANNEL(4),
+	.channel[5] = AD7606B_CHANNEL(5),},
 };
 
 static int ad7606_reset(struct ad7606_state *st)
@@ -684,7 +722,7 @@ static int ad7606_post_setup(struct iio_dev *indio_dev){
 	return 0;
 }
 
-static int ad7606_register_axi_adc(struct ad7606_state *st, struct iio_dev *indio_dev)
+static int ad7606_register_axi_adc(struct ad7606_state *st)
 {
 	struct axiadc_converter	*conv;
 	struct spi_device *spi = to_spi_device(st->dev);
@@ -697,16 +735,12 @@ static int ad7606_register_axi_adc(struct ad7606_state *st, struct iio_dev *indi
 	printk(KERN_DEBUG "In ad7606  probe entered ad7606_register_axi_adc -2\n");
 	conv->spi = spi;
 	conv->clk = NULL;
-	conv->chip_info = &conv_chip_info;
+	conv->chip_info = st->conv_chip_info
 	conv->adc_output_mode = AD7606_OUTPUT_MODE_TWOS_COMPLEMENT;
 	conv->reg_access = &ad7606_reg_access;
 	conv->write_raw = &ad7606_write_raw;
 	conv->read_raw = &ad7606_read_raw;
-	//conv->indio_dev = indio_dev;
 	conv->post_setup = &ad7606_post_setup;
-	//conv->predisable = &ad7606_buffer_predisable;
-	//conv->postenable = &ad7606_buffer_postenable;
-	//conv->attrs = &ad7606_group;
 	conv->phy = st;
 	/* Without this, the axi_adc won't find the converter data */
 	spi_set_drvdata(spi, conv);
@@ -741,7 +775,6 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
 		 const char *name, unsigned int id,
 		 const struct ad7606_bus_ops *bops)
 {
-	printk(KERN_DEBUG "In ad7606  probe function \n");
 	struct ad7606_state *st;
 	int ret;
 	struct iio_dev *indio_dev;
@@ -752,8 +785,7 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
 
 	st = iio_priv(indio_dev);
 	dev_set_drvdata(dev, indio_dev);
-	
-	printk(KERN_DEBUG "In ad7606  probe function -1\n");
+
 	st->dev = dev;
 	mutex_init(&st->lock);
 	st->bops = bops;
@@ -765,7 +797,6 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
 	st->num_scales = ARRAY_SIZE(ad7606_scale_avail);
 
 	st->reg = devm_regulator_get(dev, "avcc");
-	printk(KERN_DEBUG "In ad7606  regulator get- %x \n",st->reg);
 	if (IS_ERR(st->reg))
 		return PTR_ERR(st->reg);
 
@@ -776,26 +807,24 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
 		return ret;
 	}
 
-	printk(KERN_DEBUG "In ad7606  probe function -2\n");
 	ret = devm_add_action_or_reset(dev, ad7606_regulator_disable, st);
 	printk(KERN_DEBUG " ret -In ad7606  regulator enable failed case :%d  \n",ret);
 	if (ret)
 		return ret;
 
 	st->chip_info = &ad7606_chip_info_tbl[id];
+	st->conv_chip_info = &conv_chip_info[id];
 
 	if (st->chip_info->oversampling_num) {
 		st->oversampling_avail = st->chip_info->oversampling_avail;
 		st->num_os_ratios = st->chip_info->oversampling_num;
 	}
 
-	printk(KERN_DEBUG "In ad7606  probe function -3\n");
 	ret = ad7606_request_gpios(st);
-	printk(KERN_DEBUG "In ad7606  probe function -4\n");
+
 	if (ret)
 		return ret;
 
-	printk(KERN_DEBUG "after request_gpios\n");
 	indio_dev->dev.parent = dev;
 	if (st->gpio_os) {
 		printk(KERN_DEBUG "after request_gpios -1\n");
@@ -809,16 +838,12 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
 		else
 			indio_dev->info = &ad7606_info_no_os_or_range;
 	}
-	
-	st->mclk = devm_clk_get(st->dev, "mclk");
-	
+		
 	indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_HARDWARE;
 	indio_dev->name = name;
 	indio_dev->channels = st->chip_info->channels;
 	indio_dev->num_channels = st->chip_info->num_channels;
 	indio_dev->setup_ops = &ad7606_buffer_ops;
-	
-	printk(KERN_DEBUG "In ad7606  probe function -5\n");
 	
 	ret = ad7606_reset(st);
 	if (ret)
@@ -850,28 +875,7 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
 		ret = st->bops->sw_mode_config(indio_dev);
 	}
 
-	printk(KERN_DEBUG "In ad7606  probe function -6\n");
 	init_completion(&st->completion);
-
-	/*struct iio_buffer *buffer;	
-	buffer = devm_iio_dmaengine_buffer_alloc(indio_dev->dev.parent,
-					    "rx",
-					    &dma_buffer_ops,
-					    indio_dev);
-	if (IS_ERR(buffer)) {
-		printk(KERN_DEBUG "In ad7606  probe function -61 st->irq:%d\n",st->irq);
-		iio_dmaengine_buffer_free(indio_dev->buffer);
-		return PTR_ERR(buffer);
-	}
-
-	iio_device_attach_buffer(indio_dev, buffer);
-	if (ret < 0){
-		iio_dmaengine_buffer_free(indio_dev->buffer);
-		//regulator_disable(st->avcc);
-		return ret;}
-
-	printk(KERN_DEBUG "In ad7606  probe function -61 st->irq:%d\n",st->irq);*/
-
 
 	/*  If there is a reference to a dma channel, the device is not using
 	 *  the axi adc
@@ -879,11 +883,8 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
 	if (device_property_present(st->dev, "dmas"))
 		ret = ad7606_register(st, indio_dev);
 	else
-		ret = ad7606_register_axi_adc(st,indio_dev);
+		ret = ad7606_register_axi_adc(st);
 
-
-	printk(KERN_DEBUG "In ad7606  probe function complete\n");
-	//return devm_iio_device_register(dev, indio_dev);
 	return ret;
 }
 EXPORT_SYMBOL_GPL(ad7606_probe);

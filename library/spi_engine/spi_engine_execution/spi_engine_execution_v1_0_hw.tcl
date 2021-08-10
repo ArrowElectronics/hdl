@@ -7,6 +7,7 @@ set_module_property DESCRIPTION "SPI Engine execution"
 set_module_property VERSION 1.0
 set_module_property GROUP "Analog Devices"
 set_module_property DISPLAY_NAME spi_engine_execution_v1_0
+set_module_property ELABORATION_CALLBACK spi_engine_execution_elaborate
 
 # files
 
@@ -21,7 +22,7 @@ set_parameter_property NUM_OF_CS DEFAULT_VALUE 1
 set_parameter_property NUM_OF_CS DISPLAY_NAME NUM_OF_CS
 set_parameter_property NUM_OF_CS TYPE INTEGER
 set_parameter_property NUM_OF_CS UNITS None
-set_parameter_property NUM_OF_CS ALLOWED_RANGES -2147483648:2147483647
+set_parameter_property NUM_OF_CS ALLOWED_RANGES 1:32
 set_parameter_property NUM_OF_CS HDL_PARAMETER true
 
 add_parameter DEFAULT_SPI_CFG INTEGER 0
@@ -53,7 +54,7 @@ set_parameter_property NUM_OF_SDI DEFAULT_VALUE 1
 set_parameter_property NUM_OF_SDI DISPLAY_NAME NUM_OF_SDI
 set_parameter_property NUM_OF_SDI TYPE INTEGER
 set_parameter_property NUM_OF_SDI UNITS None
-set_parameter_property NUM_OF_SDI ALLOWED_RANGES -2147483648:2147483647
+set_parameter_property NUM_OF_SDI ALLOWED_RANGES 1:8
 set_parameter_property NUM_OF_SDI HDL_PARAMETER true
 
 add_parameter SDO_DEFAULT STD_LOGIC_VECTOR 0
@@ -145,6 +146,13 @@ add_interface_port spi sdo sdo Output 1
 add_interface_port spi sdi sdi Input 1
 add_interface_port spi cs cs Output NUM_OF_CS
 add_interface_port spi sclk sclk Output 1
+
+proc spi_engine_execution_elaborate {} {
+ set num_of_sdi [get_parameter_value NUM_OF_SDI]
+ for {set n 1} {$n < $num_of_sdi} {incr n} {
+    add_interface_port spi sdi_$n sdi_$n Input 1
+ }
+}
 
 # 
 # connection point active

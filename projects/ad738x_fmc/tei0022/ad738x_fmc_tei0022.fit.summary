@@ -1,0 +1,20 @@
+Fitter Status : Successful - Thu Jul 22 18:33:46 2021
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : ad738x_fmc_tei0022
+Top-level Entity Name : system_top
+Family : Cyclone V
+Device : 5CSEMA5F31C8
+Timing Models : Final
+Logic utilization (in ALMs) : 6,201 / 32,070 ( 19 % )
+Total registers : 12704
+Total pins : 175 / 457 ( 38 % )
+Total virtual pins : 0
+Total block memory bits : 50,848 / 4,065,280 ( 1 % )
+Total RAM Blocks : 19 / 397 ( 5 % )
+Total DSP Blocks : 9 / 87 ( 10 % )
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 2 / 6 ( 33 % )
+Total DLLs : 1 / 4 ( 25 % )

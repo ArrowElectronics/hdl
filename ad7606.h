@@ -103,6 +103,7 @@ struct ad7606_chip_info {
 struct ad7606_state {
 	struct device			*dev;
 	const struct ad7606_chip_info	*chip_info;
+	const struct axiadc_chip_info conv_chip_info;
 	struct regulator		*reg;
 	const struct ad7606_bus_ops	*bops;
 	unsigned int			range[16];

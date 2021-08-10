@@ -114,7 +114,7 @@ set_interface_property dfmt_enable PORT_NAME_MAP ""
 set_interface_property dfmt_enable CMSIS_SVD_VARIABLES ""
 set_interface_property dfmt_enable SVD_ADDRESS_GROUP ""
 
-add_interface_port dfmt_enable dfmt_enable beginbursttransfer Input 1
+add_interface_port dfmt_enable dfmt_enable dfmt_enable Input 1
 
 
 # 
@@ -129,7 +129,7 @@ set_interface_property dfmt_se PORT_NAME_MAP ""
 set_interface_property dfmt_se CMSIS_SVD_VARIABLES ""
 set_interface_property dfmt_se SVD_ADDRESS_GROUP ""
 
-add_interface_port dfmt_se dfmt_se beginbursttransfer Input 1
+add_interface_port dfmt_se dfmt_se dfmt_se Input 1
 
 
 # 
@@ -144,7 +144,7 @@ set_interface_property dfmt_type PORT_NAME_MAP ""
 set_interface_property dfmt_type CMSIS_SVD_VARIABLES ""
 set_interface_property dfmt_type SVD_ADDRESS_GROUP ""
 
-add_interface_port dfmt_type dfmt_type beginbursttransfer Input 1
+add_interface_port dfmt_type dfmt_type dfmt_type Input 1
 
 
 # 
@@ -159,7 +159,7 @@ set_interface_property m_axis PORT_NAME_MAP ""
 set_interface_property m_axis CMSIS_SVD_VARIABLES ""
 set_interface_property m_axis SVD_ADDRESS_GROUP ""
 
-add_interface_port m_axis m_axis_data tdata Output 32
+add_interface_port m_axis m_axis_data tdata Output "(NUM_OF_CHANNELS*UDATA_WIDTH)"
 add_interface_port m_axis m_axis_ready tready Input 1
 add_interface_port m_axis m_axis_valid tvalid Output 1
 
@@ -178,5 +178,5 @@ set_interface_property s_axis SVD_ADDRESS_GROUP ""
 
 add_interface_port s_axis s_axis_valid valid Input 1
 add_interface_port s_axis s_axis_ready ready Output 1
-add_interface_port s_axis s_axis_data data Input 32
+add_interface_port s_axis s_axis_data data Input "(NUM_OF_CHANNELS*DATA_WIDTH)"
 

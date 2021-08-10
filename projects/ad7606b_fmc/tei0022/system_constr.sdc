@@ -129,5 +129,12 @@ set_false_path -from [get_ports {uart0_tx}] -to *
 set_false_path -from [get_ports {uart0_rx}] -to *
 
 # frame reader seems to use the wrong reset!
-
 set_false_path -from [get_registers *altera_reset_synchronizer:alt_rst_sync_uq1|altera_reset_synchronizer_int_chain_out*]
+
+#timing contraints for SPI data pin
+#create_clock -period "20.000 ns" -name ad7606b_sclk  [get_ports {ad7606b_sclk}]
+
+#set_input_delay 3 -clock [get_clocks {ad7606b_sclk}] [get_ports {ad7606b_sdi[0]}]
+#set_input_delay 3 -clock [get_clocks {ad7606b_sclk}] [get_ports {ad7606b_sdi[1]}]
+#set_input_delay 3 -clock [get_clocks {ad7606b_sclk}] [get_ports {ad7606b_sdi[2]}]
+#set_input_delay 3 -clock [get_clocks {ad7606b_sclk}] [get_ports {ad7606b_sdi[3]}]

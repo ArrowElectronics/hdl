@@ -1,0 +1,16 @@
+<sld_project_info>
+  <project>
+    <hash md5_digest_80b="0b53fdaed863a4937e18"/>
+  </project>
+  <file_info>
+    <file device="5CSEMA5F31C8" path="ad738x_fmc_tei0022.sof" usercode="0xFFFFFFFF"/>
+  </file_info>
+  <sld_infos>
+    <sld_info hpath="system_bd:i_system_bd" name="i_system_bd">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME system_bd HAS_SOPCINFO 1 GENERATION_ID 1626958440"/>
+      </assignment_values>
+      <parameters/>
+    </sld_info>
+  </sld_infos>
+</sld_project_info>

@@ -123,10 +123,7 @@ module axi_ad7616_06b #(
   localparam      SERIAL = 0;
   localparam      PARALLEL = 1;
   localparam      NEG_EDGE = 1;
-  
-  //'define adc_chan[0] adc_data_ch15
-  
-  
+    
 
   // internal registers
 
@@ -168,7 +165,6 @@ module axi_ad7616_06b #(
   // defaults
 
   assign up_clk = s_axi_aclk;
- // assign up1_clk = spi_clk;//user added clock
   assign up_rstn = s_axi_aresetn;
   assign up_rst = ~s_axi_aresetn;
 
@@ -188,39 +184,16 @@ module axi_ad7616_06b #(
     end
   end
 
-  assign test1[0]=adc_valid;
-  assign test1[1]=adc_sync;
-  assign test1[2]=m_axis_valid_s;
-  assign test1[3]=m_axis_ready_s;
- 
-  assign adc_valid_pp = adc_valid ;
-   
-  generate 
-  if (NUM_OF_CHANNELS >= 4) begin 
-  assign adc_data_ch0 = adc_data[ADC_RESOLUTION*1-1:ADC_RESOLUTION*0];
-  assign adc_data_ch1 = adc_data[ADC_RESOLUTION*2-1:ADC_RESOLUTION*1];
-  assign adc_data_ch2 = adc_data[ADC_RESOLUTION*3-1:ADC_RESOLUTION*2];
-  assign adc_data_ch3 = adc_data[ADC_RESOLUTION*4-1:ADC_RESOLUTION*3];end
-  if (NUM_OF_CHANNELS >= 6) begin 
-  assign adc_data_ch4 = adc_data[ADC_RESOLUTION*5-1:ADC_RESOLUTION*4];
-  assign adc_data_ch5 = adc_data[ADC_RESOLUTION*6-1:ADC_RESOLUTION*5];end
-  if (NUM_OF_CHANNELS >= 8) begin 
-  assign adc_data_ch6 = adc_data[ADC_RESOLUTION*7-1:ADC_RESOLUTION*6];
-  assign adc_data_ch7 = adc_data[ADC_RESOLUTION*8-1:ADC_RESOLUTION*7];end
-  if (NUM_OF_CHANNELS >= 10) begin 
-  assign adc_data_ch8 = adc_data[ADC_RESOLUTION*9-1:ADC_RESOLUTION*8];
-  assign adc_data_ch9 = adc_data[ADC_RESOLUTION*10-1:ADC_RESOLUTION*9];end
-  if (NUM_OF_CHANNELS >= 12) begin 
-  assign adc_data_ch10 = adc_data[ADC_RESOLUTION*11-1:ADC_RESOLUTION*10];
-  assign adc_data_ch11 = adc_data[ADC_RESOLUTION*12-1:ADC_RESOLUTION*11];end
-  if (NUM_OF_CHANNELS >= 14) begin 
-  assign adc_data_ch12 = adc_data[ADC_RESOLUTION*13-1:ADC_RESOLUTION*12];
-  assign adc_data_ch13 = adc_data[ADC_RESOLUTION*14-1:ADC_RESOLUTION*13];end
-  if (NUM_OF_CHANNELS == 16) begin 
-  assign adc_data_ch14 = adc_data[ADC_RESOLUTION*15-1:ADC_RESOLUTION*14];
-  assign adc_data_ch15 = adc_data[ADC_RESOLUTION*16-1:ADC_RESOLUTION*15];end
-  endgenerate
+ //debug entries
+  assign test1[0]=s0_sdi_data_valid_s;
+  assign test1[1]=s0_sdi_data_ready_s;
+  assign test1[2]=s1_sdi_data_valid_s;
+  assign test1[3]=s1_sdi_data_ready_s;
   
+ // wire [127:0] data_temp;
+ // assign data_temp[127:0]={16'h0707,16'h0606,16'h0505,16'h0404,16'h0303,16'h0202,16'h0101,16'h00ff};
+ 
+ 
   generate if (IF_TYPE == SERIAL) begin
 
     // ground all parallel interface signals
@@ -275,9 +248,34 @@ module axi_ad7616_06b #(
     wire                                    offload0_mem_reset_s;
     wire                                    offload0_enable_s;
     wire                                    offload0_enabled_s;
-
-    wire [127:0] data_temp;
-    assign data_temp[127:0]={16'h0707,16'h0606,16'h0505,16'h0404,16'h0303,16'h0202,16'h0101,16'h00ff};
+	 
+	 assign adc_valid_pp = adc_valid ;
+   
+	 //generate 
+		if (NUM_OF_CHANNELS >= 4) begin 
+			assign adc_data_ch0 = adc_data[ADC_RESOLUTION*1-1:ADC_RESOLUTION*0];
+			assign adc_data_ch1 = adc_data[ADC_RESOLUTION*2-1:ADC_RESOLUTION*1];
+			assign adc_data_ch2 = adc_data[ADC_RESOLUTION*3-1:ADC_RESOLUTION*2];
+			assign adc_data_ch3 = adc_data[ADC_RESOLUTION*4-1:ADC_RESOLUTION*3];end
+		if (NUM_OF_CHANNELS >= 6) begin 
+			assign adc_data_ch4 = adc_data[ADC_RESOLUTION*5-1:ADC_RESOLUTION*4];
+			assign adc_data_ch5 = adc_data[ADC_RESOLUTION*6-1:ADC_RESOLUTION*5];end
+		if (NUM_OF_CHANNELS >= 8) begin 
+			assign adc_data_ch6 = adc_data[ADC_RESOLUTION*7-1:ADC_RESOLUTION*6];
+			assign adc_data_ch7 = adc_data[ADC_RESOLUTION*8-1:ADC_RESOLUTION*7];end
+		if (NUM_OF_CHANNELS >= 10) begin 
+			assign adc_data_ch8 = adc_data[ADC_RESOLUTION*9-1:ADC_RESOLUTION*8];
+			assign adc_data_ch9 = adc_data[ADC_RESOLUTION*10-1:ADC_RESOLUTION*9];end
+		if (NUM_OF_CHANNELS >= 12) begin 
+			assign adc_data_ch10 = adc_data[ADC_RESOLUTION*11-1:ADC_RESOLUTION*10];
+			assign adc_data_ch11 = adc_data[ADC_RESOLUTION*12-1:ADC_RESOLUTION*11];end
+		if (NUM_OF_CHANNELS >= 14) begin 
+			assign adc_data_ch12 = adc_data[ADC_RESOLUTION*13-1:ADC_RESOLUTION*12];
+			assign adc_data_ch13 = adc_data[ADC_RESOLUTION*14-1:ADC_RESOLUTION*13];end
+		if (NUM_OF_CHANNELS == 16) begin 
+			assign adc_data_ch14 = adc_data[ADC_RESOLUTION*15-1:ADC_RESOLUTION*14];
+			assign adc_data_ch15 = adc_data[ADC_RESOLUTION*16-1:ADC_RESOLUTION*15];end
+   //endgenerate
 
     axi_spi_engine #(
       .DATA_WIDTH (DATA_WIDTH),
@@ -344,15 +342,14 @@ module axi_ad7616_06b #(
       .sdo_data (s1_sdo_data_s),
       .sdi_data_valid (s1_sdi_data_valid_s),
       .sdi_data_ready (s1_sdi_data_ready_s),
-      //.sdi_data (s1_sdi_data_s),
-      .sdi_data (data_temp),
+      .sdi_data (s1_sdi_data_s),
+      //.sdi_data (data_temp),
       .sync_valid (s1_sync_valid_s),
       .sync_ready (s1_sync_ready_s),
       .sync_data (s1_sync_s),
       .offload_sdi_valid (m_axis_valid_s),
       .offload_sdi_ready (m_axis_ready_s),
-      .offload_sdi_data (m_axis_data_s),
-      .test(test[3:0]));
+      .offload_sdi_data (m_axis_data_s));
 
     spi_engine_interconnect #(
       .DATA_WIDTH (DATA_WIDTH),
@@ -400,6 +397,7 @@ module axi_ad7616_06b #(
     spi_engine_execution #(
       .DATA_WIDTH (DATA_WIDTH),
       .NUM_OF_SDI (NUM_OF_SDI),
+      .ONE_BIT_SHIFT (1),
       .SDI_DELAY(2)
     ) i_spi_engine_execution (
       .clk (spi_clk),
@@ -425,7 +423,8 @@ module axi_ad7616_06b #(
       .sdi_2 (rx_sdi[2]),
       .sdi_3 (rx_sdi[3]),
       .cs (rx_cs_n),
-      .three_wire ());
+      .three_wire (),
+      .test (test));
 
     axi_ad7616_maxis2wrfifo #(
       .DATA_WIDTH(ADC_RESOLUTION * NUM_OF_CHANNELS),
@@ -453,11 +452,42 @@ module axi_ad7616_06b #(
     assign rx_sdo = 1'h0;
     assign irq = 1'h0;
 
-    assign up_wack_if_s = 1'h0;
-    assign up_rack_if_s = 1'h0;
-    assign up_rdata_if_s = 1'h0;
-
-    axi_ad7616_pif i_ad7616_parallel_interface (
+   // assign up_wack_if_s = 1'h0;
+   // assign up_rack_if_s = 1'h0;
+    //assign up_rdata_if_s = 1'h0;
+		
+	 wire [(ADC_RESOLUTION * NUM_OF_CHANNELS-1):0]adc_data_pp;
+	 	 
+	// generate 
+		if (NUM_OF_CHANNELS >= 4) begin 
+			assign adc_data_ch0 = adc_data_pp[ADC_RESOLUTION*1-1:ADC_RESOLUTION*0];
+			assign adc_data_ch1 = adc_data_pp[ADC_RESOLUTION*2-1:ADC_RESOLUTION*1];
+			assign adc_data_ch2 = adc_data_pp[ADC_RESOLUTION*3-1:ADC_RESOLUTION*2];
+			assign adc_data_ch3 = adc_data_pp[ADC_RESOLUTION*4-1:ADC_RESOLUTION*3];end
+		if (NUM_OF_CHANNELS >= 6) begin 
+			assign adc_data_ch4 = adc_data_pp[ADC_RESOLUTION*5-1:ADC_RESOLUTION*4];
+			assign adc_data_ch5 = adc_data_pp[ADC_RESOLUTION*6-1:ADC_RESOLUTION*5];end
+		if (NUM_OF_CHANNELS >= 8) begin 
+			assign adc_data_ch6 = adc_data_pp[ADC_RESOLUTION*7-1:ADC_RESOLUTION*6];
+			assign adc_data_ch7 = adc_data_pp[ADC_RESOLUTION*8-1:ADC_RESOLUTION*7];end
+		if (NUM_OF_CHANNELS >= 10) begin 
+			assign adc_data_ch8 = adc_data_pp[ADC_RESOLUTION*9-1:ADC_RESOLUTION*8];
+			assign adc_data_ch9 = adc_data_pp[ADC_RESOLUTION*10-1:ADC_RESOLUTION*9];end
+		if (NUM_OF_CHANNELS >= 12) begin 
+			assign adc_data_ch10 = adc_data_pp[ADC_RESOLUTION*11-1:ADC_RESOLUTION*10];
+			assign adc_data_ch11 = adc_data_pp[ADC_RESOLUTION*12-1:ADC_RESOLUTION*11];end
+		if (NUM_OF_CHANNELS >= 14) begin 
+			assign adc_data_ch12 = adc_data_pp[ADC_RESOLUTION*13-1:ADC_RESOLUTION*12];
+			assign adc_data_ch13 = adc_data_pp[ADC_RESOLUTION*14-1:ADC_RESOLUTION*13];end
+		if (NUM_OF_CHANNELS == 16) begin 
+			assign adc_data_ch14 = adc_data_pp[ADC_RESOLUTION*15-1:ADC_RESOLUTION*14];
+			assign adc_data_ch15 = adc_data_pp[ADC_RESOLUTION*16-1:ADC_RESOLUTION*15];end
+  // endgenerate
+	
+    axi_ad7616_pif #(
+    .NUM_OF_CHANNELS (NUM_OF_CHANNELS),
+    .ADC_RESOLUTION (ADC_RESOLUTION)
+  ) i_ad7616_parallel_interface (
       .cs_n (rx_cs_n),
       .db_o (rx_db_o),
       .db_i (rx_db_i),
@@ -469,19 +499,41 @@ module axi_ad7616_06b #(
       .adc_sync (adc_sync),
       .end_of_conv (trigger_s),
       .burst_length(burst_length_s),
-      .clk (up_clk),
+      .clk (spi_clk),
       .rstn (up_rstn),
       .rd_req (rd_req_s),
       .wr_req (wr_req_s),
       .wr_data (wr_data_s),
       .rd_data (rd_data_s),
-      .rd_valid (rd_valid_s)
-    );
+      .rd_valid (rd_valid_s),
+	.valid_pp(adc_valid_pp),
+	.adc_data_pp (adc_data_pp)
+    	);
+	
+	// added only axi_spi_engine as dummy node for axi_adc_core to probe	
+	axi_spi_engine #(
+      .DATA_WIDTH (16),
+      .NUM_OF_SDI (1),
+      .ASYNC_SPI_CLK (1),
+      .NUM_OFFLOAD (0),
+      .MM_IF_TYPE (1)
+    ) i_axi_spi_engine (
+      .up_clk (up_clk),
+      .up_rstn (up_rstn),
+      .up_wreq (up_wreq_s),
+      .up_waddr (up_waddr_s),
+      .up_wdata (up_wdata_s),
+      .up_wack (up_wack_if_s),
+      .up_rreq (up_rreq_s),
+      .up_raddr (up_raddr_s),
+      .up_rdata (up_rdata_if_s),
+      .up_rack (up_rack_if_s),
+      .spi_clk (up_clk));
 	 
 	 
   end
   endgenerate
-
+  
   axi_ad7616_control #(
     .ID(ID),
     .IF_TYPE(IF_TYPE)
@@ -496,7 +548,7 @@ module axi_ad7616_06b #(
     .up_write_req (wr_req_s),
     .end_of_conv (trigger_s),
     .up_rstn (up_rstn),
-    .up_clk (up_clk),
+    .up_clk (spi_clk),
     .up_wreq (up_wreq_s),
     .up_waddr (up_waddr_s),
     .up_wdata (up_wdata_s),

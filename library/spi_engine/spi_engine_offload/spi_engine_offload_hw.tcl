@@ -119,7 +119,7 @@ add_interface_port spi_engine_ctrl sdo_data_valid sdo_valid Output 1
 add_interface_port spi_engine_ctrl sdo_data sdo_data Output DATA_WIDTH
 add_interface_port spi_engine_ctrl sdi_data_ready sdi_ready Output 1
 add_interface_port spi_engine_ctrl sdi_data_valid sdi_valid Input 1
-add_interface_port spi_engine_ctrl sdi_data sdi_data Input DATA_WIDTH
+add_interface_port spi_engine_ctrl sdi_data sdi_data Input NUM_OF_SDI*DATA_WIDTH
 add_interface_port spi_engine_ctrl sync_ready sync_ready Output 1
 add_interface_port spi_engine_ctrl sync_valid sync_valid Input 1
 add_interface_port spi_engine_ctrl sync_data sync_data Input 8
@@ -132,11 +132,3 @@ set_interface_property offload_sdi associatedClock spi_clk
 add_interface_port offload_sdi offload_sdi_ready ready Input 1
 add_interface_port offload_sdi offload_sdi_valid valid Output 1
 add_interface_port offload_sdi offload_sdi_data data Output NUM_OF_SDI*DATA_WIDTH
-
-
-# 
-# connection point test
-# 
-add_interface test conduit end
-set_interface_property test associatedClock spi_clk
-add_interface_port test test test output 4
