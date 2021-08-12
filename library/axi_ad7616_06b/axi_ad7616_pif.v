@@ -189,7 +189,7 @@ module axi_ad7616_pif #(
 
   // FSM output logic
 
-  assign db_o = wr_data;
+  assign db_o =  wr_data;
 
   always @(posedge clk) begin
     rd_data <= (rd_valid_s & ~rd_valid_d) ? db_i : rd_data;
@@ -202,7 +202,8 @@ module axi_ad7616_pif #(
 
   assign cs_n = (transfer_state == IDLE) ? 1'b1 : 1'b0;
   //assign db_t = ~wr_req_d;
-  assign db_t = wr_req_d;
+  assign db_t = wr_req_d; 
+  
   assign rd_n = (((transfer_state == CNTRL0_LOW) && ((rd_conv_d == 1'b1) || rd_req_d == 1'b1)) ||
                   (transfer_state == CNTRL1_LOW)) ? 1'b0 : 1'b1;
   assign wr_n = ((transfer_state == CNTRL0_LOW) && (wr_req_d == 1'b1)) ? 1'b0 : 1'b1;
@@ -220,13 +221,13 @@ module axi_ad7616_pif #(
  // data align for CPack module 
   reg [3:0] ptr;
   reg mask;
-  //wire [127:0] data_temp;
+  //wire [127:0] data_temp; // test pattern
  // assign data_temp[127:0]={16'h0707,16'h0606,16'h0505,16'h0404,16'h0303,16'h0202,16'h0101,16'h00ff};
   
   assign valid_pp = mask ? rd_valid : 0 ;
   
   always @(posedge clk) begin
-	if (cs_n==1 || ptr==(NUM_OF_CHANNELS-1) )begin
+	if (cs_n==1 || ptr==(NUM_OF_CHANNELS) )begin
 		ptr <= 0; end
   else if (rd_valid == 1'b1) begin
 		ptr <= ptr +1 ;end
@@ -235,32 +236,24 @@ module axi_ad7616_pif #(
   always @(posedge clk) begin
   if (rstn==0 )begin
 		adc_data_pp <= 0; end
-  else begin
+  else if (rd_valid==1) begin
 		case (ptr)
 		1 :  begin
 		adc_data_pp[ADC_RESOLUTION*2-1:ADC_RESOLUTION*1] <= adc_data[ADC_RESOLUTION-1:0]; end
-		//adc_data_pp[ADC_RESOLUTION*2-1:ADC_RESOLUTION*1] <= data_temp[ADC_RESOLUTION*2-1:ADC_RESOLUTION*1]; end
 		2 :  begin
 		adc_data_pp[ADC_RESOLUTION*3-1:ADC_RESOLUTION*2] <= adc_data[ADC_RESOLUTION-1:0]; end
-		//adc_data_pp[ADC_RESOLUTION*3-1:ADC_RESOLUTION*2] <= data_temp[ADC_RESOLUTION*3-1:ADC_RESOLUTION*2]; end
 		3 :  begin
 		adc_data_pp[ADC_RESOLUTION*4-1:ADC_RESOLUTION*3] <= adc_data[ADC_RESOLUTION-1:0]; end
-		//adc_data_pp[ADC_RESOLUTION*4-1:ADC_RESOLUTION*3] <= data_temp[ADC_RESOLUTION*4-1:ADC_RESOLUTION*3]; end
 		4 :  begin
 		adc_data_pp[ADC_RESOLUTION*5-1:ADC_RESOLUTION*4] <= adc_data[ADC_RESOLUTION-1:0]; end
-		//adc_data_pp[ADC_RESOLUTION*5-1:ADC_RESOLUTION*4] <= data_temp[ADC_RESOLUTION*5-1:ADC_RESOLUTION*4]; end
 		5 :  begin
 		adc_data_pp[ADC_RESOLUTION*6-1:ADC_RESOLUTION*5] <= adc_data[ADC_RESOLUTION-1:0]; end
-		//adc_data_pp[ADC_RESOLUTION*6-1:ADC_RESOLUTION*5] <= data_temp[ADC_RESOLUTION*6-1:ADC_RESOLUTION*5]; end
 		6 :  begin
 		adc_data_pp[ADC_RESOLUTION*7-1:ADC_RESOLUTION*6] <= adc_data[ADC_RESOLUTION-1:0]; end
-		//adc_data_pp[ADC_RESOLUTION*7-1:ADC_RESOLUTION*6] <= data_temp[ADC_RESOLUTION*7-1:ADC_RESOLUTION*6]; end
 		7 :  begin
 		adc_data_pp[ADC_RESOLUTION*8-1:ADC_RESOLUTION*7] <= adc_data[ADC_RESOLUTION-1:0]; end
-		//adc_data_pp[ADC_RESOLUTION*8-1:ADC_RESOLUTION*7] <= data_temp[ADC_RESOLUTION*8-1:ADC_RESOLUTION*7]; end
 		default : begin
 		adc_data_pp[ADC_RESOLUTION-1:0] <= adc_data[ADC_RESOLUTION-1:0]; end
-		//adc_data_pp[ADC_RESOLUTION-1:0] <= data_temp[ADC_RESOLUTION-1:0]; end
 		endcase
 		end
   end 

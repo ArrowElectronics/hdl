@@ -1,19 +1,5 @@
 global ad7606b_if 
 
-# spi engine pll
-
-#add_instance spi_engine_pll altera_pll
-#set_instance_parameter_value spi_engine_pll {gui_device_speed_grade} {8}
-#set_instance_parameter_value spi_engine_pll {gui_reference_clock_frequency} {100.0}
-#set_instance_parameter_value spi_engine_pll {gui_use_locked} {0}
-#set_instance_parameter_value spi_engine_pll {gui_number_of_clocks} {1}
-#set_instance_parameter_value spi_engine_pll {gui_output_clock_frequency0} {100.00}
-
-#add_interface clk_src clock source
-#set_interface_property clk_src EXPORT_OF spi_engine_pll.outclk0
-#add_connection sys_hps.h2f_user1_clock spi_engine_pll.refclk
-#add_connection sys_clk.clk_reset spi_engine_pll.reset
-
 # ad7606b_gpio
 
 add_instance ad7606b_gpio altera_avalon_pio
@@ -39,6 +25,7 @@ set_instance_parameter_value axi_ad7606b {IF_TYPE} {$ad7606b_if}
 set_instance_parameter_value axi_ad7606b {NUM_OF_SDI} {4}
 set_instance_parameter_value axi_ad7606b {NUM_OF_CHANNELS} {8}
 set_instance_parameter_value axi_ad7606b {ADC_RESOLUTION} {16}
+set_instance_parameter_value axi_ad7606b {ADJUST_DELAY} {1}
 set_instance_parameter_value axi_ad7606b {ADC_TYPE} {1} #adc_type=1 corresponds to AD7606B
 
 add_interface axi_ad7606b_control_interface conduit end
@@ -51,19 +38,11 @@ add_connection sys_clk.clk_reset axi_ad7606b.s_axi_aresetn
 add_connection sys_hps.f2h_irq0 axi_ad7606b.irq
 set_connection_parameter_value sys_hps.f2h_irq0/axi_ad7606b.irq irqNumber {6}
 
-#add_connection spi_engine_pll.outclk0 axi_ad7606b.spi_clk
-add_connection sys_hps.h2f_user1_clock axi_ad7606b.spi_clk
-
 add_connection sys_hps.h2f_user1_clock axi_ad7606b.s_axi_aclk
 add_connection sys_hps.h2f_lw_axi_master axi_ad7606b.s_axi
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_ad7606b.s_axi arbitrationPriority {1}
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_ad7606b.s_axi baseAddress {0x00040000}
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_ad7606b.s_axi defaultConnection {0}
-
-add_interface test conduit end
-set_interface_property test EXPORT_OF axi_ad7606b.test 
-add_interface test1 conduit end
-set_interface_property test1 EXPORT_OF axi_ad7606b.test1 
 
 # adc-pack
 
@@ -72,7 +51,6 @@ set_instance_parameter_value util_ad7606b_adc_pack {NUM_OF_CHANNELS} {8}
 set_instance_parameter_value util_ad7606b_adc_pack {SAMPLES_PER_CHANNEL} {1}
 set_instance_parameter_value util_ad7606b_adc_pack {SAMPLE_DATA_WIDTH} {16}
 
-add_connection sys_hps.h2f_user1_clock util_ad7606b_adc_pack.clk
 add_connection sys_clk.clk_reset util_ad7606b_adc_pack.reset
 add_connection axi_ad7606b.adc_valid_pp util_ad7606b_adc_pack.fifo_wr_en
 
@@ -99,8 +77,6 @@ add_connection sys_hps.h2f_lw_axi_master axi_ad7606b_adc.s_axi
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_ad7606b_adc.s_axi arbitrationPriority {1}
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_ad7606b_adc.s_axi baseAddress {0x60000}
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_ad7606b_adc.s_axi defaultConnection {0}
-
-add_connection sys_hps.h2f_user1_clock axi_ad7606b_adc.adc_clk
 
 add_connection axi_ad7606b_adc.enable util_ad7606b_adc_pack.enable
 add_connection axi_ad7606b_adc.if_adc_dovf util_ad7606b_adc_pack.if_fifo_wr_overflow
@@ -153,8 +129,6 @@ add_connection sys_clk.clk_reset spi_dmac.s_axi_reset
 add_connection sys_hps.f2h_irq0 spi_dmac.interrupt_sender
 set_connection_parameter_value sys_hps.f2h_irq0/spi_dmac.interrupt_sender irqNumber {5}
 
-add_connection sys_hps.h2f_user1_clock spi_dmac.if_fifo_wr_clk
-#add_connection spi_engine_pll.outclk0 spi_dmac.if_fifo_wr_clk
 add_connection sys_hps.h2f_user1_clock spi_dmac.m_dest_axi_clock
 add_connection sys_hps.h2f_user1_clock spi_dmac.s_axi_clock
 add_connection sys_hps.h2f_lw_axi_master spi_dmac.s_axi
@@ -211,8 +185,7 @@ add_connection sys_clk.clk_reset spi_dmac_2.s_axi_reset
 add_connection sys_hps.f2h_irq0 spi_dmac_2.interrupt_sender
 set_connection_parameter_value sys_hps.f2h_irq0/spi_dmac_2.interrupt_sender irqNumber {7}
 
-add_connection sys_hps.h2f_user1_clock spi_dmac_2.if_fifo_wr_clk
-#add_connection spi_engine_pll.outclk0 spi_dmac.if_fifo_wr_clk
+
 add_connection sys_hps.h2f_user1_clock spi_dmac_2.m_dest_axi_clock
 add_connection sys_hps.h2f_user1_clock spi_dmac_2.s_axi_clock
 add_connection sys_hps.h2f_lw_axi_master spi_dmac_2.s_axi

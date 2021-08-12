@@ -3,7 +3,7 @@
 set_location_assignment PIN_C13  -to ad7606b_sclk    ; ## G6   FMC_LPC_LA00_CC_P
 set_location_assignment PIN_K12  -to ad7606b_sdo     ; ## G9   FMC_LPC_LA03_P
 set_location_assignment PIN_B12  -to ad7606b_sdi[0]  ; ## G7   FMC_LPC_LA00_CC_N
-set_location_assignment PIN_B11  -to ad7606b_sdi[1]  ; ## C10  FMC_LPC_LA06_P
+set_location_assignment PIN_B11  -to ad7606b_sdi[1]  ; ## C11  FMC_LPC_LA06_P   
 set_location_assignment PIN_H13  -to ad7606b_sdi[2]  ; ## D11  FMC_LPC_LA05_P
 set_location_assignment PIN_E9   -to ad7606b_sdi[3]  ; ## D14  FMC_LPC_LA09_P
 
@@ -20,13 +20,13 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ad7606b_sdi[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ad7606b_sdo
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ad7606b_sclk
 
-set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to ad7606b_sclk
-set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to ad7606b_sdo
-set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to ad7606b_sdi[0]
-set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to ad7606b_sdi[1]
-set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to ad7606b_sdi[2]
-set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to ad7606b_sdi[3]
-set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to ad7606b_sdi[0]
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "80 MHz" -to ad7606b_sclk
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "80 MHz" -to ad7606b_sdo
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "80 MHz" -to ad7606b_sdi[0]
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "80 MHz" -to ad7606b_sdi[1]
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "80 MHz" -to ad7606b_sdi[2]
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "80 MHz" -to ad7606b_sdi[3]
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "80 MHz" -to ad7606b_sdi[0]
 
 # ad7606b gpio interface
 set_location_assignment PIN_D7   -to ad7606b_stby    ; ## C15  FMC_LPC_LA10_N
@@ -55,7 +55,7 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ad7606b_csn
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ad7606b_busy
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ad7606b_cnvst      
 
-set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to ad7606b_csn
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "80 MHz" -to ad7606b_csn
 
 # ad7606B i2c interface
 

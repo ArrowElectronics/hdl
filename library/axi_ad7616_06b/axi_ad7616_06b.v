@@ -37,13 +37,14 @@
 	
 module axi_ad7616_06b #(
 
-  parameter       ID = 0,
-  parameter       IF_TYPE = 1,
-  parameter       NUM_OF_SDI = 2,
-  parameter       NUM_OF_CHANNELS = 8,
-  parameter       ADC_TYPE = 0,
-  parameter       ADC_RESOLUTION = 16,
-  parameter       DATA_WIDTH = 8) (
+  parameter[15:0]      ID = 0,
+  parameter            IF_TYPE = 1,
+  parameter[3:0]       NUM_OF_SDI = 2,
+  parameter[3:0]       NUM_OF_CHANNELS = 8,
+  parameter[1:0]       ADC_TYPE = 0,
+  parameter[5:0]       ADC_RESOLUTION = 16,
+  parameter[5:0]       DATA_WIDTH = 8,
+  parameter       	  ADJUST_DELAY = 1) (
 
   // physical data interface
 
@@ -112,16 +113,13 @@ module axi_ad7616_06b #(
   output [(ADC_RESOLUTION-1):0] adc_data_ch15, 	  
   
   input			  spi_clk,
-  output                  irq );
+  output         irq );
 
 
   localparam      SERIAL = 0;
   localparam      PARALLEL = 1;
   localparam      NEG_EDGE = 1;
-  
-  //'define adc_chan[0] adc_data_ch15
-  
-  
+    
 
   // internal registers
 
@@ -166,6 +164,8 @@ module axi_ad7616_06b #(
   assign up_rstn = s_axi_aresetn;
   assign up_rst = ~s_axi_aresetn;
 
+
+
   // processor read interface
 
   always @(negedge up_rstn or posedge up_clk) begin
@@ -179,7 +179,12 @@ module axi_ad7616_06b #(
       up_rdata <= up_rdata_if_s | up_rdata_cntrl_s;
     end
   end
-   
+
+  
+// wire [127:0] data_temp;for testing sample generation
+// assign data_temp[127:0]={16'h0707,16'h0606,16'h0505,16'h0404,16'h0303,16'h0202,16'h0101,16'h00ff};
+ 
+ 
   generate if (IF_TYPE == SERIAL) begin
 
     // ground all parallel interface signals
@@ -329,7 +334,7 @@ module axi_ad7616_06b #(
       .sdi_data_valid (s1_sdi_data_valid_s),
       .sdi_data_ready (s1_sdi_data_ready_s),
       .sdi_data (s1_sdi_data_s),
-      //.sdi_data (data_temp),
+    //  .sdi_data (data_temp), for testing
       .sync_valid (s1_sync_valid_s),
       .sync_ready (s1_sync_ready_s),
       .sync_data (s1_sync_s),
@@ -380,11 +385,12 @@ module axi_ad7616_06b #(
       .s1_sync_ready (s1_sync_ready_s),
       .s1_sync (s1_sync_s));
 
-    spi_engine_execution #(
+    spi_engine_execution_1 #(
       .DATA_WIDTH (DATA_WIDTH),
       .NUM_OF_SDI (NUM_OF_SDI),
-      .SDI_DELAY(2)
-    ) i_spi_engine_execution (
+      .SDI_DELAY (2),
+		.ONE_BIT_SHIFT (1)
+    ) i_spi_engine_execution_1 (
       .clk (spi_clk),
       .resetn (spi_resetn_s),
       .active (),
@@ -436,7 +442,7 @@ module axi_ad7616_06b #(
     assign rx_sdo = 1'h0;
     assign irq = 1'h0;
 		
-   wire [(ADC_RESOLUTION * NUM_OF_CHANNELS-1):0]adc_data_pp;
+	 wire [(ADC_RESOLUTION * NUM_OF_CHANNELS-1):0]adc_data_pp;
 	 	 
 	// generate 
 		if (NUM_OF_CHANNELS >= 4) begin 
@@ -479,21 +485,22 @@ module axi_ad7616_06b #(
       .adc_sync (adc_sync),
       .end_of_conv (trigger_s),
       .burst_length(burst_length_s),
-      .clk (up_clk),
+      .clk (spi_clk),
       .rstn (up_rstn),
       .rd_req (rd_req_s),
       .wr_req (wr_req_s),
       .wr_data (wr_data_s),
       .rd_data (rd_data_s),
       .rd_valid (rd_valid_s),
-		.valid_pp(adc_valid_pp),
-	   .adc_data_pp (adc_data_pp)
+	.valid_pp(adc_valid_pp),
+	.adc_data_pp (adc_data_pp)
     	);
 	
 	// added only axi_spi_engine as dummy node for axi_adc_core to probe	
 	axi_spi_engine #(
-      .DATA_WIDTH (8),
+      .DATA_WIDTH (16),
       .NUM_OF_SDI (1),
+      .ASYNC_SPI_CLK (1),
       .NUM_OFFLOAD (0),
       .MM_IF_TYPE (1)
     ) i_axi_spi_engine (
@@ -507,7 +514,7 @@ module axi_ad7616_06b #(
       .up_raddr (up_raddr_s),
       .up_rdata (up_rdata_if_s),
       .up_rack (up_rack_if_s),
-      .spi_clk (spi_clk));
+      .spi_clk (up_clk));
 	 
 	 
   end
@@ -527,7 +534,7 @@ module axi_ad7616_06b #(
     .up_write_req (wr_req_s),
     .end_of_conv (trigger_s),
     .up_rstn (up_rstn),
-    .up_clk (up_clk),
+    .up_clk (spi_clk),
     .up_wreq (up_wreq_s),
     .up_waddr (up_waddr_s),
     .up_wdata (up_wdata_s),

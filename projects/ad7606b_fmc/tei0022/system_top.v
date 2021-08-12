@@ -35,7 +35,7 @@
 
 `timescale 1ns/100ps
 
-//dummy for project
+//dummy for project build and file reference
 
 
 // ***************************************************************************

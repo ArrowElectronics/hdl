@@ -70,8 +70,8 @@ module system_top_si (
   input   [  3:0]   	eth1_rx_d,
   output            	eth1_mdc,
   inout             	eth1_mdio,
-  inout			phy_int,
-  inout			eth_rst,
+  inout					phy_int,
+  inout					eth_rst,
   
   // hps-qspi
 
@@ -92,7 +92,7 @@ module system_top_si (
   input             	usb1_dir,
   input             	usb1_nxt,
   inout   [  7:0]   	usb1_d,
-  inout			usb1_rst,
+  inout					usb1_rst,
 
   // hps-uart
 
@@ -107,9 +107,9 @@ module system_top_si (
   // display
 
   output            	hdmi_clk,
-  output		hdmi_de,
-  output		hdmi_hsync,
-  output		hdmi_vsync,
+  output					hdmi_de,
+  output					hdmi_hsync,
+  output					hdmi_vsync,
   output  [  23:0]	hdmi_data,
   
   output            	hdmi_spdif,
@@ -121,16 +121,16 @@ module system_top_si (
 
   // fmc interface
 
-  inout             	fmc_scl,
-  inout             	fmc_sda,
+  inout           fmc_scl,
+  inout           fmc_sda,
   
-  output                ad7606b_sclk,
-  output                ad7606b_sdo,
-  input  [3:0]          ad7606b_sdi,
+  output          ad7606b_sclk,
+  output          ad7606b_sdo,
+  input  [3:0]    ad7606b_sdi,
   
-  output                ad7606b_csn,
-  output                ad7606b_cnvst,
-  input                 ad7606b_busy,
+  output          ad7606b_csn,
+  output          ad7606b_cnvst,
+  input           ad7606b_busy,
   
   inout		   	ad7606b_os0,
   inout		   	ad7606b_os1,
@@ -139,23 +139,23 @@ module system_top_si (
   inout		     	ad7606b_frstdata,
   inout		     	ad7606b_range,
   inout		     	ad7606b_refsel,
-  output	     	ad7606b_serpar,
+  output	      	ad7606b_serpar,
   inout		     	ad7606b_stby,
 
   // misc
   
-  inout             	fmc_pg_c2m,
-  inout             	fmc_prsnt_m2c,
-  inout             	cpu_gpio_0,
-  inout             	cpu_gpio_1,
-  inout             	cpu_gpio_2,
-  inout             	cpu_gpio_3,
-  inout             	cpu_gpio_4,
-  inout             	led_hps_1,
-  inout             	led_hps_2,
-  inout             	user_btn_hps,
-  inout             	nc1,
-  inout            	nc2,
+  inout        fmc_pg_c2m,
+  inout        fmc_prsnt_m2c,
+  inout        cpu_gpio_0,
+  inout        cpu_gpio_1,
+  inout        cpu_gpio_2,
+  inout        cpu_gpio_3,
+  inout        cpu_gpio_4,
+  inout        led_hps_1,
+  inout        led_hps_2,
+  inout        user_btn_hps,
+  inout       	nc1,
+  inout        nc2,
   inout			nc3,
   inout			nc4,
   inout			nc5
@@ -175,8 +175,6 @@ module system_top_si (
   assign ad7606b_refsel = ad7606b_o[6];
   assign ad7606b_serpar = 1;//ad7606b_o[7];
   assign ad7606b_stby = ad7606b_o[8];
-	
-  //assign ad7606b_cnvst=ad7606b_o[9];
 
 ////////////
 
@@ -288,7 +286,7 @@ module system_top_si (
 	 .axi_ad7606b_parallel_interface_data_dout ( ),
 	 .axi_ad7606b_parallel_interface_wr_n ( ),
 	 .axi_ad7606b_parallel_interface_rd_n ( ),
-         .ad7606b_gpio_export_export(ad7606b_o[15:0]),
+    .ad7606b_gpio_export_export(ad7606b_o[15:0]),
 		
     .sys_rst_reset_n (sys_resetn),
     .hdmi_out_h_clk (hdmi_clk),
