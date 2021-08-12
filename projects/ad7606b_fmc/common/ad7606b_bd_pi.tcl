@@ -12,8 +12,6 @@ set_instance_parameter_value spi_engine_pll {gui_use_locked} {0}
 set_instance_parameter_value spi_engine_pll {gui_number_of_clocks} {1}
 set_instance_parameter_value spi_engine_pll {gui_output_clock_frequency0} {166.67}
 
-#add_interface clk_src clock source
-#set_interface_property clk_src EXPORT_OF spi_engine_pll.outclk0
 add_connection sys_hps.h2f_user1_clock spi_engine_pll.refclk
 add_connection sys_clk.clk_reset spi_engine_pll.reset
 

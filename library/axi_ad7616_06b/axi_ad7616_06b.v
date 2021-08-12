@@ -37,13 +37,14 @@
 	
 module axi_ad7616_06b #(
 
-  parameter       ID = 0,
-  parameter       IF_TYPE = 1,
-  parameter       NUM_OF_SDI = 2,
-  parameter       NUM_OF_CHANNELS = 8,
-  parameter       ADC_TYPE = 0,
-  parameter       ADC_RESOLUTION = 16,
-  parameter       DATA_WIDTH = 8) (
+  parameter[15:0]      ID = 0,
+  parameter            IF_TYPE = 1,
+  parameter[3:0]       NUM_OF_SDI = 2,
+  parameter[3:0]       NUM_OF_CHANNELS = 8,
+  parameter[1:0]       ADC_TYPE = 0,
+  parameter[5:0]       ADC_RESOLUTION = 16,
+  parameter[5:0]       DATA_WIDTH = 8,
+  parameter       	  ADJUST_DELAY = 1) (
 
   // physical data interface
 
@@ -111,13 +112,8 @@ module axi_ad7616_06b #(
   output [(ADC_RESOLUTION-1):0] adc_data_ch14,
   output [(ADC_RESOLUTION-1):0] adc_data_ch15, 	  
   
-  
-  // test interface
-  output      [3:0]       test,
-  output      [3:0]       test1,
-
   input			  spi_clk,
-  output                  irq );
+  output         irq );
 
 
   localparam      SERIAL = 0;
@@ -184,14 +180,9 @@ module axi_ad7616_06b #(
     end
   end
 
- //debug entries
-  assign test1[0]=s0_sdi_data_valid_s;
-  assign test1[1]=s0_sdi_data_ready_s;
-  assign test1[2]=s1_sdi_data_valid_s;
-  assign test1[3]=s1_sdi_data_ready_s;
   
- // wire [127:0] data_temp;
- // assign data_temp[127:0]={16'h0707,16'h0606,16'h0505,16'h0404,16'h0303,16'h0202,16'h0101,16'h00ff};
+// wire [127:0] data_temp;for testing sample generation
+// assign data_temp[127:0]={16'h0707,16'h0606,16'h0505,16'h0404,16'h0303,16'h0202,16'h0101,16'h00ff};
  
  
   generate if (IF_TYPE == SERIAL) begin
@@ -343,7 +334,7 @@ module axi_ad7616_06b #(
       .sdi_data_valid (s1_sdi_data_valid_s),
       .sdi_data_ready (s1_sdi_data_ready_s),
       .sdi_data (s1_sdi_data_s),
-      //.sdi_data (data_temp),
+    //  .sdi_data (data_temp), for testing
       .sync_valid (s1_sync_valid_s),
       .sync_ready (s1_sync_ready_s),
       .sync_data (s1_sync_s),
@@ -394,12 +385,12 @@ module axi_ad7616_06b #(
       .s1_sync_ready (s1_sync_ready_s),
       .s1_sync (s1_sync_s));
 
-    spi_engine_execution #(
+    spi_engine_execution_1 #(
       .DATA_WIDTH (DATA_WIDTH),
       .NUM_OF_SDI (NUM_OF_SDI),
-      .ONE_BIT_SHIFT (1),
-      .SDI_DELAY(2)
-    ) i_spi_engine_execution (
+      .SDI_DELAY (2),
+		.ONE_BIT_SHIFT (1)
+    ) i_spi_engine_execution_1 (
       .clk (spi_clk),
       .resetn (spi_resetn_s),
       .active (),
@@ -423,8 +414,7 @@ module axi_ad7616_06b #(
       .sdi_2 (rx_sdi[2]),
       .sdi_3 (rx_sdi[3]),
       .cs (rx_cs_n),
-      .three_wire (),
-      .test (test));
+      .three_wire ());
 
     axi_ad7616_maxis2wrfifo #(
       .DATA_WIDTH(ADC_RESOLUTION * NUM_OF_CHANNELS),
@@ -451,10 +441,6 @@ module axi_ad7616_06b #(
     assign rx_sclk = 1'h0;
     assign rx_sdo = 1'h0;
     assign irq = 1'h0;
-
-   // assign up_wack_if_s = 1'h0;
-   // assign up_rack_if_s = 1'h0;
-    //assign up_rdata_if_s = 1'h0;
 		
 	 wire [(ADC_RESOLUTION * NUM_OF_CHANNELS-1):0]adc_data_pp;
 	 	 
@@ -556,8 +542,7 @@ module axi_ad7616_06b #(
     .up_rreq (up_rreq_s),
     .up_raddr (up_raddr_s),
     .up_rdata (up_rdata_cntrl_s),
-    .up_rack (up_rack_cntrl_s),
-    .test ());
+    .up_rack (up_rack_cntrl_s));
 
   // up bus interface
 

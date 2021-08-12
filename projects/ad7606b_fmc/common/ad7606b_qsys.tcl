@@ -25,6 +25,7 @@ set_instance_parameter_value axi_ad7606b {IF_TYPE} {$ad7606b_if}
 set_instance_parameter_value axi_ad7606b {NUM_OF_SDI} {4}
 set_instance_parameter_value axi_ad7606b {NUM_OF_CHANNELS} {8}
 set_instance_parameter_value axi_ad7606b {ADC_RESOLUTION} {16}
+set_instance_parameter_value axi_ad7606b {ADJUST_DELAY} {1}
 set_instance_parameter_value axi_ad7606b {ADC_TYPE} {1} #adc_type=1 corresponds to AD7606B
 
 add_interface axi_ad7606b_control_interface conduit end
@@ -42,11 +43,6 @@ add_connection sys_hps.h2f_lw_axi_master axi_ad7606b.s_axi
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_ad7606b.s_axi arbitrationPriority {1}
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_ad7606b.s_axi baseAddress {0x00040000}
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_ad7606b.s_axi defaultConnection {0}
-
-add_interface test conduit end
-set_interface_property test EXPORT_OF axi_ad7606b.test 
-add_interface test1 conduit end
-set_interface_property test1 EXPORT_OF axi_ad7606b.test1 
 
 # adc-pack
 

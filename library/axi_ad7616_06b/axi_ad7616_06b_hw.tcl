@@ -45,10 +45,10 @@ add_fileset_file axi_ad7616_06b.v 		VERILOG PATH axi_ad7616_06b.v TOP_LEVEL_FILE
 add_fileset_file axi_ad7616_control.v 		VERILOG PATH axi_ad7616_control.v
 add_fileset_file axi_ad7616_maxis2wrfifo.v 	VERILOG PATH axi_ad7616_maxis2wrfifo.v
 add_fileset_file axi_ad7616_pif.v 		VERILOG PATH axi_ad7616_pif.v
+add_fileset_file spi_engine_execution_1.v 		VERILOG PATH spi_engine_execution_1.v
 
 add_fileset_file axi_spi_engine.v 		VERILOG PATH $ad_hdl_dir/library/spi_engine/axi_spi_engine/axi_spi_engine.v
 add_fileset_file axi_spi_engine_constr.sdc 	SDC PATH $ad_hdl_dir/library/spi_engine/axi_spi_engine/axi_spi_engine_constr.sdc
-add_fileset_file spi_engine_execution.v 	VERILOG PATH $ad_hdl_dir/library/spi_engine/spi_engine_execution/spi_engine_execution.v
 add_fileset_file spi_engine_interconnect.v 	VERILOG PATH $ad_hdl_dir/library/spi_engine/spi_engine_interconnect/spi_engine_interconnect.v
 add_fileset_file spi_engine_offload.v 		VERILOG PATH $ad_hdl_dir/library/spi_engine/spi_engine_offload/spi_engine_offload.v
 
@@ -72,7 +72,7 @@ set_parameter_property ID DEFAULT_VALUE 0
 set_parameter_property ID DISPLAY_NAME ID
 set_parameter_property ID TYPE INTEGER
 set_parameter_property ID UNITS None
-set_parameter_property ID ALLOWED_RANGES -2147483648:2147483647
+set_parameter_property ID ALLOWED_RANGES -32768:32768
 set_parameter_property ID HDL_PARAMETER true
 
 add_parameter IF_TYPE INTEGER 1
@@ -80,7 +80,7 @@ set_parameter_property IF_TYPE DEFAULT_VALUE 1
 set_parameter_property IF_TYPE DISPLAY_NAME IF_TYPE
 set_parameter_property IF_TYPE TYPE INTEGER
 set_parameter_property IF_TYPE UNITS None
-set_parameter_property IF_TYPE ALLOWED_RANGES {0, 1}
+set_parameter_property IF_TYPE ALLOWED_RANGES {0,1}
 set_parameter_property IF_TYPE HDL_PARAMETER true
 
 add_parameter NUM_OF_SDI INTEGER 2 
@@ -91,23 +91,13 @@ set_parameter_property NUM_OF_SDI UNITS None
 set_parameter_property NUM_OF_SDI ALLOWED_RANGES 1:8
 set_parameter_property NUM_OF_SDI HDL_PARAMETER true
 
-add_parameter DATA_WIDTH INTEGER 8
-set_parameter_property DATA_WIDTH DEFAULT_VALUE 8
-set_parameter_property DATA_WIDTH DISPLAY_NAME DATA_WIDTH
-set_parameter_property DATA_WIDTH TYPE INTEGER
-set_parameter_property DATA_WIDTH UNITS None
-set_parameter_property DATA_WIDTH ALLOWED_RANGES 8:64
-set_parameter_property DATA_WIDTH HDL_PARAMETER true
-
-
-add_parameter ADC_RESOLUTION INTEGER 16
-set_parameter_property ADC_RESOLUTION DEFAULT_VALUE 16
-set_parameter_property ADC_RESOLUTION DISPLAY_NAME ADC_RESOLUTION 
-set_parameter_property ADC_RESOLUTION TYPE INTEGER
-set_parameter_property ADC_RESOLUTION UNITS None
-set_parameter_property ADC_RESOLUTION ALLOWED_RANGES 8:32
-set_parameter_property ADC_RESOLUTION HDL_PARAMETER true
-
+add_parameter NUM_OF_CHANNELS INTEGER 8
+set_parameter_property NUM_OF_CHANNELS DEFAULT_VALUE 8
+set_parameter_property NUM_OF_CHANNELS DISPLAY_NAME NUM_OF_CHANNELS 
+set_parameter_property NUM_OF_CHANNELS TYPE INTEGER
+set_parameter_property NUM_OF_CHANNELS UNITS None
+set_parameter_property NUM_OF_CHANNELS ALLOWED_RANGES {4,6,8,10,12,14,16}
+set_parameter_property NUM_OF_CHANNELS HDL_PARAMETER true
 
 add_parameter ADC_TYPE INTEGER 0
 set_parameter_property ADC_TYPE DEFAULT_VALUE 0
@@ -117,14 +107,29 @@ set_parameter_property ADC_TYPE UNITS None
 set_parameter_property ADC_TYPE ALLOWED_RANGES 0:16
 set_parameter_property ADC_TYPE HDL_PARAMETER true
 
+add_parameter ADC_RESOLUTION INTEGER 16
+set_parameter_property ADC_RESOLUTION DEFAULT_VALUE 16
+set_parameter_property ADC_RESOLUTION DISPLAY_NAME ADC_RESOLUTION 
+set_parameter_property ADC_RESOLUTION TYPE INTEGER
+set_parameter_property ADC_RESOLUTION UNITS None
+set_parameter_property ADC_RESOLUTION ALLOWED_RANGES 8:32
+set_parameter_property ADC_RESOLUTION HDL_PARAMETER true
 
-add_parameter NUM_OF_CHANNELS INTEGER 8
-set_parameter_property NUM_OF_CHANNELS DEFAULT_VALUE 8
-set_parameter_property NUM_OF_CHANNELS DISPLAY_NAME NUM_OF_CHANNELS 
-set_parameter_property NUM_OF_CHANNELS TYPE INTEGER
-set_parameter_property NUM_OF_CHANNELS UNITS None
-set_parameter_property NUM_OF_CHANNELS ALLOWED_RANGES {4, 6, 8, 10, 12, 14, 16}
-set_parameter_property NUM_OF_CHANNELS HDL_PARAMETER true
+add_parameter DATA_WIDTH INTEGER 8
+set_parameter_property DATA_WIDTH DEFAULT_VALUE 8
+set_parameter_property DATA_WIDTH DISPLAY_NAME DATA_WIDTH
+set_parameter_property DATA_WIDTH TYPE INTEGER
+set_parameter_property DATA_WIDTH UNITS None
+set_parameter_property DATA_WIDTH ALLOWED_RANGES 8:64
+set_parameter_property DATA_WIDTH HDL_PARAMETER true
+
+add_parameter ADJUST_DELAY INTEGER 1
+set_parameter_property ADJUST_DELAY DEFAULT_VALUE 1
+set_parameter_property ADJUST_DELAY DISPLAY_NAME ADJUST_DELAY
+set_parameter_property ADJUST_DELAY TYPE INTEGER
+set_parameter_property ADJUST_DELAY UNITS None
+set_parameter_property ADJUST_DELAY ALLOWED_RANGES 0:1
+set_parameter_property ADJUST_DELAY HDL_PARAMETER true
 
 # 
 # connection point s_axi
@@ -307,7 +312,6 @@ set_interface_property s_axi_aclk SVD_ADDRESS_GROUP ""
 
 add_interface_port s_axi_aclk s_axi_aclk clk Input 1
 
-
 # 
 # connection point spi_clk
 # 
@@ -338,16 +342,3 @@ proc ad7606_elaborate {} {
     add_interface_port adc_data_ch$n adc_data_ch$n data output ADC_RESOLUTION
  }
 }
-
-# 
-# connection point test 
-# 
-add_interface test conduit end
-set_interface_property test associatedClock s_axi_aclk
-set_interface_property test associatedReset ""
-add_interface_port test test test Output 4
-
-add_interface test1 conduit end
-set_interface_property test1 associatedClock s_axi_aclk
-set_interface_property test1 associatedReset ""
-add_interface_port test1 test1 test1 Output 4

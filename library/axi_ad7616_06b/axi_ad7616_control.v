@@ -65,9 +65,7 @@ module axi_ad7616_control #(
   input                   up_rreq,
   input       [13:0]      up_raddr,
   output  reg [31:0]      up_rdata,
-  output  reg             up_rack,
-
-  output  wire[3:0]       test
+  output  reg             up_rack
 );
 
 
@@ -208,12 +206,6 @@ module axi_ad7616_control #(
   end
 
   assign cnvst = (up_cnvst_en == 1'b1) ? cnvst_buf : 1'b0;
-
-assign test[0]=end_of_conv;
-assign test[1]=((up_waddr[8:0] == 9'h110)||(up_waddr[8:0] == 9'h111)
-		||(up_waddr[8:0] == 9'h103))?1:0;
-assign test[2]=up_cnvst_en;
-assign test[3]=cnvst;
 
 endmodule
 

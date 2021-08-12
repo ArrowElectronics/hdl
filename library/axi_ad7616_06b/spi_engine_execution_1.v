@@ -35,10 +35,10 @@
 
 `timescale 1ns/100ps
 
-module spi_engine_execution #(
+module spi_engine_execution_1 #(
 
   parameter NUM_OF_CS = 1,
-  parameter ONE_BIT_SHIFT = 0,
+  parameter ONE_BIT_SHIFT = 1,
   parameter DEFAULT_SPI_CFG = 0,
   parameter DEFAULT_CLK_DIV = 0,
   parameter DATA_WIDTH = 8,                   // Valid data widths values are 8/16/24/32
@@ -80,15 +80,8 @@ module spi_engine_execution #(
   input sdi_6,
   input sdi_7,
   output reg [NUM_OF_CS-1:0] cs,
-  output reg three_wire,
-  output wire [3:0] test
+  output reg three_wire
 );
-//debug testing
-assign test[0] = trigger_rx_s ;
-assign test[1] = testing;
-assign test[2] = sdi_data_valid;
-assign test[3] = clk; 
-reg testing;
 
 localparam CMD_TRANSFER = 2'b00;
 localparam CMD_CHIPSELECT = 2'b01;
@@ -417,11 +410,10 @@ wire trigger_rx_s = (SDI_DELAY == 2'b00) ? trigger_rx :
                     (SDI_DELAY == 2'b11) ? trigger_rx_d3 : trigger_rx;
 						  
 wire trigger_rx_s_t;	
-assign trigger_rx_s_t = ONE_BIT_SHIFT ? sclk : trigger_rx_s_t;
+assign trigger_rx_s_t = ONE_BIT_SHIFT ? sclk : trigger_rx_s;
 
 always @(posedge clk) begin
   if (inst_d1 == CMD_CHIPSELECT) begin
-	 testing <= 0;
     data_sdi_shift <= {DATA_WIDTH{1'b0}};
     data_sdi_shift_1 <= {DATA_WIDTH{1'b0}};
     data_sdi_shift_2 <= {DATA_WIDTH{1'b0}};
@@ -431,7 +423,6 @@ always @(posedge clk) begin
     data_sdi_shift_6 <= {DATA_WIDTH{1'b0}};
     data_sdi_shift_7 <= {DATA_WIDTH{1'b0}};
  end else if (trigger_rx_s_t == 1'b1) begin
-	 testing <= sdi;
     data_sdi_shift <= {data_sdi_shift[(DATA_WIDTH-2):0], sdi};
     data_sdi_shift_1 <= {data_sdi_shift_1[(DATA_WIDTH-2):0], sdi_1};
     data_sdi_shift_2 <= {data_sdi_shift_2[(DATA_WIDTH-2):0], sdi_2};

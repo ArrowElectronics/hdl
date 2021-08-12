@@ -12,33 +12,6 @@ set_location_assignment PIN_B13  -to ad7606b_csn     ; ## H10  FMC_LPC_LA04_P
 set_location_assignment PIN_F11  -to ad7606b_busy    ; ## H13  FMC_LPC_LA07_P  
 set_location_assignment PIN_H12  -to ad7606b_cnvst   ; ## D12  FMC_LA05_P  
 
-set_location_assignment Pin_AD9  -to test[0]   ; ## D12  FMC_LA05_P 
-set_location_assignment Pin_AD11  -to test[1]   ; ## D12  FMC_LA05_P  
-set_location_assignment Pin_AD12  -to test[2]   ; ## D12  FMC_LA05_P  
-set_location_assignment Pin_AC12  -to test[3]   ; ## D12  FMC_LA05_P 
- 
-set_location_assignment Pin_AC9  -to test1[0]   ; ## D12  FMC_LA05_P  
-set_location_assignment Pin_AD10 -to test1[1]   ; ## D12  FMC_LA05_P  
-set_location_assignment Pin_AA12 -to test1[2]   ; ## D12  FMC_LA05_P  
-set_location_assignment Pin_AB12 -to test1[3]   ; ## D12  FMC_LA05_P  
-
-set_location_assignment Pin_AG2 -to test2[0]   ; ## D12  FMC_LA05_P  
-set_location_assignment Pin_AF4 -to test2[1]   ; ## D12  FMC_LA05_P  
-
-
- 
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test1[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test1[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test1[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test1[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test2[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test2[1]
-
-
 # ad7606b serial interface
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ad7606b_sdi[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ad7606b_sdi[1]
