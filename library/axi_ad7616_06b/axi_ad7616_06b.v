@@ -37,14 +37,13 @@
 	
 module axi_ad7616_06b #(
 
-  parameter[15:0]      ID = 0,
-  parameter            IF_TYPE = 1,
-  parameter[3:0]       NUM_OF_SDI = 2,
-  parameter[3:0]       NUM_OF_CHANNELS = 8,
-  parameter[1:0]       ADC_TYPE = 0,
-  parameter[5:0]       ADC_RESOLUTION = 16,
-  parameter[5:0]       DATA_WIDTH = 8,
-  parameter       	  ADJUST_DELAY = 1) (
+  parameter      ID = 0,
+  parameter      IF_TYPE = 1,
+  parameter      NUM_OF_SDI = 2,
+  parameter      NUM_OF_CHANNELS = 8,
+  parameter      ADC_TYPE = 0,
+  parameter      ADC_RESOLUTION = 16,
+  parameter      DATA_WIDTH = 8) (
 
   // physical data interface
 
@@ -388,8 +387,8 @@ module axi_ad7616_06b #(
     spi_engine_execution_1 #(
       .DATA_WIDTH (DATA_WIDTH),
       .NUM_OF_SDI (NUM_OF_SDI),
-      .SDI_DELAY (2),
-		.ONE_BIT_SHIFT (1)
+		.ONE_BIT_SHIFT (1),
+      .SDI_DELAY(2)
     ) i_spi_engine_execution_1 (
       .clk (spi_clk),
       .resetn (spi_resetn_s),

@@ -80,7 +80,7 @@ set_parameter_property IF_TYPE DEFAULT_VALUE 1
 set_parameter_property IF_TYPE DISPLAY_NAME IF_TYPE
 set_parameter_property IF_TYPE TYPE INTEGER
 set_parameter_property IF_TYPE UNITS None
-set_parameter_property IF_TYPE ALLOWED_RANGES {0,1}
+set_parameter_property IF_TYPE ALLOWED_RANGES {0, 1}
 set_parameter_property IF_TYPE HDL_PARAMETER true
 
 add_parameter NUM_OF_SDI INTEGER 2 
@@ -122,14 +122,6 @@ set_parameter_property DATA_WIDTH TYPE INTEGER
 set_parameter_property DATA_WIDTH UNITS None
 set_parameter_property DATA_WIDTH ALLOWED_RANGES 8:64
 set_parameter_property DATA_WIDTH HDL_PARAMETER true
-
-add_parameter ADJUST_DELAY INTEGER 1
-set_parameter_property ADJUST_DELAY DEFAULT_VALUE 1
-set_parameter_property ADJUST_DELAY DISPLAY_NAME ADJUST_DELAY
-set_parameter_property ADJUST_DELAY TYPE INTEGER
-set_parameter_property ADJUST_DELAY UNITS None
-set_parameter_property ADJUST_DELAY ALLOWED_RANGES 0:1
-set_parameter_property ADJUST_DELAY HDL_PARAMETER true
 
 # 
 # connection point s_axi

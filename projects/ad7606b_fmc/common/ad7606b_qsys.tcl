@@ -25,7 +25,6 @@ set_instance_parameter_value axi_ad7606b {IF_TYPE} {$ad7606b_if}
 set_instance_parameter_value axi_ad7606b {NUM_OF_SDI} {4}
 set_instance_parameter_value axi_ad7606b {NUM_OF_CHANNELS} {8}
 set_instance_parameter_value axi_ad7606b {ADC_RESOLUTION} {16}
-set_instance_parameter_value axi_ad7606b {ADJUST_DELAY} {1}
 set_instance_parameter_value axi_ad7606b {ADC_TYPE} {1} #adc_type=1 corresponds to AD7606B
 
 add_interface axi_ad7606b_control_interface conduit end

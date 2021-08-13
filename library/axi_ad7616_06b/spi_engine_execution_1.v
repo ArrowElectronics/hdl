@@ -38,7 +38,7 @@
 module spi_engine_execution_1 #(
 
   parameter NUM_OF_CS = 1,
-  parameter ONE_BIT_SHIFT = 1,
+  parameter ONE_BIT_SHIFT = 0,
   parameter DEFAULT_SPI_CFG = 0,
   parameter DEFAULT_CLK_DIV = 0,
   parameter DATA_WIDTH = 8,                   // Valid data widths values are 8/16/24/32
@@ -173,12 +173,9 @@ wire exec_sync_cmd = exec_misc_cmd && cmd[8] == MISC_SYNC;
 
 assign cmd_ready = idle;
 
-//reg cmd_d1_t; //user added
-
 always @(posedge clk) begin
   if (cmd_ready)
    cmd_d1 <= cmd;
-	//cmd_d1_t<= cmd_d1[9]; /user added
 end
 
 always @(posedge clk) begin
