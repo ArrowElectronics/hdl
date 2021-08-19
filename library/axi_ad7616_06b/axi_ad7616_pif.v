@@ -72,7 +72,8 @@ module axi_ad7616_pif #(
   input                   wr_req,
   input       [15:0]      wr_data,
   output  reg [15:0]      rd_data,
-  output  reg             rd_valid);
+  output  reg             rd_valid
+);
 
 
   // state registers
@@ -90,6 +91,7 @@ module axi_ad7616_pif #(
   reg     [ 2:0]                  transfer_state = 3'h0;
   reg     [ 2:0]                  transfer_state_next = 3'h0;
   reg     [ 1:0]                  width_counter = 2'h0;
+  reg     [3:0]                   width_counter1 = 4'h0;
   reg     [ 4:0]                  burst_counter = 5'h0;
 
   reg                             wr_req_d = 1'h0;
@@ -130,6 +132,17 @@ module axi_ad7616_pif #(
         width_counter <= 2'h0;
     end
   end
+   
+   always @(posedge clk) begin
+    if (rstn == 1'b0 ) begin
+      width_counter1 <= 4'h0;
+    end else begin
+      if(transfer_state == CNTRL0_HIGH)
+        width_counter1 <= width_counter1 + 1;
+      else
+        width_counter1 <= 4'h0;
+    end
+  end  
 
   always @(posedge clk) begin
     if (rstn == 1'b0) begin
@@ -163,14 +176,14 @@ module axi_ad7616_pif #(
       CNTRL0_LOW : begin
         transfer_state_next <= (width_counter != 2'b11) ? CNTRL0_LOW : CNTRL0_HIGH;
       end
-      CNTRL0_HIGH : begin
-        transfer_state_next <= (width_counter != 2'b11) ? CNTRL0_HIGH :
-                               ((wr_req_d == 1'b1) || (rd_req_d == 1'b1)) ? CS_HIGH : CNTRL1_LOW;
+      CNTRL0_HIGH : begin								
+	transfer_state_next <= 	(wr_req_d == 1'b1) ?	((width_counter1 != 4'b1100) ? CNTRL0_HIGH : CS_HIGH	) : 
+	((width_counter != 2'b11) ? CNTRL0_HIGH :((rd_req_d == 1'b1) ? CS_HIGH : CNTRL1_LOW));						
       end
       CNTRL1_LOW : begin
         transfer_state_next <= (width_counter != 2'b11) ? CNTRL1_LOW : CNTRL1_HIGH;
       end
-      CNTRL1_HIGH : begin
+      CNTRL1_HIGH : begin  
         transfer_state_next <= (width_counter != 2'b11) ? CNTRL1_HIGH : CS_HIGH;
       end
       CS_HIGH : begin
@@ -188,8 +201,7 @@ module axi_ad7616_pif #(
                        ((rd_req_d == 1'b1) || (rd_conv_d == 1'b1))) ? 1'b1 : 1'b0;
 
   // FSM output logic
-
-  assign db_o =  wr_data;
+  assign db_o = wr_data ;
 
   always @(posedge clk) begin
     rd_data <= (rd_valid_s & ~rd_valid_d) ? db_i : rd_data;
@@ -200,13 +212,13 @@ module axi_ad7616_pif #(
   assign adc_valid = rd_valid;
   assign adc_data = rd_data;
 
-  assign cs_n = (transfer_state == IDLE) ? 1'b1 : 1'b0;
-  //assign db_t = ~wr_req_d;
+  assign cs_n = (transfer_state == IDLE) ? 1'b1: 1'b0;
   assign db_t = wr_req_d; 
+  //assign db_t = ~wr_req_d; 
   
   assign rd_n = (((transfer_state == CNTRL0_LOW) && ((rd_conv_d == 1'b1) || rd_req_d == 1'b1)) ||
                   (transfer_state == CNTRL1_LOW)) ? 1'b0 : 1'b1;
-  assign wr_n = ((transfer_state == CNTRL0_LOW) && (wr_req_d == 1'b1)) ? 1'b0 : 1'b1;
+  assign wr_n = ((transfer_state == CNTRL0_LOW || transfer_state == CNTRL0_HIGH ) && (wr_req_d == 1'b1)) ? 1'b0 : 1'b1;
 
   // sync will be asserted at the first valid data right after the convertion start
 

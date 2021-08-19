@@ -10,7 +10,7 @@ set_instance_parameter_value spi_engine_pll {gui_device_speed_grade} {8}
 set_instance_parameter_value spi_engine_pll {gui_reference_clock_frequency} {100.0}
 set_instance_parameter_value spi_engine_pll {gui_use_locked} {0}
 set_instance_parameter_value spi_engine_pll {gui_number_of_clocks} {1}
-set_instance_parameter_value spi_engine_pll {gui_output_clock_frequency0} {166.67}
+set_instance_parameter_value spi_engine_pll {gui_output_clock_frequency0} {166.667}
 
 add_connection sys_hps.h2f_user1_clock spi_engine_pll.refclk
 add_connection sys_clk.clk_reset spi_engine_pll.reset
