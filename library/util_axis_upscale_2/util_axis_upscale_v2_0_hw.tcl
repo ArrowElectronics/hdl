@@ -180,3 +180,10 @@ add_interface_port s_axis s_axis_valid valid Input 1
 add_interface_port s_axis s_axis_ready ready Output 1
 add_interface_port s_axis s_axis_data data Input "(NUM_OF_CHANNELS*DATA_WIDTH)"
 
+# 
+# connection point bit_2_shift
+# 
+add_interface bit_2_shift conduit end
+set_interface_property bit_2_shift associatedClock clk
+set_interface_property bit_2_shift associatedReset ""
+add_interface_port bit_2_shift bit_2_shift shift Input 1

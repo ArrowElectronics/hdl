@@ -144,8 +144,15 @@ module system_top (
   inout            	nc2,
   inout					nc3,
   inout					nc4,
-  inout					nc5
+  inout					nc5,
+
+output [5:0] test
 );
+
+//debugging
+wire temp , shift;
+assign test[0] = temp;
+assign test[1] = shift;
 
   // internal signals
 
@@ -254,7 +261,11 @@ module system_top (
 	.trigger_gen_0_load_config_load_config       (1'b0),
 	.upscale_converter_0_dfmt_enable_dfmt_enable (1'b0),
 	.upscale_converter_0_dfmt_se_dfmt_se         (1'b0),
-	.upscale_converter_0_dfmt_type_dfmt_type     (1'b0),
+	.upscale_converter_0_dfmt_type_dfmt_type     (1'b0), 
+	.offload_trigger_pulse(temp),
+	.trigger_pulse_pulse(temp),
+	.ad738x_gpio_export_export(shift),
+	.upscale_converter_0_shift_shift(shift),
 		
     .sys_rst_reset_n (sys_resetn),
     .hdmi_out_h_clk (hdmi_clk),

@@ -1,3 +1,24 @@
+set_instance_parameter_value sys_hps {S2FCLK_USER2CLK} {4}
+set_instance_parameter_value sys_hps {S2FCLK_USER2CLK_Enable} {1}
+set_instance_parameter_value sys_hps {S2FCLK_USER2CLK_FREQ} {150.0}
+
+# ad738x_gpio
+
+add_instance ad738x_gpio altera_avalon_pio
+set_instance_parameter_value ad738x_gpio {direction} {Output}
+set_instance_parameter_value ad738x_gpio {edgeType} {RISING}
+set_instance_parameter_value ad738x_gpio {generateIRQ} {0}
+set_instance_parameter_value ad738x_gpio {irqType} {LEVEL}
+set_instance_parameter_value ad738x_gpio {width} {1}
+
+add_connection sys_clk.clk_reset ad738x_gpio.reset
+add_connection sys_hps.h2f_user2_clock ad738x_gpio.clk
+add_interface ad738x_gpio_export conduit end
+set_interface_property ad738x_gpio_export EXPORT_OF ad738x_gpio.external_connection
+
+add_connection sys_hps.h2f_lw_axi_master ad738x_gpio.s1
+set_connection_parameter_value sys_hps.h2f_lw_axi_master/ad738x_gpio.s1 baseAddress {0x00020060}
+
 # spi engine pll
 
 add_instance spi_engine_pll altera_pll
@@ -5,8 +26,8 @@ set_instance_parameter_value spi_engine_pll {gui_device_speed_grade} {6}
 set_instance_parameter_value spi_engine_pll {gui_reference_clock_frequency} {100.0}
 set_instance_parameter_value spi_engine_pll {gui_use_locked} {1}
 set_instance_parameter_value spi_engine_pll {gui_number_of_clocks} {1}
-set_instance_parameter_value spi_engine_pll {gui_output_clock_frequency0} {166.667}
-add_connection sys_hps.h2f_user1_clock spi_engine_pll.refclk
+set_instance_parameter_value spi_engine_pll {gui_output_clock_frequency0} {155.0}
+add_connection sys_hps.h2f_user2_clock spi_engine_pll.refclk
 add_connection sys_clk.clk_reset spi_engine_pll.reset
 
 # spi engine execution
@@ -34,6 +55,9 @@ add_interface upscale_converter_0_dfmt_type conduit end
 set_interface_property upscale_converter_0_dfmt_type EXPORT_OF upscale_converter_0.dfmt_type
 add_interface upscale_converter_0_dfmt_se conduit end
 set_interface_property upscale_converter_0_dfmt_se EXPORT_OF upscale_converter_0.dfmt_se
+add_interface upscale_converter_0_shift conduit end
+set_interface_property upscale_converter_0_shift EXPORT_OF upscale_converter_0.bit_2_shift
+
 
 # engine offload
 
@@ -45,13 +69,21 @@ add_connection spi_engine_offload_0.spi_engine_ctrl spi_engine_interconnect_0.s0
 add_connection spi_engine_pll.outclk0 spi_engine_offload_0.ctrl_clk
 add_connection spi_engine_pll.outclk0 spi_engine_offload_0.spi_clk
 
+#debugging connection     
+add_interface offload_trigger conduit end
+set_interface_property offload_trigger EXPORT_OF spi_engine_offload_0.trigger 
+
 # pulse generator
 
 add_instance trigger_gen_0 util_pulse_gen_v1_0 1.0
-set_instance_parameter_value trigger_gen_0 {PULSE_PERIOD} {40}
 set_instance_parameter_value trigger_gen_0 {PULSE_WIDTH} {1}
 add_connection spi_engine_pll.outclk0 trigger_gen_0.clk
-add_connection trigger_gen_0.pulse spi_engine_offload_0.trigger 
+
+#debugging connection     
+add_interface trigger_pulse conduit end
+set_interface_property trigger_pulse EXPORT_OF trigger_gen_0.pulse
+#add_connection trigger_gen_0.pulse spi_engine_offload_0.trigger 
+
 add_interface trigger_gen_0_pulse_width conduit end
 set_interface_property trigger_gen_0_pulse_width EXPORT_OF trigger_gen_0.pulse_width
 add_interface trigger_gen_0_pulse_period conduit end
@@ -59,13 +91,15 @@ set_interface_property trigger_gen_0_pulse_period EXPORT_OF trigger_gen_0.pulse_
 add_interface trigger_gen_0_load_config conduit end
 set_interface_property trigger_gen_0_load_config EXPORT_OF trigger_gen_0.load_config
 
+
+
 # spi engine
 
 add_instance axi_spi_engine_0 axi_spi_engine_v1_0 1.1
 set_instance_parameter_value axi_spi_engine_0 {NUM_OFFLOAD} {1}
 set_instance_parameter_value axi_spi_engine_0 {ASYNC_SPI_CLK} {1}
 set_instance_parameter_value axi_spi_engine_0 {MM_IF_TYPE} {0}
-add_connection sys_hps.h2f_user1_clock axi_spi_engine_0.s_axi_aclk
+add_connection sys_hps.h2f_user2_clock axi_spi_engine_0.s_axi_aclk
 add_connection spi_engine_pll.outclk0 axi_spi_engine_0.spi_clk
 add_connection sys_clk.clk_reset axi_spi_engine_0.s_axi_aresetn
 add_connection axi_spi_engine_0.spi_engine_ctrl spi_engine_interconnect_0.s1_ctrl 
@@ -113,8 +147,8 @@ set_instance_parameter_value spi_dmac_0 {HAS_AXIS_TUSER} {0}
 set_instance_parameter_value spi_dmac_0 {ID} {0}
 set_instance_parameter_value spi_dmac_0 {MAX_BYTES_PER_BURST} {128}
 set_instance_parameter_value spi_dmac_0 {SYNC_TRANSFER_START} {0}
-add_connection sys_hps.h2f_user1_clock spi_dmac_0.m_dest_axi_clock
-add_connection sys_hps.h2f_user1_clock spi_dmac_0.s_axi_clock
+add_connection sys_hps.h2f_user2_clock spi_dmac_0.m_dest_axi_clock
+add_connection sys_hps.h2f_user2_clock spi_dmac_0.s_axi_clock
 add_connection spi_engine_pll.outclk0 spi_dmac_0.if_s_axis_aclk 
 add_connection sys_clk.clk_reset spi_dmac_0.m_dest_axi_reset
 add_connection sys_clk.clk_reset spi_dmac_0.s_axi_reset

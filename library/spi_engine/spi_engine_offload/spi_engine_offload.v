@@ -106,6 +106,7 @@ assign offload_sdi_valid = sdi_data_valid;
 assign sdi_data_ready = (spi_enable) ? offload_sdi_ready : 1'b1;
 
 assign offload_sdi_data = sdi_data;
+//assign offload_sdi_data = {18'h19111,18'h1A222};
 
 assign cmd = cmd_mem[spi_cmd_rd_addr];
 assign sdo_data = sdo_mem[spi_sdo_rd_addr];

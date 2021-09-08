@@ -59,7 +59,8 @@ module util_axis_upscale_2 #(
 
   input                                           dfmt_enable,
   input                                           dfmt_type,
-  input                                           dfmt_se);
+  input                                           dfmt_se,
+  input 					bit_2_shift);
 
   wire                                        type_s;
   wire                                        signext_s;
@@ -67,7 +68,7 @@ module util_axis_upscale_2 #(
 
 
 
-  localparam MSB_WIDTH = UDATA_WIDTH - DATA_WIDTH;
+  localparam MSB_WIDTH = (UDATA_WIDTH - DATA_WIDTH);
  
 
   assign type_s = dfmt_enable & dfmt_type;
@@ -81,10 +82,12 @@ module util_axis_upscale_2 #(
 
     if(MSB_WIDTH != 0)begin
     assign sign_s = signext_s & (type_s ^ s_axis_data[(i*DATA_WIDTH-1)]);
-    assign data_out_s[(i*UDATA_WIDTH-1):(i*UDATA_WIDTH-MSB_WIDTH)] = {(MSB_WIDTH){sign_s}};end
+    assign data_out_s[(i*UDATA_WIDTH-1):(i*UDATA_WIDTH-MSB_WIDTH)] = {(MSB_WIDTH){sign_s}}; end									
+    
+    assign data_out_s[((i-1)*UDATA_WIDTH+DATA_WIDTH-1):((i-1)*UDATA_WIDTH + DATA_WIDTH-3)] = (bit_2_shift) ? {3{s_axis_data[(i*DATA_WIDTH-3)]}}
+							: s_axis_data[(i*DATA_WIDTH-1):(i*DATA_WIDTH-3)] ;
 
-    assign data_out_s[((i-1)*UDATA_WIDTH+DATA_WIDTH-1)] = type_s ^ s_axis_data[(i*DATA_WIDTH-1)];
-    assign data_out_s[((i-1)*UDATA_WIDTH+DATA_WIDTH-2):((i-1)*UDATA_WIDTH)] = s_axis_data[(i*DATA_WIDTH-2):((i-1)*DATA_WIDTH)];
+    assign data_out_s[((i-1)*UDATA_WIDTH+DATA_WIDTH-4):((i-1)*UDATA_WIDTH)] = s_axis_data[(i*DATA_WIDTH-4):((i-1)*DATA_WIDTH)] ;
 
   end
   endgenerate

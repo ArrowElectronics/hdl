@@ -14,6 +14,19 @@ set_location_assignment PIN_F15  -to ad738x_spi_sdi[0]		; ## D08  LA01_CC_P
 set_location_assignment PIN_F14  -to ad738x_spi_sdi[1]		; ## D09  LA01_CC_N
 set_location_assignment PIN_A11  -to ad738x_spi_sdo		; ## H07  LA02_P 
 
+set_location_assignment PIN_AD9  -to test[0]		; ## G06  LA00_CC_P
+set_location_assignment PIN_AD11  -to test[1]		; ## G07  LA00_CC_N
+set_location_assignment PIN_AD12 -to test[2]	; ## D08  LA01_CC_P
+set_location_assignment PIN_AC12  -to test[3]		; ## D09  LA01_CC_N
+set_location_assignment PIN_AC9  -to test[4]		; ## H07  LA02_P 
+
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test[0]		
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test[2]		
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test[3]		
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test[4]	
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to test[1]	
+
+
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ad738x_spi_cs		
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ad738x_spi_sclk		
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ad738x_spi_sdo		
@@ -24,7 +37,7 @@ set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to ad738x_spi_cs
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to ad738x_spi_sclk		
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to ad738x_spi_sdo		
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to ad738x_spi_sdi[0]	
-set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to ad738x_spi_sdi[1]		
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "40 MHz" -to ad738x_spi_sdi[1]	
 
 
 execute_flow -compile

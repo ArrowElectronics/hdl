@@ -167,3 +167,13 @@ set_interface_property active CMSIS_SVD_VARIABLES ""
 set_interface_property active SVD_ADDRESS_GROUP ""
 
 add_interface_port active active active Output 1
+
+#test probes
+add_interface test conduit end
+set_interface_property test associatedClock clk
+set_interface_property test associatedReset ""
+add_interface_port test test test output 5
+
+add_interface cnv conduit end
+set_interface_property cnv associatedClock clk
+add_interface_port cnv cnv pulse input 1

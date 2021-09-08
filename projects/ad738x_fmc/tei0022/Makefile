@@ -15,9 +15,9 @@ include ../../scripts/project-intel.mk
 
 build:
 	@echo "Enter the choice for the adc :"
-	@echo " *For ad7380 enter '0' and For ad7381 enter '1'"
+	@echo " *For ad7380/ad7383/ad7386 enter '0' , For ad7381/ad7384/ad7387 enter '1' and For ad7388 enter '2' "
 	read -p " : " CONTINUE && echo "$$CONTINUE" > "interface_selection"; \
-	[ $$CONTINUE = 0 ]|| [ $$CONTINUE = 1 ] ||(echo "wrong input Exiting..."; exit 1;)
+	[ $$CONTINUE = 0 ]|| [ $$CONTINUE = 1 ] || [ $$CONTINUE = 2 ] ||(echo "wrong input Exiting..."; exit 1;)
 	make all
 
 

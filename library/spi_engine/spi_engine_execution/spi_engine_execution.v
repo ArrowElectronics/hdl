@@ -38,7 +38,7 @@
 module spi_engine_execution #(
 
   parameter NUM_OF_CS = 1,
-  parameter ONE_BIT_SHIFT = 0,
+  //parameter ONE_BIT_SHIFT = 0,
   parameter DEFAULT_SPI_CFG = 0,
   parameter DEFAULT_CLK_DIV = 0,
   parameter DATA_WIDTH = 8,                   // Valid data widths values are 8/16/24/32
@@ -81,15 +81,20 @@ module spi_engine_execution #(
   input sdi_7,
   output reg [NUM_OF_CS-1:0] cs,
   output reg three_wire,
-  output wire [3:0] test
+  output wire [4:0] test,
+  input wire cnv
 );
-//debug testing
+
 assign test[0] = trigger_rx_s ;
 assign test[1] = testing;
 assign test[2] = sdi_data_valid;
 assign test[3] = clk; 
+assign test[4] = cnv ? 1 : 0; 
+
 reg testing;
 
+
+//debug testing
 localparam CMD_TRANSFER = 2'b00;
 localparam CMD_CHIPSELECT = 2'b01;
 localparam CMD_WRITE = 2'b10;
@@ -416,12 +421,14 @@ wire trigger_rx_s = (SDI_DELAY == 2'b00) ? trigger_rx :
                     (SDI_DELAY == 2'b10) ? trigger_rx_d2 :
                     (SDI_DELAY == 2'b11) ? trigger_rx_d3 : trigger_rx;
 						  
+localparam ONE_BIT_SHIFT = 1 ;
+						  
 wire trigger_rx_s_t;	
-assign trigger_rx_s_t = ONE_BIT_SHIFT ? sclk : trigger_rx_s_t;
+assign trigger_rx_s_t = ONE_BIT_SHIFT ? sclk : trigger_rx_s;
 
-always @(posedge clk) begin
+always @(posedge sclk) begin
   if (inst_d1 == CMD_CHIPSELECT) begin
-	 testing <= 0;
+		testing <= 0;
     data_sdi_shift <= {DATA_WIDTH{1'b0}};
     data_sdi_shift_1 <= {DATA_WIDTH{1'b0}};
     data_sdi_shift_2 <= {DATA_WIDTH{1'b0}};
@@ -430,8 +437,9 @@ always @(posedge clk) begin
     data_sdi_shift_5 <= {DATA_WIDTH{1'b0}};
     data_sdi_shift_6 <= {DATA_WIDTH{1'b0}};
     data_sdi_shift_7 <= {DATA_WIDTH{1'b0}};
- end else if (trigger_rx_s_t == 1'b1) begin
-	 testing <= sdi;
+//end else if (trigger_rx_s_t == 1'b1) begin
+end else begin
+	testing <= sdi;
     data_sdi_shift <= {data_sdi_shift[(DATA_WIDTH-2):0], sdi};
     data_sdi_shift_1 <= {data_sdi_shift_1[(DATA_WIDTH-2):0], sdi_1};
     data_sdi_shift_2 <= {data_sdi_shift_2[(DATA_WIDTH-2):0], sdi_2};
@@ -478,6 +486,7 @@ endgenerate
 
 assign sdi_data = (NUM_OF_SDI == 1) ? data_sdi_shift_t :
                   (NUM_OF_SDI == 2) ? {data_sdi_shift_1_t, data_sdi_shift_t} :
+		//(NUM_OF_SDI == 2) ? {18'h12555, 18'h1A555} :
                   (NUM_OF_SDI == 3) ? {data_sdi_shift_2_t, data_sdi_shift_1_t,
                                                          data_sdi_shift_t} :
                   (NUM_OF_SDI == 4) ? {data_sdi_shift_3_t, data_sdi_shift_2_t,

@@ -16,3 +16,4 @@ set_instance_parameter_value axi_spi_engine_0 {NUM_OF_SDI} {2}
 
 set_instance_parameter_value spi_dmac_0 {DMA_DATA_WIDTH_SRC} {32}
 
+set_instance_parameter_value trigger_gen_0 {PULSE_PERIOD} {200}
