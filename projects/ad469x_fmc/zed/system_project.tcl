@@ -1,15 +1,24 @@
 
 source ../../scripts/adi_env.tcl
-source $ad_hdl_dir/projects/scripts/adi_project_xilinx.tcl
-source $ad_hdl_dir/projects/scripts/adi_board.tcl
+source ../../scripts/adi_project_xilinx.tcl
+source ../../scripts/adi_board.tcl
+source ../common/config.tcl
 
-adi_project ad738x_fmc_zed
+adi_project ad469x_fmc_zed 0 [list \
+  DATA_WIDTH      [get_config_param DATA_WIDTH] \
+  ASYNC_SPI_CLK   [get_config_param ASYNC_SPI_CLK] \
+  NUM_CS          [get_config_param NUM_CS] \
+  NUM_SDI         [get_config_param NUM_SDI] \
+  SDI_DELAY       [get_config_param SDI_DELAY] \
+]
 
-adi_project_files ad738x_fmc_zed [list \
-    "$ad_hdl_dir/library/xilinx/common/ad_iobuf.v" \
+adi_project_files ad469x_fmc_zed [list \
+    "../../../library/common/ad_iobuf.v" \
+    "../../../library/common/ad_edge_detect.v" \
+    "../../../library/util_cdc/sync_bits.v" \
+    "../../common/zed/zed_system_constr.xdc" \
     "system_top.v" \
     "system_constr.xdc" \
-    "$ad_hdl_dir/projects/common/zed/zed_system_constr.xdc"]
+    ]
 
-adi_project_run ad738x_fmc_zed
-
+adi_project_run ad469x_fmc_zed

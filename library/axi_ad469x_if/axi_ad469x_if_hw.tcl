@@ -223,19 +223,6 @@ add_interface_port ad469x_interface rx_sdo sdo Output 1
 add_interface_port ad469x_interface rx_cs_n cs_n Output 1
 add_interface_port ad469x_interface rx_cnv cnv Output 1
 
-
-# 
-# up signal connection
-# 
-#add_interface ad469x_up conduit end
-#set_interface_property ad469x_up associatedClock s_axi_aclk
-#set_interface_property ad469x_up associatedReset s_axi_aresetn
-
-#add_interface_port ad469x_up up_addr up_addr input 8
-#add_interface_port ad469x_up data_mode data_mode input 1
-#add_interface_port ad469x_up up_data up_data BiDir 24
-#add_interface_port ad469x_up  up_wr_rd_n up_wr_rd_n input 1
-
 # 
 # connection point packed signal
 # 

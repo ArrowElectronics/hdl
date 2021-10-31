@@ -80,14 +80,15 @@ module axi_ad469x_if #(
   input                   s_axi_rready,
 
   // Write FIFO interface
-  output						  adc_wr_overflow,
-  output						  adc_en_packed,
-  input						  adc_ovf_packed,
-  output						  adc_sync_packed,
+  output		  adc_wr_overflow,
+  output		  adc_en_packed,
+  input			  adc_ovf_packed,
+  output		  adc_sync_packed,
   output [ADC_RESOLUTION*NUM_OF_CHANNELS-1:0]	adc_data_packed,
   
   input			  spi_clk,
-  output         irq );
+  output         	  irq 
+);
 
 
   localparam chID_length = 4;
@@ -151,7 +152,7 @@ module axi_ad469x_if #(
     wire  [15:0]                            s0_cmd_data_s;
     wire                                    s0_sdo_data_ready_s;
     wire                                    s0_sdo_data_valid_s;
-    wire  [(DATA_BUS-1):0]            		  s0_sdo_data_s;
+    wire  [(DATA_BUS-1):0]            	    s0_sdo_data_s;
     wire                                    s0_sdi_data_ready_s;
     wire                                    s0_sdi_data_valid_s;
     wire  [(DATA_BUS*NUM_OF_SDI-1):0]       s0_sdi_data_s;
@@ -166,7 +167,7 @@ module axi_ad469x_if #(
     wire  [(DATA_BUS-1):0]                  s1_sdo_data_s;
     wire                                    s1_sdi_data_ready_s;
     wire                                    s1_sdi_data_valid_s;
-    wire  [(DATA_BUS*NUM_OF_SDI-1):0]   	  s1_sdi_data_s;
+    wire  [(DATA_BUS*NUM_OF_SDI-1):0]       s1_sdi_data_s;
     wire                                    s1_sync_ready_s;
     wire                                    s1_sync_valid_s;
     wire  [ 7:0]                            s1_sync_s;
@@ -175,24 +176,24 @@ module axi_ad469x_if #(
     wire  [15:0]                            m_cmd_data_s;
     wire                                    m_sdo_data_ready_s;
     wire                                    m_sdo_data_valid_s;
-    wire [(DATA_BUS-1):0]           		  m_sdo_data_s;
+    wire [(DATA_BUS-1):0]           	    m_sdo_data_s;
     wire                                    m_sdi_data_ready_s;
     wire                                    m_sdi_data_valid_s;
-    wire [(DATA_BUS*NUM_OF_SDI-1):0]    	  m_sdi_data_s;
+    wire [(DATA_BUS*NUM_OF_SDI-1):0]        m_sdi_data_s;
     wire                                    m_sync_ready_s;
     wire                                    m_sync_valid_s;
     wire  [ 7:0]                            m_sync_s;
     wire                                    offload0_cmd_wr_en_s;
     wire  [15:0]                            offload0_cmd_wr_data_s;
     wire                                    offload0_sdo_wr_en_s;
-    wire  [(DATA_BUS-1):0]            		  offload0_sdo_wr_data_s;
+    wire  [(DATA_BUS-1):0]            	    offload0_sdo_wr_data_s;
     wire                                    offload0_mem_reset_s;
     wire                                    offload0_enable_s;
     wire                                    offload0_enabled_s;	
 	 
-    wire                    	              trigger_s;
-    wire                    	              data_valid;
-    wire [(DATA_BUS*NUM_OF_SDI-1):0]		  data_in;
+    wire                    	            trigger_s;
+    wire                    	            data_valid;
+    wire [(DATA_BUS*NUM_OF_SDI-1):0]        data_in;
 	 	 
     axi_spi_engine #(
       .DATA_WIDTH (32),
@@ -432,8 +433,7 @@ module axi_ad469x_if #(
 		reg [31:0] pulse_counter;
 		reg pulse;
 		
-		assign rx_cnv = offload0_enable_s ? pulse : rx_cs_n;
-		//assign rx_cnv = pulse;
+		assign rx_cnv = pulse;
 		
 		ad_edge_detect # (
 		 .EDGE (1)
@@ -489,8 +489,8 @@ module axi_ad469x_if #(
 	  
 	  genvar k;
 	  generate
-			for (k=0; k<(NUM_OF_CHANNELS); k=k+1) begin :cpack
-				assign data_temp[(k+1)*ADC_RESOLUTION-1 : k*ADC_RESOLUTION]= adc_data_mode?(up_data_seq[k]? ADC_DATA[k] : 16'hDEAD) 
+		for (k=0; k<(NUM_OF_CHANNELS); k=k+1) begin :cpack
+			assign data_temp[(k+1)*ADC_RESOLUTION-1 : k*ADC_RESOLUTION]= adc_data_mode?(up_data_seq[k]? ADC_DATA[k] : 16'hDEAD) 
 															: ADC_DATA[k] ;
 	  end endgenerate
 	  

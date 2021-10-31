@@ -8,7 +8,7 @@
 // terms.
 //
 // The user should read each of these license terms, and understand the
-// freedoms and responsibilities that he or she has by using this source/core.
+// freedoms and responsabilities that he or she has by using this source/core.
 //
 // This core is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
@@ -84,11 +84,16 @@ module system_top (
 
   input           otg_vbusoc,
 
-  input           spi_sdia,
-  input           spi_sdib,
-  output          spi_sdo,
-  output          spi_sclk,
-  output          spi_cs);
+  // ad469x SPI configuration interface
+
+  input           ad469x_spi_sdi,
+  output          ad469x_spi_sdo,
+  output          ad469x_spi_sclk,
+  output          ad469x_spi_cs,
+  output          ad469x_spi_cnv,
+  
+  input           ad469x_busy_alt_gp0,
+  inout           ad469x_resetn);
 
   // internal signals
 
@@ -104,7 +109,16 @@ module system_top (
 
   // instantiations
 
-  assign gpio_i[63:32] = gpio_o[63:32];
+  assign gpio_i[63:34] = 31'b0;
+
+  ad_iobuf #(
+    .DATA_WIDTH(1)
+  ) i_ad469x_iobuf (
+    .dio_t(gpio_t[32]),
+    .dio_i(gpio_o[32]),
+    .dio_o(gpio_i[32]),
+    .dio_p(ad469x_resetn));
+
   ad_iobuf #(
     .DATA_WIDTH(32)
   ) i_iobuf (
@@ -172,16 +186,34 @@ module system_top (
     .iic_mux_sda_i (iic_mux_sda_i_s),
     .iic_mux_sda_o (iic_mux_sda_o_s),
     .iic_mux_sda_t (iic_mux_sda_t_s),
-    .spi_sdo (spi_sdo),
-    .spi_sdo_t (),
-    .spi_sdi (spi_sdia),
-    .spi_sdi_1 (spi_sdib),
-    .spi_cs (spi_cs),
-    .spi_sclk (spi_sclk),
+    .spi0_clk_i (1'b0),
+    .spi0_clk_o (),
+    .spi0_csn_0_o (),
+    .spi0_csn_1_o (),
+    .spi0_csn_2_o (),
+    .spi0_csn_i (1'b1),
+    .spi0_sdi_i (1'b0),
+    .spi0_sdo_i (1'b0),
+    .spi0_sdo_o (),
+    .spi1_clk_i (1'b0),
+    .spi1_clk_o (),
+    .spi1_csn_0_o (),
+    .spi1_csn_1_o (),
+    .spi1_csn_2_o (),
+    .spi1_csn_i (1'b1),
+    .spi1_sdi_i (1'b0),
+    .spi1_sdo_i (1'b0),
+    .spi1_sdo_o (),
+    .ad469x_spi_sdo (ad469x_spi_sdo),
+    .ad469x_spi_sdo_t (),
+    .ad469x_spi_sdi (ad469x_spi_sdi),
+    .ad469x_spi_cs (ad469x_spi_cs),
+    .ad469x_spi_sclk (ad469x_spi_sclk),
+    .ad469x_spi_busy(ad469x_busy_alt_gp0),
+    .ad469x_spi_cnv(ad469x_spi_cnv),
     .otg_vbusoc (otg_vbusoc),
     .spdif (spdif));
 
 endmodule
 
-// ***************************************************************************
 // ***************************************************************************

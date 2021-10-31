@@ -69,8 +69,8 @@ module system_top (
   input   [  3:0]   	eth1_rx_d,
   output            	eth1_mdc,
   inout             	eth1_mdio,
-  inout					phy_int,
-  inout					eth_rst,
+  inout			phy_int,
+  inout			eth_rst,
   
   // hps-qspi
 
@@ -91,7 +91,7 @@ module system_top (
   input             	usb1_dir,
   input             	usb1_nxt,
   inout   [  7:0]   	usb1_d,
-  inout					usb1_rst,
+  inout			usb1_rst,
 
   // hps-uart
 
@@ -106,9 +106,9 @@ module system_top (
   // display
 
   output            	hdmi_clk,
-  output	       		hdmi_de,
-  output	      		hdmi_hsync,
-  output	      		hdmi_vsync,
+  output	       	hdmi_de,
+  output	      	hdmi_hsync,
+  output	      	hdmi_vsync,
   output  [  23:0]	hdmi_data,
   
   output            	hdmi_spdif,
@@ -144,9 +144,9 @@ module system_top (
   inout             	user_btn_hps,
   inout             	nc1,
   inout            	nc2,
-  inout					nc3,
-  inout					nc4,
-  inout					nc5,
+  inout			nc3,
+  inout			nc4,
+  inout			nc5,
   output		fmc_pg_c2m_fpga
 );
 
