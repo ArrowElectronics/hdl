@@ -249,11 +249,11 @@ module system_top (
     .sys_hps_memory_mem_dm (ddr3_dm),
     .sys_hps_memory_oct_rzqin (ddr3_rzq),
 
-	.ad469x_interface_sdo (ad469x_spi_sdo_t),       
+	.ad469x_interface_sdo (ad469x_spi_sdo),       
 	.ad469x_interface_sdi (ad469x_spi_sdi_0), 
 	//.ad469x_interface _sdi_1 (ad469x_spi_sdi_1_busy), 		
-	.ad469x_interface_cs_n (ad469x_spi_cs_t),         
-	.ad469x_interface_sclk (ad469x_spi_sclk_t),
+	.ad469x_interface_cs_n (ad469x_spi_cs),         
+	.ad469x_interface_sclk (ad469x_spi_sclk),
 	.ad469x_interface_cnv (ad469x_cnv),
       
     .sys_rst_reset_n (sys_resetn),

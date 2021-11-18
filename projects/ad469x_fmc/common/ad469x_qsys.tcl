@@ -29,9 +29,6 @@ set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_ad469x.s_axi arbitr
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_ad469x.s_axi baseAddress {0x40000}
 set_connection_parameter_value sys_hps.h2f_lw_axi_master/axi_ad469x.s_axi defaultConnection {0}
 
-#add_interface ad469x_up conduit end
-#set_interface_property ad469x_up EXPORT_OF axi_ad469x.ad469x_up 
-
 add_interface ad469x_interface conduit end
 set_interface_property ad469x_interface EXPORT_OF axi_ad469x.ad469x_interface
 

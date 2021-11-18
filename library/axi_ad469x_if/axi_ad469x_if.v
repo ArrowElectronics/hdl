@@ -1,4 +1,4 @@
-// ***************************************************************************
+	// ***************************************************************************
 // ***************************************************************************
 // Copyright, Inc. All rights reserved.
 //
@@ -344,14 +344,18 @@ module axi_ad469x_if #(
   /*block for generating a mux and data based on CHannel ID of input ADC_Data	*/
   		
 		reg [ADC_RESOLUTION-1:0] ADC_DATA[NUM_OF_CHANNELS-1:0];
-		//wire [(DATA_WIDTH * NUM_OF_SDI-1):0] data_in_t;
 		wire [status_length-1:0] ADC_STATUS;
-		wire [chID_length-1 :0] CH_ID; 
-		wire data_valid_t;
+		reg [chID_length-1 :0] CH_ID; 
+		reg data_valid_t;
 		
 		assign ADC_STATUS = data_in[status_length-1 : 0];
-		assign CH_ID = ADC_STATUS[chID_length-1 : 0];
-		assign data_valid_t =data_valid;
+		
+				
+		always@(posedge spi_clk)begin
+			data_valid_t <= data_valid;
+		if (data_valid)begin
+			CH_ID = ADC_STATUS[chID_length-1 : 0];end
+		end
 		
 		always@(posedge spi_clk)begin
 		if (data_valid_t)begin
