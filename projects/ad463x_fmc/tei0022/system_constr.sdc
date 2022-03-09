@@ -1,5 +1,9 @@
 create_clock -period "20.000 ns" -name sys_clk  [get_ports {sys_clk}]
 
+create_clock -period 12.500  -name ad463x_busy [get_ports ad463x_busy] -waveform {3.125 9.375}
+
+create_clock -period 12.500  -name ad463x_echo_clk [get_ports ad463x_echo_clk] -waveform {4.6875 7.8125}
+
 derive_pll_clocks
 derive_clock_uncertainty
 

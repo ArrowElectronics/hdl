@@ -1,0 +1,10 @@
+set_global_assignment -name IP_TOOL_NAME "ALTDDIO_IN"
+set_global_assignment -name IP_TOOL_VERSION "18.1"
+set_global_assignment -name IP_GENERATED_DEVICE_FAMILY "{Cyclone V}"
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "DDR2SDR.v"]
+set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "DDR2SDR.bsf"]
+set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "DDR2SDR_inst.v"]
+set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "DDR2SDR_bb.v"]
+set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "DDR2SDR.inc"]
+set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "DDR2SDR.cmp"]
+set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "DDR2SDR.ppf"]

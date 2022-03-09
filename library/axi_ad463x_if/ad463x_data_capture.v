@@ -67,8 +67,15 @@ module ad463x_data_capture #(
 
   reg [DATA_BUS-1:0] data_sdr [NUM_OF_SDI-1:0];
   wire [DATA_BUS-1:0] data_ddr [NUM_OF_SDI-1:0];
-  reg [3:0] data_ddr_p [NUM_OF_SDI-1:0];
-  reg [3:0] data_ddr_n [NUM_OF_SDI-1:0];
+  (* preserve *) reg [3:0] data_ddr_p [NUM_OF_SDI-1:0] /* synthesis noprune */;
+  (* preserve *) reg [3:0] data_ddr_n [NUM_OF_SDI-1:0] /* synthesis noprune */;
+  (* preserve *) reg [3:0] data_ddr_p_echo [NUM_OF_SDI-1:0] /* synthesis noprune */;
+  (* preserve *) reg [3:0] data_ddr_n_echo [NUM_OF_SDI-1:0] /* synthesis noprune */;
+
+  
+  // for ddr_ip
+  wire [NUM_OF_SDI-1:0] dataout_h_sig;
+  wire [NUM_OF_SDI-1:0] dataout_l_sig;
 
   reg csn_d;
   reg csn_d1;
@@ -99,8 +106,10 @@ module ad463x_data_capture #(
 		 .in (valid_p),
 		 .out (valid_pp1)
 		 );
+		 
 		
-	assign valid_pp =(MASTER_EN & DDR_EN)?(~valid_i & valid_p):(~valid_i1 & valid_i);
+		
+	assign valid_pp =(MASTER_EN & DDR_EN)?(~valid_i & valid_p):(~valid_i1 & valid_i); 
 
 		
 	always @(*) begin
@@ -137,14 +146,24 @@ module ad463x_data_capture #(
 	// negative edge resets the shift registers
 	assign reset =(csn_d2 | ECHO_EN) ;
 	
+	 
+	reg valid_pp_d;
+	always@(posedge spi_clk)begin
+		valid_pp_d <= valid_pp1;end
+
+	
 	// CSN positive edge validates the output data
 	// WARNING: there isn't any buffering for data, if the sink module is not
 	// ready, the data will be discarded
 	
-	always@(posedge spi_clk)begin
-		data_valid_e <=(csn_d & ~csn_d1 & data_ready_e) || valid_pp;end
-
 	
+	always@(posedge spi_clk)begin
+		data_valid_e <=  (MASTER_EN & DDR_EN) ? ( (csn_d & ~csn_d1 & data_ready_e) || valid_pp1 ) : ( (csn_d & ~csn_d1 & data_ready_e) || valid_pp1 );end
+
+	reg data_val_e_dummy;
+	always@(posedge spi_clk)begin 
+	data_val_e_dummy <= data_valid_e;
+	end
 	
 	always@(posedge spi_clk)begin
 	if (DDR_EN)begin
@@ -171,19 +190,50 @@ module ad463x_data_capture #(
 	end
 	endgenerate 
 	
+	wire temp ;
+	assign temp =  echo_clk;
+
+
+	
+	
+	// instantiating the altddio_in 
+	DDR2SDR	DDR2SDR_inst (
+	.aclr ( reset ),
+	.datain ( sdi ),
+	.inclock ( temp),
+	.dataout_h ( dataout_h_sig ),
+	.dataout_l ( dataout_l_sig )
+	);
+
+	
 	
  //data capturing for echo_clk for DDR mode
  //for possitive edge data
   genvar j;
   generate 
 		for (j=0 ; j<NUM_OF_SDI ; j=j+1 ) begin : data_j 
-			always@(posedge echo_clk or posedge reset)begin
+			always@(negedge temp or posedge reset)begin
 				if (reset )begin
 					data_ddr_p[j]<= 'h0; 
 				end else if (DDR_EN && !csn_d) begin
-					data_ddr_p[j]<= {data_ddr_p[j][3:0],sdi[j]};
+					data_ddr_p[j]      <= {data_ddr_p[j][3:0],dataout_h_sig[j]};
 				end else begin
 					data_ddr_p[j]<= 'h0; 
+				end
+		end
+	end
+	endgenerate 
+	
+	 genvar j1;
+  generate 
+		for (j1=0 ; j1<NUM_OF_SDI ; j1=j1+1 ) begin : data_j1 
+			always@(posedge echo_clk or posedge reset)begin
+				if (reset )begin
+					data_ddr_p_echo[j1]<= 'h0; 
+				end else if (DDR_EN && !csn_d) begin
+					data_ddr_p_echo[j1] <= {data_ddr_p_echo[j1][3:0],sdi[j1]};
+				end else begin
+					data_ddr_p_echo[j1]<= 'h0; 
 				end
 		end
 	end
@@ -193,17 +243,32 @@ module ad463x_data_capture #(
   genvar k;
   generate 
 		for (k=0 ; k<NUM_OF_SDI ; k=k+1 ) begin : data_k 
-			always@(negedge echo_clk or posedge reset)begin
+			always@(negedge temp or posedge reset)begin
 				if (reset )begin
 					data_ddr_n[k]<= 'h0; 
 				end else if (DDR_EN && !csn_d) begin
-					data_ddr_n[k]<= {data_ddr_n[k][3:0],sdi[k]};
+					data_ddr_n[k]      <= {data_ddr_n[k][3:0],dataout_l_sig[k]};
 				end else begin
 					data_ddr_n[k]<= 'h0; 
 				end
 		end
 	end
 	endgenerate 
+
+ genvar k1;
+  generate 
+		for (k1=0 ; k1<NUM_OF_SDI ; k1=k1+1 ) begin : data_k1 
+			always@(negedge echo_clk or posedge reset)begin
+				if (reset )begin
+				   data_ddr_n_echo[k1]<= 'h0; 
+				end else if (DDR_EN && !csn_d) begin
+					data_ddr_n_echo[k1] <= {data_ddr_n_echo[k1][3:0],sdi[k1]};
+				end else begin
+					data_ddr_n_echo[k1]<= 'h0; 
+				end
+		end
+	end
+	endgenerate	
 	
 
   //for data ddr arranging edge data
@@ -211,12 +276,12 @@ module ad463x_data_capture #(
   generate 
 		for (l=0 ; l<NUM_OF_SDI ; l=l+1 ) begin : data_l 
 			assign data_ddr[l] = MASTER_EN?
-										{data_ddr_p[l][3],data_ddr_n[l][3],data_ddr_p[l][2],data_ddr_n[l][2],
-										 data_ddr_p[l][1],data_ddr_n[l][1],data_ddr_p[l][0],data_ddr_n[l][0]}:
-										{data_ddr_n[l][3],data_ddr_p[l][2],data_ddr_n[l][2],data_ddr_p[l][1],
-										 data_ddr_n[l][1],data_ddr_p[l][0],data_ddr_n[l][0],sdi[l]};
+										{data_ddr_p[l][0],data_ddr_p[l][3],data_ddr_n[l][2],data_ddr_p[l][2],data_ddr_n[l][1],
+										 data_ddr_p[l][1],data_ddr_n[l][0],data_ddr_p[l][0],dataout_l_sig[l]}:
+										
+										{data_ddr_p_echo[l][0],data_ddr_n_echo[l][3],data_ddr_p_echo[l][2],data_ddr_n_echo[l][2],data_ddr_p_echo[l][1],
+										 data_ddr_n_echo[l][1],data_ddr_p_echo[l][0],data_ddr_n_echo[l][0],sdi[l]};
 		end
 	endgenerate 
   
 endmodule	
-			
