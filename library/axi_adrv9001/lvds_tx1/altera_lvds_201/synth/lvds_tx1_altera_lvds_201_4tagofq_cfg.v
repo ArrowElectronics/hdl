@@ -1,0 +1,5 @@
+config lvds_tx1_altera_lvds_201_4tagofq_cfg;
+		design lvds_tx1_altera_lvds_201_4tagofq;
+		instance lvds_tx1_altera_lvds_201_4tagofq.core use lvds_tx1_altera_lvds_core20_201.lvds_tx1_altera_lvds_core20_201_mw4ba7i;
+endconfig
+

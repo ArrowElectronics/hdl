@@ -1,0 +1,5 @@
+config output_buf_altera_gpio_201_5h2tshy_cfg;
+		design output_buf_altera_gpio_201_5h2tshy;
+		instance output_buf_altera_gpio_201_5h2tshy.core use output_buf_altera_gpio_core20_201.altera_gpio;
+endconfig
+

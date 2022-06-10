@@ -1,0 +1,5 @@
+config lvds_rx_altera_lvds_201_lypf47i_cfg;
+		design lvds_rx_altera_lvds_201_lypf47i;
+		instance lvds_rx_altera_lvds_201_lypf47i.core use lvds_rx_altera_lvds_core20_201.lvds_rx_altera_lvds_core20_201_tafaosi;
+endconfig
+

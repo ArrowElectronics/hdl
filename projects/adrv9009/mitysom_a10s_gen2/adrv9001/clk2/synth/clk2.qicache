@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='us-ascii'?>
+<qsys_generation_info>
+<qsys_file path="C:/Users/labuser/Downloads/hdl-R18.0_CL/hdl-R18.0_CL/projects/adrv9009/mitysom_a10s_gen2/adrv9001/clk2.qsys" />
+<gen_dir path="C:/Users/labuser/Downloads/hdl-R18.0_CL/hdl-R18.0_CL/projects/adrv9009/mitysom_a10s_gen2/adrv9001/clk2/" />
+<user_regen_policy value="Never Regenerate Existing IP" />
+<actual_regen_policy value="Never Regenerate Existing IP" />
+<gen_action value="IP Generation Skipped" />
+<gen_status value="IP Generation Succeeded" />
+</qsys_generation_info>

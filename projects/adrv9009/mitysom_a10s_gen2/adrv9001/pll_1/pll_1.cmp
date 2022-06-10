@@ -1,0 +1,11 @@
+	component pll_1 is
+		port (
+			loaden   : out std_logic_vector(1 downto 0);        -- loaden
+			locked   : out std_logic;                           -- export
+			lvds_clk : out std_logic_vector(1 downto 0);        -- lvds_clk
+			outclk_2 : out std_logic;                           -- clk
+			refclk   : in  std_logic                    := 'X'; -- clk
+			rst      : in  std_logic                    := 'X'  -- reset
+		);
+	end component pll_1;
+

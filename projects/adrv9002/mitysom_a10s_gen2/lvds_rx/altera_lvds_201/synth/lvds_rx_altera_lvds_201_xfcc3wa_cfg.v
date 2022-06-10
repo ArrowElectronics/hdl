@@ -1,0 +1,5 @@
+config lvds_rx_altera_lvds_201_xfcc3wa_cfg;
+		design lvds_rx_altera_lvds_201_xfcc3wa;
+		instance lvds_rx_altera_lvds_201_xfcc3wa.core use lvds_rx_altera_lvds_core20_201.lvds_rx_altera_lvds_core20_201_crpqifa;
+endconfig
+

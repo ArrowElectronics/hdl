@@ -1,0 +1,5 @@
+config lvds_rx_altera_lvds_201_5laweqy_cfg;
+		design lvds_rx_altera_lvds_201_5laweqy;
+		instance lvds_rx_altera_lvds_201_5laweqy.core use lvds_rx_altera_lvds_core20_201.lvds_rx_altera_lvds_core20_201_ytodrhq;
+endconfig
+

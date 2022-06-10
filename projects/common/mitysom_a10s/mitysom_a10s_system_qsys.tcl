@@ -87,6 +87,189 @@ set_hps_io  IO_SHARED_Q4_10   NONE
 set_hps_io  IO_SHARED_Q4_11   NONE
 set_hps_io  IO_SHARED_Q4_12   NONE
 
+#added system_bd A10 hps
+
+add_instance sys_hps altera_arria10_hps 20.1
+set_instance_parameter_value sys_hps {BOOT_FROM_FPGA_Enable} {0}
+set_instance_parameter_value sys_hps {BSEL} {1}
+set_instance_parameter_value sys_hps {BSEL_EN} {0}
+set_instance_parameter_value sys_hps {CLK_EMACA_SOURCE} {1}
+set_instance_parameter_value sys_hps {CLK_EMACB_SOURCE} {1}
+set_instance_parameter_value sys_hps {CLK_EMAC_PTP_SOURCE} {1}
+set_instance_parameter_value sys_hps {CLK_GPIO_SOURCE} {1}
+set_instance_parameter_value sys_hps {CLK_HMC_PLL_SOURCE} {0}
+set_instance_parameter_value sys_hps {CLK_MAIN_PLL_SOURCE2} {0}
+set_instance_parameter_value sys_hps {CLK_MPU_CNT} {0}
+set_instance_parameter_value sys_hps {CLK_MPU_SOURCE} {0}
+set_instance_parameter_value sys_hps {CLK_NOC_CNT} {0}
+set_instance_parameter_value sys_hps {CLK_NOC_SOURCE} {0}
+set_instance_parameter_value sys_hps {CLK_PERI_PLL_SOURCE2} {0}
+set_instance_parameter_value sys_hps {CLK_S2F_USER0_SOURCE} {0}
+set_instance_parameter_value sys_hps {CLK_S2F_USER1_SOURCE} {0}
+set_instance_parameter_value sys_hps {CLK_SDMMC_SOURCE} {1}
+set_instance_parameter_value sys_hps {CM_Mode} {N/A}
+set_instance_parameter_value sys_hps {CM_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {CTI_Enable} {0}
+set_instance_parameter_value sys_hps {CUSTOM_MPU_CLK} {800}
+set_instance_parameter_value sys_hps {DEBUG_APB_Enable} {0}
+set_instance_parameter_value sys_hps {DISABLE_PERI_PLL} {0}
+set_instance_parameter_value sys_hps {DMA_Enable} {No No No No No No No No}
+set_instance_parameter_value sys_hps {EMAC0_CLK} {250}
+set_instance_parameter_value sys_hps {EMAC0_Mode} {N/A}
+set_instance_parameter_value sys_hps {EMAC0_PTP} {0}
+set_instance_parameter_value sys_hps {EMAC0_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {EMAC0_SWITCH_Enable} {0}
+set_instance_parameter_value sys_hps {EMAC1_CLK} {250}
+set_instance_parameter_value sys_hps {EMAC1_Mode} {RGMII_with_MDIO}
+set_instance_parameter_value sys_hps {EMAC1_PTP} {0}
+set_instance_parameter_value sys_hps {EMAC1_PinMuxing} {IO}
+set_instance_parameter_value sys_hps {EMAC1_SWITCH_Enable} {0}
+set_instance_parameter_value sys_hps {EMAC2_CLK} {250}
+set_instance_parameter_value sys_hps {EMAC2_Mode} {N/A}
+set_instance_parameter_value sys_hps {EMAC2_PTP} {0}
+set_instance_parameter_value sys_hps {EMAC2_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {EMAC2_SWITCH_Enable} {0}
+set_instance_parameter_value sys_hps {EMAC_PTP_REF_CLK} {100}
+set_instance_parameter_value sys_hps {EMIF_BYPASS_CHECK} {0}
+set_instance_parameter_value sys_hps {EMIF_CONDUIT_Enable} {1}
+set_instance_parameter_value sys_hps {F2H_COLD_RST_Enable} {0}
+set_instance_parameter_value sys_hps {F2H_DBG_RST_Enable} {0}
+set_instance_parameter_value sys_hps {F2H_FREE_CLK_Enable} {0}
+set_instance_parameter_value sys_hps {F2H_FREE_CLK_FREQ} {200}
+set_instance_parameter_value sys_hps {F2H_WARM_RST_Enable} {0}
+set_instance_parameter_value sys_hps {F2SDRAM0_ENABLED} {1}
+set_instance_parameter_value sys_hps {F2SDRAM1_ENABLED} {0}
+set_instance_parameter_value sys_hps {F2SDRAM2_DELAY} {4}
+set_instance_parameter_value sys_hps {F2SDRAM2_ENABLED} {0}
+set_instance_parameter_value sys_hps {F2SDRAM_ADDRESS_WIDTH} {32}
+set_instance_parameter_value sys_hps {F2SDRAM_PORT_CONFIG} {6}
+set_instance_parameter_value sys_hps {F2SDRAM_READY_LATENCY} {1}
+set_instance_parameter_value sys_hps {F2SINTERRUPT_Enable} {1}
+set_instance_parameter_value sys_hps {F2S_Width} {2}
+set_instance_parameter_value sys_hps {FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC0_GTX_CLK} {100}
+set_instance_parameter_value sys_hps {FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC0_MD_CLK} {2.5}
+set_instance_parameter_value sys_hps {FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC1_GTX_CLK} {100}
+set_instance_parameter_value sys_hps {FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC1_MD_CLK} {2.5}
+set_instance_parameter_value sys_hps {FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC2_GTX_CLK} {100}
+set_instance_parameter_value sys_hps {FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC2_MD_CLK} {2.5}
+set_instance_parameter_value sys_hps {FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_I2C0_CLK} {100}
+set_instance_parameter_value sys_hps {FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_I2C1_CLK} {100}
+set_instance_parameter_value sys_hps {FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_I2CEMAC0_CLK} {100}
+set_instance_parameter_value sys_hps {FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_I2CEMAC1_CLK} {100}
+set_instance_parameter_value sys_hps {FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_I2CEMAC2_CLK} {100}
+set_instance_parameter_value sys_hps {FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_QSPI_SCLK_OUT} {100}
+set_instance_parameter_value sys_hps {FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_SDMMC_CCLK} {100}
+set_instance_parameter_value sys_hps {FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_SPIM0_SCLK_OUT} {100}
+set_instance_parameter_value sys_hps {FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_SPIM1_SCLK_OUT} {100}
+set_instance_parameter_value sys_hps {GPIO_REF_CLK} {4}
+set_instance_parameter_value sys_hps {GP_Enable} {0}
+set_instance_parameter_value sys_hps {H2F_COLD_RST_Enable} {0}
+set_instance_parameter_value sys_hps {H2F_PENDING_RST_Enable} {0}
+set_instance_parameter_value sys_hps {H2F_USER0_CLK_Enable} {1}
+set_instance_parameter_value sys_hps {H2F_USER0_CLK_FREQ} {175}
+set_instance_parameter_value sys_hps {H2F_USER1_CLK_Enable} {1}
+set_instance_parameter_value sys_hps {H2F_USER1_CLK_FREQ} {100}
+set_instance_parameter_value sys_hps {HMC_PLL_REF_CLK} {800}
+set_instance_parameter_value sys_hps {HPS_DIV_GPIO_FREQ} {125}
+set_instance_parameter_value sys_hps {HPS_IO_Enable} {SDMMC:D0 SDMMC:CMD SDMMC:CCLK SDMMC:D1 SDMMC:D2 SDMMC:D3 NONE NONE MDIO1:MDIO MDIO1:MDC NONE NONE UART1:TX UART1:RX GPIO GPIO I2C1:SDA I2C1:SCL NONE NONE NONE NONE NONE GPIO NONE NONE USB1:CLK USB1:STP USB1:DIR USB1:DATA0 USB1:DATA1 USB1:NXT USB1:DATA2 USB1:DATA3 USB1:DATA4 USB1:DATA5 USB1:DATA6 USB1:DATA7 EMAC1:TX_CLK EMAC1:TX_CTL EMAC1:RX_CLK EMAC1:RX_CTL EMAC1:TXD0 EMAC1:TXD1 EMAC1:RXD0 EMAC1:RXD1 EMAC1:TXD2 EMAC1:TXD3 EMAC1:RXD2 EMAC1:RXD3 NONE NONE NONE NONE NONE NONE NONE NONE NONE NONE NONE NONE}
+set_instance_parameter_value sys_hps {I2C0_Mode} {N/A}
+set_instance_parameter_value sys_hps {I2C0_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {I2C1_Mode} {default}
+set_instance_parameter_value sys_hps {I2C1_PinMuxing} {IO}
+set_instance_parameter_value sys_hps {I2CEMAC0_Mode} {N/A}
+set_instance_parameter_value sys_hps {I2CEMAC0_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {I2CEMAC1_Mode} {N/A}
+set_instance_parameter_value sys_hps {I2CEMAC1_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {I2CEMAC2_Mode} {N/A}
+set_instance_parameter_value sys_hps {I2CEMAC2_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {INTERNAL_OSCILLATOR_ENABLE} {60}
+set_instance_parameter_value sys_hps {JTAG_Enable} {0}
+set_instance_parameter_value sys_hps {L3_MAIN_FREE_CLK} {400}
+set_instance_parameter_value sys_hps {L4_SYS_FREE_CLK} {1}
+set_instance_parameter_value sys_hps {LWH2F_Enable} {1}
+set_instance_parameter_value sys_hps {MPU_CLK_VCCL} {0}
+set_instance_parameter_value sys_hps {MPU_EVENTS_Enable} {0}
+set_instance_parameter_value sys_hps {NAND_Mode} {N/A}
+set_instance_parameter_value sys_hps {NAND_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {NOCDIV_CS_ATCLK} {0}
+set_instance_parameter_value sys_hps {NOCDIV_CS_PDBGCLK} {1}
+set_instance_parameter_value sys_hps {NOCDIV_CS_TRACECLK} {0}
+set_instance_parameter_value sys_hps {NOCDIV_L4MAINCLK} {0}
+set_instance_parameter_value sys_hps {NOCDIV_L4MPCLK} {1}
+set_instance_parameter_value sys_hps {NOCDIV_L4SPCLK} {2}
+set_instance_parameter_value sys_hps {OVERIDE_PERI_PLL} {0}
+set_instance_parameter_value sys_hps {PERI_PLL_MANUAL_VCO_FREQ} {2000}
+set_instance_parameter_value sys_hps {PLL_CLK0} {Unused}
+set_instance_parameter_value sys_hps {PLL_CLK1} {Unused}
+set_instance_parameter_value sys_hps {PLL_CLK2} {Unused}
+set_instance_parameter_value sys_hps {PLL_CLK3} {Unused}
+set_instance_parameter_value sys_hps {PLL_CLK4} {Unused}
+set_instance_parameter_value sys_hps {QSPI_Mode} {N/A}
+set_instance_parameter_value sys_hps {QSPI_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {RUN_INTERNAL_BUILD_CHECKS} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_CLOCKPERIPHERAL_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_CTI_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_DMA_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_EMAC0_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_EMAC1_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_EMAC2_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_FPGAMANAGER_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_GPIO_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_HMC_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_I2C0_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_I2C1_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_I2CEMAC0_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_I2CEMAC1_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_I2CEMAC2_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_L4TIMER_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_NAND_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_QSPI_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_SDMMC_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_SPIM0_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_SPIM1_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_SPIS0_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_SPIS1_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_SYSTEMMANAGER_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_SYSTIMER_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_UART0_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_UART1_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_USB0_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_USB1_Enable} {0}
+set_instance_parameter_value sys_hps {S2FINTERRUPT_WATCHDOG_Enable} {0}
+set_instance_parameter_value sys_hps {S2F_Width} {2}
+set_instance_parameter_value sys_hps {SDMMC_Mode} {4-bit}
+set_instance_parameter_value sys_hps {SDMMC_PinMuxing} {IO}
+set_instance_parameter_value sys_hps {SDMMC_REF_CLK} {200}
+set_instance_parameter_value sys_hps {SECURITY_MODULE_Enable} {0}
+set_instance_parameter_value sys_hps {SPIM0_Mode} {N/A}
+set_instance_parameter_value sys_hps {SPIM0_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {SPIM1_Mode} {N/A}
+set_instance_parameter_value sys_hps {SPIM1_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {SPIS0_Mode} {N/A}
+set_instance_parameter_value sys_hps {SPIS0_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {SPIS1_Mode} {N/A}
+set_instance_parameter_value sys_hps {SPIS1_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {STM_Enable} {0}
+set_instance_parameter_value sys_hps {TESTIOCTRL_DEBUGCLKSEL} {16}
+set_instance_parameter_value sys_hps {TESTIOCTRL_MAINCLKSEL} {8}
+set_instance_parameter_value sys_hps {TESTIOCTRL_PERICLKSEL} {8}
+set_instance_parameter_value sys_hps {TEST_Enable} {0}
+set_instance_parameter_value sys_hps {TRACE_Mode} {N/A}
+set_instance_parameter_value sys_hps {TRACE_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {UART0_Mode} {N/A}
+set_instance_parameter_value sys_hps {UART0_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {UART1_Mode} {No_flow_control}
+set_instance_parameter_value sys_hps {UART1_PinMuxing} {IO}
+set_instance_parameter_value sys_hps {USB0_Mode} {N/A}
+set_instance_parameter_value sys_hps {USB0_PinMuxing} {Unused}
+set_instance_parameter_value sys_hps {USB1_Mode} {default}
+set_instance_parameter_value sys_hps {USB1_PinMuxing} {IO}
+set_instance_parameter_value sys_hps {USE_DEFAULT_MPU_CLK} {0}
+set_instance_parameter_value sys_hps {eosc1_clk_mhz} {50.0}
+
+
+
+if 0 {
 add_instance sys_hps altera_arria10_hps
 set_instance_parameter_value sys_hps {EOSC1_CLK_MHZ} {50.0}
 set_instance_parameter_value sys_hps {MPU_EVENTS_Enable} {0}
@@ -112,6 +295,9 @@ set_instance_parameter_value sys_hps {H2F_USER0_CLK_Enable} {1}
 set_instance_parameter_value sys_hps {H2F_USER0_CLK_FREQ} {175}
 set_instance_parameter_value sys_hps {CLK_SDMMC_SOURCE} {1}
 
+set_instance_parameter_value sys_hps {H2F_USER1_CLK_Enable} {1}
+set_instance_parameter_value sys_hps {H2F_USER1_CLK_FREQ} {100}
+}
 add_interface sys_hps_rstn reset sink
 #set_interface_property sys_hps_rstn EXPORT_OF sys_hps.f2h_cold_reset_req
 add_interface sys_hps_out_rstn reset source
@@ -121,6 +307,16 @@ add_connection sys_clk.clk_reset sys_hps.h2f_lw_axi_reset
 add_interface sys_hps_io conduit end
 set_interface_property sys_hps_io EXPORT_OF sys_hps.hps_io
 
+add_connection sys_clk.clk_reset sys_hps.f2h_axi_reset
+add_connection sys_clk.clk_reset sys_hps.h2f_axi_reset
+
+
+
+add_connection sys_hps.h2f_user0_clock sys_hps.f2h_axi_clock
+add_connection sys_hps.h2f_user0_clock sys_hps.h2f_axi_clock
+
+
+
 # common dma interfaces
 
 add_instance sys_dma_clk clock_source
@@ -129,6 +325,7 @@ add_connection sys_hps.h2f_user0_clock sys_dma_clk.clk_in
 add_connection sys_dma_clk.clk sys_hps.f2sdram0_clock
 add_connection sys_dma_clk.clk_reset sys_hps.f2sdram0_reset
 
+add_connection sys_dma_clk.clk_reset sys_hps.h2f_axi_reset
 # ddr4 interface
 
 add_instance sys_hps_ddr4_cntrl altera_emif_a10_hps
@@ -460,85 +657,89 @@ set_interface_property sys_hps_ddr_ref_clk EXPORT_OF sys_hps_ddr4_cntrl.pll_ref_
 
 # cpu/hps handling
 
-proc ad_cpu_interrupt {m_irq m_port} {
-
-  add_connection sys_hps.f2h_irq0 ${m_port}
-  set_connection_parameter_value sys_hps.f2h_irq0/${m_port} irqNumber ${m_irq}
-}
+#proc ad_cpu_interrupt {m_irq m_port} {
+#
+#  add_connection sys_hps.f2h_irq0 ${m_port}
+ # set_connection_parameter_value sys_hps.f2h_irq0/${m_port} irqNumber ${m_irq}
+#}
 
 proc ad_cpu_interconnect {m_base m_port} {
 
   add_connection sys_hps.h2f_lw_axi_master ${m_port}
   set_connection_parameter_value sys_hps.h2f_lw_axi_master/${m_port} baseAddress ${m_base}
 }
-
-proc ad_dma_interconnect {m_port} {
-
-  add_connection ${m_port} sys_hps.f2sdram0_data
-  set_connection_parameter_value ${m_port}/sys_hps.f2sdram0_data baseAddress {0x0}
-}
+#
+#proc ad_dma_interconnect {m_port} {
+#
+#  add_connection ${m_port} sys_hps.f2sdram0_data
+#  set_connection_parameter_value ${m_port}/sys_hps.f2sdram0_data baseAddress {0x0}
+#}
 
 # gpio-bd
 
-add_instance sys_gpio_bd altera_avalon_pio
-set_instance_parameter_value sys_gpio_bd {direction} {InOut}
-set_instance_parameter_value sys_gpio_bd {generateIRQ} {1}
-set_instance_parameter_value sys_gpio_bd {width} {32}
+#add_instance sys_gpio_bd altera_avalon_pio
+#set_instance_parameter_value sys_gpio_bd {direction} {InOut}
+#set_instance_parameter_value sys_gpio_bd {generateIRQ} {1}
+#set_instance_parameter_value sys_gpio_bd {width} {32}
 
-add_connection sys_clk.clk_reset sys_gpio_bd.reset
-add_connection sys_clk.clk sys_gpio_bd.clk
-add_interface sys_gpio_bd conduit end
-set_interface_property sys_gpio_bd EXPORT_OF sys_gpio_bd.external_connection
+#add_connection sys_clk.clk_reset sys_gpio_bd.reset
+#add_connection sys_clk.clk sys_gpio_bd.clk
+#add_interface sys_gpio_bd conduit end
+#set_interface_property sys_gpio_bd EXPORT_OF sys_gpio_bd.external_connection
 
 # gpio-in
 
-add_instance sys_gpio_in altera_avalon_pio
-set_instance_parameter_value sys_gpio_in {direction} {Input}
-set_instance_parameter_value sys_gpio_in {generateIRQ} {1}
-set_instance_parameter_value sys_gpio_in {width} {32}
+#add_instance sys_gpio_in altera_avalon_pio
+#set_instance_parameter_value sys_gpio_in {direction} {Input}
+#set_instance_parameter_value sys_gpio_in {generateIRQ} {1}
+#set_instance_parameter_value sys_gpio_in {width} {32}
 
-add_connection sys_clk.clk_reset sys_gpio_in.reset
-add_connection sys_clk.clk sys_gpio_in.clk
-add_interface sys_gpio_in conduit end
-set_interface_property sys_gpio_in EXPORT_OF sys_gpio_in.external_connection
+#add_connection sys_clk.clk_reset sys_gpio_in.reset
+#add_connection sys_clk.clk sys_gpio_in.clk
+#add_interface sys_gpio_in conduit end
+#set_interface_property sys_gpio_in EXPORT_OF sys_gpio_in.external_connection
 
 # gpio-out
 
-add_instance sys_gpio_out altera_avalon_pio
-set_instance_parameter_value sys_gpio_out {direction} {Output}
-set_instance_parameter_value sys_gpio_out {generateIRQ} {0}
-set_instance_parameter_value sys_gpio_out {width} {32}
-
-add_connection sys_clk.clk_reset sys_gpio_out.reset
-add_connection sys_clk.clk sys_gpio_out.clk
-add_interface sys_gpio_out conduit end
-set_interface_property sys_gpio_out EXPORT_OF sys_gpio_out.external_connection
+#add_instance sys_gpio_out altera_avalon_pio
+#set_instance_parameter_value sys_gpio_out {direction} {Output}
+#set_instance_parameter_value sys_gpio_out {generateIRQ} {0}
+#set_instance_parameter_value sys_gpio_out {width} {32}
+#
+#add_connection sys_clk.clk_reset sys_gpio_out.reset
+#add_connection sys_clk.clk sys_gpio_out.clk
+#add_interface sys_gpio_out conduit end
+#set_interface_property sys_gpio_out EXPORT_OF sys_gpio_out.external_connection
 
 # spi
 
-add_instance sys_spi altera_avalon_spi
-set_instance_parameter_value sys_spi {clockPhase} {0}
-set_instance_parameter_value sys_spi {clockPolarity} {0}
-set_instance_parameter_value sys_spi {dataWidth} {8}
-set_instance_parameter_value sys_spi {masterSPI} {1}
-set_instance_parameter_value sys_spi {numberOfSlaves} {8}
-set_instance_parameter_value sys_spi {targetClockRate} {128000.0}
-
-add_connection sys_clk.clk_reset sys_spi.reset
-add_connection sys_clk.clk sys_spi.clk
-add_interface sys_spi conduit end
-set_interface_property sys_spi EXPORT_OF sys_spi.external
+#add_instance sys_spi altera_avalon_spi
+#set_instance_parameter_value sys_spi {clockPhase} {0}
+#set_instance_parameter_value sys_spi {clockPolarity} {0}
+#set_instance_parameter_value sys_spi {dataWidth} {8}
+#set_instance_parameter_value sys_spi {masterSPI} {1}
+#set_instance_parameter_value sys_spi {numberOfSlaves} {8}
+#set_instance_parameter_value sys_spi {targetClockRate} {128000.0}
+#
+#add_connection sys_clk.clk_reset sys_spi.reset
+#add_connection sys_clk.clk sys_spi.clk
+#add_interface sys_spi conduit end
+#set_interface_property sys_spi EXPORT_OF sys_spi.external
 
 # base-addresses
 
-ad_cpu_interconnect 0x000000d0 sys_gpio_bd.s1
-ad_cpu_interconnect 0x00000000 sys_gpio_in.s1
-ad_cpu_interconnect 0x00000020 sys_gpio_out.s1
-ad_cpu_interconnect 0x00000040 sys_spi.spi_control_port
+#ad_cpu_interconnect 0x000000d0 sys_gpio_bd.s1
+#ad_cpu_interconnect 0x00000000 sys_gpio_in.s1
+#ad_cpu_interconnect 0x00000020 sys_gpio_out.s1
+#ad_cpu_interconnect 0x00000040 sys_spi.spi_control_port
 
 # interrupts
 
-ad_cpu_interrupt 5 sys_gpio_in.irq
-ad_cpu_interrupt 6 sys_gpio_bd.irq
-ad_cpu_interrupt 7 sys_spi.irq
+#ad_cpu_interrupt 5 sys_gpio_in.irq
+#ad_cpu_interrupt 6 sys_gpio_bd.irq
+#ad_cpu_interrupt 7 sys_spi.irq
+
+#ddr4_dacfifo
+
+
 

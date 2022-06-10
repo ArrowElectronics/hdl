@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pinplan
+ variation_name="gpio_0"
+ megafunction_name="ALTERA_GPIO"
+ intended_family="Arria 10"
+ specifies="all_ports">
+ <global>
+  <pin name="ck" direction="input" scope="external" />
+  <pin name="dout[1..0]" direction="output" scope="external" />
+  <pin name="pad_in" direction="input" scope="external" />
+ </global>
+</pinplan>

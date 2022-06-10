@@ -1,0 +1,224 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst system_bd.sys_hps.i_gpio_2_gpio -pg 1
+preplace inst system_bd.adrv9009_rx_os_jesd204.axi_jesd204_rx -pg 1
+preplace inst system_bd.adrv9009_rx_os_jesd204.sys_clock -pg 1
+preplace inst system_bd.sys_hps.scu -pg 1
+preplace inst system_bd.sys_ddr4_cntrl.cal_slave_component.clk_bridge -pg 1
+preplace inst system_bd.adrv9009_tx_jesd204.phy.soft_pcs_0 -pg 1
+preplace inst system_bd.sys_hps.i_i2c_emac_0_i2c -pg 1
+preplace inst system_bd.sys_hps.i_spim_1_spim -pg 1
+preplace inst system_bd.sys_hps.i_watchdog_1_l4wd -pg 1
+preplace inst system_bd.sys_hps.i_timer_sp_1_timer -pg 1
+preplace inst system_bd.sys_hps -pg 1 -lvl 5 -y 2280
+preplace inst system_bd.adrv9009_tx_jesd204.phy.soft_pcs_1 -pg 1
+preplace inst system_bd.sys_hps.i_i2c_emac_2_i2c -pg 1
+preplace inst system_bd.sys_ddr4_cntrl.cal_slave_component -pg 1
+preplace inst system_bd.adrv9009_rx_jesd204.phy.phy_glue -pg 1
+preplace inst system_bd.adrv9009_tx_jesd204.phy.soft_pcs_2 -pg 1
+preplace inst system_bd.adrv9009_rx_jesd204.axi_jesd204_rx -pg 1
+preplace inst system_bd.sys_hps.i_rst_mgr_rstmgr -pg 1
+preplace inst system_bd.adrv9009_tx_jesd204.phy.soft_pcs_3 -pg 1
+preplace inst system_bd.sys_hps.baum_clkmgr -pg 1
+preplace inst system_bd.adrv9009_rx_jesd204.phy_reset_control -pg 1
+preplace inst system_bd.adrv9009_rx_jesd204.sys_clock -pg 1
+preplace inst system_bd.sys_hps.fpga_interfaces -pg 1
+preplace inst system_bd.axi_adrv9009_rx_os_dma -pg 1 -lvl 4 -y 760
+preplace inst system_bd.adrv9009_rx_jesd204.phy.link_clock -pg 1
+preplace inst system_bd.adrv9009_rx_os_jesd204.phy_reset_control -pg 1
+preplace inst system_bd.axi_adrv9009_rx_dma -pg 1 -lvl 4 -y 220
+preplace inst system_bd.adrv9009_rx_jesd204.axi_xcvr -pg 1
+preplace inst system_bd.adrv9009_rx_os_jesd204.link_pll -pg 1
+preplace inst system_bd.adrv9009_rx_os_jesd204.phy.phy_glue -pg 1
+preplace inst system_bd.adrv9009_tx_jesd204.jesd204_tx -pg 1
+preplace inst system_bd.sys_ddr4_cntrl.arch -pg 1
+preplace inst system_bd.adrv9009_tx_jesd204.sys_clock -pg 1
+preplace inst system_bd.adrv9009_rx_os_jesd204.phy.native_phy -pg 1
+preplace inst system_bd.sys_hps.i_sdmmc_sdmmc -pg 1
+preplace inst system_bd.sys_hps.arm_a9_0 -pg 1
+preplace inst system_bd -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst system_bd.sys_spi -pg 1 -lvl 4 -y 2780
+preplace inst system_bd.sys_hps.i_timer_sys_1_timer -pg 1
+preplace inst system_bd.sys_hps.arm_a9_1 -pg 1
+preplace inst system_bd.sys_hps.cb_intosc_hs_div2_clk -pg 1
+preplace inst system_bd.sys_hps.hps_io -pg 1
+preplace inst system_bd.sys_clk -pg 1 -lvl 1 -y 2030
+preplace inst system_bd.adrv9009_tx_jesd204.link_clock -pg 1
+preplace inst system_bd.axi_adrv9009_rx_cpack -pg 1 -lvl 4 -y 480
+preplace inst system_bd.adrv9009_tx_jesd204.phy.native_phy -pg 1
+preplace inst system_bd.adrv9009_rx_os_jesd204.link_reset -pg 1
+preplace inst system_bd.adrv9009_rx_os_jesd204.ref_clock -pg 1
+preplace inst system_bd.sys_hps.i_timer_sys_0_timer -pg 1
+preplace inst system_bd.sys_ddr4_cntrl -pg 1 -lvl 2 -y 2230
+preplace inst system_bd.avl_adrv9009_gpio -pg 1 -lvl 4 -y 1880
+preplace inst system_bd.adrv9009_rx_os_jesd204.link_pll_reset_control -pg 1
+preplace inst system_bd.adrv9009_tx_jesd204.axi_jesd204_tx -pg 1
+preplace inst system_bd.sys_gpio_in -pg 1 -lvl 4 -y 2660
+preplace inst system_bd.adrv9009_tx_jesd204.phy -pg 1
+preplace inst system_bd.adrv9009_rx_jesd204.link_pll -pg 1
+preplace inst system_bd.sys_hps.i_spis_0_spis -pg 1
+preplace inst system_bd.sys_hps.i_watchdog_0_l4wd -pg 1
+preplace inst system_bd.adrv9009_rx_jesd204.link_reset -pg 1
+preplace inst system_bd.avl_adxcfg_0 -pg 1 -lvl 2 -y 1710
+preplace inst system_bd.sys_hps.i_usbotg_1_globgrp -pg 1
+preplace inst system_bd.sys_hps.i_timer_sp_0_timer -pg 1
+preplace inst system_bd.sys_hps.timer -pg 1
+preplace inst system_bd.sys_hps.i_dma_DMASECURE -pg 1
+preplace inst system_bd.adrv9009_tx_jesd204.axi_xcvr -pg 1
+preplace inst system_bd.avl_adxcfg_1 -pg 1 -lvl 2 -y 1810
+preplace inst system_bd.adrv9009_rx_os_jesd204.phy.soft_pcs_0 -pg 1
+preplace inst system_bd.adrv9009_tx_jesd204 -pg 1 -lvl 2 -y 1240
+preplace inst system_bd.avl_adxcfg_2 -pg 1 -lvl 2 -y 910
+preplace inst system_bd.adrv9009_rx_os_jesd204.phy.soft_pcs_1 -pg 1
+preplace inst system_bd.sys_hps.i_gpio_1_gpio -pg 1
+preplace inst system_bd.sys_hps.f2s_free_clk -pg 1
+preplace inst system_bd.sys_hps.cb_intosc_ls_clk -pg 1
+preplace inst system_bd.avl_adxcfg_3 -pg 1 -lvl 2 -y 1090
+preplace inst system_bd.adrv9009_tx_jesd204.link_pll -pg 1
+preplace inst system_bd.axi_adrv9009_tx_dma -pg 1 -lvl 4 -y 40
+preplace inst system_bd.sys_hps_ddr4_cntrl.arch -pg 1
+preplace inst system_bd.sys_hps.i_nand_NANDDATA -pg 1
+preplace inst system_bd.sys_hps.i_uart_1_uart -pg 1
+preplace inst system_bd.sys_hps.i_uart_0_uart -pg 1
+preplace inst system_bd.sys_gpio_out -pg 1 -lvl 2 -y 1990
+preplace inst system_bd.sys_ddr4_cntrl.cal_slave_component.ioaux_soft_ram -pg 1
+preplace inst system_bd.sys_hps.i_qspi_QSPIDATA -pg 1
+preplace inst system_bd.sys_hps.i_spis_1_spis -pg 1
+preplace inst system_bd.sys_hps.bridges -pg 1
+preplace inst system_bd.adrv9009_rx_jesd204.phy.native_phy -pg 1
+preplace inst system_bd.adrv9009_tx_jesd204.ref_clock -pg 1
+preplace inst system_bd.adrv9009_tx_jesd204.phy_reset_control -pg 1
+preplace inst system_bd.sys_hps.mpu_reg_l2_MPUL2 -pg 1
+preplace inst system_bd.sys_hps.clk_0 -pg 1
+preplace inst system_bd.sys_hps.i_usbotg_0_globgrp -pg 1
+preplace inst system_bd.sys_hps.i_i2c_1_i2c -pg 1
+preplace inst system_bd.sys_hps.i_emac_emac0 -pg 1
+preplace inst system_bd.sys_dma_clk -pg 1 -lvl 3 -y 2160
+preplace inst system_bd.axi_adrv9009_tx_upack -pg 1 -lvl 3 -y 1380
+preplace inst system_bd.adrv9009_rx_os_jesd204.axi_xcvr -pg 1
+preplace inst system_bd.sys_hps.i_emac_emac1 -pg 1
+preplace inst system_bd.adrv9009_rx_jesd204.ref_clock -pg 1
+preplace inst system_bd.adrv9009_rx_os_jesd204.link_clock -pg 1
+preplace inst system_bd.adrv9009_tx_jesd204.lane_pll -pg 1
+preplace inst system_bd.sys_hps.i_emac_emac2 -pg 1
+preplace inst system_bd.sys_hps.i_sys_mgr_core -pg 1
+preplace inst system_bd.sys_gpio_bd -pg 1 -lvl 4 -y 2440
+preplace inst system_bd.adrv9009_rx_os_jesd204 -pg 1 -lvl 3 -y 910
+preplace inst system_bd.sys_hps.i_fpga_mgr_fpgamgrregs -pg 1
+preplace inst system_bd.sys_hps.eosc1 -pg 1
+preplace inst system_bd.adrv9009_rx_jesd204.jesd204_rx -pg 1
+preplace inst system_bd.adrv9009_rx_jesd204.link_clock -pg 1
+preplace inst system_bd.sys_hps_ddr4_cntrl -pg 1 -lvl 5 -y 2540
+preplace inst system_bd.axi_adrv9009_rx_os_cpack -pg 1 -lvl 4 -y 1020
+preplace inst system_bd.adrv9009_tx_jesd204.link_pll_reset_control -pg 1
+preplace inst system_bd.adrv9009_rx_jesd204 -pg 1 -lvl 3 -y 1710
+preplace inst system_bd.sys_hps.i_gpio_0_gpio -pg 1
+preplace inst system_bd.sys_hps.arm_gic_0 -pg 1
+preplace inst system_bd.sys_hps.hps_io.border -pg 1
+preplace inst system_bd.adrv9009_rx_os_jesd204.phy -pg 1
+preplace inst system_bd.sys_ddr4_cntrl.cal_slave_component.rst_bridge -pg 1
+preplace inst system_bd.adrv9009_rx_os_jesd204.jesd204_rx -pg 1
+preplace inst system_bd.axi_adrv9009 -pg 1 -lvl 4 -y 1300
+preplace inst system_bd.avl_adrv9009_tx_fifo -pg 1 -lvl 4 -y 2000
+preplace inst system_bd.adrv9009_rx_jesd204.phy.soft_pcs_0 -pg 1
+preplace inst system_bd.adrv9009_tx_jesd204.phy.phy_glue -pg 1
+preplace inst system_bd.sys_ddr4_cntrl.cal_slave_component.ioaux_master_bridge -pg 1
+preplace inst system_bd.adrv9009_rx_jesd204.phy.soft_pcs_1 -pg 1
+preplace inst system_bd.adrv9009_rx_os_jesd204.phy.link_clock -pg 1
+preplace inst system_bd.adrv9009_tx_jesd204.phy.link_clock -pg 1
+preplace inst system_bd.adrv9009_rx_jesd204.link_pll_reset_control -pg 1
+preplace inst system_bd.sys_hps.i_spim_0_spim -pg 1
+preplace inst system_bd.adrv9009_tx_jesd204.link_reset -pg 1
+preplace inst system_bd.sys_hps.i_i2c_emac_1_i2c -pg 1
+preplace inst system_bd.sys_hps.i_i2c_0_i2c -pg 1
+preplace inst system_bd.adrv9009_rx_jesd204.phy -pg 1
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.tx_sync,(SLAVE)adrv9009_tx_jesd204.sync) 1 0 2 NJ 1490 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.sys_ddr_status,(SLAVE)sys_ddr4_cntrl.status) 1 0 2 NJ 2340 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)avl_adrv9009_tx_fifo.avl_clock,(MASTER)sys_ddr4_cntrl.emif_usr_clk) 1 2 2 950 2050 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.sys_ddr_mem,(SLAVE)sys_ddr4_cntrl.mem) 1 0 2 NJ 2280 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_os_dma.if_fifo_wr_overflow,(SLAVE)axi_adrv9009_rx_os_cpack.if_packed_fifo_wr_overflow) 1 3 1 2130
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.sys_rstn,(SLAVE)sys_clk.clk_in_reset) 1 0 1 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009.adc_os_ch_3,(SLAVE)axi_adrv9009_rx_os_cpack.adc_ch_3) 1 3 1 2070
+preplace netloc FAN_OUT<net_container>system_bd</net_container>(MASTER)adrv9009_rx_os_jesd204.link_clk,(SLAVE)axi_adrv9009_rx_os_dma.if_fifo_wr_clk,(SLAVE)axi_adrv9009_rx_os_cpack.clk,(SLAVE)axi_adrv9009.if_adc_os_clk) 1 3 1 1810
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009.dac_ch_1,(SLAVE)axi_adrv9009_tx_upack.dac_ch_1) 1 2 2 1070 1310 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(MASTER)avl_adxcfg_1.rcfg_m0,(SLAVE)adrv9009_tx_jesd204.phy_reconfig_1) 1 1 2 420 1600 810
+preplace netloc FAN_OUT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_tx_upack.reset,(MASTER)adrv9009_tx_jesd204.link_reset,(SLAVE)avl_adrv9009_tx_fifo.if_dac_rst) 1 2 2 830 2110 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)sys_gpio_in.external_connection,(SLAVE)system_bd.sys_gpio_in) 1 0 4 NJ 2690 NJ 2690 NJ 2690 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(MASTER)avl_adxcfg_3.rcfg_m0,(SLAVE)adrv9009_tx_jesd204.phy_reconfig_3) 1 1 2 460 1640 770
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_os_cpack.if_fifo_wr_overflow,(SLAVE)axi_adrv9009.if_adc_os_dovf) 1 3 1 1990
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_os_cpack.if_packed_fifo_wr_sync,(SLAVE)axi_adrv9009_rx_os_dma.if_fifo_wr_sync) 1 3 1 2150
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.sys_hps_io,(SLAVE)sys_hps.hps_io) 1 0 5 NJ 2390 NJ 2390 NJ 2390 NJ 2370 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)sys_hps_ddr4_cntrl.mem_conduit_end,(SLAVE)system_bd.sys_hps_ddr) 1 0 5 NJ 2590 NJ 2590 NJ 2590 NJ 2590 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)adrv9009_rx_os_jesd204.serial_data,(SLAVE)system_bd.rx_os_serial_data) 1 0 3 NJ 1020 NJ 1020 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.rx_sync,(SLAVE)adrv9009_rx_jesd204.sync) 1 0 3 NJ 1960 NJ 1960 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.adrv9009_gpio,(SLAVE)avl_adrv9009_gpio.external_connection) 1 0 4 NJ 2130 NJ 2130 NJ 2130 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_os_cpack.if_packed_fifo_wr_data,(SLAVE)axi_adrv9009_rx_os_dma.if_fifo_wr_din) 1 3 1 2090
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009.adc_ch_2,(SLAVE)axi_adrv9009_rx_cpack.adc_ch_2) 1 3 1 1950
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)adrv9009_tx_jesd204.phy_reconfig_0,(MASTER)avl_adxcfg_0.rcfg_m0) 1 1 2 400 1700 770
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_os_cpack.adc_ch_2,(SLAVE)axi_adrv9009.adc_os_ch_2) 1 3 1 2050
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)sys_dma_clk.clk_in,(MASTER)sys_hps.h2f_user0_clock) 1 2 4 1070 2430 NJ 2430 NJ 2460 2840
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009.adc_os_ch_0,(SLAVE)axi_adrv9009_rx_os_cpack.adc_ch_0) 1 3 1 2010
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_cpack.if_packed_fifo_wr_overflow,(SLAVE)axi_adrv9009_rx_dma.if_fifo_wr_overflow) 1 3 1 2130
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)adrv9009_rx_os_jesd204.phy_reconfig_0,(MASTER)avl_adxcfg_2.rcfg_m1) 1 2 1 870
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)sys_hps_ddr4_cntrl.global_reset_reset_sink,(SLAVE)system_bd.sys_hps_ddr_rstn) 1 0 5 NJ 2570 NJ 2570 NJ 2570 NJ 2570 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.rx_sysref,(SLAVE)adrv9009_rx_jesd204.sysref) 1 0 3 NJ 1980 NJ 1980 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009.if_adc_rx_data,(MASTER)adrv9009_rx_jesd204.link_data) 1 3 1 1410
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)adrv9009_tx_jesd204.sysref,(SLAVE)system_bd.tx_sysref) 1 0 2 NJ 1550 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009.if_dac_dunf,(SLAVE)avl_adrv9009_tx_fifo.if_dac_dunf) 1 3 1 2150
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_tx_upack.dac_ch_2,(SLAVE)axi_adrv9009.dac_ch_2) 1 2 2 1010 1630 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(MASTER)avl_adxcfg_1.rcfg_m1,(SLAVE)adrv9009_rx_jesd204.phy_reconfig_1) 1 2 1 850
+preplace netloc FAN_OUT<net_container>system_bd</net_container>(SLAVE)avl_adxcfg_0.rcfg_s1,(SLAVE)sys_gpio_out.s1,(MASTER)sys_hps.h2f_lw_axi_master,(SLAVE)avl_adxcfg_2.rcfg_s0,(SLAVE)axi_adrv9009_tx_dma.s_axi,(SLAVE)avl_adxcfg_1.rcfg_s0,(SLAVE)sys_gpio_bd.s1,(SLAVE)avl_adxcfg_0.rcfg_s0,(SLAVE)adrv9009_rx_jesd204.link_reconfig,(SLAVE)sys_spi.spi_control_port,(SLAVE)avl_adxcfg_1.rcfg_s1,(SLAVE)avl_adxcfg_2.rcfg_s1,(SLAVE)adrv9009_tx_jesd204.link_reconfig,(SLAVE)axi_adrv9009.s_axi,(SLAVE)adrv9009_rx_os_jesd204.link_pll_reconfig,(SLAVE)adrv9009_tx_jesd204.lane_pll_reconfig,(SLAVE)adrv9009_rx_os_jesd204.link_management,(SLAVE)adrv9009_rx_jesd204.link_management,(SLAVE)avl_adxcfg_3.rcfg_s1,(SLAVE)adrv9009_rx_os_jesd204.link_reconfig,(SLAVE)adrv9009_tx_jesd204.link_management,(SLAVE)sys_gpio_in.s1,(SLAVE)avl_adrv9009_gpio.s1,(SLAVE)adrv9009_rx_jesd204.link_pll_reconfig,(SLAVE)axi_adrv9009_rx_dma.s_axi,(SLAVE)avl_adxcfg_3.rcfg_s0,(SLAVE)adrv9009_tx_jesd204.link_pll_reconfig,(SLAVE)axi_adrv9009_rx_os_dma.s_axi) 1 1 5 380 1680 910 2030 1570 2650 NJ 2680 2860
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)sys_gpio_out.external_connection,(SLAVE)system_bd.sys_gpio_out) 1 0 2 NJ 2020 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(MASTER)avl_adxcfg_0.rcfg_m1,(SLAVE)adrv9009_rx_jesd204.phy_reconfig_0) 1 2 1 850
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_tx_upack.if_packed_fifo_rd_data,(SLAVE)avl_adrv9009_tx_fifo.if_dac_data) 1 2 2 990 2090 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009.dac_ch_3,(SLAVE)axi_adrv9009_tx_upack.dac_ch_3) 1 2 2 1030 1610 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_cpack.adc_ch_0,(SLAVE)axi_adrv9009.adc_ch_0) 1 3 1 1910
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.sys_hps_ddr_ref_clk,(SLAVE)sys_hps_ddr4_cntrl.pll_ref_clk_clock_sink) 1 0 5 NJ 2630 NJ 2630 NJ 2630 NJ 2630 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_tx_upack.if_packed_fifo_rd_en,(SLAVE)avl_adrv9009_tx_fifo.if_dac_valid) 1 2 2 1050 1670 1530
+preplace netloc FAN_OUT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_cpack.clk,(SLAVE)axi_adrv9009_rx_dma.if_fifo_wr_clk,(MASTER)adrv9009_rx_jesd204.link_clk,(SLAVE)axi_adrv9009.if_adc_clk) 1 3 1 1370
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)adrv9009_rx_os_jesd204.phy_reconfig_1,(MASTER)avl_adxcfg_3.rcfg_m1) 1 2 1 810
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.tx_serial_data,(SLAVE)adrv9009_tx_jesd204.serial_data) 1 0 2 NJ 1470 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.rx_os_ref_clk,(SLAVE)adrv9009_rx_os_jesd204.ref_clk) 1 0 3 NJ 1060 NJ 1060 NJ
+preplace netloc FAN_OUT<net_container>system_bd</net_container>(SLAVE)sys_gpio_bd.irq,(SLAVE)sys_gpio_in.irq,(SLAVE)sys_spi.irq,(SLAVE)axi_adrv9009_rx_dma.interrupt_sender,(SLAVE)avl_adrv9009_gpio.irq,(MASTER)sys_hps.f2h_irq0,(SLAVE)axi_adrv9009_rx_os_dma.interrupt_sender,(SLAVE)axi_adrv9009_tx_dma.interrupt_sender) 1 3 3 1850 2330 NJ 2240 2860
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009.if_adc_rx_os_data,(MASTER)adrv9009_rx_os_jesd204.link_data) 1 3 1 1770
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)sys_hps.emif,(SLAVE)sys_hps_ddr4_cntrl.hps_emif_conduit_end) 1 4 1 2490
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.sys_gpio_bd,(SLAVE)sys_gpio_bd.external_connection) 1 0 4 NJ 2470 NJ 2470 NJ 2470 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(MASTER)axi_adrv9009.if_dac_tx_data,(SLAVE)adrv9009_tx_jesd204.link_data) 1 1 4 460 1200 NJ 1370 NJ 1870 2410
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_cpack.if_packed_fifo_wr_data,(SLAVE)axi_adrv9009_rx_dma.if_fifo_wr_din) 1 3 1 2090
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.tx_ref_clk,(SLAVE)adrv9009_tx_jesd204.ref_clk) 1 0 2 NJ 1450 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)avl_adrv9009_tx_fifo.if_dma_xfer_req,(SLAVE)axi_adrv9009_tx_dma.if_m_axis_xfer_req) 1 3 1 1870
+preplace netloc FAN_OUT<net_container>system_bd</net_container>(MASTER)adrv9009_tx_jesd204.link_clk,(SLAVE)axi_adrv9009_tx_upack.clk,(SLAVE)axi_adrv9009.if_dac_clk,(SLAVE)avl_adrv9009_tx_fifo.if_dac_clk) 1 2 2 950 1590 1610
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.sys_spi,(SLAVE)sys_spi.external) 1 0 4 NJ 2810 NJ 2810 NJ 2810 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009.adc_ch_3,(SLAVE)axi_adrv9009_rx_cpack.adc_ch_3) 1 3 1 1970
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.rx_ref_clk,(SLAVE)adrv9009_rx_jesd204.ref_clk) 1 0 3 NJ 1920 NJ 1920 NJ
+preplace netloc FAN_OUT<net_container>system_bd</net_container>(SLAVE)sys_gpio_in.reset,(SLAVE)avl_adxcfg_0.rcfg_reset_n,(SLAVE)avl_adrv9009_gpio.reset,(SLAVE)axi_adrv9009_tx_dma.s_axi_reset,(SLAVE)avl_adxcfg_3.rcfg_reset_n,(SLAVE)adrv9009_rx_jesd204.sys_resetn,(MASTER)sys_clk.clk_reset,(SLAVE)sys_dma_clk.clk_in_reset,(SLAVE)sys_spi.reset,(SLAVE)avl_adxcfg_2.rcfg_reset_n,(SLAVE)sys_gpio_out.reset,(SLAVE)adrv9009_rx_os_jesd204.sys_resetn,(SLAVE)axi_adrv9009.s_axi_reset,(SLAVE)axi_adrv9009_rx_os_dma.s_axi_reset,(SLAVE)avl_adxcfg_1.rcfg_reset_n,(SLAVE)sys_hps.h2f_lw_axi_reset,(SLAVE)sys_gpio_bd.reset,(SLAVE)axi_adrv9009_rx_dma.s_axi_reset,(SLAVE)adrv9009_tx_jesd204.sys_resetn,(SLAVE)sys_ddr4_cntrl.global_reset_n) 1 1 4 360 2190 930 2010 1430 2410 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_dma.if_fifo_wr_sync,(SLAVE)axi_adrv9009_rx_cpack.if_packed_fifo_wr_sync) 1 3 1 2150
+preplace netloc FAN_OUT<net_container>system_bd</net_container>(SLAVE)sys_hps.f2sdram0_reset,(SLAVE)axi_adrv9009_rx_dma.m_dest_axi_reset,(SLAVE)avl_adrv9009_tx_fifo.if_dma_rst,(MASTER)sys_dma_clk.clk_reset,(SLAVE)axi_adrv9009_tx_dma.m_src_axi_reset,(SLAVE)axi_adrv9009_rx_os_dma.m_dest_axi_reset) 1 3 2 1670 2350 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_cpack.reset,(MASTER)adrv9009_rx_jesd204.link_reset) 1 3 1 1550
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_cpack.if_packed_fifo_wr_en,(SLAVE)axi_adrv9009_rx_dma.if_fifo_wr_en) 1 3 1 2110
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(MASTER)avl_adrv9009_tx_fifo.amm_ddr,(SLAVE)sys_ddr4_cntrl.ctrl_amm_0) 1 1 4 460 2170 NJ 2230 NJ 2310 2410
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_os_cpack.if_packed_fifo_wr_en,(SLAVE)axi_adrv9009_rx_os_dma.if_fifo_wr_en) 1 3 1 2110
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(MASTER)avl_adxcfg_2.rcfg_m0,(SLAVE)adrv9009_tx_jesd204.phy_reconfig_2) 1 1 2 440 1620 790
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)avl_adrv9009_tx_fifo.avl_reset,(MASTER)sys_ddr4_cntrl.emif_usr_reset_n) 1 2 2 970 2070 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.tx_fifo_bypass,(SLAVE)avl_adrv9009_tx_fifo.if_bypass) 1 0 4 NJ 2150 NJ 2150 NJ 2150 NJ
+preplace netloc FAN_OUT<net_container>system_bd</net_container>(SLAVE)avl_adrv9009_gpio.clk,(SLAVE)avl_adxcfg_0.rcfg_clk,(SLAVE)adrv9009_rx_os_jesd204.sys_clk,(MASTER)sys_clk.clk,(SLAVE)axi_adrv9009_rx_dma.s_axi_clock,(SLAVE)sys_hps.h2f_lw_axi_clock,(SLAVE)avl_adxcfg_3.rcfg_clk,(SLAVE)avl_adxcfg_1.rcfg_clk,(SLAVE)avl_adxcfg_2.rcfg_clk,(SLAVE)axi_adrv9009_rx_os_dma.s_axi_clock,(SLAVE)adrv9009_tx_jesd204.sys_clk,(SLAVE)adrv9009_rx_jesd204.sys_clk,(SLAVE)sys_gpio_out.clk,(SLAVE)sys_spi.clk,(SLAVE)axi_adrv9009.s_axi_clock,(SLAVE)axi_adrv9009_tx_dma.s_axi_clock,(SLAVE)sys_gpio_in.clk,(SLAVE)sys_gpio_bd.clk) 1 1 4 340 1660 970 1350 1710 2390 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(MASTER)sys_hps.h2f_reset,(MASTER)system_bd.sys_hps_out_rstn) 1 5 1 N
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_cpack.if_fifo_wr_overflow,(SLAVE)axi_adrv9009.if_adc_dovf) 1 3 1 1890
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009.if_adc_rx_sof,(SLAVE)adrv9009_rx_jesd204.link_sof) 1 2 2 1070 1650 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009.dac_ch_0,(SLAVE)axi_adrv9009_tx_upack.dac_ch_0) 1 2 2 1050 1290 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009.if_adc_rx_os_sof,(SLAVE)adrv9009_rx_os_jesd204.link_sof) 1 2 2 1030 1330 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)sys_clk.clk_in,(SLAVE)system_bd.sys_clk) 1 0 1 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_os_cpack.reset,(MASTER)adrv9009_rx_os_jesd204.link_reset) 1 3 1 1790
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.sys_ddr_oct,(SLAVE)sys_ddr4_cntrl.oct) 1 0 2 NJ 2300 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)sys_hps_ddr4_cntrl.oct_conduit_end,(SLAVE)system_bd.sys_hps_ddr_oct) 1 0 5 NJ 2610 NJ 2610 NJ 2610 NJ 2610 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)avl_adrv9009_tx_fifo.s_axis,(MASTER)axi_adrv9009_tx_dma.m_axis) 1 3 2 1830 30 2470
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009.adc_ch_1,(SLAVE)axi_adrv9009_rx_cpack.adc_ch_1) 1 3 1 1930
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.rx_os_sysref,(SLAVE)adrv9009_rx_os_jesd204.sysref) 1 0 3 NJ 1080 NJ 1080 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)adrv9009_rx_os_jesd204.sync,(SLAVE)system_bd.rx_os_sync) 1 0 3 NJ 1040 NJ 1040 NJ
+preplace netloc POINT_TO_POINT<net_container>system_bd</net_container>(SLAVE)axi_adrv9009_rx_os_cpack.adc_ch_1,(SLAVE)axi_adrv9009.adc_os_ch_1) 1 3 1 2030
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)adrv9009_rx_jesd204.serial_data,(SLAVE)system_bd.rx_serial_data) 1 0 3 NJ 1940 NJ 1940 NJ
+preplace netloc EXPORT<net_container>system_bd</net_container>(SLAVE)system_bd.sys_ddr_ref_clk,(SLAVE)sys_ddr4_cntrl.pll_ref_clk) 1 0 2 NJ 2320 NJ
+preplace netloc FAN_OUT<net_container>system_bd</net_container>(SLAVE)sys_hps.f2sdram0_clock,(SLAVE)axi_adrv9009_rx_os_dma.m_dest_axi_clock,(MASTER)sys_dma_clk.clk,(SLAVE)axi_adrv9009_tx_dma.if_m_axis_aclk,(SLAVE)axi_adrv9009_tx_dma.m_src_axi_clock,(SLAVE)avl_adrv9009_tx_fifo.if_dma_clk,(SLAVE)axi_adrv9009_rx_dma.m_dest_axi_clock) 1 3 2 1690 2290 2450
+preplace netloc FAN_IN<net_container>system_bd</net_container>(MASTER)axi_adrv9009_rx_dma.m_dest_axi,(MASTER)axi_adrv9009_rx_os_dma.m_dest_axi,(SLAVE)sys_hps.f2sdram0_data,(MASTER)axi_adrv9009_tx_dma.m_src_axi) 1 4 1 2470
+levelinfo -pg 1 0 130 3010
+levelinfo -hier system_bd 140 170 590 1200 2190 2650 2880

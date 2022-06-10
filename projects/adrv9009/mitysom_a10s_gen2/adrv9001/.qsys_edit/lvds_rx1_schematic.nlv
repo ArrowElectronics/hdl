@@ -1,0 +1,14 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst unsaved.lvds_0.core -pg 1
+preplace inst unsaved.lvds_0 -pg 1 -lvl 1 -y 50
+preplace inst unsaved -pg 1 -lvl 1 -y 40 -regy -20
+preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.tx_outclock,(SLAVE)lvds_0.tx_outclock) 1 0 1 NJ
+preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)lvds_0.pll_areset,(SLAVE)unsaved.pll_areset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.inclock,(SLAVE)lvds_0.inclock) 1 0 1 NJ
+preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.tx_in,(SLAVE)lvds_0.tx_in) 1 0 1 NJ
+preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.tx_coreclock,(SLAVE)lvds_0.tx_coreclock) 1 0 1 NJ
+preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)lvds_0.tx_out,(SLAVE)unsaved.tx_out) 1 0 1 NJ
+preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.pll_locked,(SLAVE)lvds_0.pll_locked) 1 0 1 NJ
+levelinfo -pg 1 0 90 290
+levelinfo -hier unsaved 100 200 280

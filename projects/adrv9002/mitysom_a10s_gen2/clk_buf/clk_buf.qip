@@ -1,0 +1,40 @@
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name IP_TOOL_NAME "Qsys"
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name IP_TOOL_VERSION "20.1"
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name IP_TOOL_ENV "Qsys"
+set_global_assignment -library "clk_buf" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../clk_buf.sopcinfo"]
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name SLD_INFO "QSYS_NAME clk_buf HAS_SOPCINFO 1 GENERATION_ID 1654079334"
+set_global_assignment -library "clk_buf" -name MISC_FILE [file join $::quartus(qip_path) "clk_buf.cmp"]
+set_global_assignment -library "clk_buf" -name SLD_FILE [file join $::quartus(qip_path) "clk_buf.debuginfo"]
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name IP_TARGETED_DEVICE_FAMILY "Arria 10"
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name IP_GENERATED_DEVICE_FAMILY "{Arria 10}"
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name IP_QSYS_MODE "STANDALONE"
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "clk_buf" -name MISC_FILE [file join $::quartus(qip_path) "../clk_buf.qsys"]
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name IP_COMPONENT_NAME "Y2xrX2J1Zg=="
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name IP_COMPONENT_DISPLAY_NAME "Y2xrX2J1Zg=="
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name IP_COMPONENT_REPORT_HIERARCHY "On"
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name IP_COMPONENT_VERSION "MS4w"
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTY1NDA3OTMzNA==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::QXJyaWEgMTA=::QXV0byBERVZJQ0VfRkFNSUxZ"
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::MTBBUzAyN0UzRjI5STJTRw==::QXV0byBERVZJQ0U="
+set_global_assignment -entity "clk_buf" -library "clk_buf" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::Mg==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="
+set_global_assignment -entity "clk_buf_altclkctrl_201_cgsd42i" -library "clk_buf_altclkctrl_201" -name IP_COMPONENT_NAME "Y2xrX2J1Zl9hbHRjbGtjdHJsXzIwMV9jZ3NkNDJp"
+set_global_assignment -entity "clk_buf_altclkctrl_201_cgsd42i" -library "clk_buf_altclkctrl_201" -name IP_COMPONENT_DISPLAY_NAME "QUxUQ0xLQ1RSTCBJbnRlbCBGUEdBIElQ"
+set_global_assignment -entity "clk_buf_altclkctrl_201_cgsd42i" -library "clk_buf_altclkctrl_201" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "clk_buf_altclkctrl_201_cgsd42i" -library "clk_buf_altclkctrl_201" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "clk_buf_altclkctrl_201_cgsd42i" -library "clk_buf_altclkctrl_201" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "clk_buf_altclkctrl_201_cgsd42i" -library "clk_buf_altclkctrl_201" -name IP_COMPONENT_VERSION "MjAuMQ=="
+set_global_assignment -entity "clk_buf_altclkctrl_201_cgsd42i" -library "clk_buf_altclkctrl_201" -name IP_COMPONENT_PARAMETER "REVWSUNFX0ZBTUlMWQ==::QXJyaWEgMTA=::RGV2aWNlIEZhbWlseQ=="
+set_global_assignment -entity "clk_buf_altclkctrl_201_cgsd42i" -library "clk_buf_altclkctrl_201" -name IP_COMPONENT_PARAMETER "Q0xPQ0tfVFlQRQ==::MA==::SG93IGRvIHlvdSB3YW50IHRvIHVzZSB0aGUgQUxUQ0xLQ1RSTD8="
+set_global_assignment -entity "clk_buf_altclkctrl_201_cgsd42i" -library "clk_buf_altclkctrl_201" -name IP_COMPONENT_PARAMETER "TlVNQkVSX09GX0NMT0NLUw==::MQ==::SG93IG1hbnkgY2xvY2sgaW5wdXRzIHdvdWxkIHlvdSBsaWtlPw=="
+set_global_assignment -entity "clk_buf_altclkctrl_201_cgsd42i" -library "clk_buf_altclkctrl_201" -name IP_COMPONENT_PARAMETER "R1VJX1VTRV9FTkE=::ZmFsc2U=::Q3JlYXRlICdlbmEnIHBvcnQgdG8gZW5hYmxlIG9yIGRpc2FibGUgdGhlIGNsb2NrIG5ldHdvcmsgZHJpdmVuIGJ5IHRoaXMgYnVmZmVyPw=="
+set_global_assignment -entity "clk_buf_altclkctrl_201_cgsd42i" -library "clk_buf_altclkctrl_201" -name IP_COMPONENT_PARAMETER "VVNFX0dMSVRDSF9GUkVFX1NXSVRDSF9PVkVSX0lNUExFTUVOVEFUSU9O::ZmFsc2U=::RW5zdXJlIGdsaXRjaC1mcmVlIHN3aXRjaG92ZXIgaW1wbGVtZW50YXRpb24="
+
+set_global_assignment -library "clk_buf" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/clk_buf.v"]
+set_global_assignment -library "clk_buf" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/clk_buf_cfg.v"]
+set_global_assignment -library "clk_buf_altclkctrl_201" -name VERILOG_FILE [file join $::quartus(qip_path) "altclkctrl_201/synth/clk_buf_altclkctrl_201_cgsd42i.v"]
+
+set_global_assignment -entity "clk_buf_altclkctrl_201_cgsd42i" -library "clk_buf_altclkctrl_201" -name IP_TOOL_NAME "altclkctrl"
+set_global_assignment -entity "clk_buf_altclkctrl_201_cgsd42i" -library "clk_buf_altclkctrl_201" -name IP_TOOL_VERSION "20.1"
+set_global_assignment -entity "clk_buf_altclkctrl_201_cgsd42i" -library "clk_buf_altclkctrl_201" -name IP_TOOL_ENV "Qsys"

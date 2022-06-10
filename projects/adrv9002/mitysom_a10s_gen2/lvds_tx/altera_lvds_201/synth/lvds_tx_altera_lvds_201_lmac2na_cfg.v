@@ -1,0 +1,5 @@
+config lvds_tx_altera_lvds_201_lmac2na_cfg;
+		design lvds_tx_altera_lvds_201_lmac2na;
+		instance lvds_tx_altera_lvds_201_lmac2na.core use lvds_tx_altera_lvds_core20_201.lvds_tx_altera_lvds_core20_201_6ni4jbq;
+endconfig
+

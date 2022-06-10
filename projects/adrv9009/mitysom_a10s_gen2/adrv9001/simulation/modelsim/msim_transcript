@@ -1,0 +1,25 @@
+# Reading pref.tcl
+# do ADRV9002-Lvds_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying C:/intelFPGA/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+C:/Snehal_dev/Quartus_projects/adrv9001_lvds/adrv9001_lvds/projects/adrv9001 {C:/Snehal_dev/Quartus_projects/adrv9001_lvds/adrv9001_lvds/projects/adrv9001/serdes_tx.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:28:48 on Apr 18,2022
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Snehal_dev/Quartus_projects/adrv9001_lvds/adrv9001_lvds/projects/adrv9001" C:/Snehal_dev/Quartus_projects/adrv9001_lvds/adrv9001_lvds/projects/adrv9001/serdes_tx.v 
+# -- Compiling module serdes_tx
+# ** Error: C:/Snehal_dev/Quartus_projects/adrv9001_lvds/adrv9001_lvds/projects/adrv9001/serdes_tx.v(58): (vlog-2730) Undefined variable: 'tx_out'.
+# End time: 18:28:48 on Apr 18,2022, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# ** Error: C:/intelFPGA/20.1/modelsim_ase/win32aloem/vlog failed.
+# Error in macro ./ADRV9002-Lvds_run_msim_rtl_verilog.do line 8
+# C:/intelFPGA/20.1/modelsim_ase/win32aloem/vlog failed.
+#     while executing
+# "vlog -vlog01compat -work work +incdir+C:/Snehal_dev/Quartus_projects/adrv9001_lvds/adrv9001_lvds/projects/adrv9001 {C:/Snehal_dev/Quartus_projects/adr..."

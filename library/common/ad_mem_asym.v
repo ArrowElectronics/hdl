@@ -82,7 +82,6 @@ module ad_mem_asym #(
 
   // internal registers
 
-  (* ram_style = "block" *)
   reg      [MEM_DATA_WIDTH-1:0]    m_ram[0:MEM_SIZE-1];
 
   //---------------------------------------------------------------------------

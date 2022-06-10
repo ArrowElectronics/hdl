@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pinplan
+ variation_name="lvds_0"
+ megafunction_name="ALTERA_LVDS"
+ intended_family="Arria 10"
+ specifies="all_ports">
+ <global>
+  <pin name="tx_in[23..0]" direction="input" scope="external" />
+  <pin name="tx_out[2..0]" direction="output" scope="external" />
+  <pin name="tx_outclock" direction="output" scope="external" />
+  <pin name="tx_coreclock" direction="output" scope="external" />
+  <pin name="inclock" direction="input" scope="external" />
+  <pin name="pll_areset" direction="input" scope="external" />
+  <pin name="pll_locked" direction="output" scope="external" />
+ </global>
+</pinplan>

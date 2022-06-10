@@ -1,0 +1,5 @@
+config adrv9002_gpio_out_altera_gpio_201_kxo4gfy_cfg;
+		design adrv9002_gpio_out_altera_gpio_201_kxo4gfy;
+		instance adrv9002_gpio_out_altera_gpio_201_kxo4gfy.core use adrv9002_gpio_out_altera_gpio_core20_201.altera_gpio;
+endconfig
+

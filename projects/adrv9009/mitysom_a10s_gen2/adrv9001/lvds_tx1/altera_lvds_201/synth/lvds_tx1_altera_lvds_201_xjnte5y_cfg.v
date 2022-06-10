@@ -1,0 +1,5 @@
+config lvds_tx1_altera_lvds_201_xjnte5y_cfg;
+		design lvds_tx1_altera_lvds_201_xjnte5y;
+		instance lvds_tx1_altera_lvds_201_xjnte5y.core use lvds_tx1_altera_lvds_core20_201.lvds_tx1_altera_lvds_core20_201_a2h44oy;
+endconfig
+

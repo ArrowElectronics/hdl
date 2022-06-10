@@ -1,0 +1,5 @@
+config lvds_tx1_altera_lvds_201_jz36mbq_cfg;
+		design lvds_tx1_altera_lvds_201_jz36mbq;
+		instance lvds_tx1_altera_lvds_201_jz36mbq.core use lvds_tx1_altera_lvds_core20_201.lvds_tx1_altera_lvds_core20_201_p3mg7ny;
+endconfig
+

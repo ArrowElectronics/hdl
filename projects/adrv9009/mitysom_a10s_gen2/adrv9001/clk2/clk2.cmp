@@ -1,0 +1,9 @@
+	component clk2 is
+		port (
+			outclk_0 : out std_logic;        -- clk
+			outclk_1 : out std_logic;        -- clk
+			refclk   : in  std_logic := 'X'; -- clk
+			rst      : in  std_logic := 'X'  -- reset
+		);
+	end component clk2;
+

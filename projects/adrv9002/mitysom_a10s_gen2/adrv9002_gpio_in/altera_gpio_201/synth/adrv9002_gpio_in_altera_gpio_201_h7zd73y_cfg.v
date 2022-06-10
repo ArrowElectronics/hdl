@@ -1,0 +1,5 @@
+config adrv9002_gpio_in_altera_gpio_201_h7zd73y_cfg;
+		design adrv9002_gpio_in_altera_gpio_201_h7zd73y;
+		instance adrv9002_gpio_in_altera_gpio_201_h7zd73y.core use adrv9002_gpio_in_altera_gpio_core20_201.altera_gpio;
+endconfig
+

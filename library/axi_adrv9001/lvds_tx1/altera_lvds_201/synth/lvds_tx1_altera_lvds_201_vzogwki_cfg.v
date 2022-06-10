@@ -1,0 +1,5 @@
+config lvds_tx1_altera_lvds_201_vzogwki_cfg;
+		design lvds_tx1_altera_lvds_201_vzogwki;
+		instance lvds_tx1_altera_lvds_201_vzogwki.core use lvds_tx1_altera_lvds_core20_201.lvds_tx1_altera_lvds_core20_201_o5dawmi;
+endconfig
+

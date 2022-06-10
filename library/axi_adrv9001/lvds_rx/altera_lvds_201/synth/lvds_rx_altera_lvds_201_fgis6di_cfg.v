@@ -1,0 +1,5 @@
+config lvds_rx_altera_lvds_201_fgis6di_cfg;
+		design lvds_rx_altera_lvds_201_fgis6di;
+		instance lvds_rx_altera_lvds_201_fgis6di.core use lvds_rx_altera_lvds_core20_201.lvds_rx_altera_lvds_core20_201_uubmhla;
+endconfig
+

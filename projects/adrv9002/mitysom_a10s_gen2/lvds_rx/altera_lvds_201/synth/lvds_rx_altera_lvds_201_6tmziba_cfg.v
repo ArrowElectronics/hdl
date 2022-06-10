@@ -1,0 +1,5 @@
+config lvds_rx_altera_lvds_201_6tmziba_cfg;
+		design lvds_rx_altera_lvds_201_6tmziba;
+		instance lvds_rx_altera_lvds_201_6tmziba.core use lvds_rx_altera_lvds_core20_201.lvds_rx_altera_lvds_core20_201_tqrtzdi;
+endconfig
+

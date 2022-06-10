@@ -1,0 +1,5 @@
+config lvds_rx_altera_lvds_201_feegg2q_cfg;
+		design lvds_rx_altera_lvds_201_feegg2q;
+		instance lvds_rx_altera_lvds_201_feegg2q.core use lvds_rx_altera_lvds_core20_201.lvds_rx_altera_lvds_core20_201_23mc34a;
+endconfig
+

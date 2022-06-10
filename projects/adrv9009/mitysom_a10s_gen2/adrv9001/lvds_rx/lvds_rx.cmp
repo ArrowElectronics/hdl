@@ -1,0 +1,11 @@
+	component lvds_rx is
+		port (
+			inclock      : in  std_logic                     := 'X';             -- export
+			pll_areset   : in  std_logic                     := 'X';             -- export
+			pll_locked   : out std_logic;                                        -- export
+			rx_coreclock : out std_logic;                                        -- export
+			rx_in        : in  std_logic_vector(2 downto 0)  := (others => 'X'); -- export
+			rx_out       : out std_logic_vector(23 downto 0)                     -- export
+		);
+	end component lvds_rx;
+

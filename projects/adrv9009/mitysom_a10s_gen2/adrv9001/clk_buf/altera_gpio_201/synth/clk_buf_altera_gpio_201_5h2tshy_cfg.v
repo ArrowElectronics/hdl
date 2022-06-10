@@ -1,0 +1,5 @@
+config clk_buf_altera_gpio_201_5h2tshy_cfg;
+		design clk_buf_altera_gpio_201_5h2tshy;
+		instance clk_buf_altera_gpio_201_5h2tshy.core use clk_buf_altera_gpio_core20_201.altera_gpio;
+endconfig
+

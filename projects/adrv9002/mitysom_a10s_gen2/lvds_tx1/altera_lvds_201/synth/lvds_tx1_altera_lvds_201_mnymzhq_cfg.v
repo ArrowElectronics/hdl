@@ -1,0 +1,5 @@
+config lvds_tx1_altera_lvds_201_mnymzhq_cfg;
+		design lvds_tx1_altera_lvds_201_mnymzhq;
+		instance lvds_tx1_altera_lvds_201_mnymzhq.core use lvds_tx1_altera_lvds_core20_201.lvds_tx1_altera_lvds_core20_201_sh6mjaa;
+endconfig
+

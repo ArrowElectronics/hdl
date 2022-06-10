@@ -1,0 +1,5 @@
+config input_buf_altera_gpio_201_7hw2yni_cfg;
+		design input_buf_altera_gpio_201_7hw2yni;
+		instance input_buf_altera_gpio_201_7hw2yni.core use input_buf_altera_gpio_core20_201.altera_gpio;
+endconfig
+

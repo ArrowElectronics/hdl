@@ -1,0 +1,9 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst unsaved.gpio_0.core -pg 1
+preplace inst unsaved.gpio_0 -pg 1 -lvl 1 -y 50
+preplace inst unsaved -pg 1 -lvl 1 -y 40 -regy -20
+preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.din,(SLAVE)gpio_0.din) 1 0 1 NJ
+preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.pad_out,(SLAVE)gpio_0.pad_out) 1 0 1 NJ
+levelinfo -pg 1 0 60 230
+levelinfo -hier unsaved 70 140 220
