@@ -10,6 +10,7 @@ set_global_assignment -name PWRMGT_VOLTAGE_OUTPUT_FORMAT "LINEAR FORMAT"
 set_global_assignment -name PWRMGT_LINEAR_FORMAT_N "-12"
 set_global_assignment -name POWER_APPLY_THERMAL_MARGIN ADDITIONAL
 set_global_assignment -name VERILOG_FILE ../sources/axe5_eagle_top.v
+set_global_assignment -name IP_FILE ip/gmii2rgmii.ip
 set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_clock_in.ip
 set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_reset_in.ip
 set_global_assignment -name QSYS_FILE ghrd_hps_system.qsys
@@ -30,7 +31,6 @@ set_global_assignment -name BOARD default
 set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_intel_agilex_5_soc_0.ip
 set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_emif_ph2_0.ip
 set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_intel_onchip_memory_0.ip
-set_global_assignment -name IP_FILE gmii2rgmii.ip
 set_global_assignment -name TCL_SCRIPT_FILE ../sources/agx5e065_pin_assignment.tcl
 set_location_assignment PIN_BR102 -to SDM_CLK_25MHz
 set_instance_assignment -name IO_STANDARD "1.8 V" -to SDM_CLK_25MHz -entity axe5_eagle_top
@@ -888,4 +888,4 @@ set_instance_assignment -name IO_STANDARD "CURRENT MODE LOGIC (CML)" -to DP_C2M_
 set_location_assignment PIN_AL7 -to DP_C2M_p[7]
 set_instance_assignment -name IO_STANDARD "CURRENT MODE LOGIC (CML)" -to DP_C2M_p[7] -entity axe5_eagle_top
 set_instance_assignment -name IO_STANDARD "CURRENT MODE LOGIC (CML)" -to DP_C2M_n[7] -entity axe5_eagle_top
-set_global_assignment -name SYSTEMVERILOG_FILE ddio/altera_gpio_core10_ph2_2100/synth/altera_gpio.sv
+set_global_assignment -name IP_SEARCH_PATHS ip/adi/**/*
