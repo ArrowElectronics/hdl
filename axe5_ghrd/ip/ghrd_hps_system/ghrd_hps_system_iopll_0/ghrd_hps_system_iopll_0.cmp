@@ -1,8 +1,0 @@
-	component ghrd_hps_system_iopll_0 is
-		port (
-			refclk   : in  std_logic := 'X'; -- clk
-			rst      : in  std_logic := 'X'; -- reset
-			outclk_0 : out std_logic         -- clk
-		);
-	end component ghrd_hps_system_iopll_0;
-
