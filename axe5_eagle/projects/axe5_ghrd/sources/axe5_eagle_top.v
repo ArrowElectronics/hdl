@@ -8,7 +8,6 @@
 `define wHPS_DIPSW
 `define wHPS_SD
 `define wHPS
-//`define wHPS_LPDDR4
 
 //`define wFAB_EMAC
 `define wRGB_LED0
@@ -17,21 +16,21 @@
 `define wRGB_LED3
 `define wFAB_PB
 `define wFAB_DIP
-//`define wFAB_I2C1
-//`define wFAB_QSPI
-//`define wADC
-//`define wDAC
-//`define wHDMI
-//`define wFAB_LPDDR4
-//`define wFMC
-//`define wCRUVI_HS_1
-//`define wCRUVI_HS_2
-//`define wCRUVI_LS_1
-//`define wCRUVI_LS_2
-//`define wSFP10G_1
-//`define wSFP10G_2
-//`define wFMC_XCVRS
-//`define wPCIe
+`define wFAB_I2C1
+`define wFAB_QSPI
+`define wADC
+`define wDAC
+`define wHDMI
+`define wFAB_LPDDR4
+`define wFMC
+`define wCRUVI_HS_1
+`define wCRUVI_HS_2
+`define wCRUVI_LS_1
+`define wCRUVI_LS_2
+`define wSFP10G_1
+`define wSFP10G_2
+`define wFMC_XCVRS
+`define wPCIe
 
 
 module axe5_eagle_top (
@@ -58,7 +57,7 @@ module axe5_eagle_top (
    inout         SD_DETECT,
    inout  [3:0]  SD_DAT,
    `endif
-   `ifdef wHPS_LPDDR4   
+   `ifdef wHPS
    output        HPS_LPDDR4_CKP, HPS_LPDDR4_CKN, HPS_LPDDR4_RST, HPS_LPDDR4_REFCK_p, HPS_LPDDR4_REFCK_n,
    output [5:0]  HPS_LPDDR4_CA,
    output		 HPS_LPDDR4_CKE, HPS_LPDDR4_CS_N,
@@ -67,8 +66,6 @@ module axe5_eagle_top (
    //inout  [1:0]  HPS_LPDDR4_DMA, HPS_LPDDR4_DMB,
    inout  [3:0]	 HPS_LPDDR4_DMI,
    input         HPS_LPDDR4_OCT_RZQIN,
-   `endif
-   `ifdef wHPS
    inout [1:0]   HPS_PB,
    inout [1:0]   HPS_DIPSW,
    `endif
@@ -420,7 +417,6 @@ module axe5_eagle_top (
         .i2c1_sda_i               (i2c1_sda_i),
         .i2c1_sda_oe              (i2c1_sda_oe),
       `endif
-      `ifdef wHPS
         .hps_io_hps_osc_clk       (HPS_OSC_CLK_25MHz),
         .hps_io_sdmmc_data0       (SD_DAT[0]),
         .hps_io_sdmmc_data1       (SD_DAT[1]),
@@ -428,7 +424,6 @@ module axe5_eagle_top (
         .hps_io_sdmmc_data2       (SD_DAT[2]),
         .hps_io_sdmmc_data3       (SD_DAT[3]),
         .hps_io_sdmmc_cmd         (SD_CMD),
-      `endif		
       `ifdef wHPS_EMAC2
         .hps_io_emac2_tx_clk      (HPS_ETH2_TXCK),
         .hps_io_emac2_tx_ctl      (HPS_ETH2_TXCTL),
@@ -484,9 +479,7 @@ module axe5_eagle_top (
         //.hps_io_gpio27            (),
         .hps_io_gpio28            (USB_RST),
 		//.hps_io_gpio34             (),
-        .hps_io_gpio35            (SD_DETECT)
-	  `endif	
-	  `ifdef wHPS_LPDDR4
+        .hps_io_gpio35            (SD_DETECT),
         .soc_lpddr4_mem_ck_t      (HPS_LPDDR4_CKP),
         .soc_lpddr4_mem_ck_c      (HPS_LPDDR4_CKN),
         .soc_lpddr4_mem_cke       (HPS_LPDDR4_CKE),

@@ -14,9 +14,9 @@ refer to the applicable agreement for further details, at
 https://fpgasoftware.intel.com/eula.-->
 <ipxact:component xmlns:altera="http://www.altera.com/XMLSchema/IPXact2014/extensions" xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014">
   <ipxact:vendor>Intel Corporation</ipxact:vendor>
-  <ipxact:library>ghrd_hps_system_master_2</ipxact:library>
-  <ipxact:name>master_2</ipxact:name>
-  <ipxact:version>19.1</ipxact:version>
+  <ipxact:library>peripheral_sys_sysid_qsys_0</ipxact:library>
+  <ipxact:name>sysid_qsys_0</ipxact:name>
+  <ipxact:version>19.1.5</ipxact:version>
   <ipxact:busInterfaces>
     <ipxact:busInterface>
       <ipxact:name>clk</ipxact:name>
@@ -30,7 +30,7 @@ https://fpgasoftware.intel.com/eula.-->
                 <ipxact:name>clk</ipxact:name>
               </ipxact:logicalPort>
               <ipxact:physicalPort>
-                <ipxact:name>clk_clk</ipxact:name>
+                <ipxact:name>clock</ipxact:name>
               </ipxact:physicalPort>
             </ipxact:portMap>
           </ipxact:portMaps>
@@ -56,7 +56,7 @@ https://fpgasoftware.intel.com/eula.-->
       </ipxact:parameters>
     </ipxact:busInterface>
     <ipxact:busInterface>
-      <ipxact:name>clk_reset</ipxact:name>
+      <ipxact:name>reset</ipxact:name>
       <ipxact:busType vendor="intel" library="intel" name="reset" version="23.2"></ipxact:busType>
       <ipxact:abstractionTypes>
         <ipxact:abstractionType>
@@ -64,10 +64,10 @@ https://fpgasoftware.intel.com/eula.-->
           <ipxact:portMaps>
             <ipxact:portMap>
               <ipxact:logicalPort>
-                <ipxact:name>reset</ipxact:name>
+                <ipxact:name>reset_n</ipxact:name>
               </ipxact:logicalPort>
               <ipxact:physicalPort>
-                <ipxact:name>clk_reset_reset</ipxact:name>
+                <ipxact:name>reset_n</ipxact:name>
               </ipxact:physicalPort>
             </ipxact:portMap>
           </ipxact:portMaps>
@@ -78,59 +78,17 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="associatedClock" type="string">
           <ipxact:name>associatedClock</ipxact:name>
           <ipxact:displayName>Associated clock</ipxact:displayName>
-          <ipxact:value></ipxact:value>
+          <ipxact:value>clk</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="synchronousEdges" type="string">
           <ipxact:name>synchronousEdges</ipxact:name>
           <ipxact:displayName>Synchronous edges</ipxact:displayName>
-          <ipxact:value>NONE</ipxact:value>
+          <ipxact:value>DEASSERT</ipxact:value>
         </ipxact:parameter>
       </ipxact:parameters>
     </ipxact:busInterface>
     <ipxact:busInterface>
-      <ipxact:name>master_reset</ipxact:name>
-      <ipxact:busType vendor="intel" library="intel" name="reset" version="23.2"></ipxact:busType>
-      <ipxact:abstractionTypes>
-        <ipxact:abstractionType>
-          <ipxact:abstractionRef vendor="intel" library="intel" name="reset" version="23.2"></ipxact:abstractionRef>
-          <ipxact:portMaps>
-            <ipxact:portMap>
-              <ipxact:logicalPort>
-                <ipxact:name>reset</ipxact:name>
-              </ipxact:logicalPort>
-              <ipxact:physicalPort>
-                <ipxact:name>master_reset_reset</ipxact:name>
-              </ipxact:physicalPort>
-            </ipxact:portMap>
-          </ipxact:portMaps>
-        </ipxact:abstractionType>
-      </ipxact:abstractionTypes>
-      <ipxact:master></ipxact:master>
-      <ipxact:parameters>
-        <ipxact:parameter parameterId="associatedClock" type="string">
-          <ipxact:name>associatedClock</ipxact:name>
-          <ipxact:displayName>Associated clock</ipxact:displayName>
-          <ipxact:value></ipxact:value>
-        </ipxact:parameter>
-        <ipxact:parameter parameterId="associatedDirectReset" type="string">
-          <ipxact:name>associatedDirectReset</ipxact:name>
-          <ipxact:displayName>Associated direct reset</ipxact:displayName>
-          <ipxact:value></ipxact:value>
-        </ipxact:parameter>
-        <ipxact:parameter parameterId="associatedResetSinks" type="string">
-          <ipxact:name>associatedResetSinks</ipxact:name>
-          <ipxact:displayName>Associated reset sinks</ipxact:displayName>
-          <ipxact:value>none</ipxact:value>
-        </ipxact:parameter>
-        <ipxact:parameter parameterId="synchronousEdges" type="string">
-          <ipxact:name>synchronousEdges</ipxact:name>
-          <ipxact:displayName>Synchronous edges</ipxact:displayName>
-          <ipxact:value>NONE</ipxact:value>
-        </ipxact:parameter>
-      </ipxact:parameters>
-    </ipxact:busInterface>
-    <ipxact:busInterface>
-      <ipxact:name>master</ipxact:name>
+      <ipxact:name>control_slave</ipxact:name>
       <ipxact:busType vendor="intel" library="intel" name="avalon" version="23.2"></ipxact:busType>
       <ipxact:abstractionTypes>
         <ipxact:abstractionType>
@@ -138,87 +96,44 @@ https://fpgasoftware.intel.com/eula.-->
           <ipxact:portMaps>
             <ipxact:portMap>
               <ipxact:logicalPort>
-                <ipxact:name>address</ipxact:name>
-              </ipxact:logicalPort>
-              <ipxact:physicalPort>
-                <ipxact:name>master_address</ipxact:name>
-              </ipxact:physicalPort>
-            </ipxact:portMap>
-            <ipxact:portMap>
-              <ipxact:logicalPort>
                 <ipxact:name>readdata</ipxact:name>
               </ipxact:logicalPort>
               <ipxact:physicalPort>
-                <ipxact:name>master_readdata</ipxact:name>
+                <ipxact:name>readdata</ipxact:name>
               </ipxact:physicalPort>
             </ipxact:portMap>
             <ipxact:portMap>
               <ipxact:logicalPort>
-                <ipxact:name>read</ipxact:name>
+                <ipxact:name>address</ipxact:name>
               </ipxact:logicalPort>
               <ipxact:physicalPort>
-                <ipxact:name>master_read</ipxact:name>
-              </ipxact:physicalPort>
-            </ipxact:portMap>
-            <ipxact:portMap>
-              <ipxact:logicalPort>
-                <ipxact:name>write</ipxact:name>
-              </ipxact:logicalPort>
-              <ipxact:physicalPort>
-                <ipxact:name>master_write</ipxact:name>
-              </ipxact:physicalPort>
-            </ipxact:portMap>
-            <ipxact:portMap>
-              <ipxact:logicalPort>
-                <ipxact:name>writedata</ipxact:name>
-              </ipxact:logicalPort>
-              <ipxact:physicalPort>
-                <ipxact:name>master_writedata</ipxact:name>
-              </ipxact:physicalPort>
-            </ipxact:portMap>
-            <ipxact:portMap>
-              <ipxact:logicalPort>
-                <ipxact:name>waitrequest</ipxact:name>
-              </ipxact:logicalPort>
-              <ipxact:physicalPort>
-                <ipxact:name>master_waitrequest</ipxact:name>
-              </ipxact:physicalPort>
-            </ipxact:portMap>
-            <ipxact:portMap>
-              <ipxact:logicalPort>
-                <ipxact:name>readdatavalid</ipxact:name>
-              </ipxact:logicalPort>
-              <ipxact:physicalPort>
-                <ipxact:name>master_readdatavalid</ipxact:name>
-              </ipxact:physicalPort>
-            </ipxact:portMap>
-            <ipxact:portMap>
-              <ipxact:logicalPort>
-                <ipxact:name>byteenable</ipxact:name>
-              </ipxact:logicalPort>
-              <ipxact:physicalPort>
-                <ipxact:name>master_byteenable</ipxact:name>
+                <ipxact:name>address</ipxact:name>
               </ipxact:physicalPort>
             </ipxact:portMap>
           </ipxact:portMaps>
         </ipxact:abstractionType>
       </ipxact:abstractionTypes>
-      <ipxact:master></ipxact:master>
+      <ipxact:slave></ipxact:slave>
       <ipxact:parameters>
-        <ipxact:parameter parameterId="adaptsTo" type="string">
-          <ipxact:name>adaptsTo</ipxact:name>
-          <ipxact:displayName>Adapts to</ipxact:displayName>
-          <ipxact:value></ipxact:value>
+        <ipxact:parameter parameterId="addressAlignment" type="string">
+          <ipxact:name>addressAlignment</ipxact:name>
+          <ipxact:displayName>Agent addressing</ipxact:displayName>
+          <ipxact:value>DYNAMIC</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="addressGroup" type="int">
           <ipxact:name>addressGroup</ipxact:name>
           <ipxact:displayName>Address group</ipxact:displayName>
           <ipxact:value>0</ipxact:value>
         </ipxact:parameter>
+        <ipxact:parameter parameterId="addressSpan" type="string">
+          <ipxact:name>addressSpan</ipxact:name>
+          <ipxact:displayName>Address span</ipxact:displayName>
+          <ipxact:value>8</ipxact:value>
+        </ipxact:parameter>
         <ipxact:parameter parameterId="addressUnits" type="string">
           <ipxact:name>addressUnits</ipxact:name>
           <ipxact:displayName>Address units</ipxact:displayName>
-          <ipxact:value>SYMBOLS</ipxact:value>
+          <ipxact:value>WORDS</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="alwaysBurstMaxBurst" type="bit">
           <ipxact:name>alwaysBurstMaxBurst</ipxact:name>
@@ -233,12 +148,22 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="associatedReset" type="string">
           <ipxact:name>associatedReset</ipxact:name>
           <ipxact:displayName>Associated reset</ipxact:displayName>
-          <ipxact:value>clk_reset</ipxact:value>
+          <ipxact:value>reset</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="bitsPerSymbol" type="int">
           <ipxact:name>bitsPerSymbol</ipxact:name>
           <ipxact:displayName>Bits per symbol</ipxact:displayName>
           <ipxact:value>8</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="bridgedAddressOffset" type="string">
+          <ipxact:name>bridgedAddressOffset</ipxact:name>
+          <ipxact:displayName>Bridged Address Offset</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="bridgesToMaster" type="string">
+          <ipxact:name>bridgesToMaster</ipxact:name>
+          <ipxact:displayName>Bridges to host</ipxact:displayName>
+          <ipxact:value></ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="burstOnBurstBoundariesOnly" type="bit">
           <ipxact:name>burstOnBurstBoundariesOnly</ipxact:name>
@@ -255,20 +180,10 @@ https://fpgasoftware.intel.com/eula.-->
           <ipxact:displayName>Constant burst behavior</ipxact:displayName>
           <ipxact:value>false</ipxact:value>
         </ipxact:parameter>
-        <ipxact:parameter parameterId="dBSBigEndian" type="bit">
-          <ipxact:name>dBSBigEndian</ipxact:name>
-          <ipxact:displayName>dBS big endian</ipxact:displayName>
-          <ipxact:value>false</ipxact:value>
-        </ipxact:parameter>
-        <ipxact:parameter parameterId="doStreamReads" type="bit">
-          <ipxact:name>doStreamReads</ipxact:name>
-          <ipxact:displayName>Use flow control for read transfers</ipxact:displayName>
-          <ipxact:value>false</ipxact:value>
-        </ipxact:parameter>
-        <ipxact:parameter parameterId="doStreamWrites" type="bit">
-          <ipxact:name>doStreamWrites</ipxact:name>
-          <ipxact:displayName>Use flow control for write transfers</ipxact:displayName>
-          <ipxact:value>false</ipxact:value>
+        <ipxact:parameter parameterId="explicitAddressSpan" type="string">
+          <ipxact:name>explicitAddressSpan</ipxact:name>
+          <ipxact:displayName>Explicit address span</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="holdTime" type="int">
           <ipxact:name>holdTime</ipxact:name>
@@ -280,35 +195,30 @@ https://fpgasoftware.intel.com/eula.-->
           <ipxact:displayName>Interleave bursts</ipxact:displayName>
           <ipxact:value>false</ipxact:value>
         </ipxact:parameter>
-        <ipxact:parameter parameterId="isAsynchronous" type="bit">
-          <ipxact:name>isAsynchronous</ipxact:name>
-          <ipxact:displayName>Is asynchronous</ipxact:displayName>
-          <ipxact:value>false</ipxact:value>
-        </ipxact:parameter>
         <ipxact:parameter parameterId="isBigEndian" type="bit">
           <ipxact:name>isBigEndian</ipxact:name>
-          <ipxact:displayName>Is big endian</ipxact:displayName>
+          <ipxact:displayName>Big endian</ipxact:displayName>
           <ipxact:value>false</ipxact:value>
         </ipxact:parameter>
-        <ipxact:parameter parameterId="isReadable" type="bit">
-          <ipxact:name>isReadable</ipxact:name>
-          <ipxact:displayName>Is readable</ipxact:displayName>
+        <ipxact:parameter parameterId="isFlash" type="bit">
+          <ipxact:name>isFlash</ipxact:name>
+          <ipxact:displayName>Flash memory</ipxact:displayName>
           <ipxact:value>false</ipxact:value>
         </ipxact:parameter>
-        <ipxact:parameter parameterId="isWriteable" type="bit">
-          <ipxact:name>isWriteable</ipxact:name>
-          <ipxact:displayName>Is writeable</ipxact:displayName>
+        <ipxact:parameter parameterId="isMemoryDevice" type="bit">
+          <ipxact:name>isMemoryDevice</ipxact:name>
+          <ipxact:displayName>Memory device</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="isNonVolatileStorage" type="bit">
+          <ipxact:name>isNonVolatileStorage</ipxact:name>
+          <ipxact:displayName>Non-volatile storage</ipxact:displayName>
           <ipxact:value>false</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="linewrapBursts" type="bit">
           <ipxact:name>linewrapBursts</ipxact:name>
           <ipxact:displayName>Linewrap bursts</ipxact:displayName>
           <ipxact:value>false</ipxact:value>
-        </ipxact:parameter>
-        <ipxact:parameter parameterId="maxAddressWidth" type="int">
-          <ipxact:name>maxAddressWidth</ipxact:name>
-          <ipxact:displayName>Maximum address width</ipxact:displayName>
-          <ipxact:value>32</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="maximumPendingReadTransactions" type="int">
           <ipxact:name>maximumPendingReadTransactions</ipxact:name>
@@ -330,15 +240,30 @@ https://fpgasoftware.intel.com/eula.-->
           <ipxact:displayName>Minimum response latency</ipxact:displayName>
           <ipxact:value>1</ipxact:value>
         </ipxact:parameter>
+        <ipxact:parameter parameterId="minimumUninterruptedRunLength" type="int">
+          <ipxact:name>minimumUninterruptedRunLength</ipxact:name>
+          <ipxact:displayName>Minimum uninterrupted run length</ipxact:displayName>
+          <ipxact:value>1</ipxact:value>
+        </ipxact:parameter>
         <ipxact:parameter parameterId="prSafe" type="bit">
           <ipxact:name>prSafe</ipxact:name>
           <ipxact:displayName>Partial Reconfiguration Safe</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="printableDevice" type="bit">
+          <ipxact:name>printableDevice</ipxact:name>
+          <ipxact:displayName>Can receive stdout/stderr</ipxact:displayName>
           <ipxact:value>false</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="readLatency" type="int">
           <ipxact:name>readLatency</ipxact:name>
           <ipxact:displayName>Read latency</ipxact:displayName>
           <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="readWaitStates" type="int">
+          <ipxact:name>readWaitStates</ipxact:name>
+          <ipxact:displayName>Read wait states</ipxact:displayName>
+          <ipxact:value>1</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="readWaitTime" type="int">
           <ipxact:name>readWaitTime</ipxact:name>
@@ -365,9 +290,29 @@ https://fpgasoftware.intel.com/eula.-->
           <ipxact:displayName>Timing units</ipxact:displayName>
           <ipxact:value>Cycles</ipxact:value>
         </ipxact:parameter>
+        <ipxact:parameter parameterId="transparentBridge" type="bit">
+          <ipxact:name>transparentBridge</ipxact:name>
+          <ipxact:displayName>Transparent bridge</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
         <ipxact:parameter parameterId="waitrequestAllowance" type="int">
           <ipxact:name>waitrequestAllowance</ipxact:name>
           <ipxact:displayName>Waitrequest allowance</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="wellBehavedWaitrequest" type="bit">
+          <ipxact:name>wellBehavedWaitrequest</ipxact:name>
+          <ipxact:displayName>Well-behaved waitrequest</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="writeLatency" type="int">
+          <ipxact:name>writeLatency</ipxact:name>
+          <ipxact:displayName>Write latency</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="writeWaitStates" type="int">
+          <ipxact:name>writeWaitStates</ipxact:name>
+          <ipxact:displayName>Write wait states</ipxact:displayName>
           <ipxact:value>0</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="writeWaitTime" type="int">
@@ -379,21 +324,21 @@ https://fpgasoftware.intel.com/eula.-->
       <ipxact:vendorExtensions>
         <altera:altera_assignments>
           <ipxact:parameters>
-            <ipxact:parameter parameterId="debug.controlledBy" type="string">
-              <ipxact:name>debug.controlledBy</ipxact:name>
-              <ipxact:value>in_stream</ipxact:value>
+            <ipxact:parameter parameterId="embeddedsw.configuration.isFlash" type="string">
+              <ipxact:name>embeddedsw.configuration.isFlash</ipxact:name>
+              <ipxact:value>0</ipxact:value>
             </ipxact:parameter>
-            <ipxact:parameter parameterId="debug.providesServices" type="string">
-              <ipxact:name>debug.providesServices</ipxact:name>
-              <ipxact:value>master</ipxact:value>
+            <ipxact:parameter parameterId="embeddedsw.configuration.isMemoryDevice" type="string">
+              <ipxact:name>embeddedsw.configuration.isMemoryDevice</ipxact:name>
+              <ipxact:value>0</ipxact:value>
             </ipxact:parameter>
-            <ipxact:parameter parameterId="debug.typeName" type="string">
-              <ipxact:name>debug.typeName</ipxact:name>
-              <ipxact:value>altera_jtag_avalon_master.master</ipxact:value>
+            <ipxact:parameter parameterId="embeddedsw.configuration.isNonVolatileStorage" type="string">
+              <ipxact:name>embeddedsw.configuration.isNonVolatileStorage</ipxact:name>
+              <ipxact:value>0</ipxact:value>
             </ipxact:parameter>
-            <ipxact:parameter parameterId="debug.visible" type="string">
-              <ipxact:name>debug.visible</ipxact:name>
-              <ipxact:value>true</ipxact:value>
+            <ipxact:parameter parameterId="embeddedsw.configuration.isPrintableDevice" type="string">
+              <ipxact:name>embeddedsw.configuration.isPrintableDevice</ipxact:name>
+              <ipxact:value>0</ipxact:value>
             </ipxact:parameter>
           </ipxact:parameters>
         </altera:altera_assignments>
@@ -411,7 +356,7 @@ https://fpgasoftware.intel.com/eula.-->
     <ipxact:instantiations>
       <ipxact:componentInstantiation>
         <ipxact:name>QUARTUS_SYNTH</ipxact:name>
-        <ipxact:moduleName>altera_jtag_avalon_master</ipxact:moduleName>
+        <ipxact:moduleName>altera_avalon_sysid_qsys</ipxact:moduleName>
         <ipxact:fileSetRef>
           <ipxact:localName>QUARTUS_SYNTH</ipxact:localName>
         </ipxact:fileSetRef>
@@ -420,7 +365,7 @@ https://fpgasoftware.intel.com/eula.-->
     </ipxact:instantiations>
     <ipxact:ports>
       <ipxact:port>
-        <ipxact:name>clk_clk</ipxact:name>
+        <ipxact:name>clock</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
           <ipxact:vectors></ipxact:vectors>
@@ -433,7 +378,7 @@ https://fpgasoftware.intel.com/eula.-->
         </ipxact:wire>
       </ipxact:port>
       <ipxact:port>
-        <ipxact:name>clk_reset_reset</ipxact:name>
+        <ipxact:name>reset_n</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
           <ipxact:vectors></ipxact:vectors>
@@ -446,20 +391,7 @@ https://fpgasoftware.intel.com/eula.-->
         </ipxact:wire>
       </ipxact:port>
       <ipxact:port>
-        <ipxact:name>master_reset_reset</ipxact:name>
-        <ipxact:wire>
-          <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
-          <ipxact:wireTypeDefs>
-            <ipxact:wireTypeDef>
-              <ipxact:typeName>STD_LOGIC</ipxact:typeName>
-              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
-            </ipxact:wireTypeDef>
-          </ipxact:wireTypeDefs>
-        </ipxact:wire>
-      </ipxact:port>
-      <ipxact:port>
-        <ipxact:name>master_address</ipxact:name>
+        <ipxact:name>readdata</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
           <ipxact:vectors>
@@ -477,106 +409,13 @@ https://fpgasoftware.intel.com/eula.-->
         </ipxact:wire>
       </ipxact:port>
       <ipxact:port>
-        <ipxact:name>master_readdata</ipxact:name>
-        <ipxact:wire>
-          <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors>
-            <ipxact:vector>
-              <ipxact:left>0</ipxact:left>
-              <ipxact:right>31</ipxact:right>
-            </ipxact:vector>
-          </ipxact:vectors>
-          <ipxact:wireTypeDefs>
-            <ipxact:wireTypeDef>
-              <ipxact:typeName>STD_LOGIC_VECTOR</ipxact:typeName>
-              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
-            </ipxact:wireTypeDef>
-          </ipxact:wireTypeDefs>
-        </ipxact:wire>
-      </ipxact:port>
-      <ipxact:port>
-        <ipxact:name>master_read</ipxact:name>
-        <ipxact:wire>
-          <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
-          <ipxact:wireTypeDefs>
-            <ipxact:wireTypeDef>
-              <ipxact:typeName>STD_LOGIC</ipxact:typeName>
-              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
-            </ipxact:wireTypeDef>
-          </ipxact:wireTypeDefs>
-        </ipxact:wire>
-      </ipxact:port>
-      <ipxact:port>
-        <ipxact:name>master_write</ipxact:name>
-        <ipxact:wire>
-          <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
-          <ipxact:wireTypeDefs>
-            <ipxact:wireTypeDef>
-              <ipxact:typeName>STD_LOGIC</ipxact:typeName>
-              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
-            </ipxact:wireTypeDef>
-          </ipxact:wireTypeDefs>
-        </ipxact:wire>
-      </ipxact:port>
-      <ipxact:port>
-        <ipxact:name>master_writedata</ipxact:name>
-        <ipxact:wire>
-          <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors>
-            <ipxact:vector>
-              <ipxact:left>0</ipxact:left>
-              <ipxact:right>31</ipxact:right>
-            </ipxact:vector>
-          </ipxact:vectors>
-          <ipxact:wireTypeDefs>
-            <ipxact:wireTypeDef>
-              <ipxact:typeName>STD_LOGIC_VECTOR</ipxact:typeName>
-              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
-            </ipxact:wireTypeDef>
-          </ipxact:wireTypeDefs>
-        </ipxact:wire>
-      </ipxact:port>
-      <ipxact:port>
-        <ipxact:name>master_waitrequest</ipxact:name>
+        <ipxact:name>address</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
           <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
-              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
-            </ipxact:wireTypeDef>
-          </ipxact:wireTypeDefs>
-        </ipxact:wire>
-      </ipxact:port>
-      <ipxact:port>
-        <ipxact:name>master_readdatavalid</ipxact:name>
-        <ipxact:wire>
-          <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
-          <ipxact:wireTypeDefs>
-            <ipxact:wireTypeDef>
-              <ipxact:typeName>STD_LOGIC</ipxact:typeName>
-              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
-            </ipxact:wireTypeDef>
-          </ipxact:wireTypeDefs>
-        </ipxact:wire>
-      </ipxact:port>
-      <ipxact:port>
-        <ipxact:name>master_byteenable</ipxact:name>
-        <ipxact:wire>
-          <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors>
-            <ipxact:vector>
-              <ipxact:left>0</ipxact:left>
-              <ipxact:right>3</ipxact:right>
-            </ipxact:vector>
-          </ipxact:vectors>
-          <ipxact:wireTypeDefs>
-            <ipxact:wireTypeDef>
-              <ipxact:typeName>STD_LOGIC_VECTOR</ipxact:typeName>
               <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
             </ipxact:wireTypeDef>
           </ipxact:wireTypeDefs>
@@ -587,59 +426,57 @@ https://fpgasoftware.intel.com/eula.-->
   <ipxact:vendorExtensions>
     <altera:entity_info>
       <ipxact:vendor>Intel Corporation</ipxact:vendor>
-      <ipxact:library>ghrd_hps_system_master_2</ipxact:library>
-      <ipxact:name>altera_jtag_avalon_master</ipxact:name>
-      <ipxact:version>19.1</ipxact:version>
+      <ipxact:library>peripheral_sys_sysid_qsys_0</ipxact:library>
+      <ipxact:name>altera_avalon_sysid_qsys</ipxact:name>
+      <ipxact:version>19.1.5</ipxact:version>
     </altera:entity_info>
     <altera:altera_module_parameters>
       <ipxact:parameters>
-        <ipxact:parameter parameterId="USE_PLI" type="int">
-          <ipxact:name>USE_PLI</ipxact:name>
-          <ipxact:displayName>Use Simulation Link Mode</ipxact:displayName>
+        <ipxact:parameter parameterId="id" type="int">
+          <ipxact:name>id</ipxact:name>
+          <ipxact:displayName>32 bit System ID</ipxact:displayName>
+          <ipxact:value>-559038737</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="TIMESTAMP" type="int">
+          <ipxact:name>TIMESTAMP</ipxact:name>
+          <ipxact:displayName>Time stamp</ipxact:displayName>
           <ipxact:value>0</ipxact:value>
-        </ipxact:parameter>
-        <ipxact:parameter parameterId="PLI_PORT" type="int">
-          <ipxact:name>PLI_PORT</ipxact:name>
-          <ipxact:displayName>Simulation Link Server Port</ipxact:displayName>
-          <ipxact:value>50000</ipxact:value>
-        </ipxact:parameter>
-        <ipxact:parameter parameterId="COMPONENT_CLOCK" type="int">
-          <ipxact:name>COMPONENT_CLOCK</ipxact:name>
-          <ipxact:displayName>COMPONENT_CLOCK</ipxact:displayName>
-          <ipxact:value>0</ipxact:value>
-        </ipxact:parameter>
-        <ipxact:parameter parameterId="FAST_VER" type="int">
-          <ipxact:name>FAST_VER</ipxact:name>
-          <ipxact:displayName>Enhanced transaction master</ipxact:displayName>
-          <ipxact:value>0</ipxact:value>
-        </ipxact:parameter>
-        <ipxact:parameter parameterId="FIFO_DEPTHS" type="int">
-          <ipxact:name>FIFO_DEPTHS</ipxact:name>
-          <ipxact:displayName>FIFO depth</ipxact:displayName>
-          <ipxact:value>2</ipxact:value>
-        </ipxact:parameter>
-        <ipxact:parameter parameterId="AUTO_DEVICE_FAMILY" type="string">
-          <ipxact:name>AUTO_DEVICE_FAMILY</ipxact:name>
-          <ipxact:displayName>Auto DEVICE_FAMILY</ipxact:displayName>
-          <ipxact:value>Agilex 5</ipxact:value>
-        </ipxact:parameter>
-        <ipxact:parameter parameterId="AUTO_DEVICE" type="string">
-          <ipxact:name>AUTO_DEVICE</ipxact:name>
-          <ipxact:displayName>Auto DEVICE</ipxact:displayName>
-          <ipxact:value>A5ED065BB32AE4SR0</ipxact:value>
-        </ipxact:parameter>
-        <ipxact:parameter parameterId="AUTO_DEVICE_SPEEDGRADE" type="string">
-          <ipxact:name>AUTO_DEVICE_SPEEDGRADE</ipxact:name>
-          <ipxact:displayName>Auto DEVICE_SPEEDGRADE</ipxact:displayName>
-          <ipxact:value>4</ipxact:value>
         </ipxact:parameter>
       </ipxact:parameters>
     </altera:altera_module_parameters>
     <altera:altera_assignments>
       <ipxact:parameters>
-        <ipxact:parameter parameterId="debug.hostConnection" type="string">
-          <ipxact:name>debug.hostConnection</ipxact:name>
-          <ipxact:value>type jtag id 110:132</ipxact:value>
+        <ipxact:parameter parameterId="embeddedsw.CMacro.ID" type="string">
+          <ipxact:name>embeddedsw.CMacro.ID</ipxact:name>
+          <ipxact:value>-559038737</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="embeddedsw.CMacro.TIMESTAMP" type="string">
+          <ipxact:name>embeddedsw.CMacro.TIMESTAMP</ipxact:name>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="embeddedsw.dts.compatible" type="string">
+          <ipxact:name>embeddedsw.dts.compatible</ipxact:name>
+          <ipxact:value>altr,sysid-1.0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="embeddedsw.dts.group" type="string">
+          <ipxact:name>embeddedsw.dts.group</ipxact:name>
+          <ipxact:value>sysid</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="embeddedsw.dts.name" type="string">
+          <ipxact:name>embeddedsw.dts.name</ipxact:name>
+          <ipxact:value>sysid</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="embeddedsw.dts.params.id" type="string">
+          <ipxact:name>embeddedsw.dts.params.id</ipxact:name>
+          <ipxact:value>-559038737</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="embeddedsw.dts.params.timestamp" type="string">
+          <ipxact:name>embeddedsw.dts.params.timestamp</ipxact:name>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="embeddedsw.dts.vendor" type="string">
+          <ipxact:name>embeddedsw.dts.vendor</ipxact:name>
+          <ipxact:value>altr</ipxact:value>
         </ipxact:parameter>
       </ipxact:parameters>
     </altera:altera_assignments>
@@ -683,7 +520,7 @@ https://fpgasoftware.intel.com/eula.-->
          type = "String";
       }
    }
-   element master_2
+   element sysid_qsys_0
    {
    }
 }
@@ -705,7 +542,7 @@ https://fpgasoftware.intel.com/eula.-->
             &lt;isStart&gt;false&lt;/isStart&gt;
             &lt;ports&gt;
                 &lt;port&gt;
-                    &lt;name&gt;clk_clk&lt;/name&gt;
+                    &lt;name&gt;clock&lt;/name&gt;
                     &lt;role&gt;clk&lt;/role&gt;
                     &lt;direction&gt;Input&lt;/direction&gt;
                     &lt;width&gt;1&lt;/width&gt;
@@ -734,13 +571,13 @@ https://fpgasoftware.intel.com/eula.-->
             &lt;/parameters&gt;
         &lt;/interface&gt;
         &lt;interface&gt;
-            &lt;name&gt;clk_reset&lt;/name&gt;
+            &lt;name&gt;reset&lt;/name&gt;
             &lt;type&gt;reset&lt;/type&gt;
             &lt;isStart&gt;false&lt;/isStart&gt;
             &lt;ports&gt;
                 &lt;port&gt;
-                    &lt;name&gt;clk_reset_reset&lt;/name&gt;
-                    &lt;role&gt;reset&lt;/role&gt;
+                    &lt;name&gt;reset_n&lt;/name&gt;
+                    &lt;role&gt;reset_n&lt;/role&gt;
                     &lt;direction&gt;Input&lt;/direction&gt;
                     &lt;width&gt;1&lt;/width&gt;
                     &lt;lowerBound&gt;0&lt;/lowerBound&gt;
@@ -755,95 +592,23 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;parameterValueMap&gt;
                     &lt;entry&gt;
                         &lt;key&gt;associatedClock&lt;/key&gt;
+                        &lt;value&gt;clk&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;synchronousEdges&lt;/key&gt;
-                        &lt;value&gt;NONE&lt;/value&gt;
+                        &lt;value&gt;DEASSERT&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/parameterValueMap&gt;
             &lt;/parameters&gt;
         &lt;/interface&gt;
         &lt;interface&gt;
-            &lt;name&gt;master_reset&lt;/name&gt;
-            &lt;type&gt;reset&lt;/type&gt;
-            &lt;isStart&gt;true&lt;/isStart&gt;
-            &lt;ports&gt;
-                &lt;port&gt;
-                    &lt;name&gt;master_reset_reset&lt;/name&gt;
-                    &lt;role&gt;reset&lt;/role&gt;
-                    &lt;direction&gt;Output&lt;/direction&gt;
-                    &lt;width&gt;1&lt;/width&gt;
-                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
-                    &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
-                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
-                &lt;/port&gt;
-            &lt;/ports&gt;
-            &lt;assignments&gt;
-                &lt;assignmentValueMap/&gt;
-            &lt;/assignments&gt;
-            &lt;parameters&gt;
-                &lt;parameterValueMap&gt;
-                    &lt;entry&gt;
-                        &lt;key&gt;associatedClock&lt;/key&gt;
-                    &lt;/entry&gt;
-                    &lt;entry&gt;
-                        &lt;key&gt;associatedDirectReset&lt;/key&gt;
-                    &lt;/entry&gt;
-                    &lt;entry&gt;
-                        &lt;key&gt;associatedResetSinks&lt;/key&gt;
-                        &lt;value&gt;none&lt;/value&gt;
-                    &lt;/entry&gt;
-                    &lt;entry&gt;
-                        &lt;key&gt;synchronousEdges&lt;/key&gt;
-                        &lt;value&gt;NONE&lt;/value&gt;
-                    &lt;/entry&gt;
-                &lt;/parameterValueMap&gt;
-            &lt;/parameters&gt;
-        &lt;/interface&gt;
-        &lt;interface&gt;
-            &lt;name&gt;master&lt;/name&gt;
+            &lt;name&gt;control_slave&lt;/name&gt;
             &lt;type&gt;avalon&lt;/type&gt;
-            &lt;isStart&gt;true&lt;/isStart&gt;
+            &lt;isStart&gt;false&lt;/isStart&gt;
             &lt;ports&gt;
                 &lt;port&gt;
-                    &lt;name&gt;master_address&lt;/name&gt;
-                    &lt;role&gt;address&lt;/role&gt;
-                    &lt;direction&gt;Output&lt;/direction&gt;
-                    &lt;width&gt;32&lt;/width&gt;
-                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
-                    &lt;vhdlType&gt;STD_LOGIC_VECTOR&lt;/vhdlType&gt;
-                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
-                &lt;/port&gt;
-                &lt;port&gt;
-                    &lt;name&gt;master_readdata&lt;/name&gt;
+                    &lt;name&gt;readdata&lt;/name&gt;
                     &lt;role&gt;readdata&lt;/role&gt;
-                    &lt;direction&gt;Input&lt;/direction&gt;
-                    &lt;width&gt;32&lt;/width&gt;
-                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
-                    &lt;vhdlType&gt;STD_LOGIC_VECTOR&lt;/vhdlType&gt;
-                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
-                &lt;/port&gt;
-                &lt;port&gt;
-                    &lt;name&gt;master_read&lt;/name&gt;
-                    &lt;role&gt;read&lt;/role&gt;
-                    &lt;direction&gt;Output&lt;/direction&gt;
-                    &lt;width&gt;1&lt;/width&gt;
-                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
-                    &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
-                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
-                &lt;/port&gt;
-                &lt;port&gt;
-                    &lt;name&gt;master_write&lt;/name&gt;
-                    &lt;role&gt;write&lt;/role&gt;
-                    &lt;direction&gt;Output&lt;/direction&gt;
-                    &lt;width&gt;1&lt;/width&gt;
-                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
-                    &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
-                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
-                &lt;/port&gt;
-                &lt;port&gt;
-                    &lt;name&gt;master_writedata&lt;/name&gt;
-                    &lt;role&gt;writedata&lt;/role&gt;
                     &lt;direction&gt;Output&lt;/direction&gt;
                     &lt;width&gt;32&lt;/width&gt;
                     &lt;lowerBound&gt;0&lt;/lowerBound&gt;
@@ -851,65 +616,52 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;terminationValue&gt;0&lt;/terminationValue&gt;
                 &lt;/port&gt;
                 &lt;port&gt;
-                    &lt;name&gt;master_waitrequest&lt;/name&gt;
-                    &lt;role&gt;waitrequest&lt;/role&gt;
+                    &lt;name&gt;address&lt;/name&gt;
+                    &lt;role&gt;address&lt;/role&gt;
                     &lt;direction&gt;Input&lt;/direction&gt;
                     &lt;width&gt;1&lt;/width&gt;
                     &lt;lowerBound&gt;0&lt;/lowerBound&gt;
                     &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
-                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
-                &lt;/port&gt;
-                &lt;port&gt;
-                    &lt;name&gt;master_readdatavalid&lt;/name&gt;
-                    &lt;role&gt;readdatavalid&lt;/role&gt;
-                    &lt;direction&gt;Input&lt;/direction&gt;
-                    &lt;width&gt;1&lt;/width&gt;
-                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
-                    &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
-                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
-                &lt;/port&gt;
-                &lt;port&gt;
-                    &lt;name&gt;master_byteenable&lt;/name&gt;
-                    &lt;role&gt;byteenable&lt;/role&gt;
-                    &lt;direction&gt;Output&lt;/direction&gt;
-                    &lt;width&gt;4&lt;/width&gt;
-                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
-                    &lt;vhdlType&gt;STD_LOGIC_VECTOR&lt;/vhdlType&gt;
                     &lt;terminationValue&gt;0&lt;/terminationValue&gt;
                 &lt;/port&gt;
             &lt;/ports&gt;
             &lt;assignments&gt;
                 &lt;assignmentValueMap&gt;
                     &lt;entry&gt;
-                        &lt;key&gt;debug.controlledBy&lt;/key&gt;
-                        &lt;value&gt;in_stream&lt;/value&gt;
+                        &lt;key&gt;embeddedsw.configuration.isFlash&lt;/key&gt;
+                        &lt;value&gt;0&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
-                        &lt;key&gt;debug.providesServices&lt;/key&gt;
-                        &lt;value&gt;master&lt;/value&gt;
+                        &lt;key&gt;embeddedsw.configuration.isMemoryDevice&lt;/key&gt;
+                        &lt;value&gt;0&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
-                        &lt;key&gt;debug.typeName&lt;/key&gt;
-                        &lt;value&gt;altera_jtag_avalon_master.master&lt;/value&gt;
+                        &lt;key&gt;embeddedsw.configuration.isNonVolatileStorage&lt;/key&gt;
+                        &lt;value&gt;0&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
-                        &lt;key&gt;debug.visible&lt;/key&gt;
-                        &lt;value&gt;true&lt;/value&gt;
+                        &lt;key&gt;embeddedsw.configuration.isPrintableDevice&lt;/key&gt;
+                        &lt;value&gt;0&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/assignmentValueMap&gt;
             &lt;/assignments&gt;
             &lt;parameters&gt;
                 &lt;parameterValueMap&gt;
                     &lt;entry&gt;
-                        &lt;key&gt;adaptsTo&lt;/key&gt;
+                        &lt;key&gt;addressAlignment&lt;/key&gt;
+                        &lt;value&gt;DYNAMIC&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;addressGroup&lt;/key&gt;
                         &lt;value&gt;0&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
+                        &lt;key&gt;addressSpan&lt;/key&gt;
+                        &lt;value&gt;8&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
                         &lt;key&gt;addressUnits&lt;/key&gt;
-                        &lt;value&gt;SYMBOLS&lt;/value&gt;
+                        &lt;value&gt;WORDS&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;alwaysBurstMaxBurst&lt;/key&gt;
@@ -921,11 +673,18 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;associatedReset&lt;/key&gt;
-                        &lt;value&gt;clk_reset&lt;/value&gt;
+                        &lt;value&gt;reset&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;bitsPerSymbol&lt;/key&gt;
                         &lt;value&gt;8&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;bridgedAddressOffset&lt;/key&gt;
+                        &lt;value&gt;0&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;bridgesToMaster&lt;/key&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;burstOnBurstBoundariesOnly&lt;/key&gt;
@@ -940,16 +699,8 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;value&gt;false&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
-                        &lt;key&gt;dBSBigEndian&lt;/key&gt;
-                        &lt;value&gt;false&lt;/value&gt;
-                    &lt;/entry&gt;
-                    &lt;entry&gt;
-                        &lt;key&gt;doStreamReads&lt;/key&gt;
-                        &lt;value&gt;false&lt;/value&gt;
-                    &lt;/entry&gt;
-                    &lt;entry&gt;
-                        &lt;key&gt;doStreamWrites&lt;/key&gt;
-                        &lt;value&gt;false&lt;/value&gt;
+                        &lt;key&gt;explicitAddressSpan&lt;/key&gt;
+                        &lt;value&gt;0&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;holdTime&lt;/key&gt;
@@ -960,28 +711,24 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;value&gt;false&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
-                        &lt;key&gt;isAsynchronous&lt;/key&gt;
-                        &lt;value&gt;false&lt;/value&gt;
-                    &lt;/entry&gt;
-                    &lt;entry&gt;
                         &lt;key&gt;isBigEndian&lt;/key&gt;
                         &lt;value&gt;false&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
-                        &lt;key&gt;isReadable&lt;/key&gt;
+                        &lt;key&gt;isFlash&lt;/key&gt;
                         &lt;value&gt;false&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
-                        &lt;key&gt;isWriteable&lt;/key&gt;
+                        &lt;key&gt;isMemoryDevice&lt;/key&gt;
+                        &lt;value&gt;false&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;isNonVolatileStorage&lt;/key&gt;
                         &lt;value&gt;false&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;linewrapBursts&lt;/key&gt;
                         &lt;value&gt;false&lt;/value&gt;
-                    &lt;/entry&gt;
-                    &lt;entry&gt;
-                        &lt;key&gt;maxAddressWidth&lt;/key&gt;
-                        &lt;value&gt;32&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;maximumPendingReadTransactions&lt;/key&gt;
@@ -1000,12 +747,24 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;value&gt;1&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
+                        &lt;key&gt;minimumUninterruptedRunLength&lt;/key&gt;
+                        &lt;value&gt;1&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
                         &lt;key&gt;prSafe&lt;/key&gt;
+                        &lt;value&gt;false&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;printableDevice&lt;/key&gt;
                         &lt;value&gt;false&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;readLatency&lt;/key&gt;
                         &lt;value&gt;0&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;readWaitStates&lt;/key&gt;
+                        &lt;value&gt;1&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;readWaitTime&lt;/key&gt;
@@ -1028,7 +787,23 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;value&gt;Cycles&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
+                        &lt;key&gt;transparentBridge&lt;/key&gt;
+                        &lt;value&gt;false&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
                         &lt;key&gt;waitrequestAllowance&lt;/key&gt;
+                        &lt;value&gt;0&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;wellBehavedWaitrequest&lt;/key&gt;
+                        &lt;value&gt;false&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;writeLatency&lt;/key&gt;
+                        &lt;value&gt;0&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;writeWaitStates&lt;/key&gt;
                         &lt;value&gt;0&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
@@ -1037,6 +812,68 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;/entry&gt;
                 &lt;/parameterValueMap&gt;
             &lt;/parameters&gt;
+            &lt;cmsisInfo&gt;
+                &lt;cmsisSrcFileContents&gt;&amp;lt;?xml version="1.0" encoding="utf-8"?&amp;gt;    
+&amp;lt;device schemaVersion="1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="CMSIS-SVD_Schema_1_1.xsd" &amp;gt;
+  &amp;lt;peripherals&amp;gt;
+    &amp;lt;peripheral&amp;gt;
+      &amp;lt;name&amp;gt;altera_avalon_sysid&amp;lt;/name&amp;gt;&amp;lt;baseAddress&amp;gt;0x00000000&amp;lt;/baseAddress&amp;gt; 
+      &amp;lt;addressBlock&amp;gt;
+        &amp;lt;offset&amp;gt;0x0&amp;lt;/offset&amp;gt;
+        &amp;lt;size&amp;gt;8&amp;lt;/size&amp;gt;
+        &amp;lt;usage&amp;gt;registers&amp;lt;/usage&amp;gt;
+      &amp;lt;/addressBlock&amp;gt;
+      &amp;lt;registers&amp;gt;
+        &amp;lt;register&amp;gt;     
+         &amp;lt;name&amp;gt;ID&amp;lt;/name&amp;gt;  
+         &amp;lt;displayName&amp;gt;System ID&amp;lt;/displayName&amp;gt;
+            &amp;lt;description&amp;gt;A unique 32-bit value that is based on the contents of the QSys system. The id is similar to a check-sum value; QSys systems with different components, different configuration options, or both, produce different id values.&amp;lt;/description&amp;gt;
+         &amp;lt;addressOffset&amp;gt;0x0&amp;lt;/addressOffset&amp;gt;
+         &amp;lt;size&amp;gt;32&amp;lt;/size&amp;gt;
+         &amp;lt;access&amp;gt;read-only&amp;lt;/access&amp;gt;
+         &amp;lt;resetValue&amp;gt;${sysid_id_value}&amp;lt;/resetValue&amp;gt;
+         &amp;lt;resetMask&amp;gt;0xffffffff&amp;lt;/resetMask&amp;gt; 
+         &amp;lt;fields&amp;gt;
+           &amp;lt;field&amp;gt;&amp;lt;name&amp;gt;id&amp;lt;/name&amp;gt;
+            &amp;lt;bitOffset&amp;gt;0x0&amp;lt;/bitOffset&amp;gt;
+            &amp;lt;bitWidth&amp;gt;32&amp;lt;/bitWidth&amp;gt;
+            &amp;lt;access&amp;gt;read-only&amp;lt;/access&amp;gt;
+        &amp;lt;/field&amp;gt;
+       &amp;lt;/fields&amp;gt;
+     &amp;lt;/register&amp;gt; 
+        &amp;lt;register&amp;gt;
+         &amp;lt;name&amp;gt;TIMESTAMP&amp;lt;/name&amp;gt;  
+         &amp;lt;displayName&amp;gt;Time stamp&amp;lt;/displayName&amp;gt;
+         &amp;lt;description&amp;gt;A unique 32-bit value that is based on the system generation time. The value is equivalent to the number of seconds after Jan. 1, 1970.&amp;lt;/description&amp;gt;
+         &amp;lt;addressOffset&amp;gt;0x4&amp;lt;/addressOffset&amp;gt;
+         &amp;lt;size&amp;gt;32&amp;lt;/size&amp;gt;
+         &amp;lt;access&amp;gt;read-only&amp;lt;/access&amp;gt;
+         &amp;lt;resetValue&amp;gt;${sysid_timestamp_value}&amp;lt;/resetValue&amp;gt;
+         &amp;lt;resetMask&amp;gt;0xffffffff&amp;lt;/resetMask&amp;gt; 
+         &amp;lt;fields&amp;gt;
+           &amp;lt;field&amp;gt;&amp;lt;name&amp;gt;timestamp&amp;lt;/name&amp;gt;
+            &amp;lt;bitOffset&amp;gt;0x0&amp;lt;/bitOffset&amp;gt;
+            &amp;lt;bitWidth&amp;gt;32&amp;lt;/bitWidth&amp;gt;
+            &amp;lt;access&amp;gt;read-only&amp;lt;/access&amp;gt;
+        &amp;lt;/field&amp;gt;
+       &amp;lt;/fields&amp;gt;
+     &amp;lt;/register&amp;gt;            
+    &amp;lt;/registers&amp;gt;
+   &amp;lt;/peripheral&amp;gt;
+  &amp;lt;/peripherals&amp;gt;
+&amp;lt;/device&amp;gt; &lt;/cmsisSrcFileContents&gt;
+                &lt;addressGroup&gt;&lt;/addressGroup&gt;
+                &lt;cmsisVars&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;sysid_timestamp_value&lt;/key&gt;
+                        &lt;value&gt;0x0&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;sysid_id_value&lt;/key&gt;
+                        &lt;value&gt;0xdeadbeef&lt;/value&gt;
+                    &lt;/entry&gt;
+                &lt;/cmsisVars&gt;
+            &lt;/cmsisInfo&gt;
         &lt;/interface&gt;
     &lt;/interfaces&gt;
 &lt;/boundaryDefinition&gt;</ipxact:value>
@@ -1045,30 +882,43 @@ https://fpgasoftware.intel.com/eula.-->
           <ipxact:name>systemInfos</ipxact:name>
           <ipxact:displayName>systemInfos</ipxact:displayName>
           <ipxact:value>&lt;systemInfosDefinition&gt;
-    &lt;connPtSystemInfos/&gt;
+    &lt;connPtSystemInfos&gt;
+        &lt;entry&gt;
+            &lt;key&gt;control_slave&lt;/key&gt;
+            &lt;value&gt;
+                &lt;connectionPointName&gt;control_slave&lt;/connectionPointName&gt;
+                &lt;suppliedSystemInfos/&gt;
+                &lt;consumedSystemInfos&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
+                        &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='control_slave' start='0x0' end='0x8' datawidth='32' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
+                        &lt;value&gt;3&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;MAX_SLAVE_DATA_WIDTH&lt;/key&gt;
+                        &lt;value&gt;32&lt;/value&gt;
+                    &lt;/entry&gt;
+                &lt;/consumedSystemInfos&gt;
+            &lt;/value&gt;
+        &lt;/entry&gt;
+    &lt;/connPtSystemInfos&gt;
 &lt;/systemInfosDefinition&gt;</ipxact:value>
         </ipxact:parameter>
       </ipxact:parameters>
     </altera:altera_system_parameters>
     <altera:altera_interface_boundary>
-      <altera:interface_mapping altera:name="clk" altera:internal="master_2.clk" altera:type="clock" altera:dir="end">
-        <altera:port_mapping altera:name="clk_clk" altera:internal="clk_clk"></altera:port_mapping>
+      <altera:interface_mapping altera:name="clk" altera:internal="sysid_qsys_0.clk" altera:type="clock" altera:dir="end">
+        <altera:port_mapping altera:name="clock" altera:internal="clock"></altera:port_mapping>
       </altera:interface_mapping>
-      <altera:interface_mapping altera:name="clk_reset" altera:internal="master_2.clk_reset" altera:type="reset" altera:dir="end">
-        <altera:port_mapping altera:name="clk_reset_reset" altera:internal="clk_reset_reset"></altera:port_mapping>
+      <altera:interface_mapping altera:name="control_slave" altera:internal="sysid_qsys_0.control_slave" altera:type="avalon" altera:dir="end">
+        <altera:port_mapping altera:name="address" altera:internal="address"></altera:port_mapping>
+        <altera:port_mapping altera:name="readdata" altera:internal="readdata"></altera:port_mapping>
       </altera:interface_mapping>
-      <altera:interface_mapping altera:name="master" altera:internal="master_2.master" altera:type="avalon" altera:dir="start">
-        <altera:port_mapping altera:name="master_address" altera:internal="master_address"></altera:port_mapping>
-        <altera:port_mapping altera:name="master_byteenable" altera:internal="master_byteenable"></altera:port_mapping>
-        <altera:port_mapping altera:name="master_read" altera:internal="master_read"></altera:port_mapping>
-        <altera:port_mapping altera:name="master_readdata" altera:internal="master_readdata"></altera:port_mapping>
-        <altera:port_mapping altera:name="master_readdatavalid" altera:internal="master_readdatavalid"></altera:port_mapping>
-        <altera:port_mapping altera:name="master_waitrequest" altera:internal="master_waitrequest"></altera:port_mapping>
-        <altera:port_mapping altera:name="master_write" altera:internal="master_write"></altera:port_mapping>
-        <altera:port_mapping altera:name="master_writedata" altera:internal="master_writedata"></altera:port_mapping>
-      </altera:interface_mapping>
-      <altera:interface_mapping altera:name="master_reset" altera:internal="master_2.master_reset" altera:type="reset" altera:dir="start">
-        <altera:port_mapping altera:name="master_reset_reset" altera:internal="master_reset_reset"></altera:port_mapping>
+      <altera:interface_mapping altera:name="reset" altera:internal="sysid_qsys_0.reset" altera:type="reset" altera:dir="end">
+        <altera:port_mapping altera:name="reset_n" altera:internal="reset_n"></altera:port_mapping>
       </altera:interface_mapping>
     </altera:altera_interface_boundary>
     <altera:altera_has_warnings>false</altera:altera_has_warnings>
