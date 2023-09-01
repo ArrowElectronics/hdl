@@ -10,10 +10,12 @@ set wHPS_LED1 1
 set wFAB_QSPI 1
 set wFAB_LPDDR4 1
 set wHDMI 1
+set wHPS_LED0 1
+set wHPS_LED1 1
 set wHPS_UART0 1
 set wHPS_I2C0 1
 set wMUX_I2C 1
-set wHPS_pB 1
+set wHPS_PB 1
 set wHPS_DIPSW 1
 set wHPS_USB 1
 set wHPS_EMAC2 1
@@ -55,10 +57,6 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to PWR_SCL
 
 if {$wFAB_pB == 1} {
 # Bank HVIO_6D (3.3V)
-set_location_assignment PIN_B23  -to PB[0]
-set_instance_assignment -name IO_STANDARD "3.3 V" -to PB[0]
-set_location_assignment PIN_B26  -to PB[1]
-set_instance_assignment -name IO_STANDARD "3.3 V" -to PB[1]
 set_location_assignment PIN_B30  -to PB[2]
 set_instance_assignment -name IO_STANDARD "3.3 V" -to PB[2]
 set_location_assignment PIN_A30  -to PB[3]
@@ -231,9 +229,21 @@ set_location_assignment PIN_BE29  -to HDMI_D[23]
 set_instance_assignment -name IO_STANDARD "1.8 V" -to HDMI_D[23]
 }
 
+# Bank HPS_IOA_7 (1.8V) - GPIO0_IO6
+if {$wHPS_LED0 == 1} {
+set_location_assignment PIN_AG115  -to HPS_LED1
+set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_LED1
+}
+
+# Bank HPS_IOA_8 (1.8V) - GPIO0_IO7
+if {$wHPS_LED1 == 1} {
+set_location_assignment PIN_W134  -to HPS_LED0
+set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_LED0
+}
+
 # Bank HPS_IOA (1.8V)
 if {$wHPS_UART0 == 1} {
-set_location_assignment PIN_W134  -to HPS_UART0_TX
+set_location_assignment PIN_R134  -to HPS_UART0_TX
 set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_UART0_TX
 set_location_assignment PIN_AK115  -to HPS_UART0_RX
 set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_UART0_RX
@@ -261,13 +271,13 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to MUX_I2C_INT
 if {$wHPS_USB == 1} {
 set_location_assignment PIN_B134  -to USB_RST
 set_instance_assignment -name IO_STANDARD "1.8 V" -to USB_RST
-set_location_assignment PIN_p132  -to USB_CLK
+set_location_assignment PIN_P132  -to USB_CLK
 set_instance_assignment -name IO_STANDARD "1.8 V" -to USB_CLK
 set_location_assignment PIN_L135  -to USB_STP
 set_instance_assignment -name IO_STANDARD "1.8 V" -to USB_STP
 set_location_assignment PIN_J135  -to USB_DIR
 set_instance_assignment -name IO_STANDARD "1.8 V" -to USB_DIR
-set_location_assignment PIN_AD134  -to USB_nXT
+set_location_assignment PIN_AD134  -to USB_NXT
 set_instance_assignment -name IO_STANDARD "1.8 V" -to USB_nXT
 set_location_assignment PIN_AD135  -to USB_DATA[0]
 set_instance_assignment -name IO_STANDARD "1.8 V" -to USB_DATA[0]
@@ -334,7 +344,7 @@ set_location_assignment PIN_D132  -to SD_CLK
 set_instance_assignment -name IO_STANDARD "1.8 V" -to SD_CLK
 set_location_assignment PIN_AB132  -to SD_CMD
 set_instance_assignment -name IO_STANDARD "1.8 V" -to SD_CMD
-set_location_assignment PIN_p124  -to SD_DETECT
+set_location_assignment PIN_P124  -to SD_DETECT
 set_instance_assignment -name IO_STANDARD "1.8 V" -to SD_DETECT
 set_location_assignment PIN_E135  -to SD_DAT[0]
 set_instance_assignment -name IO_STANDARD "1.8 V" -to SD_DAT[0]
@@ -463,11 +473,11 @@ set_instance_assignment -name IO_STANDARD "1.1-V LVSTL" -to HPS_LPDDR4_DMB[0]
 set_location_assignment PIN_AK111   -to HPS_LPDDR4_OCT_RZQIN
 set_instance_assignment -name IO_STANDARD "1.1-V LVSTL" -to HPS_LPDDR4_OCT_RZQIN
 # HPS_IOA (1.8V)
-set_location_assignment PIN_n135  -to HPS_PB[4]
-set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_PB[4]
-set_location_assignment PIN_AK120  -to HPS_PB[5]
-set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_PB[5]
-set_location_assignment PIN_n134  -to HPS_DIPSW[0]
+set_location_assignment PIN_N135  -to HPS_PB[0]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_PB[0]
+set_location_assignment PIN_AK120  -to HPS_PB[1]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_PB[1]
+set_location_assignment PIN_N134  -to HPS_DIPSW[0]
 set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_DIPSW[0]
 set_location_assignment PIN_T132  -to HPS_DIPSW[1]
 set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_DIPSW[1]
@@ -891,22 +901,56 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to FPGA_QSPI_D[3]
 
 # Bank 1C (GXBL1C)
 if {$wSFP10G_1 == 1} {
+
+# Need to also set wMUX_I2C to 1
+
 set_location_assignment PIN_AU129  -to SFPA_TD_p
 set_instance_assignment -name IO_STANDARD "Current Mode Logic (CML)" -to SFPA_TD_p
 set_instance_assignment -name IO_STANDARD "Current Mode Logic (CML)" -to SFPA_TD_n
 set_location_assignment PIN_AT135  -to SFPA_RD_p
 set_instance_assignment -name IO_STANDARD "Current Mode Logic (CML)" -to SFPA_RD_p
 set_instance_assignment -name IO_STANDARD "Current Mode Logic (CML)" -to SFPA_RD_n
+
+# Bank 3B (1.2V)
+set_location_assignment PIN_A80  -to SFPA_M_DEF0
+set_instance_assignment -name IO_STANDARD "1.2 V" -to SFPA_M_DEF0
+set_location_assignment PIN_AC64  -to SFPA_RS0
+set_instance_assignment -name IO_STANDARD "1.2 V" -to SFPA_RS0
+set_location_assignment PIN_Y58  -to SFPA_RS1
+set_instance_assignment -name IO_STANDARD "1.2 V" -to SFPA_RS1
+set_location_assignment PIN_AG64  -to SFPA_LOS
+set_instance_assignment -name IO_STANDARD "1.2 V" -to SFPA_LOS
+set_location_assignment PIN_Y77  -to SFPA_TX_DIS
+set_instance_assignment -name IO_STANDARD "1.2 V" -to SFPA_TX_DIS
+set_location_assignment PIN_Y74  -to SFPA_TX_FAULT
+set_instance_assignment -name IO_STANDARD "1.2 V" -to SFPA_TX_FAULT
 }
 
 # Bank 1C (GXBL1C)
 if {$wSFP10G_2 == 1} {
+
+# Need to also set wMUX_I2C to 1
+
 set_location_assignment PIN_AL129  -to SFPB_TD_p
 set_instance_assignment -name IO_STANDARD "Current Mode Logic (CML)" -to SFPB_TD_p
 set_instance_assignment -name IO_STANDARD "Current Mode Logic (CML)" -to SFPB_TD_n
 set_location_assignment PIN_AK135  -to SFPB_RD_p
 set_instance_assignment -name IO_STANDARD "Current Mode Logic (CML)" -to SFPB_RD_p
 set_instance_assignment -name IO_STANDARD "Current Mode Logic (CML)" -to SFPB_RD_n
+
+# Bank 3B (1.2V)
+set_location_assignment PIN_AG83  -to SFPB_M_DEF0
+set_instance_assignment -name IO_STANDARD "1.2 V" -to SFPB_M_DEF0
+set_location_assignment PIN_AG57  -to SFPB_RS0
+set_instance_assignment -name IO_STANDARD "1.2 V" -to SFPB_RS0
+set_location_assignment PIN_AC53  -to SFPB_RS1
+set_instance_assignment -name IO_STANDARD "1.2 V" -to SFPB_RS1
+set_location_assignment PIN_AC61  -to SFPB_LOS
+set_instance_assignment -name IO_STANDARD "1.2 V" -to SFPB_LOS
+set_location_assignment PIN_AC50  -to SFPB_TX_DIS
+set_instance_assignment -name IO_STANDARD "1.2 V" -to SFPB_TX_DIS
+set_location_assignment PIN_Y55  -to SFPB_TX_FAULT
+set_instance_assignment -name IO_STANDARD "1.2 V" -to SFPB_TX_FAULT
 }
 
 if {$wPCIe == 1} {
