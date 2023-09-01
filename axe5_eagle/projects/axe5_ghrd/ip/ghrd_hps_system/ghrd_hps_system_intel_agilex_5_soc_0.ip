@@ -2058,6 +2058,22 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:portMap>
             <ipxact:portMap>
               <ipxact:logicalPort>
+                <ipxact:name>gpio6</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>hps_io_gpio6</ipxact:name>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>gpio7</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>hps_io_gpio7</ipxact:name>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+            <ipxact:portMap>
+              <ipxact:logicalPort>
                 <ipxact:name>gpio8</ipxact:name>
               </ipxact:logicalPort>
               <ipxact:physicalPort>
@@ -2094,6 +2110,14 @@ https://fpgasoftware.intel.com/eula.-->
               </ipxact:logicalPort>
               <ipxact:physicalPort>
                 <ipxact:name>hps_io_gpio28</ipxact:name>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>gpio34</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>hps_io_gpio34</ipxact:name>
               </ipxact:physicalPort>
             </ipxact:portMap>
             <ipxact:portMap>
@@ -6189,6 +6213,32 @@ https://fpgasoftware.intel.com/eula.-->
         </ipxact:wire>
       </ipxact:port>
       <ipxact:port>
+        <ipxact:name>hps_io_gpio6</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>inout</ipxact:direction>
+          <ipxact:vectors></ipxact:vectors>
+          <ipxact:wireTypeDefs>
+            <ipxact:wireTypeDef>
+              <ipxact:typeName>STD_LOGIC</ipxact:typeName>
+              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+        </ipxact:wire>
+      </ipxact:port>
+      <ipxact:port>
+        <ipxact:name>hps_io_gpio7</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>inout</ipxact:direction>
+          <ipxact:vectors></ipxact:vectors>
+          <ipxact:wireTypeDefs>
+            <ipxact:wireTypeDef>
+              <ipxact:typeName>STD_LOGIC</ipxact:typeName>
+              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+        </ipxact:wire>
+      </ipxact:port>
+      <ipxact:port>
         <ipxact:name>hps_io_gpio8</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
@@ -6242,6 +6292,19 @@ https://fpgasoftware.intel.com/eula.-->
       </ipxact:port>
       <ipxact:port>
         <ipxact:name>hps_io_gpio28</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>inout</ipxact:direction>
+          <ipxact:vectors></ipxact:vectors>
+          <ipxact:wireTypeDefs>
+            <ipxact:wireTypeDef>
+              <ipxact:typeName>STD_LOGIC</ipxact:typeName>
+              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+        </ipxact:wire>
+      </ipxact:port>
+      <ipxact:port>
+        <ipxact:name>hps_io_gpio34</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
           <ipxact:vectors></ipxact:vectors>
@@ -9607,12 +9670,12 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="I2CEMAC0_PinMuxing" type="string">
           <ipxact:name>I2CEMAC0_PinMuxing</ipxact:name>
           <ipxact:displayName></ipxact:displayName>
-          <ipxact:value>FPGA</ipxact:value>
+          <ipxact:value>Unused</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="I2CEMAC0_Mode" type="string">
           <ipxact:name>I2CEMAC0_Mode</ipxact:name>
           <ipxact:displayName></ipxact:displayName>
-          <ipxact:value>default</ipxact:value>
+          <ipxact:value>N/A</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="I2CEMAC1_PinMuxing" type="string">
           <ipxact:name>I2CEMAC1_PinMuxing</ipxact:name>
@@ -10167,7 +10230,7 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="HPS_IO_Enable" type="string">
           <ipxact:name>HPS_IO_Enable</ipxact:name>
           <ipxact:displayName>HPSIO Enabled</ipxact:displayName>
-          <ipxact:value>HCLK:HPS_OSC_CLK,NONE,UART0:TX,UART0:RX,I2C0:SDA,I2C0:SCL,NONE,NONE,GPIO0:IO8,GPIO0:IO9,GPIO0:IO10,GPIO0:IO11,USB1:CLK,USB1:STP,USB1:DIR,USB1:DATA0,USB1:DATA1,USB1:NXT,USB1:DATA2,USB1:DATA3,USB1:DATA4,USB1:DATA5,USB1:DATA6,USB1:DATA7,SDMMC:DATA0,SDMMC:DATA1,SDMMC:CCLK,NONE,GPIO1:IO4,SDMMC:DATA2,SDMMC:DATA3,SDMMC:CMD,MDIO2:MDIO,MDIO2:MDC,NONE,GPIO1:IO11,EMAC2:TX_CLK,EMAC2:TX_CTL,EMAC2:RX_CLK,EMAC2:RX_CTL,EMAC2:TXD0,EMAC2:TXD1,EMAC2:RXD0,EMAC2:RXD1,EMAC2:TXD2,EMAC2:TXD3,EMAC2:RXD2,EMAC2:RXD3</ipxact:value>
+          <ipxact:value>HCLK:HPS_OSC_CLK,NONE,UART0:TX,UART0:RX,I2C0:SDA,I2C0:SCL,GPIO0:IO6,GPIO0:IO7,GPIO0:IO8,GPIO0:IO9,GPIO0:IO10,GPIO0:IO11,USB1:CLK,USB1:STP,USB1:DIR,USB1:DATA0,USB1:DATA1,USB1:NXT,USB1:DATA2,USB1:DATA3,USB1:DATA4,USB1:DATA5,USB1:DATA6,USB1:DATA7,SDMMC:DATA0,SDMMC:DATA1,SDMMC:CCLK,NONE,GPIO1:IO4,SDMMC:DATA2,SDMMC:DATA3,SDMMC:CMD,MDIO2:MDIO,MDIO2:MDC,GPIO1:IO10,GPIO1:IO11,EMAC2:TX_CLK,EMAC2:TX_CTL,EMAC2:RX_CLK,EMAC2:RX_CTL,EMAC2:TXD0,EMAC2:TXD1,EMAC2:RXD0,EMAC2:RXD1,EMAC2:TXD2,EMAC2:TXD3,EMAC2:RXD2,EMAC2:RXD3</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="hps_ioa1_opd_en" type="bit">
           <ipxact:name>hps_ioa1_opd_en</ipxact:name>
@@ -12590,6 +12653,24 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;terminationValue&gt;0&lt;/terminationValue&gt;
                 &lt;/port&gt;
                 &lt;port&gt;
+                    &lt;name&gt;hps_io_gpio6&lt;/name&gt;
+                    &lt;role&gt;gpio6&lt;/role&gt;
+                    &lt;direction&gt;Bidir&lt;/direction&gt;
+                    &lt;width&gt;1&lt;/width&gt;
+                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
+                    &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
+                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
+                &lt;/port&gt;
+                &lt;port&gt;
+                    &lt;name&gt;hps_io_gpio7&lt;/name&gt;
+                    &lt;role&gt;gpio7&lt;/role&gt;
+                    &lt;direction&gt;Bidir&lt;/direction&gt;
+                    &lt;width&gt;1&lt;/width&gt;
+                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
+                    &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
+                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
+                &lt;/port&gt;
+                &lt;port&gt;
                     &lt;name&gt;hps_io_gpio8&lt;/name&gt;
                     &lt;role&gt;gpio8&lt;/role&gt;
                     &lt;direction&gt;Bidir&lt;/direction&gt;
@@ -12628,6 +12709,15 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;port&gt;
                     &lt;name&gt;hps_io_gpio28&lt;/name&gt;
                     &lt;role&gt;gpio28&lt;/role&gt;
+                    &lt;direction&gt;Bidir&lt;/direction&gt;
+                    &lt;width&gt;1&lt;/width&gt;
+                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
+                    &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
+                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
+                &lt;/port&gt;
+                &lt;port&gt;
+                    &lt;name&gt;hps_io_gpio34&lt;/name&gt;
+                    &lt;role&gt;gpio34&lt;/role&gt;
                     &lt;direction&gt;Bidir&lt;/direction&gt;
                     &lt;width&gt;1&lt;/width&gt;
                     &lt;lowerBound&gt;0&lt;/lowerBound&gt;
@@ -14976,7 +15066,10 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:port_mapping altera:name="hps_io_gpio10" altera:internal="hps_io_gpio10"></altera:port_mapping>
         <altera:port_mapping altera:name="hps_io_gpio11" altera:internal="hps_io_gpio11"></altera:port_mapping>
         <altera:port_mapping altera:name="hps_io_gpio28" altera:internal="hps_io_gpio28"></altera:port_mapping>
+        <altera:port_mapping altera:name="hps_io_gpio34" altera:internal="hps_io_gpio34"></altera:port_mapping>
         <altera:port_mapping altera:name="hps_io_gpio35" altera:internal="hps_io_gpio35"></altera:port_mapping>
+        <altera:port_mapping altera:name="hps_io_gpio6" altera:internal="hps_io_gpio6"></altera:port_mapping>
+        <altera:port_mapping altera:name="hps_io_gpio7" altera:internal="hps_io_gpio7"></altera:port_mapping>
         <altera:port_mapping altera:name="hps_io_gpio8" altera:internal="hps_io_gpio8"></altera:port_mapping>
         <altera:port_mapping altera:name="hps_io_gpio9" altera:internal="hps_io_gpio9"></altera:port_mapping>
         <altera:port_mapping altera:name="hps_io_hps_osc_clk" altera:internal="hps_io_hps_osc_clk"></altera:port_mapping>
