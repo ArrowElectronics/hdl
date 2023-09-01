@@ -22,7 +22,8 @@ set wHPS_EMAC2 1
 set wHPS_SD 1
 set wHPS 1
 set wFMC 1
-set wFAB_pB 1
+set wFAB_PB 1
+set wFAB_UART 1
 set wFAB_DIPSW 1
 set wCRUVI_HS_1 1
 set wCRUVI_HS_2 1
@@ -55,7 +56,7 @@ set_location_assignment PIN_G2  -to PWR_SCL
 set_instance_assignment -name IO_STANDARD "1.8 V" -to PWR_SCL
 
 
-if {$wFAB_pB == 1} {
+if {$wFAB_PB == 1} {
 # Bank HVIO_6D (3.3V)
 set_location_assignment PIN_B30  -to PB[2]
 set_instance_assignment -name IO_STANDARD "3.3 V" -to PB[2]
@@ -897,6 +898,14 @@ set_location_assignment PIN_CJ2  -to FPGA_QSPI_D[2]
 set_instance_assignment -name IO_STANDARD "1.8 V" -to FPGA_QSPI_D[2]
 set_location_assignment PIN_CK2  -to FPGA_QSPI_D[3]
 set_instance_assignment -name IO_STANDARD "1.8 V" -to FPGA_QSPI_D[3]
+}
+
+# Bank 6B (1.8V)
+if {$wFAB_UART == 1} {
+set_location_assignment PIN_BK22  -to DBG_TXD
+set_instance_assignment -name IO_STANDARD "1.8 V" -to DBG_TXD
+set_location_assignment PIN_CH4  -to DBG_RDX
+set_instance_assignment -name IO_STANDARD "1.8 V" -to DBG_RDX
 }
 
 # Bank 1C (GXBL1C)
