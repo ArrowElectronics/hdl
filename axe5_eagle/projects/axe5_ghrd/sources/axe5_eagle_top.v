@@ -440,7 +440,6 @@ module axe5_eagle_top (
         .hps_io_mdio2_mdio        (HPS_ETH2_MDIO),
         .hps_io_mdio2_mdc         (HPS_ETH2_MDC),
         .emac2_app_rst_reset_n    (HPS_ETH2_RST),
-        //.hps_io_gpio34            (HPS_ETH2_RST),   SJK ?? two sources for HPS_ETH2_RST ??
       `endif
       `ifdef wHPS_UART0
         .hps_io_uart0_tx          (HPS_UART0_TX),
@@ -476,7 +475,6 @@ module axe5_eagle_top (
         .hps_io_gpio10            (HPS_DIPSW[0]),
         .hps_io_gpio11            (HPS_DIPSW[1]),
         .hps_io_gpio28            (USB_RST),
-		  .hps_io_gpio34            (HPS_ETH2_RST),
         .hps_io_gpio35            (SD_DETECT),
         .soc_lpddr4_mem_ck_t      (HPS_LPDDR4_CKP),
         .soc_lpddr4_mem_ck_c      (HPS_LPDDR4_CKN),
