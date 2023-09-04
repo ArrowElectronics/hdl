@@ -45,30 +45,6 @@ set_location_assignment PIN_B30 -to PB[2]
 set_instance_assignment -name IO_STANDARD "3.3 V" -to PB[2] -entity axe5_eagle_top
 set_location_assignment PIN_A30 -to PB[3]
 set_instance_assignment -name IO_STANDARD "3.3 V" -to PB[3] -entity axe5_eagle_top
-set_location_assignment PIN_ -to HPS_DIPSW[2]
-set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_DIPSW[2] -entity axe5_eagle_top
-set_location_assignment PIN_ -to HPS_DIPSW[3]
-set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_DIPSW[3] -entity axe5_eagle_top
-set_location_assignment PIN_A8 -to ADC_CLK
-set_instance_assignment -name IO_STANDARD "3.3 V" -to ADC_CLK -entity axe5_eagle_top
-set_location_assignment PIN_B4 -to ADC_DIN
-set_instance_assignment -name IO_STANDARD "3.3 V" -to ADC_DIN -entity axe5_eagle_top
-set_location_assignment PIN_A11 -to ADC_DOUT
-set_instance_assignment -name IO_STANDARD "3.3 V" -to ADC_DOUT -entity axe5_eagle_top
-set_location_assignment PIN_B11 -to ADC_SYNC
-set_instance_assignment -name IO_STANDARD "3.3 V" -to ADC_SYNC -entity axe5_eagle_top
-set_location_assignment PIN_B14 -to DAC_CLK
-set_instance_assignment -name IO_STANDARD "3.3 V" -to DAC_CLK -entity axe5_eagle_top
-set_location_assignment PIN_A14 -to DAC_DIN
-set_instance_assignment -name IO_STANDARD "3.3 V" -to DAC_DIN -entity axe5_eagle_top
-set_location_assignment PIN_A20 -to DAC_LDAC
-set_instance_assignment -name IO_STANDARD "3.3 V" -to DAC_LDAC -entity axe5_eagle_top
-set_location_assignment PIN_A17 -to DAC_CLR
-set_instance_assignment -name IO_STANDARD "3.3 V" -to DAC_CLR -entity axe5_eagle_top
-set_location_assignment PIN_A23 -to DAC_SYNC1
-set_instance_assignment -name IO_STANDARD "3.3 V" -to DAC_SYNC1 -entity axe5_eagle_top
-set_location_assignment PIN_B20 -to DAC_SYNC2
-set_instance_assignment -name IO_STANDARD "3.3 V" -to DAC_SYNC2 -entity axe5_eagle_top
 set_location_assignment PIN_F27 -to ETH1_RST
 set_instance_assignment -name IO_STANDARD "1.8 V" -to ETH1_RST -entity axe5_eagle_top
 set_location_assignment PIN_F24 -to ETH1_TXCK
@@ -181,7 +157,7 @@ set_location_assignment PIN_BF40 -to HDMI_D[22]
 set_instance_assignment -name IO_STANDARD "1.8 V" -to HDMI_D[22] -entity axe5_eagle_top
 set_location_assignment PIN_BE29 -to HDMI_D[23]
 set_instance_assignment -name IO_STANDARD "1.8 V" -to HDMI_D[23] -entity axe5_eagle_top
-set_location_assignment PIN_W134 -to HPS_UART0_TX
+set_location_assignment PIN_R134 -to HPS_UART0_TX
 set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_UART0_TX -entity axe5_eagle_top
 set_location_assignment PIN_AK115 -to HPS_UART0_RX
 set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_UART0_RX -entity axe5_eagle_top
@@ -898,3 +874,41 @@ set_global_assignment -name IP_FILE ip/video_sys/video_sys_axi_dmac_0.ip
 set_global_assignment -name IP_FILE ip/video_sys/video_sys_axi_hdmi_tx_0.ip
 set_global_assignment -name IP_FILE ip/video_sys/video_sys_iopll_0.ip
 set_global_assignment -name IP_FILE ip/video_sys/video_sys_reset_in.ip
+set_global_assignment -name TCL_SCRIPT_FILE sources/agx5e065_pin_assignment.tcl
+set_location_assignment PIN_R134 -to HPS_LED0
+set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_LED0 -entity axe5_eagle_top
+set_location_assignment PIN_AG115 -to HPS_LED1
+set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_LED1 -entity axe5_eagle_top
+set_location_assignment PIN_AD134 -to USB_NXT
+set_location_assignment PIN_N135 -to HPS_PB[0]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_PB[0] -entity axe5_eagle_top
+set_location_assignment PIN_AK120 -to HPS_PB[1]
+set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_PB[1] -entity axe5_eagle_top
+set_location_assignment PIN_BK22 -to DBG_TXD
+set_instance_assignment -name IO_STANDARD "1.8 V" -to DBG_TXD -entity axe5_eagle_top
+set_location_assignment PIN_CH4 -to DBG_RDX
+set_instance_assignment -name IO_STANDARD "1.8 V" -to DBG_RDX -entity axe5_eagle_top
+set_location_assignment PIN_CL54 -to DIPSW[0]
+set_instance_assignment -name IO_STANDARD "1.2 V" -to DIPSW[0] -entity axe5_eagle_top
+set_location_assignment PIN_CK63 -to DIPSW[1]
+set_instance_assignment -name IO_STANDARD "1.2 V" -to DIPSW[1] -entity axe5_eagle_top
+set_location_assignment PIN_AK107 -to HPS_LPDDR4_CKP
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.1-V LVSTL" -to HPS_LPDDR4_CKP -entity axe5_eagle_top
+set_global_assignment -name IP_FILE ip/gmii2rgmii_pll.ip
+set_location_assignment PIN_CH109 -to HPS_COLD_RST
+set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_COLD_RST -entity axe5_eagle_top
+set_location_assignment PIN_CK134 -to FPGA_RST
+set_instance_assignment -name IO_STANDARD "3.3 V" -to FPGA_RST -entity axe5_eagle_top
+set_location_assignment PIN_AK107 -to HPS_LPDDR4_CK_P
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.1-V LVSTL" -to HPS_LPDDR4_CK_P -entity axe5_eagle_top
+set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.1-V LVSTL" -to HPS_LPDDR4_CK_N -entity axe5_eagle_top
+set_location_assignment PIN_B20 -to ADDA_CLK
+set_instance_assignment -name IO_STANDARD "3.3 V" -to ADDA_CLK -entity axe5_eagle_top
+set_location_assignment PIN_A20 -to ADDA_DIN
+set_instance_assignment -name IO_STANDARD "3.3 V" -to ADDA_DIN -entity axe5_eagle_top
+set_location_assignment PIN_A23 -to ADDA_DOUT
+set_instance_assignment -name IO_STANDARD "3.3 V" -to ADDA_DOUT -entity axe5_eagle_top
+set_location_assignment PIN_A14 -to ADDA_SYNC
+set_instance_assignment -name IO_STANDARD "3.3 V" -to ADDA_SYNC -entity axe5_eagle_top
+set_location_assignment PIN_A17 -to ADDA_RST
+set_instance_assignment -name IO_STANDARD "3.3 V" -to ADDA_RST -entity axe5_eagle_top
