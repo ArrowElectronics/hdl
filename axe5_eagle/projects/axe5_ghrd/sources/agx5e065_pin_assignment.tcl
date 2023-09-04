@@ -1,6 +1,5 @@
-set wADC 1
-set wDAC 1
-set wFAB_EMAC 1
+set wADDA 1
+set wFAB_EMAC 0
 set wRGB_LED0 1
 set wRGB_LED1 1
 set wRGB_LED2 1
@@ -8,13 +7,13 @@ set wRGB_LED3 1
 set wHPS_LED0 1
 set wHPS_LED1 1
 set wFAB_QSPI 1
-set wFAB_LPDDR4 1
+set wFAB_LPDDR4 0
 set wHDMI 1
 set wHPS_LED0 1
 set wHPS_LED1 1
 set wHPS_UART0 1
 set wHPS_I2C0 1
-set wMUX_I2C 1
+set wFAB_I2C1 0
 set wHPS_PB 1
 set wHPS_DIPSW 1
 set wHPS_USB 1
@@ -25,19 +24,25 @@ set wFMC 1
 set wFAB_PB 1
 set wFAB_UART 1
 set wFAB_DIPSW 1
-set wCRUVI_HS_1 1
-set wCRUVI_HS_2 1
-set wCRUVI_LS_1 1
-set wCRUVI_LS_2 1
-set wSFP10G_1 1
-set wSFP10G_2 1
-set wFMC_XCVRS 1
-set wPCIe 1
+set wCRUVI_HS_1 0
+set wCRUVI_HS_2 0
+set wCRUVI_LS_1 0
+set wCRUVI_LS_2 0
+set wSFP10G_1 0
+set wSFP10G_2 0
+set wFMC_XCVRS 0
+set wPCIe 0
 
 set_location_assignment PIN_BR102  -to SDM_CLK_25MHz
 set_instance_assignment -name IO_STANDARD "1.8 V" -to SDM_CLK_25MHz
 set_location_assignment PIN_W135   -to HPS_OSC_CLK_25MHz
 set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_OSC_CLK_25MHz
+set_location_assignment PIN_CH109  -to HPS_COLD_RST
+set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_COLD_RST
+
+# Bank HVIO_5A
+set_location_assignment PIN_CK134  -to FPGA_RST
+set_instance_assignment -name IO_STANDARD "3.3 V" -to FPGA_RST
 
 # Bank 1C (GXBL1C)
 set_location_assignment PIN_AP120  -to USB_REFCLK_p
@@ -64,41 +69,29 @@ set_location_assignment PIN_A30  -to PB[3]
 set_instance_assignment -name IO_STANDARD "3.3 V" -to PB[3]
 }
 
+# Bank 2B FMC_ADJ=1.2V
 if {$wFAB_DIPSW == 1} {
-set_location_assignment PIN_  -to HPS_DIPSW[2]
-set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_DIPSW[2]
-set_location_assignment PIN_  -to HPS_DIPSW[3]
-set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_DIPSW[3]
+set_location_assignment PIN_CL54  -to DIPSW[0]
+set_instance_assignment -name IO_STANDARD "1.2 V" -to DIPSW[0]
+set_location_assignment PIN_CK63  -to DIPSW[1]
+set_instance_assignment -name IO_STANDARD "1.2 V" -to DIPSW[1]
 }
 
 
 # Bank HVIO_6D (3.3V)
-if {$wADC == 1} {
-set_location_assignment PIN_A8  -to ADC_CLK
-set_instance_assignment -name IO_STANDARD "3.3 V" -to ADC_CLK
-set_location_assignment PIN_B4  -to ADC_DIN
-set_instance_assignment -name IO_STANDARD "3.3 V" -to ADC_DIN
-set_location_assignment PIN_A11  -to ADC_DOUT
-set_instance_assignment -name IO_STANDARD "3.3 V" -to ADC_DOUT
-set_location_assignment PIN_B11  -to ADC_SYNC
-set_instance_assignment -name IO_STANDARD "3.3 V" -to ADC_SYNC
+if {$wADDA == 1} {
+set_location_assignment PIN_B20  -to ADDA_CLK
+set_instance_assignment -name IO_STANDARD "3.3 V" -to ADDA_CLK
+set_location_assignment PIN_A20  -to ADDA_DIN
+set_instance_assignment -name IO_STANDARD "3.3 V" -to ADDA_DIN
+set_location_assignment PIN_A23  -to ADDA_DOUT
+set_instance_assignment -name IO_STANDARD "3.3 V" -to ADDA_DOUT
+set_location_assignment PIN_A14  -to ADDA_SYNC
+set_instance_assignment -name IO_STANDARD "3.3 V" -to ADDA_SYNC
+set_location_assignment PIN_A17  -to ADDA_RST
+set_instance_assignment -name IO_STANDARD "3.3 V" -to ADDA_RST
 }
 
-# Bank HVIO_6D (3.3V)
-if {$wDAC == 1} {
-set_location_assignment PIN_B14  -to DAC_CLK
-set_instance_assignment -name IO_STANDARD "3.3 V" -to DAC_CLK
-set_location_assignment PIN_A14  -to DAC_DIN
-set_instance_assignment -name IO_STANDARD "3.3 V" -to DAC_DIN
-set_location_assignment PIN_A20  -to DAC_LDAC
-set_instance_assignment -name IO_STANDARD "3.3 V" -to DAC_LDAC
-set_location_assignment PIN_A17  -to DAC_CLR
-set_instance_assignment -name IO_STANDARD "3.3 V" -to DAC_CLR
-set_location_assignment PIN_A23  -to DAC_SYNC1
-set_instance_assignment -name IO_STANDARD "3.3 V" -to DAC_SYNC1
-set_location_assignment PIN_B20  -to DAC_SYNC2
-set_instance_assignment -name IO_STANDARD "3.3 V" -to DAC_SYNC2
-}
 
 # Bank HVIO_6C (1.8V)
 if {$wFAB_EMAC == 1} {
@@ -232,14 +225,14 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to HDMI_D[23]
 
 # Bank HPS_IOA_7 (1.8V) - GPIO0_IO6
 if {$wHPS_LED0 == 1} {
-set_location_assignment PIN_AG115  -to HPS_LED1
-set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_LED1
+set_location_assignment PIN_R134  -to HPS_LED0
+set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_LED0
 }
 
 # Bank HPS_IOA_8 (1.8V) - GPIO0_IO7
 if {$wHPS_LED1 == 1} {
-set_location_assignment PIN_W134  -to HPS_LED0
-set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_LED0
+set_location_assignment PIN_AG115  -to HPS_LED1
+set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_LED1
 }
 
 # Bank HPS_IOA (1.8V)
@@ -259,7 +252,7 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_I2C0_SCL
 }
 
 # Bank HVIO_6C (1.8V)
-if {$wMUX_I2C == 1} {
+if {$wFAB_I2C1 == 1} {
 set_location_assignment PIN_F4  -to MUX_I2C_SDA
 set_instance_assignment -name IO_STANDARD "1.8 V" -to MUX_I2C_SDA
 set_location_assignment PIN_D4  -to MUX_I2C_SCL
@@ -359,9 +352,9 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to SD_DAT[3]
 
 # HPS LPDDR4 Bank 3A 1.1V_LPDDR4
 if {$wHPS == 1} {
-set_location_assignment PIN_AK107  -to HPS_LPDDR4_CK_p
-set_instance_assignment -name IO_STANDARD "Differential 1.1-V LVSTL" -to HPS_LPDDR4_CK_p
-set_instance_assignment -name IO_STANDARD "Differential 1.1-V LVSTL" -to HPS_LPDDR4_CK_n
+set_location_assignment PIN_AK107  -to HPS_LPDDR4_CK_P
+set_instance_assignment -name IO_STANDARD "Differential 1.1-V LVSTL" -to HPS_LPDDR4_CK_P
+set_instance_assignment -name IO_STANDARD "Differential 1.1-V LVSTL" -to HPS_LPDDR4_CK_N
 set_location_assignment PIN_AG111  -to HPS_LPDDR4_RST
 set_instance_assignment -name IO_STANDARD "1.1-V LVSTL" -to HPS_LPDDR4_RST
 set_location_assignment PIN_M105  -to HPS_LPDDR4_REFCK_p
@@ -911,7 +904,7 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to DBG_RDX
 # Bank 1C (GXBL1C)
 if {$wSFP10G_1 == 1} {
 
-# Need to also set wMUX_I2C to 1
+# Need to also set wFAB_I2C1 to 1
 
 set_location_assignment PIN_AU129  -to SFPA_TD_p
 set_instance_assignment -name IO_STANDARD "Current Mode Logic (CML)" -to SFPA_TD_p
@@ -938,7 +931,7 @@ set_instance_assignment -name IO_STANDARD "1.2 V" -to SFPA_TX_FAULT
 # Bank 1C (GXBL1C)
 if {$wSFP10G_2 == 1} {
 
-# Need to also set wMUX_I2C to 1
+# Need to also set wFAB_I2C1 to 1
 
 set_location_assignment PIN_AL129  -to SFPB_TD_p
 set_instance_assignment -name IO_STANDARD "Current Mode Logic (CML)" -to SFPB_TD_p
