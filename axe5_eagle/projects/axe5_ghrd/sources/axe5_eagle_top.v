@@ -8,6 +8,8 @@
 `define wHPS_DIPSW
 `define wHPS_SD
 `define wHPS
+`define wHPS_LED0
+`define wHPS_LED1
 
 //`define wFAB_EMAC
 `define wRGB_LED0
@@ -15,25 +17,30 @@
 `define wRGB_LED2
 `define wRGB_LED3
 `define wFAB_PB
-`define wFAB_DIP
-`define wFAB_I2C1
+`define wFAB_DIPSW
+//`define wFAB_I2C1
 `define wFAB_QSPI
-`define wADC
-`define wDAC
+`define wADDA
 `define wHDMI
-`define wFAB_LPDDR4
-`define wFMC
-`define wCRUVI_HS_1
-`define wCRUVI_HS_2
-`define wCRUVI_LS_1
-`define wCRUVI_LS_2
-`define wSFP10G_1
-`define wSFP10G_2
-`define wFMC_XCVRS
-`define wPCIe
+//`define wFAB_LPDDR4
+//`define wFMC
+//`define wCRUVI_HS_1
+//`define wCRUVI_HS_2
+//`define wCRUVI_LS_1
+//`define wCRUVI_LS_2
+//`define wSFP10G_1
+//`define wSFP10G_2
+//`define wFMC_XCVRS
+//`define wPCIe
 
 
 module axe5_eagle_top (
+   `ifdef wHPS_LED0
+	inout         HPS_LED0,
+   `endif
+   `ifdef wHPS_LED1
+	inout         HPS_LED1,
+   `endif
    `ifdef wHPS_UART0
    output        HPS_UART0_TX,
    input         HPS_UART0_RX,
@@ -53,18 +60,20 @@ module axe5_eagle_top (
    `endif
    `ifdef wHPS_SD
    output        SD_CLK,
-   inout		 SD_CMD,
+   inout		     SD_CMD,
    inout         SD_DETECT,
    inout  [3:0]  SD_DAT,
    `endif
    `ifdef wHPS
-   output        HPS_LPDDR4_CKP, HPS_LPDDR4_CKN, HPS_LPDDR4_RST, HPS_LPDDR4_REFCK_p, HPS_LPDDR4_REFCK_n,
+   output        HPS_LPDDR4_CK_P, HPS_LPDDR4_CK_N, HPS_LPDDR4_RST, 
+	input         HPS_LPDDR4_REFCK_p, HPS_LPDDR4_REFCK_n,
    output [5:0]  HPS_LPDDR4_CA,
-   output		 HPS_LPDDR4_CKE, HPS_LPDDR4_CS_N,
+   output		  HPS_LPDDR4_CKE, HPS_LPDDR4_CS_N,
    inout  [31:0] HPS_LPDDR4_DQ,
-   inout  [3:0]  HPS_LPDDR4_DQS_P, HPS_LPDDR4_DQS_N,
-   //inout  [1:0]  HPS_LPDDR4_DMA, HPS_LPDDR4_DMB,
-   inout  [3:0]	 HPS_LPDDR4_DMI,
+   inout  [1:0]  HPS_LPDDR4_DQSA_p, HPS_LPDDR4_DQSA_n,
+   inout  [1:0]  HPS_LPDDR4_DQSB_p, HPS_LPDDR4_DQSB_n,
+   inout  [1:0]  HPS_LPDDR4_DMA, HPS_LPDDR4_DMB,
+   //inout  [3:0]  HPS_LPDDR4_DMI,
    input         HPS_LPDDR4_OCT_RZQIN,
    inout [1:0]   HPS_PB,
    inout [1:0]   HPS_DIPSW,
@@ -75,12 +84,9 @@ module axe5_eagle_top (
    inout         MUX_I2C_SDA,
    inout         MUX_I2C_SCL, MUX_I2C_INT,
    `endif
-   `ifdef wADC
-   output        ADC_CLK, ADC_DIN, ADC_SYNC,
-   input         ADC_DOUT,
-   `endif
-   `ifdef wDAC
-   output        DAC_CLK, DAC_DIN, DAC_CLR, DAC_SYNC1, DAC_SYNC2, DAC_LDAC,
+   `ifdef wADDA
+   output        ADDA_CLK, ADDA_DIN, ADDA_SYNC, ADDA_RST,
+   input         ADDA_DOUT,
    `endif
    `ifdef wFAB_EMAC
    output        ETH1_RST, ETH1_TXCK, ETH1_TXCTL,
@@ -115,7 +121,7 @@ module axe5_eagle_top (
    input [3:0]   PB,
    `endif
    `ifdef wFAB_DIPSW
-   input [3:2]   DIPSW,
+   input [1:0]   DIPSW,
    `endif
    `ifdef wHDMI
    output        HDMI_VS, HDMI_HS, HDMI_CLK, HDMI_DE, CT_HPD, HDMI_SPDIF,
@@ -123,7 +129,8 @@ module axe5_eagle_top (
    output [23:0] HDMI_D,
    `endif
    `ifdef wFAB_LPDDR4
-   output        LPDDR4_CKP, LPDDR4_CKN, LPDDR4_RST, LPDDR4_REFCK_p, LPDDR4_REFCK_n,
+   output        LPDDR4_CKP, LPDDR4_CKN, LPDDR4_RST, 
+	input         LPDDR4_REFCK_p, LPDDR4_REFCK_n,
    output [5:0]  LPDDR4_CA,
    output	     LPDDR4_CKE, LPDDR4_CS_N,
    inout  [31:0] LPDDR4_DQ,
@@ -206,18 +213,21 @@ module axe5_eagle_top (
 	
 	input         SFP_REFCLK_p, SFP_REFCLK_n,
 
+   input         FPGA_RST,
    inout         PWR_SDA,
    inout         PWR_SCL,
    input         SDM_CLK_25MHz,
-   input         RESET_IN,
+   input         HPS_COLD_RST,
    input         HPS_OSC_CLK_25MHz
    
 );
 
    //wire  [3:0] HPS_LPDDR4_DQS_p, HPS_LPDDR4_DQS_n, HPS_LPDDR4_DMI;
-   //assign      HPS_LPDDR4_DQS_p = {HPS_LPDDR4_DQSA_p, HPS_LPDDR4_DQSB_p};
-   //assign      HPS_LPDDR4_DQS_n = {HPS_LPDDR4_DQSA_n, HPS_LPDDR4_DQSB_n};
-   // assign      HPS_LPDDR4_DMI   = {HPS_LPDDR4_DMA, HPS_LPDDR4_DMB};
+   //assign      HPS_LPDDR4_DQS_p[3:2] = HPS_LPDDR4_DQSA_p;
+   //assign      HPS_LPDDR4_DQS_p[1:0] = HPS_LPDDR4_DQSB_p;
+   //assign      HPS_LPDDR4_DQS_n[3:2] = HPS_LPDDR4_DQSA_n;
+   //assign      HPS_LPDDR4_DQS_n[1:0] = HPS_LPDDR4_DQSB_n;
+   //assign      HPS_LPDDR4_DMI   = {HPS_LPDDR4_DMA, HPS_LPDDR4_DMB};
    
 // comment if not using LEDs
 	wire [11:0] led;
@@ -256,7 +266,8 @@ module axe5_eagle_top (
    wire        emac0_rst_rx_n, emac0_rst_tx_n, emac0_app_rst_reset_n, emac0_mdio_mdc, emac0_mdio_di, emac0_mdio_mdo, emac0_mdio_oe;
    wire [7:0]  emac0_rxd, emac0_txd;
    wire [2:0]  emac0_speed;
-   
+   wire        pll_25M_clk, pll_2p5M_clk, pll_50M_clk, pll_5M_clk;
+	
    assign ETH1_MDIO = emac0_mdio_oe ? emac0_mdio_mdo : 1'bz;
    assign emac0_mdio_di = ETH1_MDIO;
    
@@ -280,13 +291,24 @@ module axe5_eagle_top (
         .phy_rgmii_rgmii_tx_clk (ETH1_TXCK),
         .phy_rgmii_rgmii_txd    (ETH1_TXD),
         .phy_rgmii_rgmii_tx_ctl (ETH1_TXTL),
-        .pll_50m_clock_clk      (_connected_to_pll_50m_clock_clk_),
-        .pll_5m_clock_clk       (_connected_to_pll_5m_clock_clk_),
-        .pll_25m_clock_clk      (_connected_to_pll_25m_clock_clk_),
-        .pll_2_5m_clock_clk     (_connected_to_pll_2_5m_clock_clk_),
+        .pll_50m_clock_clk      (pll_50M_clk),
+        .pll_5m_clock_clk       (pll_5M_clk),
+        .pll_25m_clock_clk      (pll_25M_clk),
+        .pll_2_5m_clock_clk     (pll_2p5M_clk),
         .peri_reset_reset       (!emac0_app_rst_reset_n),
         .peri_clock_clk         (_connected_to_peri_clock_clk_)
     );
+	 
+	     gmii2rgmii_pll gmii2rgmii_iopll (
+        .refclk   (SDM_CLK_25MHz),   //   input,  width = 1,  refclk.clk
+        .locked   (),   //  output,  width = 1,  locked.export
+        .rst      (HPS_COLD_RST),      //   input,  width = 1,   reset.reset
+        .outclk_0 (pll_25M_clk),      //  25MHz clock
+        .outclk_1 (pll_2p5M_clk),     //  2.5MHz clock
+        .outclk_2 (pll_50M_clk),      //  50MHz clock
+        .outclk_3 (pll_5M_clk)        //  5MHz clock
+    );
+
    `endif
 
    `ifdef wFAB_I2C1
@@ -297,29 +319,8 @@ module axe5_eagle_top (
    assign   MUX_I2C_SDA    = i2c1_sda_oe ? 1'b0 : 1'bz;
    assign   i2c1_sda_i     = MUX_I2C_SDA;
    `endif
-   `ifdef wADC
-	 `ifdef wDAC  // both ADC and DAC
-   wire     spim0_sclk, spim0_mosi_o;
-   
-   assign   ADC_CLK = spim0_sclk;
-   assign   DAC_CLK = spim0_sclk;
-   assign   ADC_DIN = spim0_mosi_o;
-   assign   DAC_DIN = spim0_mosi_o;
-	 `else ADC-only
-   wire     spim0_sclk, spim0_mosi_o;
-   
-   assign   ADC_CLK = spim0_sclk;
-   assign   ADC_DIN = spim0_mosi_o;
-	 `endif
-   `elsif wDAC // DAC-only
-   wire     spim0_sclk, spim0_mosi_o;
-   
-   assign   DAC_CLK = spim0_sclk;
-   assign   DAC_DIN = spim0_mosi_o;
-	
-   `endif
-   
-// Instantiate HPS system from Plaform Designer
+
+	// Instantiate HPS system from Plaform Designer
     ghrd_hps_system hps_system (
         .sys_clk_clk              (HPS_OSC_CLK_25MHz),
       `ifdef wHDMI
@@ -344,7 +345,7 @@ module axe5_eagle_top (
       `ifdef wHPS_PB
         .pb_export                (HPS_PB),
       `endif
-        .sys_reset_reset          (RESET_IN),
+        .sys_reset_reset          (HPS_COLD_RST),
       `ifdef wRGB_LED0
         .rgb_led0_export          (rgb_led0),
       `endif
@@ -378,39 +379,17 @@ module axe5_eagle_top (
         .emac0_mac_speed          (emac0_speed),
         .emac0_mac_txd_o          (emac0_txd),
       `endif
-      `ifdef wADC
-       `ifdef wDAC	// if both ADC and DAC are used
-        .spim0_miso_i             (ADC_DOUT),
-        .spim0_mosi_o             (spim0_mosi_o),
+      `ifdef wADDA
+        .spim0_miso_i             (ADDA_DOUT),
+        .spim0_mosi_o             (ADDA_DIN),
         .spim0_mosi_oe            (),
         .spim0_ss_in_n            (1'b1),
-        .spim0_ss0_n_o            (ADC_SYNC),
-        .spim0_ss1_n_o            (DAC_SYNC1),
-        .spim0_sclk_out_clk       (spim0_sclk),
-        .spim0_ss2_n_o            (),
-        .spim0_ss3_n_o            (),
-       `else // only ADC is selected
-        .spim0_miso_i             (spim0_miso_i),
-        .spim0_mosi_o             (spim0_mosi_o),
-        .spim0_mosi_oe            (),
-        .spim0_ss_in_n            (1'b1),
-        .spim0_ss0_n_o            (ADC_SYNC),
+        .spim0_ss0_n_o            (ADDA_SYNC),
         .spim0_ss1_n_o            (),
-        .spim0_sclk_out_clk       (spim0_sclk),
+        .spim0_sclk_out_clk       (ADDA_CLK),
         .spim0_ss2_n_o            (),
         .spim0_ss3_n_o            (),
        `endif
-      `elsif wDAC   // DAC only
-        .spim0_miso_i             (1'b0),
-        .spim0_mosi_o             (spim0_mosi_o),
-        .spim0_mosi_oe            (),
-        .spim0_ss_in_n            (1'b1),
-        .spim0_ss0_n_o            (),
-        .spim0_ss1_n_o            (DAC_SYNC1),
-        .spim0_sclk_out_clk       (spim0_sclk),
-        .spim0_ss2_n_o            (),
-        .spim0_ss3_n_o            (),
-      `endif
 		`ifdef wFAB_I2C1
         .i2c1_scl_i_clk           (i2c1_scl_i_clk),
         .i2c1_scl_oe_clk          (i2c1_scl_oe_clk),
@@ -468,24 +447,29 @@ module axe5_eagle_top (
         .hps_io_usb1_data7        (USB_DATA[7]),
       `endif
       `ifdef wHPS
+		  `ifdef wHPS_LED0
         .hps_io_gpio6             (HPS_LED0),
+		  `endif
+		  `ifdef wHPS_LED1
         .hps_io_gpio7             (HPS_LED1),
+		  `endif
         .hps_io_gpio8             (HPS_PB[0]),
         .hps_io_gpio9             (HPS_PB[1]),
         .hps_io_gpio10            (HPS_DIPSW[0]),
         .hps_io_gpio11            (HPS_DIPSW[1]),
         .hps_io_gpio28            (USB_RST),
         .hps_io_gpio35            (SD_DETECT),
-        .soc_lpddr4_mem_ck_t      (HPS_LPDDR4_CKP),
-        .soc_lpddr4_mem_ck_c      (HPS_LPDDR4_CKN),
-        .soc_lpddr4_mem_cke       (HPS_LPDDR4_CKE),
+        .soc_lpddr4_refclk_clk    (HPS_LPDDR4_REFCK_p),
+        .soc_lpddr4_mem_ck_t      (HPS_LPDDR4_CK_P[0]),
+        .soc_lpddr4_mem_ck_c      (HPS_LPDDR4_CK_N[0]),
+        .soc_lpddr4_mem_cke       (HPS_LPDDR4_CKE[0]),
         .soc_lpddr4_mem_reset_n   (HPS_LPDDR4_RST),
         .soc_lpddr4_mem_cs        (HPS_LPDDR4_CS_N),
         .soc_lpddr4_mem_ca        (HPS_LPDDR4_CA),
         .soc_lpddr4_mem_dq        (HPS_LPDDR4_DQ),
-        .soc_lpddr4_mem_dqs_t     (HPS_LPDDR4_DQS_P),
-        .soc_lpddr4_mem_dqs_c     (HPS_LPDDR4_DQS_N),
-        .soc_lpddr4_mem_dmi       (HPS_LPDDR4_DMI),
+        .soc_lpddr4_mem_dqs_t     ({HPS_LPDDR4_DQSA_p, HPS_LPDDR4_DQSB_p}),
+        .soc_lpddr4_mem_dqs_c     ({HPS_LPDDR4_DQSA_n, HPS_LPDDR4_DQSB_n}),
+        .soc_lpddr4_mem_dmi       ({HPS_LPDDR4_DMA,HPS_LPDDR4_DMB}),
         .soc_lpddr4_oct_oct_rzqin (HPS_LPDDR4_OCT_RZQIN)
       `endif
     );
