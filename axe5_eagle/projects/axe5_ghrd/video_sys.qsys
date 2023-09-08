@@ -23,8 +23,9 @@ https://fpgasoftware.intel.com/eula.-->
       <altera:name>$${FILENAME}</altera:name>
       <altera:displayName>$${FILENAME}</altera:displayName>
       <altera:version>1.0</altera:version>
+      <altera:description></altera:description>
       <altera:tags></altera:tags>
-      <altera:categories></altera:categories>
+      <altera:categories>Systems</altera:categories>
       <altera:tool>QsysPro</altera:tool>
     </altera:catalog_card_info>
     <altera:altera_system_parameters>
@@ -166,7 +167,16 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;connectionPointName&gt;clk&lt;/connectionPointName&gt;
                 &lt;suppliedSystemInfos&gt;
                     &lt;entry&gt;
+                        &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
+                        &lt;value&gt;4&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
                         &lt;key&gt;CLOCK_RATE&lt;/key&gt;
+                        &lt;value&gt;-1&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
+                        &lt;value&gt;4&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos/&gt;
@@ -5994,7 +6004,6 @@ https://fpgasoftware.intel.com/eula.-->
       <altera:connection altera:kind="clock" altera:version="23.2" altera:start="clock_in.out_clk" altera:end="mm_video_bridge.clk"></altera:connection>
       <altera:connection altera:kind="clock" altera:version="23.2" altera:start="clock_in.out_clk" altera:end="hdmi_dmac_0.if_m_axis_aclk"></altera:connection>
       <altera:connection altera:kind="clock" altera:version="23.2" altera:start="clock_in.out_clk" altera:end="hdmi_dmac_0.m_src_axi_clock"></altera:connection>
-      <altera:connection altera:kind="clock" altera:version="23.2" altera:start="clock_in.out_clk" altera:end="hdmi_pll.refclk"></altera:connection>
       <altera:connection altera:kind="clock" altera:version="23.2" altera:start="clock_in.out_clk" altera:end="hdmi_dmac_0.s_axi_clock"></altera:connection>
       <altera:connection altera:kind="clock" altera:version="23.2" altera:start="clock_in.out_clk" altera:end="axi_hdmi_tx_0.s_axi_clock"></altera:connection>
       <altera:connection altera:kind="clock" altera:version="23.2" altera:start="clock_in.out_clk" altera:end="axi_hdmi_tx_0.vdma_clock"></altera:connection>
@@ -6016,6 +6025,7 @@ https://fpgasoftware.intel.com/eula.-->
       <altera:interface_mapping altera:name="hdmi" altera:internal="axi_hdmi_tx_0.hdmi_if" altera:type="conduit" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="hdmi_dmac" altera:internal="hdmi_dmac_0.interrupt_sender" altera:type="interrupt" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="hdmi_dmac_master" altera:internal="hdmi_dmac_0.m_src_axi" altera:type="axi" altera:dir="start"></altera:interface_mapping>
+      <altera:interface_mapping altera:name="hdmi_pll_refclk" altera:internal="hdmi_pll.refclk" altera:type="clock" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="mm_video_bridge_s0" altera:internal="mm_video_bridge.s0" altera:type="avalon" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="reset" altera:internal="reset_in.in_reset" altera:type="reset" altera:dir="end"></altera:interface_mapping>
     </altera:altera_interface_boundary>
@@ -6026,6 +6036,11 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>addressMap</ipxact:name>
         <ipxact:version>1.0</ipxact:version>
         <ipxact:busInterfaces>
+          <ipxact:busInterface>
+            <ipxact:name>hdmi_dmac_0.m_src_axi</ipxact:name>
+            <ipxact:busType vendor="intel" library="intel" name="axi" version="23.2"></ipxact:busType>
+            <ipxact:master></ipxact:master>
+          </ipxact:busInterface>
           <ipxact:busInterface>
             <ipxact:name>hdmi_dmac_0.s_axi</ipxact:name>
             <ipxact:busType vendor="intel" library="intel" name="axi4lite" version="23.2"></ipxact:busType>
@@ -6038,11 +6053,6 @@ https://fpgasoftware.intel.com/eula.-->
                 <ipxact:baseAddress>0x0000_0000</ipxact:baseAddress>
               </ipxact:addressSpaceRef>
             </ipxact:master>
-          </ipxact:busInterface>
-          <ipxact:busInterface>
-            <ipxact:name>hdmi_dmac_0.m_src_axi</ipxact:name>
-            <ipxact:busType vendor="intel" library="intel" name="axi" version="23.2"></ipxact:busType>
-            <ipxact:master></ipxact:master>
           </ipxact:busInterface>
         </ipxact:busInterfaces>
         <ipxact:addressSpaces>

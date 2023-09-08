@@ -1,0 +1,71 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2023  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 0 0 200 168)
+	(text "peripheral_sys_reset_in" (rect 21 0 117 12)(font "Arial" (font_size 11)))
+	(text "inst" (rect 8 152 20 164)(font "Arial" ))
+	(port
+		(pt 0 72)
+		(input)
+		(text "clk" (rect 0 0 10 12)(font "Arial" (font_size 8)))
+		(text "clk" (rect 4 65 22 76)(font "Arial" (font_size 8)))
+	)
+	(port
+		(pt 0 120)
+		(input)
+		(text "in_reset" (rect 0 0 31 12)(font "Arial" (font_size 8)))
+		(text "in_reset" (rect 4 115 52 126)(font "Arial" (font_size 8)))
+	)
+	(port
+		(pt 200 72)
+		(output)
+		(text "out_reset" (rect 0 0 37 12)(font "Arial" (font_size 8)))
+		(text "out_reset" (rect 155 65 209 76)(font "Arial" (font_size 8)))
+	)
+	(drawing
+		(text "clk" (rect 53 46 124 105)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "clk" (rect 73 71 164 152)(font "Arial" (color 0 0 0)))
+		(text "in_reset" (rect 21 96 90 205)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "reset" (rect 73 121 176 252)(font "Arial" (color 0 0 0)))
+		(text "out_reset" (rect 137 46 328 105)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "reset" (rect 111 71 252 152)(font "Arial" (color 0 0 0)))
+		(text " peripheral_sys_reset_in " (rect 96 151 342 312)(font "Arial" ))
+		(line (pt 68 34)(pt 136 34)(line_width 1))
+		(line (pt 136 34)(pt 136 151)(line_width 1))
+		(line (pt 68 151)(pt 136 151)(line_width 1))
+		(line (pt 68 34)(pt 68 151)(line_width 1))
+		(line (pt 0 76)(pt 68 76)(line_width 1))
+		(line (pt 69 55)(pt 69 80)(line_width 1))
+		(line (pt 70 55)(pt 70 80)(line_width 1))
+		(line (pt 0 126)(pt 68 126)(line_width 1))
+		(line (pt 69 105)(pt 69 130)(line_width 1))
+		(line (pt 70 105)(pt 70 130)(line_width 1))
+		(line (pt 204 76)(pt 136 76)(line_width 1))
+		(line (pt 135 55)(pt 135 80)(line_width 1))
+		(line (pt 134 55)(pt 134 80)(line_width 1))
+		(line (pt 0 0)(pt 204 0)(line_width 1))
+		(line (pt 204 0)(pt 204 168)(line_width 1))
+		(line (pt 0 168)(pt 204 168)(line_width 1))
+		(line (pt 0 0)(pt 0 168)(line_width 1))
+	)
+)

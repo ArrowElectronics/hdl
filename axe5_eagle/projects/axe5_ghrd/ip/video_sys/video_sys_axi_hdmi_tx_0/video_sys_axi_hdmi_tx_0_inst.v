@@ -1,0 +1,44 @@
+	video_sys_axi_hdmi_tx_0 u0 (
+		.s_axi_aclk        (_connected_to_s_axi_aclk_),        //   input,   width = 1, s_axi_clock.clk
+		.s_axi_awvalid     (_connected_to_s_axi_awvalid_),     //   input,   width = 1,       s_axi.awvalid
+		.s_axi_awaddr      (_connected_to_s_axi_awaddr_),      //   input,  width = 16,            .awaddr
+		.s_axi_awprot      (_connected_to_s_axi_awprot_),      //   input,   width = 3,            .awprot
+		.s_axi_awready     (_connected_to_s_axi_awready_),     //  output,   width = 1,            .awready
+		.s_axi_wvalid      (_connected_to_s_axi_wvalid_),      //   input,   width = 1,            .wvalid
+		.s_axi_wdata       (_connected_to_s_axi_wdata_),       //   input,  width = 32,            .wdata
+		.s_axi_wstrb       (_connected_to_s_axi_wstrb_),       //   input,   width = 4,            .wstrb
+		.s_axi_wready      (_connected_to_s_axi_wready_),      //  output,   width = 1,            .wready
+		.s_axi_bvalid      (_connected_to_s_axi_bvalid_),      //  output,   width = 1,            .bvalid
+		.s_axi_bresp       (_connected_to_s_axi_bresp_),       //  output,   width = 2,            .bresp
+		.s_axi_bready      (_connected_to_s_axi_bready_),      //   input,   width = 1,            .bready
+		.s_axi_arvalid     (_connected_to_s_axi_arvalid_),     //   input,   width = 1,            .arvalid
+		.s_axi_araddr      (_connected_to_s_axi_araddr_),      //   input,  width = 16,            .araddr
+		.s_axi_arprot      (_connected_to_s_axi_arprot_),      //   input,   width = 3,            .arprot
+		.s_axi_arready     (_connected_to_s_axi_arready_),     //  output,   width = 1,            .arready
+		.s_axi_rvalid      (_connected_to_s_axi_rvalid_),      //  output,   width = 1,            .rvalid
+		.s_axi_rresp       (_connected_to_s_axi_rresp_),       //  output,   width = 2,            .rresp
+		.s_axi_rdata       (_connected_to_s_axi_rdata_),       //  output,  width = 32,            .rdata
+		.s_axi_rready      (_connected_to_s_axi_rready_),      //   input,   width = 1,            .rready
+		.hdmi_clk          (_connected_to_hdmi_clk_),          //   input,   width = 1,  hdmi_clock.clk
+		.hdmi_out_clk      (_connected_to_hdmi_out_clk_),      //  output,   width = 1,     hdmi_if.h_clk
+		.hdmi_16_hsync     (_connected_to_hdmi_16_hsync_),     //  output,   width = 1,            .h16_hsync
+		.hdmi_16_vsync     (_connected_to_hdmi_16_vsync_),     //  output,   width = 1,            .h16_vsync
+		.hdmi_16_data_e    (_connected_to_hdmi_16_data_e_),    //  output,   width = 1,            .h16_data_e
+		.hdmi_16_data      (_connected_to_hdmi_16_data_),      //  output,  width = 16,            .h16_data
+		.hdmi_16_es_data   (_connected_to_hdmi_16_es_data_),   //  output,  width = 16,            .h16_es_data
+		.hdmi_24_hsync     (_connected_to_hdmi_24_hsync_),     //  output,   width = 1,            .h24_hsync
+		.hdmi_24_vsync     (_connected_to_hdmi_24_vsync_),     //  output,   width = 1,            .h24_vsync
+		.hdmi_24_data_e    (_connected_to_hdmi_24_data_e_),    //  output,   width = 1,            .h24_data_e
+		.hdmi_24_data      (_connected_to_hdmi_24_data_),      //  output,  width = 24,            .h24_data
+		.hdmi_36_hsync     (_connected_to_hdmi_36_hsync_),     //  output,   width = 1,            .h36_hsync
+		.hdmi_36_vsync     (_connected_to_hdmi_36_vsync_),     //  output,   width = 1,            .h36_vsync
+		.hdmi_36_data_e    (_connected_to_hdmi_36_data_e_),    //  output,   width = 1,            .h36_data_e
+		.hdmi_36_data      (_connected_to_hdmi_36_data_),      //  output,  width = 36,            .h36_data
+		.vdma_clk          (_connected_to_vdma_clk_),          //   input,   width = 1,  vdma_clock.clk
+		.s_axi_aresetn     (_connected_to_s_axi_aresetn_),     //   input,   width = 1,  vdma_reset.reset_n
+		.vdma_end_of_frame (_connected_to_vdma_end_of_frame_), //   input,   width = 1,     vdma_if.tlast
+		.vdma_valid        (_connected_to_vdma_valid_),        //   input,   width = 1,            .tvalid
+		.vdma_data         (_connected_to_vdma_data_),         //   input,  width = 64,            .tdata
+		.vdma_ready        (_connected_to_vdma_ready_)         //  output,   width = 1,            .tready
+	);
+

@@ -2322,7 +2322,7 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="CTRL_ECC_MODE_AUTO_BOOL" type="bit">
           <ipxact:name>CTRL_ECC_MODE_AUTO_BOOL</ipxact:name>
           <ipxact:displayName>&lt;html&gt; </ipxact:displayName>
-          <ipxact:value>true</ipxact:value>
+          <ipxact:value>false</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="CTRL_ECC_MODE" type="string">
           <ipxact:name>CTRL_ECC_MODE</ipxact:name>
@@ -2412,12 +2412,12 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="MEM_PRESET_ID_AUTO_BOOL" type="bit">
           <ipxact:name>MEM_PRESET_ID_AUTO_BOOL</ipxact:name>
           <ipxact:displayName>&lt;html&gt; </ipxact:displayName>
-          <ipxact:value>true</ipxact:value>
+          <ipxact:value>false</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="MEM_PRESET_ID" type="string">
           <ipxact:name>MEM_PRESET_ID</ipxact:name>
           <ipxact:displayName>Memory Preset</ipxact:displayName>
-          <ipxact:value>DDR4-3200AA CL22 Component 1CS 16Gb 2Gb x8</ipxact:value>
+          <ipxact:value>LPDDR4-2667 CL24 Component Single-Channel 1R 1CPR 16Gb (16Gb Total) x16 CK 1333.0 MHz</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="PHY_REFCLK_FREQ_MHZ_AUTO_BOOL" type="bit">
           <ipxact:name>PHY_REFCLK_FREQ_MHZ_AUTO_BOOL</ipxact:name>
