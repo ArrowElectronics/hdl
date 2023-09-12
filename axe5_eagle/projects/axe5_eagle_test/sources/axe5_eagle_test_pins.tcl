@@ -1,34 +1,36 @@
-set wADDA 1
-set wFAB_EMAC 0
+
+set wHPS_UART0 1
+set wHPS_I2C0 1
+set wHPS_EMAC2 1
+set wHPS_USB 1
+set wHPS_PB 1
+set wHPS_DIPSW 1
+set wHPS_SD 1
+set wHPS 1
+set wHPS_LED0 1
+set wHPS_LED1 1
+
+
+set wFAB_EMAC 1
 set wRGB_LED0 1
 set wRGB_LED1 1
 set wRGB_LED2 1
 set wRGB_LED3 1
-set wHPS_LED0 1
-set wHPS_LED1 1
-set wFAB_QSPI 1
-set wLPDDR4A 1
-set wLPDDR4B 0
-set wHDMI 1
-set wHPS_LED0 1
-set wHPS_LED1 1
-set wHPS_UART0 1
-set wHPS_I2C0 1
-set wFAB_I2C1 0
-set wHPS_PB 1
-set wHPS_DIPSW 1
-set wHPS_USB 1
-set wHPS_EMAC2 1
-set wHPS_SD 1
-set wHPS 1
-set wFMC 1
 set wFAB_PB 1
-set wFAB_UART 1
 set wFAB_DIPSW 1
+set wFAB_I2C1 1
+set wFAB_QSPI 0
+set wADDA 1
+set wHDMI 1
+set smartVID 0
+set wLPDDR4B 1
+set wLPDDR4A 0
+set wFMC 0
 set wCRUVI_HS_1 0
 set wCRUVI_HS_2 0
-set wCRUVI_LS_1 0
-set wCRUVI_LS_2 0
+set wCRUVI_LS_B 1
+set wCRUVI_LS_C 1
+set wFAB_UART 1
 set wSFP10G_1 0
 set wSFP10G_2 0
 set wFMC_XCVRS 0
@@ -57,6 +59,14 @@ set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to PWR_SDA
 set_location_assignment PIN_G2  -to PWR_SCL
 set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to PWR_SCL
 
+
+if {$wFAB_UART == 1} {
+# Bank HVIO_6B (1.8V)
+set_location_assignment PIN_BK22  -to DBG_TXD
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DBG_TXD
+set_location_assignment PIN_CH4  -to DBG_RXD
+set_instance_assignment -name IO_STANDARD "1.8-V LVCMOS" -to DBG_RXD
+}
 
 if {$wFAB_PB == 1} {
 # Bank HVIO_6D (3.3V)
@@ -840,7 +850,7 @@ set_location_assignment PIN_CH128  -to CY_REFCLK
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to CY_REFCLK
 }
 
-if {$wCRUVI_LS_1 == 1} {
+if {$wCRUVI_LS_B == 1} {
 # Bank HVIO_5B (3.3V)
 set_location_assignment PIN_BE115  -to CRUVI_LS_B[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to CRUVI_LS_B[0]
@@ -860,7 +870,7 @@ set_location_assignment PIN_BH118  -to CRUVI_LS_B[7]
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to CRUVI_LS_B[7]
 }
 
-if {$wCRUVI_LS_2 == 1} {
+if {$wCRUVI_LS_C == 1} {
 # Bank HVIO_5B (3.3V)
 set_location_assignment PIN_BK109  -to CRUVI_LS_C[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to CRUVI_LS_C[0]
