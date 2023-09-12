@@ -22,5 +22,6 @@ exec -ignorestderr qsys-generate.exe ip/video_sys/video_sys_iopll_0.ip --synthes
 exec -ignorestderr qsys-generate.exe ip/video_sys/video_sys_reset_in.ip --synthesis=VERILOG --output-directory=ip/video_sys/video_sys_reset_in --family="Agilex 5" --part=A5ED065BB32AE4SR0
 exec -ignorestderr qsys-generate.exe ip/gmii2rgmii_pll.ip --synthesis=VERILOG  --output-directory=ip/gmii2rgmii_pll --family="Agilex 5" --part=A5ED065BB32AE4SR0
 exec -ignorestderr qsys-generate.exe ip/ghrd_hps_system/hps_only_master_0.ip --synthesis=VERILOG  --output-directory=ip/ghrd_hps_system/hps_only_master_0 --family="Agilex 5" --part=A5ED065BB32AE4SR0
+exec -ignorestderr qsys-generate.exe ip/ghrd_hps_system/emif_ph2_1.ip --synthesis=VERILOG --output-directory=ip/ghrd_hps_system/emif_ph2_1 --family="Agilex 5" --part=A5ED065BB32AE4SR0
 
 
