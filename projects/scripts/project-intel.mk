@@ -14,7 +14,7 @@ endif
 
 export NIOS_MMU_ENABLED := $(NIOS2_MMU)
 
-INTEL := quartus_sh --64bit -t
+INTEL := quartus_sh.exe --64bit -t
 
 CLEAN_TARGET += *.log
 CLEAN_TARGET += *_INFO.txt
