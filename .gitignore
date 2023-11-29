@@ -72,4 +72,4 @@ reconfig_mif
 *.hw
 gui
 .timestamp_altera
-
+.qpg
