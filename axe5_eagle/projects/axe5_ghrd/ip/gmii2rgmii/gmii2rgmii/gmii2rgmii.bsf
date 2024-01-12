@@ -16,14 +16,14 @@ the Intel FPGA IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
 Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details, at
-https://fpgasoftware.intel.com/eula.
+refer to the Intel FPGA Software License Subscription Agreements 
+on the Quartus Prime software download page.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 0 0 384 912)
+	(rect 0 0 384 968)
 	(text "gmii2rgmii" (rect 162 0 200 12)(font "Arial" (font_size 11)))
-	(text "inst" (rect 8 896 20 908)(font "Arial" ))
+	(text "inst" (rect 8 952 20 964)(font "Arial" ))
 	(port
 		(pt 0 72)
 		(input)
@@ -88,14 +88,14 @@ https://fpgasoftware.intel.com/eula.
 	(port
 		(pt 0 624)
 		(input)
-		(text "pll_50m_clock_clk" (rect 0 0 73 12)(font "Arial" (font_size 8)))
-		(text "pll_50m_clock_clk" (rect 4 615 106 626)(font "Arial" (font_size 8)))
+		(text "pll_250m_tx_clock_clk" (rect 0 0 90 12)(font "Arial" (font_size 8)))
+		(text "pll_250m_tx_clock_clk" (rect 4 615 130 626)(font "Arial" (font_size 8)))
 	)
 	(port
 		(pt 0 672)
 		(input)
-		(text "pll_5m_clock_clk" (rect 0 0 68 12)(font "Arial" (font_size 8)))
-		(text "pll_5m_clock_clk" (rect 4 665 100 676)(font "Arial" (font_size 8)))
+		(text "pll_125m_tx_clock_clk" (rect 0 0 89 12)(font "Arial" (font_size 8)))
+		(text "pll_125m_tx_clock_clk" (rect 4 665 130 676)(font "Arial" (font_size 8)))
 	)
 	(port
 		(pt 0 720)
@@ -113,14 +113,20 @@ https://fpgasoftware.intel.com/eula.
 	(port
 		(pt 0 824)
 		(input)
-		(text "peri_reset_reset" (rect 0 0 66 12)(font "Arial" (font_size 8)))
-		(text "peri_reset_reset" (rect 4 815 100 826)(font "Arial" (font_size 8)))
+		(text "locked_pll_250m_tx_export" (rect 0 0 109 12)(font "Arial" (font_size 8)))
+		(text "locked_pll_250m_tx_export" (rect 4 815 154 826)(font "Arial" (font_size 8)))
 	)
 	(port
 		(pt 0 872)
 		(input)
+		(text "peri_reset_reset" (rect 0 0 66 12)(font "Arial" (font_size 8)))
+		(text "peri_reset_reset" (rect 4 865 100 876)(font "Arial" (font_size 8)))
+	)
+	(port
+		(pt 0 920)
+		(input)
 		(text "peri_clock_clk" (rect 0 0 56 12)(font "Arial" (font_size 8)))
-		(text "peri_clock_clk" (rect 4 865 88 876)(font "Arial" (font_size 8)))
+		(text "peri_clock_clk" (rect 4 915 88 926)(font "Arial" (font_size 8)))
 	)
 	(port
 		(pt 0 248)
@@ -207,23 +213,25 @@ https://fpgasoftware.intel.com/eula.
 		(text "rgmii_tx_clk" (rect 158 521 388 1052)(font "Arial" (color 0 0 0)))
 		(text "rgmii_txd" (rect 158 546 370 1102)(font "Arial" (color 0 0 0)))
 		(text "rgmii_tx_ctl" (rect 158 571 388 1152)(font "Arial" (color 0 0 0)))
-		(text "pll_50m_clock" (rect 71 596 220 1205)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "pll_250m_tx_clock" (rect 46 596 194 1205)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "clk" (rect 158 621 334 1252)(font "Arial" (color 0 0 0)))
-		(text "pll_5m_clock" (rect 78 646 228 1305)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "pll_125m_tx_clock" (rect 48 646 198 1305)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "clk" (rect 158 671 334 1352)(font "Arial" (color 0 0 0)))
 		(text "pll_25m_clock" (rect 71 696 220 1405)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "clk" (rect 158 721 334 1452)(font "Arial" (color 0 0 0)))
 		(text "pll_2_5m_clock" (rect 63 746 210 1505)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "clk" (rect 158 771 334 1552)(font "Arial" (color 0 0 0)))
-		(text "peri_reset" (rect 94 796 248 1605)(font "Arial" (color 128 0 0)(font_size 9)))
-		(text "reset" (rect 158 821 346 1652)(font "Arial" (color 0 0 0)))
-		(text "peri_clock" (rect 95 846 250 1705)(font "Arial" (color 128 0 0)(font_size 9)))
-		(text "clk" (rect 158 871 334 1752)(font "Arial" (color 0 0 0)))
-		(text " gmii2rgmii " (rect 345 901 762 1812)(font "Arial" ))
+		(text "locked_pll_250m_tx" (rect 38 796 184 1605)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "export" (rect 158 821 352 1652)(font "Arial" (color 0 0 0)))
+		(text "peri_reset" (rect 94 846 248 1705)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "reset" (rect 158 871 346 1752)(font "Arial" (color 0 0 0)))
+		(text "peri_clock" (rect 95 896 250 1805)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "clk" (rect 158 921 334 1852)(font "Arial" (color 0 0 0)))
+		(text " gmii2rgmii " (rect 345 951 762 1912)(font "Arial" ))
 		(line (pt 153 34)(pt 238 34)(line_width 1))
-		(line (pt 238 34)(pt 238 901)(line_width 1))
-		(line (pt 153 901)(pt 238 901)(line_width 1))
-		(line (pt 153 34)(pt 153 901)(line_width 1))
+		(line (pt 238 34)(pt 238 951)(line_width 1))
+		(line (pt 153 951)(pt 238 951)(line_width 1))
+		(line (pt 153 34)(pt 153 951)(line_width 1))
 		(line (pt 0 76)(pt 153 76)(line_width 1))
 		(line (pt 0 101)(pt 153 101)(line_width 1))
 		(line (pt 0 126)(pt 153 126)(line_width 1))
@@ -262,9 +270,12 @@ https://fpgasoftware.intel.com/eula.
 		(line (pt 0 876)(pt 153 876)(line_width 1))
 		(line (pt 154 855)(pt 154 880)(line_width 1))
 		(line (pt 155 855)(pt 155 880)(line_width 1))
+		(line (pt 0 926)(pt 153 926)(line_width 1))
+		(line (pt 154 905)(pt 154 930)(line_width 1))
+		(line (pt 155 905)(pt 155 930)(line_width 1))
 		(line (pt 0 0)(pt 391 0)(line_width 1))
-		(line (pt 391 0)(pt 391 918)(line_width 1))
-		(line (pt 0 918)(pt 391 918)(line_width 1))
-		(line (pt 0 0)(pt 0 918)(line_width 1))
+		(line (pt 391 0)(pt 391 968)(line_width 1))
+		(line (pt 0 968)(pt 391 968)(line_width 1))
+		(line (pt 0 0)(pt 0 968)(line_width 1))
 	)
 )

@@ -25,6 +25,10 @@
             <value>1</value>
           </parameter>
           <parameter>
+            <name>O_SYNCHRONOUS_EDGES</name>
+            <value>deassert</value>
+          </parameter>
+          <parameter>
             <name>SYNCHRONOUS_EDGES</name>
             <value>deassert</value>
           </parameter>

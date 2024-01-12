@@ -1,13 +1,15 @@
 	component video_sys_mm_bridge_1 is
 		generic (
-			DATA_WIDTH        : integer := 32;
-			SYMBOL_WIDTH      : integer := 8;
-			HDL_ADDR_WIDTH    : integer := 24;
-			BURSTCOUNT_WIDTH  : integer := 1;
-			PIPELINE_COMMAND  : integer := 1;
-			PIPELINE_RESPONSE : integer := 1;
-			SYNC_RESET        : integer := 0;
-			USE_WRITERESPONSE : integer := 0
+			DATA_WIDTH               : integer := 32;
+			SYMBOL_WIDTH             : integer := 8;
+			HDL_ADDR_WIDTH           : integer := 24;
+			BURSTCOUNT_WIDTH         : integer := 1;
+			PIPELINE_COMMAND         : integer := 1;
+			PIPELINE_RESPONSE        : integer := 1;
+			SYNC_RESET               : integer := 0;
+			USE_WRITERESPONSE        : integer := 0;
+			S0_WAITREQUEST_ALLOWANCE : integer := 0;
+			M0_WAITREQUEST_ALLOWANCE : integer := 0
 		);
 		port (
 			clk              : in  std_logic                                     := 'X';             -- clk

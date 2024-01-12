@@ -86,7 +86,7 @@
           </parameter>
           <parameter>
             <name>resetValue</name>
-            <value>0</value>
+            <value>7</value>
           </parameter>
           <parameter>
             <name>simDoTestBenchWiring</name>
@@ -105,7 +105,7 @@
         <className>altera_avalon_pio</className>
         <version>19.2.3</version>
         <name>pio_5</name>
-        <uniqueName>peripheral_sys_pio_5_altera_avalon_pio_1923_cnmbgii</uniqueName>
+        <uniqueName>peripheral_sys_pio_5_altera_avalon_pio_1923_cydvn3i</uniqueName>
         <nonce>0</nonce>
         <incidentConnections></incidentConnections>
         <path>peripheral_sys_pio_5.pio_5</path>

@@ -11,9 +11,9 @@
 // agreement for further details.
 
 
-// $File: //acds/rel/23.2/ip/iconnect/avalon_st/altera_avalon_st_pipeline_stage/altera_avalon_st_pipeline_stage.sv $
+// $File: //acds/rel/23.4/ip/iconnect/avalon_st/altera_avalon_st_pipeline_stage/altera_avalon_st_pipeline_stage.sv $
 // $Revision: #1 $
-// $Date: 2023/04/27 $
+// $Date: 2023/10/12 $
 // $Author: psgswbuild $
 //------------------------------------------------------------------------------
 
@@ -192,3 +192,6 @@ module altera_avalon_st_pipeline_stage #(
 endmodule
 
 
+`ifdef QUESTA_INTEL_OEM
+`pragma questa_oem_00 "Gwt3whRcE3+dmXyqrSB7tq2BawD3oh9aWud7Z4eAN187O43IWvM/KG8cuzSO3rcLdOg/6M8a5bUzV8fSCamrY3rLfHnQy43nef+FViJgCalid4DqTidvdzU87e5ZQ/v7HVm3olDBJc6LsbYrqiDrF0RkIcqQRi4zpc6Rtw0M2aW8FBhW2R9GBM/OcdpnaI+Km4xIFjjLOMKR0kXUH+3JyiE6l+btThmGIC55ugx3xho3O0tRHPXf6/InkoYQjhbD+WW6Z+ietEMwJcSkb55wy42ry9MsxbOuDwzXVTRJq5bWgRxDHX+N+o/RzMCLWIkX5ASzxQtNE6Qs7puC4W2oq0tBEN2MTx/zY1xzDGTIvIM6O1TUM3wY5TaUVUIB/gIStDNgRZuf0RzGQaAtwajMgnDUCEKs9d0DJk4GcRzdvvlQSthDIcAWfv4VoTfhcwWigHxvxQlgrZgrIq7hYDk9ddIRHHcaMmkr+DA0EogIsBkvJdchdzzS0jEBrjjw4gJjkdSaovlYDaKEGC3z541LxRmEzvXoXCTHmJPlAXO+kytSXilKyjqTQRUoYGO7vQTtXpEQwhN2VPUXf4ZiM666r/3eDcCIUgpiLv+rDnDAvJ3ZuwZFhKS2aQAOvotlIADwBYQ7LuaTzxBjlWcjiBAmoUE2Tnyc5NGhhlhoIehtelytniR2uNvsNRkeplLv5x7RoAJlOeJFXVVHROBD0z0fQaOeeimuAEkqVAsN4BfeH7gaqkHtGffEaM+LwdCUywgI0lKRJAfHgq4bcr71ksx7b887IqYVy6m7b5k16FdsmsQS2oFOuIleLNvQjvTUV5jtwm+ZqqKl19o4vRfRfu26ll2H1FLKCiAKvX1mIrpvoR656YDhMsu6OteyAMAD8JO88Wm/aU2sZrNTsT/Hva+XWvierFLUQAimEuAhhJkT5W6WwF/K5xXWSURByGvrNJOesHh+hUkMafjWXUpf0BYGRKc9GBR1MTwRYHH2YBrclx0ptks1+e6prfDsosLFc4D5"
+`endif

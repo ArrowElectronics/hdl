@@ -1,0 +1,42 @@
+set_global_assignment -entity "gts_reset_seq" -library "gts_reset_seq" -name IP_TOOL_NAME "QsysPrimePro"
+set_global_assignment -entity "gts_reset_seq" -library "gts_reset_seq" -name IP_TOOL_VERSION "23.4"
+set_global_assignment -entity "gts_reset_seq" -library "gts_reset_seq" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "gts_reset_seq" -library "gts_reset_seq" -name IP_TOOL_VENDOR_NAME "Intel Corporation"
+set_global_assignment -entity "gts_reset_seq" -library "gts_reset_seq" -name IP_TOP_LEVEL_COMPONENT_NAME "intel_srcss_gts"
+set_global_assignment -library "gts_reset_seq" -name SOPCINFO_FILE [file join $::quartus(qip_path) "gts_reset_seq.sopcinfo"]
+set_global_assignment -entity "gts_reset_seq" -library "gts_reset_seq" -name SLD_INFO "QSYS_NAME gts_reset_seq HAS_SOPCINFO 1 GENERATION_ID 0"
+set_global_assignment -library "gts_reset_seq" -name MISC_FILE [file join $::quartus(qip_path) "gts_reset_seq.cmp"]
+set_global_assignment -entity "gts_reset_seq" -library "gts_reset_seq" -name IP_TARGETED_DEVICE_FAMILY "Agilex 5"
+set_global_assignment -entity "gts_reset_seq" -library "gts_reset_seq" -name IP_GENERATED_DEVICE_FAMILY "{Agilex 5}"
+set_global_assignment -entity "gts_reset_seq" -library "gts_reset_seq" -name IP_QSYS_MODE "STANDALONE"
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "gts_reset_seq" -name MISC_FILE [file join $::quartus(qip_path) "../gts_reset_seq.ip"]
+
+set_global_assignment -entity "gts_reset_seq_intel_srcss_gts_200_wnl7lpy" -library "intel_srcss_gts_200" -name IP_COMPONENT_NAME "Z3RzX3Jlc2V0X3NlcV9pbnRlbF9zcmNzc19ndHNfMjAwX3dubDdscHk="
+set_global_assignment -entity "gts_reset_seq_intel_srcss_gts_200_wnl7lpy" -library "intel_srcss_gts_200" -name IP_COMPONENT_DISPLAY_NAME "R1RTIFJlc2V0IFNlcXVlbmNlciBJbnRlbCBGUEdBIElQ"
+set_global_assignment -entity "gts_reset_seq_intel_srcss_gts_200_wnl7lpy" -library "intel_srcss_gts_200" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "gts_reset_seq_intel_srcss_gts_200_wnl7lpy" -library "intel_srcss_gts_200" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "gts_reset_seq_intel_srcss_gts_200_wnl7lpy" -library "intel_srcss_gts_200" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "gts_reset_seq_intel_srcss_gts_200_wnl7lpy" -library "intel_srcss_gts_200" -name IP_COMPONENT_VERSION "Mi4wLjA="
+set_global_assignment -entity "gts_reset_seq_intel_srcss_gts_200_wnl7lpy" -library "intel_srcss_gts_200" -name IP_COMPONENT_DESCRIPTION "R1RTIFJlc2V0IFNlcXVlbmNlciBJbnRlbCBGUEdBIElQ"
+set_global_assignment -entity "gts_reset_seq_intel_srcss_gts_200_wnl7lpy" -library "intel_srcss_gts_200" -name IP_COMPONENT_GROUP "SW50ZXJmYWNlIFByb3RvY29scy9UcmFuc2NlaXZlciBQSFk="
+set_global_assignment -entity "gts_reset_seq" -library "gts_reset_seq" -name IP_COMPONENT_NAME "Z3RzX3Jlc2V0X3NlcQ=="
+set_global_assignment -entity "gts_reset_seq" -library "gts_reset_seq" -name IP_COMPONENT_DISPLAY_NAME "c3lzdGVt"
+set_global_assignment -entity "gts_reset_seq" -library "gts_reset_seq" -name IP_COMPONENT_REPORT_HIERARCHY "On"
+set_global_assignment -entity "gts_reset_seq" -library "gts_reset_seq" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "gts_reset_seq" -library "gts_reset_seq" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "gts_reset_seq" -library "gts_reset_seq" -name IP_COMPONENT_VERSION "MS4w"
+
+
+set_global_assignment -library "intel_srcss_gts_200" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "intel_srcss_gts_200/synth/gts_reset_seq_intel_srcss_gts_200_wnl7lpy.sv"]
+set_instance_assignment -entity "gts_reset_seq_intel_srcss_gts_200_wnl7lpy" -library "intel_srcss_gts_200" -name SDC_ENTITY_FILE [file join $::quartus(qip_path) "intel_srcss_gts_200/synth/gts_reset_seq_intel_srcss_gts_200_wnl7lpy.sdc"] -no_sdc_promotion 
+set_global_assignment -library "intel_srcss_gts_200" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "intel_srcss_gts_200/synth/intel_srcss_gts.sv"]
+set_global_assignment -library "intel_srcss_gts_200" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "intel_srcss_gts_200/synth/intel_ss_synchronizers.sv"]
+set_global_assignment -library "intel_srcss_gts_200" -name VERILOG_FILE [file join $::quartus(qip_path) "intel_srcss_gts_200/synth/sopc_synchronizer.v"]
+set_global_assignment -library "gts_reset_seq" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/gts_reset_seq.v"]
+
+
+set_global_assignment -entity "gts_reset_seq_intel_srcss_gts_200_wnl7lpy" -library "intel_srcss_gts_200" -name IP_TOOL_NAME "intel_srcss_gts"
+set_global_assignment -entity "gts_reset_seq_intel_srcss_gts_200_wnl7lpy" -library "intel_srcss_gts_200" -name IP_TOOL_VERSION "2.0.0"
+set_global_assignment -entity "gts_reset_seq_intel_srcss_gts_200_wnl7lpy" -library "intel_srcss_gts_200" -name IP_TOOL_ENV "QsysPrimePro"
+

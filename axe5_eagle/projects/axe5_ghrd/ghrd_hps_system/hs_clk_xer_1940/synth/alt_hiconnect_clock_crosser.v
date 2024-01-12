@@ -19,7 +19,7 @@
  
 `timescale 1ns / 1ns
 `default_nettype none
- 
+
 module alt_hiconnect_clock_crosser (
                                  in_clk,
                                  in_reset,
@@ -40,6 +40,9 @@ module alt_hiconnect_clock_crosser (
   parameter  USE_OUTPUT_PIPELINE = 1;
  
   localparam  DATA_WIDTH = SYMBOLS_PER_BEAT * BITS_PER_SYMBOL;
+  localparam DRC_WAIVER_CDC_50005 = {"-name DESIGN_ASSISTANT_EXCLUDE \"CDC-50005\" "};
+  localparam DRC_WAIVER_CDC_50006 = {"-name DESIGN_ASSISTANT_EXCLUDE \"CDC-50006\" "};
+  localparam DRC_WAIVER_OUT_DATA_BUFFER = { DRC_WAIVER_CDC_50005,";",DRC_WAIVER_CDC_50006}; 
 
   input wire                  in_clk;
   input wire                  in_reset;
@@ -55,8 +58,9 @@ module alt_hiconnect_clock_crosser (
 
   // Data is guaranteed valid by control signal clock crossing.  Cut data
   // buffer false path.
-  (* altera_attribute = {"-name SUPPRESS_DA_RULE_INTERNAL \"D101,D102\""} *) reg [DATA_WIDTH-1:0] in_data_buffer;
-  reg    [DATA_WIDTH-1:0] out_data_buffer;
+(* altera_attribute = {"-name SUPPRESS_DA_RULE_INTERNAL \"D101,D102\""}*) reg [DATA_WIDTH-1:0] in_data_buffer;
+(* altera_attribute = DRC_WAIVER_OUT_DATA_BUFFER *) reg [DATA_WIDTH-1:0] out_data_buffer;
+
 
   reg                     in_data_toggle;
   wire                    in_data_toggle_returned;
@@ -209,3 +213,6 @@ always @(posedge out_clk) begin
 endmodule
 
 `default_nettype wire
+`ifdef QUESTA_INTEL_OEM
+`pragma questa_oem_00 "oCGSH374621Hb8Vdx1zpbGFDRRlR/iQFxq4u9eFZ1vs535komH6o0gG3DAt3GoHyIEaf6dyx8DLuUuqMQslQs9etyMjXbnhsqJKBH0EjctlI8aAkXUqpZV/kCXYGyVHmbrsCK0w9cX9s5bqb0g2KbMqkWxOJnTmwkTBX8Q2A0c90YP13D4uZ9IEEfvQhN+GXXVTb7xbFtY0q1JjH/1OB6YQdi+xjgtxcotYzs1N1gR2MIbzJbUE5YTOaE1k2RKyvY+uNiRUAaNeaDpedCymfTT/HWE1ohp5y3A+POmrIejxj/CmldCbqzyswGYP5U1wpvWA8xHmNUxdocwezDTN10p+60v6PnBDUmdI7q6PEOMWT1eYd0zSCFSAoF2/886YDJ/7fR2q86dTM8S/PZ+gOiqUL3YuKRjT2gyw3gOLiZdto+Y0lnRmH4hcmkxSGaGmPOY2ezqiVhTC/wilaVGZqN33K1XnXvlSNgXuJA9n18wo5fDSijwM1HSobSa5MuuPlp93NDvgn2WAj4efgsZuVv1ed56OjrtxXwot4v9mv/OGZ3z4s3/Zb6k+V6kbPNFQjTGdJMdfepqXtVBsvppUu37VL9gsZRuKkiPp4/SdDbNx03sZNgI0VEoXUlCle5VqbwXgFy0EFKcpJQ8Xvg1tKiiZekLjZ/fHNEhp3OUeTJC1kM5+A3OWNagNpcg6k2wHXqt6Z6rgr8VpJ8qCCHUngRB0SckMJHPK7emBPw2vDEOmJp03/M8LQJUpOPvR7LfvGCyQeLonx6U/Id6yeTX/D5MpOAMTWkz2wLZMpU4vdczB1t3ceCH9jN+fSFwVKa0k4lr8B6aMm2sTH++HMD6et6XyFac3att0a4SuM86mJCNvOUWKlZS63Olju0Id+BHzxsWg62WhduxArOBnJ95ymlxr8XrBXEZuns/QruXfb+hz8c/sXeP+ax59WgdIO9VdbZCfmVKejq3u+JSo6kIbugoFOLBVkiO5bG+7L99i/guJHa2DquEnSaXXI0sQOTvff"
+`endif

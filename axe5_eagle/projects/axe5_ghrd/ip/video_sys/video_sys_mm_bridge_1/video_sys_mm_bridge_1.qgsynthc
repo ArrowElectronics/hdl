@@ -26,7 +26,7 @@
           </parameter>
           <parameter>
             <name>AUTO_ADDRESS_WIDTH</name>
-            <value>11</value>
+            <value>17</value>
           </parameter>
           <parameter>
             <name>BURSTCOUNT_WIDTH</name>
@@ -42,6 +42,10 @@
           </parameter>
           <parameter>
             <name>LINEWRAPBURSTS</name>
+            <value>0</value>
+          </parameter>
+          <parameter>
+            <name>M0_WAITREQUEST_ALLOWANCE</name>
             <value>0</value>
           </parameter>
           <parameter>
@@ -65,6 +69,10 @@
             <value>1</value>
           </parameter>
           <parameter>
+            <name>S0_WAITREQUEST_ALLOWANCE</name>
+            <value>0</value>
+          </parameter>
+          <parameter>
             <name>SYMBOL_WIDTH</name>
             <value>8</value>
           </parameter>
@@ -74,7 +82,7 @@
           </parameter>
           <parameter>
             <name>SYSINFO_ADDR_WIDTH</name>
-            <value>11</value>
+            <value>17</value>
           </parameter>
           <parameter>
             <name>USE_AUTO_ADDRESS_WIDTH</name>
@@ -91,9 +99,9 @@
         </parameters>
         <interconnectAssignments></interconnectAssignments>
         <className>altera_avalon_mm_bridge</className>
-        <version>20.0.1</version>
+        <version>20.1.0</version>
         <name>mm_bridge_1</name>
-        <uniqueName>video_sys_mm_bridge_1_altera_avalon_mm_bridge_2001_k2bg7dq</uniqueName>
+        <uniqueName>video_sys_mm_bridge_1_altera_avalon_mm_bridge_2010_xnk2xbi</uniqueName>
         <nonce>0</nonce>
         <incidentConnections></incidentConnections>
         <path>video_sys_mm_bridge_1.mm_bridge_1</path>

@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<node xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:altera="http://www.altera.com/XMLSchema/Qsys/SystemTree">
+  <instanceKey xsi:type="xs:string">gts_reset_seq</instanceKey>
+  <instanceData xsi:type="data">
+    <parameters></parameters>
+    <interconnectAssignments></interconnectAssignments>
+    <className>gts_reset_seq</className>
+    <version>1.0</version>
+    <name>gts_reset_seq</name>
+    <uniqueName>gts_reset_seq</uniqueName>
+    <nonce>0</nonce>
+    <incidentConnections></incidentConnections>
+  </instanceData>
+  <children>
+    <node>
+      <instanceKey xsi:type="xs:string">intel_srcss_gts_0</instanceKey>
+      <instanceData xsi:type="data">
+        <parameters>
+          <parameter>
+            <name>NUM_BANKS_SHORELINE</name>
+            <value>1</value>
+          </parameter>
+          <parameter>
+            <name>NUM_LANES_SHORELINE</name>
+            <value>1</value>
+          </parameter>
+          <parameter>
+            <name>SRC_RS_DISABLE</name>
+            <value>false</value>
+          </parameter>
+        </parameters>
+        <interconnectAssignments></interconnectAssignments>
+        <className>intel_srcss_gts</className>
+        <version>2.0.0</version>
+        <name>intel_srcss_gts_0</name>
+        <uniqueName>gts_reset_seq_intel_srcss_gts_200_wnl7lpy</uniqueName>
+        <nonce>0</nonce>
+        <incidentConnections></incidentConnections>
+        <path>gts_reset_seq.intel_srcss_gts_0</path>
+      </instanceData>
+      <children></children>
+    </node>
+  </children>
+</node>

@@ -9,44 +9,11 @@ set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
 set_global_assignment -name PWRMGT_VOLTAGE_OUTPUT_FORMAT "LINEAR FORMAT"
 set_global_assignment -name PWRMGT_LINEAR_FORMAT_N "-12"
 set_global_assignment -name POWER_APPLY_THERMAL_MARGIN ADDITIONAL
-set_global_assignment -name VERILOG_FILE ../sources/axe5_eagle_top.v
-set_global_assignment -name TCL_SCRIPT_FILE ../sources/agx5e065_pin_assignment.tcl
 set_global_assignment -name TOP_LEVEL_ENTITY axe5_eagle_top
-set_global_assignment -name QSYS_FILE video_sys.qsys
-set_global_assignment -name QSYS_FILE peripheral_sys.qsys
-set_global_assignment -name QSYS_FILE ghrd_hps_system.qsys
-set_global_assignment -name IP_FILE ip/gmii2rgmii/gmii2rgmii.ip
-set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_reset_in.ip
-set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_master_0.ip
-set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_master_1.ip
 set_global_assignment -name BOARD default
-set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_intel_agilex_5_soc_0.ip
-set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_emif_ph2_0.ip
-set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_intel_onchip_memory_0.ip
 set_global_assignment -name IP_SEARCH_PATHS ip/adi/**/*
-set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_master_2.ip
-set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_pio_1.ip
-set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_pio_0.ip
-set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_sysid_qsys_0.ip
-set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_jtag_uart_0.ip
-set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_pio_5.ip
-set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_pio_4.ip
-set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_pio_3.ip
-set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_clock_in.ip
-set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_pio_2.ip
-set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_mm_bridge_0.ip
-set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_reset_in.ip
-set_global_assignment -name IP_FILE ip/video_sys/video_sys_clock_in.ip
-set_global_assignment -name IP_FILE ip/video_sys/video_sys_mm_bridge_1.ip
-set_global_assignment -name IP_FILE ip/video_sys/video_sys_axi_dmac_0.ip
-set_global_assignment -name IP_FILE ip/video_sys/video_sys_axi_hdmi_tx_0.ip
-set_global_assignment -name IP_FILE ip/video_sys/video_sys_iopll_0.ip
-set_global_assignment -name IP_FILE ip/video_sys/video_sys_reset_in.ip
-set_global_assignment -name TCL_SCRIPT_FILE sources/agx5e065_pin_assignment.tcl
-set_global_assignment -name IP_FILE ip/gmii2rgmii_pll.ip
-set_global_assignment -name LAST_QUARTUS_VERSION "23.2.1 Pro Edition"
-set_global_assignment -name IP_FILE ip/ghrd_hps_system/hps_only_master_0.ip
-set_location_assignment PIN_W135 -to HPS_OSC_CLK_25MHz
+set_global_assignment -name LAST_QUARTUS_VERSION "23.4.0 Pro Edition"
+set_location_assignment PIN_T132 -to HPS_OSC_CLK_25MHz -comment IOBANK_HPS
 set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_OSC_CLK_25MHz -entity axe5_eagle_top
 set_location_assignment PIN_CK134 -to FPGA_RST
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to FPGA_RST -entity axe5_eagle_top
@@ -78,7 +45,7 @@ set_location_assignment PIN_CL125 -to LED0G
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to LED0G -entity axe5_eagle_top
 set_location_assignment PIN_BR118 -to LED0B
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to LED0B -entity axe5_eagle_top
-set_location_assignment PIN_BU118 -to LED1R
+set_location_assignment PIN_CF118 -to LED1R -comment IOBANK_5A
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to LED1R -entity axe5_eagle_top
 set_location_assignment PIN_BW118 -to LED1G
 set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to LED1G -entity axe5_eagle_top
@@ -384,9 +351,56 @@ set_location_assignment PIN_AK120 -to HPS_PB[1]
 set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_PB[1] -entity axe5_eagle_top
 set_location_assignment PIN_N134 -to HPS_DIPSW[0]
 set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_DIPSW[0] -entity axe5_eagle_top
-set_location_assignment PIN_T132 -to HPS_DIPSW[1]
 set_instance_assignment -name IO_STANDARD "1.8 V" -to HPS_DIPSW[1] -entity axe5_eagle_top
-set_global_assignment -name IP_FILE ip/ghrd_hps_system/emif_ph2_1.ip
 
 set_location_assignment PIN_AK107 -to LPDDR4A_CK_P -comment IOBANK_3A_B
 set_location_assignment PIN_AK104 -to LPDDR4A_CK_N -comment IOBANK_3A_B
+set_location_assignment PIN_AN129 -to USB_SSTX_p -comment IOBANK_1C
+set_location_assignment PIN_AM135 -to USB_SSRX_p -comment IOBANK_1C
+set_location_assignment PIN_AN126 -to USB_SSTX_n -comment IOBANK_1C
+set_location_assignment PIN_AM133 -to USB_SSRX_n -comment IOBANK_1C
+set_location_assignment PIN_AP120 -to USB_REFCLK_p -comment IOBANK_1C
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
+set_global_assignment -name STRATIXV_CONFIGURATION_SCHEME "ACTIVE SERIAL X4"
+set_global_assignment -name ON_CHIP_BITSTREAM_DECOMPRESSION OFF
+set_global_assignment -name HPS_DAP_SPLIT_MODE "SDM PINS"
+set_global_assignment -name ACTIVE_SERIAL_CLOCK AS_FREQ_115MHZ_IOSC
+set_global_assignment -name DEVICE_INITIALIZATION_CLOCK INIT_INTOSC
+set_global_assignment -name HPS_DAP_NO_CERTIFICATE on
+set_location_assignment PIN_BU118 -to USB_HUB_RST -comment IO_BANK_5A
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to USB_HUB_RST
+set_global_assignment -name VERILOG_FILE ../sources/axe5_eagle_top.v
+set_global_assignment -name TCL_SCRIPT_FILE ../sources/agx5e065_pin_assignment.tcl
+set_global_assignment -name QSYS_FILE video_sys.qsys
+set_global_assignment -name QSYS_FILE peripheral_sys.qsys
+set_global_assignment -name QSYS_FILE ghrd_hps_system.qsys
+set_global_assignment -name IP_FILE ip/gmii2rgmii/gmii2rgmii.ip
+set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_reset_in.ip
+set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_master_0.ip
+set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_master_1.ip
+set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_intel_agilex_5_soc_0.ip
+set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_intel_onchip_memory_0.ip
+set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_master_2.ip
+set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_pio_1.ip
+set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_pio_0.ip
+set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_sysid_qsys_0.ip
+set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_jtag_uart_0.ip
+set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_pio_5.ip
+set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_pio_4.ip
+set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_pio_3.ip
+set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_clock_in.ip
+set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_pio_2.ip
+set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_mm_bridge_0.ip
+set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_reset_in.ip
+set_global_assignment -name IP_FILE ip/video_sys/video_sys_clock_in.ip
+set_global_assignment -name IP_FILE ip/video_sys/video_sys_mm_bridge_1.ip
+set_global_assignment -name IP_FILE ip/video_sys/video_sys_axi_dmac_0.ip
+set_global_assignment -name IP_FILE ip/video_sys/video_sys_axi_hdmi_tx_0.ip
+set_global_assignment -name IP_FILE ip/video_sys/video_sys_iopll_0.ip
+set_global_assignment -name IP_FILE ip/video_sys/video_sys_reset_in.ip
+set_global_assignment -name TCL_SCRIPT_FILE sources/agx5e065_pin_assignment.tcl
+set_global_assignment -name IP_FILE ip/gmii2rgmii_pll.ip
+set_global_assignment -name IP_FILE ip/gts_reset_seq.ip
+set_global_assignment -name IP_FILE ip/peripheral_sys/peripheral_sys_pio_6.ip
+set_global_assignment -name IP_FILE ip/ghrd_hps_system/ghrd_hps_system_emif_hps_ph2_0.ip

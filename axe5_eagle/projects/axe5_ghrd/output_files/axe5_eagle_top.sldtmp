@@ -1,0 +1,149 @@
+<sld_project_info>
+  <sld_infos>
+    <sld_info hpath="hps_system|agilex_5_soc" library="ghrd_hps_system_intel_agilex_5_soc_0" name="agilex_5_soc">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME ghrd_hps_system_intel_agilex_5_soc_0 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system" library="ghrd_hps_system" name="hps_system">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME ghrd_hps_system HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|peripheral_sys_0|pb" library="peripheral_sys_pio_0" name="pb">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME peripheral_sys_pio_0 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|emif_bank3a_hps" library="ghrd_hps_system_emif_hps_ph2_0" name="emif_bank3a_hps">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME ghrd_hps_system_emif_hps_ph2_0 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|peripheral_sys_0|sys_id" library="peripheral_sys_sysid_qsys_0" name="sys_id">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME peripheral_sys_sysid_qsys_0 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|peripheral_sys_0|rgb_led3" library="peripheral_sys_pio_5" name="rgb_led3">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME peripheral_sys_pio_5 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|peripheral_sys_0|rgb_led2" library="peripheral_sys_pio_4" name="rgb_led2">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME peripheral_sys_pio_4 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|peripheral_sys_0|dipsw" library="peripheral_sys_pio_1" name="dipsw">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME peripheral_sys_pio_1 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|peripheral_sys_0|clock_in" library="peripheral_sys_clock_in" name="clock_in">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME peripheral_sys_clock_in HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|onchip_sram" library="ghrd_hps_system_intel_onchip_memory_0" name="onchip_sram">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME ghrd_hps_system_intel_onchip_memory_0 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|peripheral_sys_0|jtag_uart" library="peripheral_sys_jtag_uart_0" name="jtag_uart">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME peripheral_sys_jtag_uart_0 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|peripheral_sys_0" library="peripheral_sys" name="peripheral_sys_0">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME peripheral_sys HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|reset_in" library="ghrd_hps_system_reset_in" name="reset_in">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME ghrd_hps_system_reset_in HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|fpga_only_master" library="ghrd_hps_system_master_1" name="fpga_only_master">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME ghrd_hps_system_master_1 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|f2sdram_only_master" library="ghrd_hps_system_master_2" name="f2sdram_only_master">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME ghrd_hps_system_master_2 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|peripheral_sys_0|usb_hub_rst" library="peripheral_sys_pio_6" name="usb_hub_rst">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME peripheral_sys_pio_6 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|video_sys_0|hdmi_dmac_0" library="video_sys_axi_dmac_0" name="hdmi_dmac_0">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME video_sys_axi_dmac_0 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|peripheral_sys_0|rgb_led0" library="peripheral_sys_pio_2" name="rgb_led0">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME peripheral_sys_pio_2 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|peripheral_sys_0|reset_in" library="peripheral_sys_reset_in" name="reset_in">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME peripheral_sys_reset_in HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|peripheral_sys_0|mm_bridge_0" library="peripheral_sys_mm_bridge_0" name="mm_bridge_0">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME peripheral_sys_mm_bridge_0 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|peripheral_sys_0|rgb_led1" library="peripheral_sys_pio_3" name="rgb_led1">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME peripheral_sys_pio_3 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|video_sys_0" library="video_sys" name="video_sys_0">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME video_sys HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|video_sys_0|axi_hdmi_tx_0" library="video_sys_axi_hdmi_tx_0" name="axi_hdmi_tx_0">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME video_sys_axi_hdmi_tx_0 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|video_sys_0|hdmi_pll" library="video_sys_iopll_0" name="hdmi_pll">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME video_sys_iopll_0 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|video_sys_0|mm_video_bridge" library="video_sys_mm_bridge_1" name="mm_video_bridge">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME video_sys_mm_bridge_1 HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|video_sys_0|clock_in" library="video_sys_clock_in" name="clock_in">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME video_sys_clock_in HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="gts_reset_seq" library="gts_reset_seq" name="gts_reset_seq">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME gts_reset_seq HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="hps_system|video_sys_0|reset_in" library="video_sys_reset_in" name="reset_in">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME video_sys_reset_in HAS_SOPCINFO 1 GENERATION_ID 0"/>
+      </assignment_values>
+    </sld_info>
+    <sld_info hpath="auto_fab_0" library="alt_sld_fab_0" name="auto_fab_0">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME alt_sld_fab_0 HAS_SOPCINFO 1 GENERATION_ID 0 ENTITY_NAME alt_sld_fab SLD_FAB 1 DESIGN_HASH 8eba0aa826e7714f6afc"/>
+      </assignment_values>
+    </sld_info>
+  </sld_infos>
+</sld_project_info>

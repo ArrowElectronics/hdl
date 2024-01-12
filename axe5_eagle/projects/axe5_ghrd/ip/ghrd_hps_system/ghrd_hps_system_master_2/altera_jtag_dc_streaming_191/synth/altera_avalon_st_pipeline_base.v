@@ -24,9 +24,9 @@
 // agreement for further details.
 
 
-// $File: //acds/rel/23.2/ip/iconnect/avalon_st/altera_avalon_st_pipeline_stage/altera_avalon_st_pipeline_base.v $
+// $File: //acds/rel/23.4/ip/iconnect/avalon_st/altera_avalon_st_pipeline_stage/altera_avalon_st_pipeline_base.v $
 // $Revision: #1 $
-// $Date: 2023/04/27 $
+// $Date: 2023/10/12 $
 // $Author: psgswbuild $
 //------------------------------------------------------------------------------
 
@@ -47,6 +47,7 @@ module altera_avalon_st_pipeline_base (
    parameter  BITS_PER_SYMBOL   = 8;
    parameter  PIPELINE_READY    = 1;
    parameter  SYNC_RESET        = 0;
+   parameter  BACKPRESSURE_DURING_RESET = 0;
    localparam DATA_WIDTH = SYMBOLS_PER_BEAT * BITS_PER_SYMBOL;
    
    input clk;
@@ -103,9 +104,14 @@ module altera_avalon_st_pipeline_base (
         if (SYNC_RESET == 0) begin : async_rst0 
            always @(posedge clk or posedge reset) begin
               if (reset) begin
-                 full0    <= 1'b0;
+                 full0    <= BACKPRESSURE_DURING_RESET ? 1'b1 : 1'b0;
                  full1    <= 1'b0;
               end else begin
+                 // out of reset. 
+                 if(~full1 & full0)begin
+                     full0 <= 1'b0;
+                 end
+
                  // no data in pipeline
                  if (~full0 & ~full1) begin
                     if (in_valid) begin
@@ -137,9 +143,14 @@ module altera_avalon_st_pipeline_base (
        else begin // sync_rst0
            always @(posedge clk ) begin
               if (internal_sclr) begin
-                 full0    <= 1'b0;
+                 full0    <= BACKPRESSURE_DURING_RESET ? 1'b1 : 1'b0;
                  full1    <= 1'b0;
               end else begin
+                 // out of reset. 
+                 if(~full1 & full0)begin
+                     full0 <= 1'b0;
+                 end
+
                  // no data in pipeline
                  if (~full0 & ~full1) begin
                     if (in_valid) begin
@@ -179,7 +190,7 @@ module altera_avalon_st_pipeline_base (
 	   always @(posedge clk or posedge reset) begin
 	      if (reset) begin
 	         data1 <= 'b0;
-	         full1 <= 1'b0;
+	         full1 <= BACKPRESSURE_DURING_RESET ? 1'b1 : 1'b0;
 	      end
 	      else begin
 	         if (in_ready) begin
@@ -193,7 +204,7 @@ module altera_avalon_st_pipeline_base (
       always @(posedge clk ) begin
 	      if (internal_sclr) begin
 	         data1 <= 'b0;
-	         full1 <= 1'b0;
+	         full1 <= BACKPRESSURE_DURING_RESET ? 1'b1 : 1'b0;
 	      end
 	      else begin
 	         if (in_ready) begin
@@ -206,3 +217,6 @@ module altera_avalon_st_pipeline_base (
      end
    endgenerate
 endmodule
+`ifdef QUESTA_INTEL_OEM
+`pragma questa_oem_00 "Gwt3whRcE3+dmXyqrSB7tq2BawD3oh9aWud7Z4eAN187O43IWvM/KG8cuzSO3rcLdOg/6M8a5bUzV8fSCamrY3rLfHnQy43nef+FViJgCalid4DqTidvdzU87e5ZQ/v7HVm3olDBJc6LsbYrqiDrF0RkIcqQRi4zpc6Rtw0M2aW8FBhW2R9GBM/OcdpnaI+Km4xIFjjLOMKR0kXUH+3JyiE6l+btThmGIC55ugx3xhq44VZkobu5eSbP+jXiwl6Pk8pab5vxLc5gJjoC5hxF6g3T7o0jSoio0d+SeH8ce/DjEucOVMccxQc722EAjxVN22AeAbLtOJvxP8xlyBUWHKHz9qv7PiLvF+C8gL+4TKImpldkKdWQ2F7TTLFukSkgT1VEyVeu+jOP1MUYRFrXbcigfOIJoKIdufc6TW22+AGEuLBsgESIQPkD/xw4YYMu6eV/mISyDroWW6ltwVS7II3RoXdowcepMvUhC6d7aPFHLAUnk4wvJrNftognSuLCNg7EgPlId/x4QANCIiqwaIQlW7fcdigI6lLrzICbV6WuTUTPJPYLnyD5jQc49hUMsrVV97Kg6p7D4PCA66mPkgi5ymVCBJNih/nFab1lu+m5/2aV05mFXirMHQSxdumIpOjRS19YXl+lMuQ0FRmO41C5633/5xMbs3e1JCjmDPCdR5TVY3YzqV114CejjdNFKvPVdl3tlWvyiyEqNXVpUJ1oEENTRfO9ytYSPKK8YuFZi9dxBdaQrwEp5UGT8Uwd0mYp5BxqESnzid4NKZfMUI7O39SOEwL93FxfDh+0YqXegEUN5IhAOMvaq2Hx+XpZ01eNL8GXjaiAdT1CUz+ZHhF6GpBQ8jL80Q/6qzWiM1BW+0fh/PP0WCt8gZsurQlqJ/ywmMJYpneH/OyVsqF5LKtLRmf7+OE8IWNLUdzHLeL6ibdMt3wnu5J5MoDXXe5+uFJfB4Kl0VLreozAT8Jd76MchtQ0z5myXLux4K55Siuh7bbkrVLhak4JsThBRqY5"
+`endif

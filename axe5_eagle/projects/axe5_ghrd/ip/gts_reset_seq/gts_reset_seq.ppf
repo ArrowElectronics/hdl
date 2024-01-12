@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pinplan
+ variation_name="intel_srcss_gts_0"
+ megafunction_name="INTEL_SRCSS_GTS"
+ specifies="all_ports">
+ <global>
+  <pin name="o_src_rs_grant" direction="output" scope="external" />
+  <pin name="i_src_rs_priority" direction="input" scope="external" />
+  <pin name="i_src_rs_req" direction="input" scope="external" />
+  <pin name="o_pma_cu_clk" direction="output" scope="external" />
+ </global>
+</pinplan>

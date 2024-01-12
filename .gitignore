@@ -48,6 +48,8 @@ xgui
 *_INFO.txt
 *_dump.txt
 db
+qdb
+synth
 *.asm.rpt
 *.done
 *.eda.rpt

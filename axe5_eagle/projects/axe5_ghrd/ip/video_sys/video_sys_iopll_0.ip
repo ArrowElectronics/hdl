@@ -20,10 +20,10 @@ https://fpgasoftware.intel.com/eula.-->
   <ipxact:busInterfaces>
     <ipxact:busInterface>
       <ipxact:name>refclk</ipxact:name>
-      <ipxact:busType vendor="intel" library="intel" name="clock" version="23.2"></ipxact:busType>
+      <ipxact:busType vendor="intel" library="intel" name="clock" version="23.4"></ipxact:busType>
       <ipxact:abstractionTypes>
         <ipxact:abstractionType>
-          <ipxact:abstractionRef vendor="intel" library="intel" name="clock" version="23.2"></ipxact:abstractionRef>
+          <ipxact:abstractionRef vendor="intel" library="intel" name="clock" version="23.4"></ipxact:abstractionRef>
           <ipxact:portMaps>
             <ipxact:portMap>
               <ipxact:logicalPort>
@@ -41,7 +41,7 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="clockRate" type="longint">
           <ipxact:name>clockRate</ipxact:name>
           <ipxact:displayName>Clock rate</ipxact:displayName>
-          <ipxact:value>50000000</ipxact:value>
+          <ipxact:value>25000000</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="externallyDriven" type="bit">
           <ipxact:name>externallyDriven</ipxact:name>
@@ -67,10 +67,10 @@ https://fpgasoftware.intel.com/eula.-->
     </ipxact:busInterface>
     <ipxact:busInterface>
       <ipxact:name>reset</ipxact:name>
-      <ipxact:busType vendor="intel" library="intel" name="reset" version="23.2"></ipxact:busType>
+      <ipxact:busType vendor="intel" library="intel" name="reset" version="23.4"></ipxact:busType>
       <ipxact:abstractionTypes>
         <ipxact:abstractionType>
-          <ipxact:abstractionRef vendor="intel" library="intel" name="reset" version="23.2"></ipxact:abstractionRef>
+          <ipxact:abstractionRef vendor="intel" library="intel" name="reset" version="23.4"></ipxact:abstractionRef>
           <ipxact:portMaps>
             <ipxact:portMap>
               <ipxact:logicalPort>
@@ -109,10 +109,10 @@ https://fpgasoftware.intel.com/eula.-->
     </ipxact:busInterface>
     <ipxact:busInterface>
       <ipxact:name>outclk0</ipxact:name>
-      <ipxact:busType vendor="intel" library="intel" name="clock" version="23.2"></ipxact:busType>
+      <ipxact:busType vendor="intel" library="intel" name="clock" version="23.4"></ipxact:busType>
       <ipxact:abstractionTypes>
         <ipxact:abstractionType>
-          <ipxact:abstractionRef vendor="intel" library="intel" name="clock" version="23.2"></ipxact:abstractionRef>
+          <ipxact:abstractionRef vendor="intel" library="intel" name="clock" version="23.4"></ipxact:abstractionRef>
           <ipxact:portMaps>
             <ipxact:portMap>
               <ipxact:logicalPort>
@@ -135,7 +135,7 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="clockRate" type="longint">
           <ipxact:name>clockRate</ipxact:name>
           <ipxact:displayName>Clock rate</ipxact:displayName>
-          <ipxact:value>148484848</ipxact:value>
+          <ipxact:value>148437500</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="clockRateKnown" type="bit">
           <ipxact:name>clockRateKnown</ipxact:name>
@@ -401,8 +401,13 @@ https://fpgasoftware.intel.com/eula.-->
         </ipxact:parameter>
         <ipxact:parameter parameterId="gui_en_iossm_reconf" type="bit">
           <ipxact:name>gui_en_iossm_reconf</ipxact:name>
-          <ipxact:displayName>Enable dynamic reconfiguration of PLL</ipxact:displayName>
+          <ipxact:displayName>Enable dynamic reconfiguration of PLL using Calibration IP</ipxact:displayName>
           <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="gui_user_base_address" type="int">
+          <ipxact:name>gui_user_base_address</ipxact:name>
+          <ipxact:displayName>User base address of PLL for dynamic reconfiguration (0..255)</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="gui_en_dps_ports" type="bit">
           <ipxact:name>gui_en_dps_ports</ipxact:name>
@@ -427,12 +432,12 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="gui_reference_clock_frequency" type="real">
           <ipxact:name>gui_reference_clock_frequency</ipxact:name>
           <ipxact:displayName>Reference Clock Frequency</ipxact:displayName>
-          <ipxact:value>50.0</ipxact:value>
+          <ipxact:value>25.0</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="gui_reference_clock_frequency_ps" type="real">
           <ipxact:name>gui_reference_clock_frequency_ps</ipxact:name>
           <ipxact:displayName>Reference Clock Frequency</ipxact:displayName>
-          <ipxact:value>20000.0</ipxact:value>
+          <ipxact:value>40000.0</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="gui_use_coreclk" type="bit">
           <ipxact:name>gui_use_coreclk</ipxact:name>
@@ -682,6 +687,11 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="gui_extclkout_1_source" type="string">
           <ipxact:name>gui_extclkout_1_source</ipxact:name>
           <ipxact:displayName>extclk_out[1] source</ipxact:displayName>
+          <ipxact:value>C0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="gui_extclkout_source" type="string">
+          <ipxact:name>gui_extclkout_source</ipxact:name>
+          <ipxact:displayName>extclk_out source</ipxact:displayName>
           <ipxact:value>C0</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="gui_clock_name_global" type="bit">
@@ -1610,7 +1620,7 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;parameterValueMap&gt;
                     &lt;entry&gt;
                         &lt;key&gt;clockRate&lt;/key&gt;
-                        &lt;value&gt;50000000&lt;/value&gt;
+                        &lt;value&gt;25000000&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;externallyDriven&lt;/key&gt;
@@ -1687,7 +1697,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;clockRate&lt;/key&gt;
-                        &lt;value&gt;148484848&lt;/value&gt;
+                        &lt;value&gt;148437500&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;clockRateKnown&lt;/key&gt;
@@ -1719,13 +1729,18 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;consumedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                        &lt;value&gt;148484848&lt;/value&gt;
+                        &lt;value&gt;148437500&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/consumedSystemInfos&gt;
             &lt;/value&gt;
         &lt;/entry&gt;
     &lt;/connPtSystemInfos&gt;
 &lt;/systemInfosDefinition&gt;</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="dflBitArray" type="string">
+          <ipxact:name>dflBitArray</ipxact:name>
+          <ipxact:displayName>dflBitArray</ipxact:displayName>
+          <ipxact:value></ipxact:value>
         </ipxact:parameter>
       </ipxact:parameters>
     </altera:altera_system_parameters>

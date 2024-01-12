@@ -21,9 +21,9 @@
 //`define wFAB_I2C1
 `define wFAB_QSPI
 `define wADDA
-`define wHDMI
+//`define wHDMI
 //`define wLPDDR4B
-`define wLPDDR4A
+`define wLPDDR4A //EMIF HPS
 //`define wFMC
 //`define wCRUVI_HS_1
 //`define wCRUVI_HS_2
@@ -58,16 +58,17 @@ module axe5_eagle_top (
    output        USB_SSTX_p, USB_SSTX_n, 
    input         USB_SSRX_p, USB_SSRX_n, 
    input         USB_REFCLK_p, USB_REFCLK_n, 
+   output		 USB_HUB_RST,   
    `endif
    `ifdef wHPS_SD
    output        SD_CLK,
-   inout		     SD_CMD,
+   inout		 SD_CMD,
    inout         SD_DETECT,
    inout  [3:0]  SD_DAT,
    `endif
    `ifdef wHPS
    inout [1:0]   HPS_PB,
-   inout [1:0]   HPS_DIPSW,
+   inout 	     HPS_DIPSW[0:0],
    `endif
    
 
@@ -88,7 +89,7 @@ module axe5_eagle_top (
    inout         ETH1_MDIO,
    `endif
    `ifdef wHPS_EMAC2
-	inout         HPS_ETH2_RST, 
+   inout         HPS_ETH2_RST, 
    output        HPS_ETH2_TXCK, HPS_ETH2_TXCTL,
    output [3:0]  HPS_ETH2_TXD,
    input         HPS_ETH2_RXCK, HPS_ETH2_RXCTL,
@@ -326,6 +327,19 @@ module axe5_eagle_top (
    `endif
 
 	wire     osc_clock_bridge_out;
+	
+	//EG aggregates 
+	wire o_src_rs_grant;    //         rsif.src_rs_grant,    SRC_GRANT
+	wire i_src_rs_priority; //             .src_rs_priority, PRIORITY BIT
+	wire i_src_rs_req;      //             .src_rs_req,      SRC_REQ
+	wire o_pma_cu_clk;       // o_pma_cu_clk.clk,             PMA clock from PLL for proper calculation. For simulation only
+	
+	gts_reset_seq gts_reset_seq (
+		.o_src_rs_grant(o_src_rs_grant),
+		.i_src_rs_priority(i_src_rs_priority),
+		.i_src_rs_req(i_src_rs_req),
+		.o_pma_cu_clk(o_pma_cu_clk)
+	);
 
 	// Instantiate HPS system from Plaform Designer
     ghrd_hps_system hps_system (
@@ -447,13 +461,32 @@ module axe5_eagle_top (
         .hps_io_usb1_dir          (USB_DIR),
         .hps_io_usb1_data0        (USB_DATA[0]),
         .hps_io_usb1_data1        (USB_DATA[1]),
-        .hps_io_usb1_nxr          (USB_NXT),
+        .hps_io_usb1_nxt          (USB_NXT),
         .hps_io_usb1_data2        (USB_DATA[2]),
         .hps_io_usb1_data3        (USB_DATA[3]),
         .hps_io_usb1_data4        (USB_DATA[4]),
         .hps_io_usb1_data5        (USB_DATA[5]),
         .hps_io_usb1_data6        (USB_DATA[6]),
         .hps_io_usb1_data7        (USB_DATA[7]),
+		  // EG aggregates
+			.usb31_phy_pma_cpu_clk_clk(o_pma_cu_clk),              //    usb31_phy_pma_cpu_clk.clk --to reset seq.
+			.usb31_phy_refclk_p_clk(USB_REFCLK_p),                 //       usb31_phy_refclk_p.clk
+			.usb31_phy_refclk_n_clk(USB_REFCLK_n),                 //       usb31_phy_refclk_n.clk
+			.usb31_phy_rx_serial_n_i_rx_serial_n(USB_SSRX_n),    //    usb31_phy_rx_serial_n.i_rx_serial_n
+			.usb31_phy_rx_serial_p_i_rx_serial_p(USB_SSRX_p),    //    usb31_phy_rx_serial_p.i_rx_serial_p
+			.usb31_phy_tx_serial_n_o_tx_serial_n(USB_SSTX_n),    //    usb31_phy_tx_serial_n.o_tx_serial_n
+			.usb31_phy_tx_serial_p_o_tx_serial_p(USB_SSTX_p),    //    usb31_phy_tx_serial_p.o_tx_serial_p
+			.usb31_phy_reconfig_rst_reset(),           //   usb31_phy_reconfig_rst.reset
+			.usb31_phy_reconfig_clk_clk(),             //   usb31_phy_reconfig_clk.clk
+			.usb31_phy_reconfig_slave_address(),       // usb31_phy_reconfig_slave.address
+			.usb31_phy_reconfig_slave_byteenable(),    //                         .byteenable
+			.usb31_phy_reconfig_slave_readdatavalid(), //                         .readdatavalid
+			.usb31_phy_reconfig_slave_read(),          //                         .read
+			.usb31_phy_reconfig_slave_write(),         //                         .write
+			.usb31_phy_reconfig_slave_readdata(),      //                         .readdata
+			.usb31_phy_reconfig_slave_writedata(),     //                         .writedata
+			.usb31_phy_reconfig_slave_waitrequest(),   //                         .waitrequest
+		.usb_hub_rst_export		(USB_HUB_RST), 					
       `endif
       `ifdef wHPS
 		 `ifdef wHPS_LED0
@@ -465,23 +498,23 @@ module axe5_eagle_top (
         .hps_io_gpio8             (HPS_PB[0]),
         .hps_io_gpio9             (HPS_PB[1]),
         .hps_io_gpio10            (HPS_DIPSW[0]),
-        .hps_io_gpio11            (HPS_DIPSW[1]),
+        //.hps_io_gpio11            (HPS_DIPSW[1]),
         .hps_io_gpio28            (USB_RST),
-		  .hps_io_gpio34            (HPS_ETH2_RST),
+		.hps_io_gpio34            (HPS_ETH2_RST),
         .hps_io_gpio35            (SD_DETECT),
-		 `ifdef wLPDDR4A
-        .bank3a_lpddr4_refclk_clk    (LPDDR4A_REFCK_p),
-        .bank3a_lpddr4_mem_ck_t      (LPDDR4A_CK_P),
-        .bank3a_lpddr4_mem_ck_c      (LPDDR4A_CK_N),
-        .bank3a_lpddr4_mem_cke       (LPDDR4A_CKE),
-        .bank3a_lpddr4_mem_reset_n   (LPDDR4A_RST),
-        .bank3a_lpddr4_mem_cs        (LPDDR4A_CS_N),
-        .bank3a_lpddr4_mem_ca        (LPDDR4A_CA),
-        .bank3a_lpddr4_mem_dq        (LPDDR4A_DQ),
-        .bank3a_lpddr4_mem_dqs_t     ({LPDDR4A_DQSB1_p, LPDDR4A_DQSB0_p, LPDDR4A_DQSA1_p, LPDDR4A_DQSA0_p}),
-        .bank3a_lpddr4_mem_dqs_c     ({LPDDR4A_DQSB1_n, LPDDR4A_DQSB0_n, LPDDR4A_DQSA1_n, LPDDR4A_DQSA0_n}),
-        .bank3a_lpddr4_mem_dmi       ({LPDDR4A_DMB1,LPDDR4A_DMB0,LPDDR4A_DMA1,LPDDR4A_DMA0}),
-        .bank3a_lpddr4_oct_oct_rzqin (LPDDR4A_OCT_RZQIN)
+		 `ifdef wLPDDR4A //Port names changed 
+        .emif_bank3a_hps_emif_ref_clk_0_clk    (LPDDR4A_REFCK_p),
+        .emif_bank3a_hps_emif_mem_0_mem_ck_t      (LPDDR4A_CK_P),
+        .emif_bank3a_hps_emif_mem_0_mem_ck_c      (LPDDR4A_CK_N),
+        .emif_bank3a_hps_emif_mem_0_mem_cke       (LPDDR4A_CKE),
+        .emif_bank3a_hps_emif_mem_0_mem_reset_n   (LPDDR4A_RST),
+        .emif_bank3a_hps_emif_mem_0_mem_cs        (LPDDR4A_CS_N),
+        .emif_bank3a_hps_emif_mem_0_mem_ca        (LPDDR4A_CA), //?
+        .emif_bank3a_hps_emif_mem_0_mem_dq        (LPDDR4A_DQ),
+        .emif_bank3a_hps_emif_mem_0_mem_dqs_t     ({LPDDR4A_DQSB1_p, LPDDR4A_DQSB0_p, LPDDR4A_DQSA1_p, LPDDR4A_DQSA0_p}),
+        .emif_bank3a_hps_emif_mem_0_mem_dqs_c     ({LPDDR4A_DQSB1_n, LPDDR4A_DQSB0_n, LPDDR4A_DQSA1_n, LPDDR4A_DQSA0_n}),
+        .emif_bank3a_hps_emif_mem_0_mem_dmi       ({LPDDR4A_DMB1,LPDDR4A_DMB0,LPDDR4A_DMA1,LPDDR4A_DMA0}), //?
+        .emif_bank3a_hps_emif_oct_0_oct_rzqin (LPDDR4A_OCT_RZQIN)
 		 `endif
 		`endif
 		`ifdef wLPDDR4B

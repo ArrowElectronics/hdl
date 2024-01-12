@@ -1,0 +1,6 @@
+22 serialization::archive 19 9 721440512 49 Version 23.4.0 Build 79 11/22/2023 SC Pro Edition 0 0 5 0 0 0 16 dms:cdms:version 0 0 1 0
+0 5 49 Version 23.4.0 Build 79 11/22/2023 SC Pro Edition 17 dms:cdms:snapshot
+1 5 11 partitioned 17 dms:cdms:sub_type
+2 5 10 checkpoint 28 dms:cdms:is_checkpoint_valid
+3 0 1 29 dms:cdms:checkpoint_timestamp
+4 4 1705078760

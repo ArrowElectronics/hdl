@@ -11,9 +11,9 @@
 // agreement for further details.
 
 
-// $Id: //acds/rel/23.2/ip/iconnect/pd_components/altera_std_synchronizer/altera_std_synchronizer.v#1 $
+// $Id: //acds/rel/23.4/ip/iconnect/pd_components/altera_std_synchronizer/altera_std_synchronizer.v#1 $
 // $Revision: #1 $
-// $Date: 2023/04/27 $
+// $Date: 2023/10/12 $
 // $Author: psgswbuild $
 //-----------------------------------------------------------------------------
 //
@@ -157,3 +157,6 @@ endmodule
 
 
 			
+`ifdef QUESTA_INTEL_OEM
+`pragma questa_oem_00 "iWuZC8Nn9BMZMdFDqeo3tV7f3XcgfspbF23+q262oovu+2QwoKS0wc3UIV5hZSa+mQ3EXdW78rO/kwSEAiSCIsoxxX7DiQXp9Sf6SzfNbG0KBEnp5A2P5lvVCpVoE3b9dH4C0f8jIPmTQgMVqG26w9wh0UAiRE/6B6dED00hVwJTwiYfJATTPRoj6zprzEhUZ5qEM6XL2DuOH7+sUvEeDxE92XPcYBXrUAon2tEV0waitcpkNqLoNEcJjn8Jl4yK6qAYaRidbYqNN2P0ObKzKytJXzof2LfG28UuLJ2Jtkw+xS0VXQFMsIq/zjx8ePC6+7Aamhj5X0vw/OB7QhAYu6N/ZmgWtO8KQ897bF2nV0pAJ5MqWFDl/HRreirHdygv37ftojVbcMj/vAMO2+YCbdyPEHOQ8JhoOltOy0lM3pNSmkkCh79asQT5doWvwBBmNzMtyDdIS+u5Vy01jYV/qPy9xjLavKtFVtZ9Gs++TQ4RVzqmLJa90fRy6WpasXTgqNc0MqgaaZNWKz/OEM5E2nkJxDied14fJPefXn4AvVpvfabrPFhsj5rkHKSoH4GAcxovjQbkxKTpxjDBNblnTmHXAMqXoRLFIFZKnvJ4NZpZIeENBPLCh05GvEXsasBzPHVwCuS3jfo2hUweVg0L04feklZEp7RFYhM7FqzKp/+EdGvqcgaQKHBs8pLcbPPf0gDYft0kd/YsOSkEazVcxIuH5iXHFHvcYQ9REZAquy5oVEURnQI0Y4z8JyGGeKLJhPMcOANcLjHt8fDuBktyZ6JIBd7qN3nJAOYDat2E/LB8aG03GRLbb2TIyypFDN96FzNL0To84QxH8qOW1CzGLJeBRMjrArdFEz9VA91LQYsEyt9lMKIqOdjtdaVFFdHyk+qK1bKLOS+lNlUhi1a/PNGsSSHnQ6k5x/WV7mnsUE7GUCNSHdN/5q0ysw6pWis6vdSyERWhAJfXrfFs02ol6OC92uoA4iT2QG7pV6QYgoepV50SL9PWKG+IT78LpynE"
+`endif

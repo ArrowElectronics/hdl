@@ -1,12 +1,14 @@
 module peripheral_sys_mm_bridge_0 #(
-		parameter DATA_WIDTH        = 32,
-		parameter SYMBOL_WIDTH      = 8,
-		parameter HDL_ADDR_WIDTH    = 24,
-		parameter BURSTCOUNT_WIDTH  = 1,
-		parameter PIPELINE_COMMAND  = 1,
-		parameter PIPELINE_RESPONSE = 1,
-		parameter SYNC_RESET        = 0,
-		parameter USE_WRITERESPONSE = 0
+		parameter DATA_WIDTH               = 32,
+		parameter SYMBOL_WIDTH             = 8,
+		parameter HDL_ADDR_WIDTH           = 24,
+		parameter BURSTCOUNT_WIDTH         = 1,
+		parameter PIPELINE_COMMAND         = 1,
+		parameter PIPELINE_RESPONSE        = 1,
+		parameter SYNC_RESET               = 0,
+		parameter USE_WRITERESPONSE        = 0,
+		parameter S0_WAITREQUEST_ALLOWANCE = 0,
+		parameter M0_WAITREQUEST_ALLOWANCE = 0
 	) (
 		input  wire                        clk,              //   clk.clk
 		input  wire                        reset,            // reset.reset

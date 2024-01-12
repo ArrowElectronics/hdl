@@ -271,7 +271,10 @@ module ghrd_hps_system_altera_merlin_slave_translator_191_x56fcki #(
             address_reg    <= address_reg;
             if(av_beginbursttransfer) begin
                burstcount_reg <= uav_burstcount [ BURSTCOUNT_HIGH - 1 + BURSTCOUNT_SHIFT_SELECTOR : BURSTCOUNT_SHIFT_SELECTOR ];
-               address_reg    <= real_uav_address [ ADDRESS_HIGH - 1 + ADDRESS_SHIFT_SELECTOR : ADDRESS_SHIFT_SELECTOR ];
+               if (UAV_ADDRESS_W == ADDRESS_SHIFT_SELECTOR &&  (UAV_ADDRESS_W < AV_ADDRESS_W + ADDRESS_SHIFT_SELECTOR))
+                   address_reg    <= real_uav_address [ ADDRESS_HIGH - 1 + ADDRESS_SHIFT_SELECTOR : ADDRESS_SHIFT_SELECTOR -1];
+               else
+                   address_reg    <= real_uav_address [ ADDRESS_HIGH - 1 + ADDRESS_SHIFT_SELECTOR : ADDRESS_SHIFT_SELECTOR ];
             end
          end
       end
@@ -288,7 +291,10 @@ module ghrd_hps_system_altera_merlin_slave_translator_191_x56fcki #(
             address_reg    <= address_reg;
             if(av_beginbursttransfer) begin
                burstcount_reg <= uav_burstcount [ BURSTCOUNT_HIGH - 1 + BURSTCOUNT_SHIFT_SELECTOR : BURSTCOUNT_SHIFT_SELECTOR ];
-               address_reg    <= real_uav_address [ ADDRESS_HIGH - 1 + ADDRESS_SHIFT_SELECTOR : ADDRESS_SHIFT_SELECTOR ];
+               if (UAV_ADDRESS_W == ADDRESS_SHIFT_SELECTOR &&  (UAV_ADDRESS_W < AV_ADDRESS_W + ADDRESS_SHIFT_SELECTOR))
+                   address_reg    <= real_uav_address [ ADDRESS_HIGH - 1 + ADDRESS_SHIFT_SELECTOR : ADDRESS_SHIFT_SELECTOR -1];
+               else
+                   address_reg    <= real_uav_address [ ADDRESS_HIGH - 1 + ADDRESS_SHIFT_SELECTOR : ADDRESS_SHIFT_SELECTOR ];     
             end
          end
       end
@@ -305,7 +311,11 @@ module ghrd_hps_system_altera_merlin_slave_translator_191_x56fcki #(
          real_uav_address = uav_address;
       end
 
-      av_address = real_uav_address[ADDRESS_HIGH - 1  + ADDRESS_SHIFT_SELECTOR : ADDRESS_SHIFT_SELECTOR ];
+      if (UAV_ADDRESS_W == ADDRESS_SHIFT_SELECTOR &&  (UAV_ADDRESS_W < AV_ADDRESS_W + ADDRESS_SHIFT_SELECTOR))
+          av_address = real_uav_address[ADDRESS_HIGH - 1  + ADDRESS_SHIFT_SELECTOR : ADDRESS_SHIFT_SELECTOR -1];
+      else
+          av_address = real_uav_address[ADDRESS_HIGH - 1  + ADDRESS_SHIFT_SELECTOR : ADDRESS_SHIFT_SELECTOR ];
+
       if( AV_CONSTANT_BURST_BEHAVIOR && !UAV_CONSTANT_BURST_BEHAVIOR && ~av_beginbursttransfer )
          av_address = address_reg;
    end

@@ -11,9 +11,9 @@
 // agreement for further details.
 
 
-// $File: //acds/rel/23.2/ip/iconnect/avalon_st/altera_avalon_st_handshake_clock_crosser/altera_avalon_st_clock_crosser.v $
+// $File: //acds/rel/23.4/ip/iconnect/avalon_st/altera_avalon_st_handshake_clock_crosser/altera_avalon_st_clock_crosser.v $
 // $Revision: #1 $
-// $Date: 2023/04/27 $
+// $Date: 2023/10/12 $
 // $Author: psgswbuild $
 //------------------------------------------------------------------------------
 
@@ -185,3 +185,6 @@ assign reset_merged = in_reset  | out_reset;
   endgenerate
  
 endmodule
+`ifdef QUESTA_INTEL_OEM
+`pragma questa_oem_00 "Gwt3whRcE3+dmXyqrSB7tq2BawD3oh9aWud7Z4eAN187O43IWvM/KG8cuzSO3rcLdOg/6M8a5bUzV8fSCamrY3rLfHnQy43nef+FViJgCalid4DqTidvdzU87e5ZQ/v7HVm3olDBJc6LsbYrqiDrF0RkIcqQRi4zpc6Rtw0M2aW8FBhW2R9GBM/OcdpnaI+Km4xIFjjLOMKR0kXUH+3JyiE6l+btThmGIC55ugx3xhq+ywZMTSFHbWRD2up+T2cQ7PqrwChSpGz1LtMLzPZgJV4nKEbRFPo2wpMot/Jau5eAMkyqeefWBKUjlK3WdG0+DoGKCCKJ7De5upTRWyovaWnBs7gIBqwh15UgLhWziA3/OajqU5440W8LXNuh1jaTj/hAM/fGMkH7falKHSQpNINpp6eGOHgv83/Qnl3qU9AjrinER5tHMmitw9FoYDS9LiByvAVqQbxhgroVrAzdXJGCQDAbg+BaEWEvqMXnzit37Zc7eF8V4e3NL179s/D16Lgxw2XhFVJ85QGrGUKxSkh9XdqVXDwiygHr/wNpHLAf64cB4o6xAQjbum63agBAIFeUcxxUiGpCPJLplJ5sY7e/9YEeOFT+snL6ijvSZ7hqAyJIiAYtrkydhk6MgHEkBuhHMEhImWc2aHhGbd5rCaVVpg5RKWaK9Ma5qCXHHUTZTR2Xan8FAept+g9tfi6DJqNBLhZcBt31G+Lm7yxjJsvGYrdGODkakek3osRNKuYWguw8B7DxkLgvRrualr2fodBelm6pZFgqMA0h0LV3jKByZco8xSZwOw441MlaZLQDt1lz5JnSvbTnJVMHh+6J9XxATKYQk3TTlpX9M8DV95uowtoQExJzHEncXQ3S3lbL9EojYwSJRpAK+Xb4ku7kce2j5oJhMIMn4snJrVbOsPDry02/SrY69N/lo53rW77phgJUVcrrjjQvrJMJZdDlJ1xb1JeIn5twbLr39dcdiA4Z4nJOCiWd5F3p5x6eReSmzaSorhul0GbVcxk2CC7e"
+`endif

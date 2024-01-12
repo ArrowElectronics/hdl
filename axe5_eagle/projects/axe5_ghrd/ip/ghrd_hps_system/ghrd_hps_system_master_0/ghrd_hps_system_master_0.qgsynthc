@@ -137,7 +137,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>b2p.out_packets_stream/b2p_adapter.in</name>
                 <end>b2p_adapter/in</end>
                 <start>b2p/out_packets_stream</start>
@@ -163,7 +163,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/b2p.clk</name>
                 <end>b2p/clk</end>
                 <start>clk_src/out_clk</start>
@@ -233,7 +233,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>fifo.out/b2p.in_bytes_stream</name>
                 <end>b2p/in_bytes_stream</end>
                 <start>fifo/out</start>
@@ -255,7 +255,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>b2p/clk_reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -397,7 +397,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>b2p.out_packets_stream/b2p_adapter.in</name>
                 <end>b2p_adapter/in</end>
                 <start>b2p/out_packets_stream</start>
@@ -467,7 +467,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>b2p_adapter.out/transacto.in_stream</name>
                 <end>transacto/in_stream</end>
                 <start>b2p_adapter/out</start>
@@ -493,7 +493,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/b2p_adapter.clk</name>
                 <end>b2p_adapter/clk</end>
                 <start>clk_src/out_clk</start>
@@ -515,7 +515,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>b2p_adapter/reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -535,6 +535,10 @@
               <parameter>
                 <name>NUM_RESET_OUTPUTS</name>
                 <value>1</value>
+              </parameter>
+              <parameter>
+                <name>O_SYNCHRONOUS_EDGES</name>
+                <value>none</value>
               </parameter>
               <parameter>
                 <name>SYNCHRONOUS_EDGES</name>
@@ -573,7 +577,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>rst_controller/reset_in0</end>
                 <start>clk_rst/out_reset</start>
               </incidentConnection>
@@ -627,7 +631,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/b2p.clk</name>
                 <end>b2p/clk</end>
                 <start>clk_src/out_clk</start>
@@ -653,7 +657,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/b2p_adapter.clk</name>
                 <end>b2p_adapter/clk</end>
                 <start>clk_src/out_clk</start>
@@ -679,7 +683,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/fifo.clk</name>
                 <end>fifo/clk</end>
                 <start>clk_src/out_clk</start>
@@ -705,7 +709,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/jtag_phy_embedded_in_jtag_master.clock</name>
                 <end>jtag_phy_embedded_in_jtag_master/clock</end>
                 <start>clk_src/out_clk</start>
@@ -731,7 +735,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/p2b.clk</name>
                 <end>p2b/clk</end>
                 <start>clk_src/out_clk</start>
@@ -757,7 +761,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/p2b_adapter.clk</name>
                 <end>p2b_adapter/clk</end>
                 <start>clk_src/out_clk</start>
@@ -783,7 +787,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>rst_controller/clk</end>
                 <start>clk_src/out_clk</start>
               </incidentConnection>
@@ -808,7 +812,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/timing_adt.clk</name>
                 <end>timing_adt/clk</end>
                 <start>clk_src/out_clk</start>
@@ -834,7 +838,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/transacto.clk</name>
                 <end>transacto/clk</end>
                 <start>clk_src/out_clk</start>
@@ -941,7 +945,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/fifo.clk</name>
                 <end>fifo/clk</end>
                 <start>clk_src/out_clk</start>
@@ -1011,7 +1015,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>fifo.out/b2p.in_bytes_stream</name>
                 <end>b2p/in_bytes_stream</end>
                 <start>fifo/out</start>
@@ -1033,7 +1037,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>fifo/clk_reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -1102,7 +1106,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>timing_adt.out/fifo.in</name>
                 <end>fifo/in</end>
                 <start>timing_adt/out</start>
@@ -1186,7 +1190,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/jtag_phy_embedded_in_jtag_master.clock</name>
                 <end>jtag_phy_embedded_in_jtag_master/clock</end>
                 <start>clk_src/out_clk</start>
@@ -1256,7 +1260,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>jtag_phy_embedded_in_jtag_master.src/timing_adt.in</name>
                 <end>timing_adt/in</end>
                 <start>jtag_phy_embedded_in_jtag_master/src</start>
@@ -1326,7 +1330,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>p2b.out_bytes_stream/jtag_phy_embedded_in_jtag_master.sink</name>
                 <end>jtag_phy_embedded_in_jtag_master/sink</end>
                 <start>p2b/out_bytes_stream</start>
@@ -1348,7 +1352,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>jtag_phy_embedded_in_jtag_master/clock_reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -1403,7 +1407,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/p2b.clk</name>
                 <end>p2b/clk</end>
                 <start>clk_src/out_clk</start>
@@ -1473,7 +1477,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>p2b.out_bytes_stream/jtag_phy_embedded_in_jtag_master.sink</name>
                 <end>jtag_phy_embedded_in_jtag_master/sink</end>
                 <start>p2b/out_bytes_stream</start>
@@ -1543,7 +1547,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>p2b_adapter.out/p2b.in_packets_stream</name>
                 <end>p2b/in_packets_stream</end>
                 <start>p2b_adapter/out</start>
@@ -1565,7 +1569,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>p2b/clk_reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -1663,7 +1667,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/p2b_adapter.clk</name>
                 <end>p2b_adapter/clk</end>
                 <start>clk_src/out_clk</start>
@@ -1733,7 +1737,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>p2b_adapter.out/p2b.in_packets_stream</name>
                 <end>p2b/in_packets_stream</end>
                 <start>p2b_adapter/out</start>
@@ -1755,7 +1759,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>p2b_adapter/reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -1824,7 +1828,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>transacto.out_stream/p2b_adapter.in</name>
                 <end>p2b_adapter/in</end>
                 <start>transacto/out_stream</start>
@@ -1941,7 +1945,7 @@
             </parameters>
             <interconnectAssignments></interconnectAssignments>
             <className>altera_reset_controller</className>
-            <version>19.2.1</version>
+            <version>19.2.2</version>
             <name>rst_controller</name>
             <uniqueName>altera_reset_controller</uniqueName>
             <fixedName>altera_reset_controller</fixedName>
@@ -1964,7 +1968,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>rst_controller/reset_in0</end>
                 <start>clk_rst/out_reset</start>
               </incidentConnection>
@@ -1989,7 +1993,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>rst_controller/clk</end>
                 <start>clk_src/out_clk</start>
               </incidentConnection>
@@ -2010,7 +2014,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>b2p/clk_reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -2031,7 +2035,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>b2p_adapter/reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -2052,7 +2056,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>fifo/clk_reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -2073,7 +2077,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>jtag_phy_embedded_in_jtag_master/clock_reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -2094,7 +2098,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>p2b/clk_reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -2115,7 +2119,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>p2b_adapter/reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -2136,7 +2140,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>timing_adt/reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -2157,7 +2161,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>transacto/clk_reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -2263,7 +2267,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/timing_adt.clk</name>
                 <end>timing_adt/clk</end>
                 <start>clk_src/out_clk</start>
@@ -2333,7 +2337,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>jtag_phy_embedded_in_jtag_master.src/timing_adt.in</name>
                 <end>timing_adt/in</end>
                 <start>jtag_phy_embedded_in_jtag_master/src</start>
@@ -2355,7 +2359,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>timing_adt/reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -2424,7 +2428,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>timing_adt.out/fifo.in</name>
                 <end>fifo/in</end>
                 <start>timing_adt/out</start>
@@ -2528,7 +2532,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>b2p_adapter.out/transacto.in_stream</name>
                 <end>transacto/in_stream</end>
                 <start>b2p_adapter/out</start>
@@ -2554,7 +2558,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>clk_src.out_clk/transacto.clk</name>
                 <end>transacto/clk</end>
                 <start>clk_src/out_clk</start>
@@ -2576,7 +2580,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <end>transacto/clk_reset</end>
                 <start>rst_controller/reset_out</start>
               </incidentConnection>
@@ -2645,7 +2649,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon_streaming</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>transacto.out_stream/p2b_adapter.in</name>
                 <end>p2b_adapter/in</end>
                 <start>transacto/out_stream</start>

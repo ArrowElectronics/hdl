@@ -1,0 +1,76 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2023  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the Intel FPGA Software License Subscription Agreements 
+on the Quartus Prime software download page.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 0 0 304 168)
+	(text "gts_reset_seq" (rect 105 0 162 12)(font "Arial" (font_size 11)))
+	(text "inst" (rect 8 152 20 164)(font "Arial" ))
+	(port
+		(pt 0 96)
+		(input)
+		(text "i_src_rs_priority" (rect 0 0 67 12)(font "Arial" (font_size 8)))
+		(text "i_src_rs_priority" (rect 4 90 106 101)(font "Arial" (font_size 8)))
+	)
+	(port
+		(pt 0 120)
+		(input)
+		(text "i_src_rs_req" (rect 0 0 53 12)(font "Arial" (font_size 8)))
+		(text "i_src_rs_req" (rect 4 115 76 126)(font "Arial" (font_size 8)))
+	)
+	(port
+		(pt 0 72)
+		(output)
+		(text "o_src_rs_grant" (rect 0 0 63 12)(font "Arial" (font_size 8)))
+		(text "o_src_rs_grant" (rect 4 65 88 76)(font "Arial" (font_size 8)))
+	)
+	(port
+		(pt 304 72)
+		(output)
+		(text "o_pma_cu_clk" (rect 0 0 60 12)(font "Arial" (font_size 8)))
+		(text "o_pma_cu_clk" (rect 232 65 304 76)(font "Arial" (font_size 8)))
+	)
+	(drawing
+		(text "rsif" (rect 83 46 190 105)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "src_rs_grant" (rect 107 71 286 152)(font "Arial" (color 0 0 0)))
+		(text "src_rs_priority" (rect 107 96 304 202)(font "Arial" (color 0 0 0)))
+		(text "src_rs_req" (rect 107 121 274 252)(font "Arial" (color 0 0 0)))
+		(text "o_pma_cu_clk" (rect 205 46 482 105)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "clk" (rect 189 71 396 152)(font "Arial" (color 0 0 0)))
+		(text " gts_reset_seq " (rect 241 151 572 312)(font "Arial" ))
+		(line (pt 102 34)(pt 204 34)(line_width 1))
+		(line (pt 204 34)(pt 204 151)(line_width 1))
+		(line (pt 102 151)(pt 204 151)(line_width 1))
+		(line (pt 102 34)(pt 102 151)(line_width 1))
+		(line (pt 0 76)(pt 102 76)(line_width 1))
+		(line (pt 0 101)(pt 102 101)(line_width 1))
+		(line (pt 0 126)(pt 102 126)(line_width 1))
+		(line (pt 103 55)(pt 103 130)(line_width 1))
+		(line (pt 104 55)(pt 104 130)(line_width 1))
+		(line (pt 306 76)(pt 204 76)(line_width 1))
+		(line (pt 203 55)(pt 203 80)(line_width 1))
+		(line (pt 202 55)(pt 202 80)(line_width 1))
+		(line (pt 0 0)(pt 306 0)(line_width 1))
+		(line (pt 306 0)(pt 306 168)(line_width 1))
+		(line (pt 0 168)(pt 306 168)(line_width 1))
+		(line (pt 0 0)(pt 0 168)(line_width 1))
+	)
+)

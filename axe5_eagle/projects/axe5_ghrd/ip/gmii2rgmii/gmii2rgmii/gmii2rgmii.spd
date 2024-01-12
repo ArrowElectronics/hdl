@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="intel_gmii_to_rgmii_converter_core_110/sim/intel_gmii_to_rgmii_adapter.v"
+   type="VERILOG"
+   library="intel_gmii_to_rgmii_converter_core_110" />
+ <file
+   path="intel_gmii_to_rgmii_converter_core_110/sim/altera_gtr_mac_speed_filter.v"
+   type="VERILOG"
+   library="intel_gmii_to_rgmii_converter_core_110" />
+ <file
+   path="intel_gmii_to_rgmii_converter_core_110/sim/altera_gtr_pipeline_stage.v"
+   type="VERILOG"
+   library="intel_gmii_to_rgmii_converter_core_110" />
+ <file
+   path="intel_gmii_to_rgmii_converter_core_110/sim/altera_gtr_clock_mux.v"
+   type="VERILOG"
+   library="intel_gmii_to_rgmii_converter_core_110" />
+ <file
+   path="intel_gmii_to_rgmii_converter_core_110/sim/altera_gtr_reset_synchronizer.v"
+   type="VERILOG"
+   library="intel_gmii_to_rgmii_converter_core_110" />
+ <file
+   path="intel_gmii_to_rgmii_converter_core_110/sim/intel_rgmii_module.v"
+   type="VERILOG"
+   library="intel_gmii_to_rgmii_converter_core_110" />
+ <file
+   path="intel_gmii_to_rgmii_converter_core_110/sim/intel_clock_mux_3to1.v"
+   type="VERILOG"
+   library="intel_gmii_to_rgmii_converter_core_110" />
+ <file
+   path="intel_gmii_to_rgmii_converter_core_110/sim/dcfifo_2to1.v"
+   type="VERILOG"
+   library="intel_gmii_to_rgmii_converter_core_110" />
+ <file
+   path="intel_gmii_to_rgmii_converter_core_110/sim/dcfifo_1to2.v"
+   type="VERILOG"
+   library="intel_gmii_to_rgmii_converter_core_110" />
+ <file
+   path="altera_iopll_1931/sim/gmii2rgmii_altera_iopll_1931_uizzywy.vo"
+   type="VERILOG"
+   library="altera_iopll_1931" />
+ <file
+   path="altera_reset_controller_1922/sim/altera_reset_controller.v"
+   type="VERILOG"
+   library="altera_reset_controller_1922" />
+ <file
+   path="altera_reset_controller_1922/sim/altera_reset_synchronizer.v"
+   type="VERILOG"
+   library="altera_reset_controller_1922" />
+ <file
+   path="altera_reset_controller_1922/sim/altera_reset_controller.sdc"
+   type="SDC_ENTITY"
+   library="altera_reset_controller_1922" />
+ <file
+   path="intel_gmii_to_rgmii_converter_110/sim/gmii2rgmii_intel_gmii_to_rgmii_converter_110_k66aagy.v"
+   type="VERILOG"
+   library="intel_gmii_to_rgmii_converter_110"
+   hasInlineConfiguration="true" />
+ <file
+   path="sim/gmii2rgmii.v"
+   type="VERILOG"
+   library="gmii2rgmii"
+   hasInlineConfiguration="true" />
+ <topLevel name="gmii2rgmii.gmii2rgmii" />
+ <deviceFamily name="agilex5" />
+ <device name="A5ED065BB32AE4SR0" />
+</simPackage>

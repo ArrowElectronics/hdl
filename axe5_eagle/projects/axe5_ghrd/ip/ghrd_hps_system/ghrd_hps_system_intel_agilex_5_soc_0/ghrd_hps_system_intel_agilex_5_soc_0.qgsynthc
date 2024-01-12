@@ -82,11 +82,11 @@
           </parameter>
           <parameter>
             <name>EMIF_AXI_Enable</name>
-            <value>false</value>
+            <value>true</value>
           </parameter>
           <parameter>
             <name>EMIF_Topology</name>
-            <value>0</value>
+            <value>1</value>
           </parameter>
           <parameter>
             <name>F2H_IRQ_Enable</name>
@@ -145,11 +145,11 @@
             <value>125.0</value>
           </parameter>
           <parameter>
-            <name>FPGA_I3CM_sclk_mhz</name>
+            <name>FPGA_I3C0_sclk_mhz</name>
             <value>125.0</value>
           </parameter>
           <parameter>
-            <name>FPGA_I3CS_sclk_mhz</name>
+            <name>FPGA_I3C1_sclk_mhz</name>
             <value>125.0</value>
           </parameter>
           <parameter>
@@ -289,8 +289,603 @@
             <value>32</value>
           </parameter>
           <parameter>
+            <name>HPS_HANDOFF_OPTION_STRING</name>
+            <value>    HPS_PRESENT: true
+    HPS_DDR_PRESENT: true
+    hps_wachdog_expiration: COLD_RESET
+    cores_power_state: 15
+    boot_core: 0
+    l3_cache_size: FULL_ON
+    f2soc_intfcsel: DISABLE
+    f2sdram_intfcsel: ENABLE</value>
+          </parameter>
+          <parameter>
+            <name>HPS_HANDOFF_STRING</name>
+            <value>pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 5
+}
+pinmux_select {
+  value: 5
+}
+pinmux_select {
+  value: 4
+}
+pinmux_select {
+  value: 4
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 9
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 3
+}
+pinmux_select {
+  value: 3
+}
+pinmux_select {
+  value: 3
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 3
+}
+pinmux_select {
+  value: 3
+}
+pinmux_select {
+  value: 3
+}
+pinmux_select {
+  value: 5
+}
+pinmux_select {
+  value: 5
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+reg {
+  reg_name: "mainpllgrp.nocclk.src"
+  reg_value: 0
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.cspdbgclk"
+  reg_value: 2
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.cstraceclk"
+  reg_value: 2
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.csclk"
+  reg_value: 0
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.mpuperiphdiv"
+  reg_value: 2
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.ccudiv"
+  reg_value: 1
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.softphydiv"
+  reg_value: 2
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.l4spclk"
+  reg_value: 2
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.l4mpclk"
+  reg_value: 1
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.l4sysfreeclk"
+  reg_value: 2
+}
+reg {
+  reg_name: "mainpllgrp.pllglob.modclkdiv"
+  reg_value: 7
+}
+reg {
+  reg_name: "mainpllgrp.pllglob.fastrefclk"
+  reg_value: 0
+}
+reg {
+  reg_name: "mainpllgrp.pllglob.psrc"
+  reg_value: 0
+}
+reg {
+  reg_name: "mainpllgrp.pllglob.drefclkdiv"
+  reg_value: 0
+}
+reg {
+  reg_name: "mainpllgrp.pllglob.arefclkdiv"
+  reg_value: 1
+}
+reg {
+  reg_name: "mainpllgrp.fdbck.fdiv"
+  reg_value: 0
+}
+reg {
+  reg_name: "mainpllgrp.pllc0.div"
+  reg_value: 5
+}
+reg {
+  reg_name: "mainpllgrp.pllc1.div"
+  reg_value: 5
+}
+reg {
+  reg_name: "mainpllgrp.pllc2.div"
+  reg_value: 8
+}
+reg {
+  reg_name: "mainpllgrp.pllc3.div"
+  reg_value: 10
+}
+reg {
+  reg_name: "mainpllgrp.pllm.mdiv"
+  reg_value: 160
+}
+reg {
+  reg_name: "perpllgrp.emacctl.emac0sel"
+  reg_value: 0
+}
+reg {
+  reg_name: "perpllgrp.emacctl.emac1sel"
+  reg_value: 0
+}
+reg {
+  reg_name: "perpllgrp.emacctl.emac2sel"
+  reg_value: 0
+}
+reg {
+  reg_name: "perpllgrp.pllglob.modclkdiv"
+  reg_value: 6
+}
+reg {
+  reg_name: "perpllgrp.pllglob.fstrefclk"
+  reg_value: 0
+}
+reg {
+  reg_name: "perpllgrp.pllglob.psrc"
+  reg_value: 0
+}
+reg {
+  reg_name: "perpllgrp.pllglob.drefclkdiv"
+  reg_value: 0
+}
+reg {
+  reg_name: "perpllgrp.pllglob.arefclkdiv"
+  reg_value: 1
+}
+reg {
+  reg_name: "perpllgrp.fdbck.fdiv"
+  reg_value: 0
+}
+reg {
+  reg_name: "perpllgrp.pllc0.div"
+  reg_value: 4
+}
+reg {
+  reg_name: "perpllgrp.pllc1.div"
+  reg_value: 2
+}
+reg {
+  reg_name: "perpllgrp.pllc2.div"
+  reg_value: 140
+}
+reg {
+  reg_name: "perpllgrp.pllc3.div"
+  reg_value: 7
+}
+reg {
+  reg_name: "perpllgrp.pllm.mdiv"
+  reg_value: 140
+}
+reg {
+  reg_name: "ctl.emacactr.src"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.emacactr.cnt"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.emacbctr.src"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.emacbctr.cnt"
+  reg_value: 9
+}
+reg {
+  reg_name: "ctl.emacptpctr.src"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.emacptpctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.gpiodbctr.src"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.gpiodbctr.cnt"
+  reg_value: 1
+}
+reg {
+  reg_name: "perpllgrp.gpiodiv.gpiodbclk"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.s2fuser0ctr.src"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.s2fuser0ctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.s2fuser1ctr.src"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.s2fuser1ctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.psirefctr.src"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.psirefctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.usb31ctr.src"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.usb31ctr.cnt"
+  reg_value: 19
+}
+reg {
+  reg_name: "ctl.dsuctr.src"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.dsuctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.core01ctr.src"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.core01ctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.core23ctr.src"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.core2ctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.core3ctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "hps_osc_clk_hz"
+  reg_value: 25000000
+}
+reg {
+  reg_name: "fpga_clk_hz"
+  reg_value: 200000000
+}
+</value>
+          </parameter>
+          <parameter>
             <name>HPS_IO_Enable</name>
-            <value>HCLK:HPS_OSC_CLK,NONE,UART0:TX,UART0:RX,I2C0:SDA,I2C0:SCL,GPIO0:IO6,GPIO0:IO7,GPIO0:IO8,GPIO0:IO9,GPIO0:IO10,GPIO0:IO11,USB1:CLK,USB1:STP,USB1:DIR,USB1:DATA0,USB1:DATA1,USB1:NXT,USB1:DATA2,USB1:DATA3,USB1:DATA4,USB1:DATA5,USB1:DATA6,USB1:DATA7,SDMMC:DATA0,SDMMC:DATA1,SDMMC:CCLK,NONE,GPIO1:IO4,SDMMC:DATA2,SDMMC:DATA3,SDMMC:CMD,MDIO2:MDIO,MDIO2:MDC,GPIO1:IO10,GPIO1:IO11,EMAC2:TX_CLK,EMAC2:TX_CTL,EMAC2:RX_CLK,EMAC2:RX_CTL,EMAC2:TXD0,EMAC2:TXD1,EMAC2:RXD0,EMAC2:RXD1,EMAC2:TXD2,EMAC2:TXD3,EMAC2:RXD2,EMAC2:RXD3</value>
+            <value>NONE,NONE,UART0:TX,UART0:RX,I2C0:SDA,I2C0:SCL,GPIO0:IO6,GPIO0:IO7,GPIO0:IO8,GPIO0:IO9,GPIO0:IO10,HCLK:HPS_OSC_CLK,USB1:CLK,USB1:STP,USB1:DIR,USB1:DATA0,USB1:DATA1,USB1:NXT,USB1:DATA2,USB1:DATA3,USB1:DATA4,USB1:DATA5,USB1:DATA6,USB1:DATA7,SDMMC:DATA0,SDMMC:DATA1,SDMMC:CCLK,NONE,GPIO1:IO4,SDMMC:DATA2,SDMMC:DATA3,SDMMC:CMD,MDIO2:MDIO,MDIO2:MDC,GPIO1:IO10,GPIO1:IO11,EMAC2:TX_CLK,EMAC2:TX_CTL,EMAC2:RX_CLK,EMAC2:RX_CTL,EMAC2:TXD0,EMAC2:TXD1,EMAC2:RXD0,EMAC2:RXD1,EMAC2:TXD2,EMAC2:TXD3,EMAC2:RXD2,EMAC2:RXD3</value>
           </parameter>
           <parameter>
             <name>I2C0_Mode</name>
@@ -766,7 +1361,7 @@
           </parameter>
           <parameter>
             <name>MPFE_f2s_data_width</name>
-            <value>256</value>
+            <value>0</value>
           </parameter>
           <parameter>
             <name>MPFE_f2s_mode</name>
@@ -838,7 +1433,7 @@
           </parameter>
           <parameter>
             <name>MPU_clk_ccu_div</name>
-            <value>1</value>
+            <value>2</value>
           </parameter>
           <parameter>
             <name>MPU_clk_freq_override_mhz</name>
@@ -846,7 +1441,7 @@
           </parameter>
           <parameter>
             <name>MPU_clk_frequencies</name>
-            <value>500.00,500.0,500.0,875.00,800.00,800.00</value>
+            <value>500.00,250.0,125.0,875.00,800.00,800.00</value>
           </parameter>
           <parameter>
             <name>MPU_clk_outputs</name>
@@ -858,7 +1453,7 @@
           </parameter>
           <parameter>
             <name>MPU_clk_periph_div</name>
-            <value>1</value>
+            <value>4</value>
           </parameter>
           <parameter>
             <name>MPU_clk_sources</name>
@@ -946,7 +1541,7 @@
           </parameter>
           <parameter>
             <name>OPT_HPS_DDR_PRESENT</name>
-            <value>0</value>
+            <value>1</value>
           </parameter>
           <parameter>
             <name>OPT_coreboot_sel</name>
@@ -962,7 +1557,7 @@
           </parameter>
           <parameter>
             <name>OPT_f2soc_sel</name>
-            <value>1</value>
+            <value>0</value>
           </parameter>
           <parameter>
             <name>OPT_l3cache_size</name>
@@ -1662,7 +2257,7 @@
           </parameter>
           <parameter>
             <name>REG_nocdiv_ccudiv</name>
-            <value>0</value>
+            <value>1</value>
           </parameter>
           <parameter>
             <name>REG_nocdiv_csclk</name>
@@ -1690,7 +2285,7 @@
           </parameter>
           <parameter>
             <name>REG_nocdiv_mpuperiphdiv</name>
-            <value>0</value>
+            <value>2</value>
           </parameter>
           <parameter>
             <name>REG_nocdiv_softphydiv</name>
@@ -1706,7 +2301,7 @@
           </parameter>
           <parameter>
             <name>REG_pin0_sel</name>
-            <value>9</value>
+            <value>8</value>
           </parameter>
           <parameter>
             <name>REG_pin10_sel</name>
@@ -1714,7 +2309,7 @@
           </parameter>
           <parameter>
             <name>REG_pin11_sel</name>
-            <value>8</value>
+            <value>9</value>
           </parameter>
           <parameter>
             <name>REG_pin12_sel</name>
@@ -2206,7 +2801,7 @@
           </parameter>
           <parameter>
             <name>f2s_data_width</name>
-            <value>256</value>
+            <value>0</value>
           </parameter>
           <parameter>
             <name>f2s_mode</name>
@@ -2415,9 +3010,9 @@
         </parameters>
         <interconnectAssignments></interconnectAssignments>
         <className>intel_agilex_5_soc</className>
-        <version>1.0.0</version>
+        <version>2.0.0</version>
         <name>intel_agilex_5_soc_0</name>
-        <uniqueName>ghrd_hps_system_intel_agilex_5_soc_0_intel_agilex_5_soc_100_lqswp3y</uniqueName>
+        <uniqueName>ghrd_hps_system_intel_agilex_5_soc_0_intel_agilex_5_soc_200_siwuvvy</uniqueName>
         <nonce>0</nonce>
         <incidentConnections></incidentConnections>
         <path>ghrd_hps_system_intel_agilex_5_soc_0.intel_agilex_5_soc_0</path>
@@ -2544,11 +3139,11 @@
                 <value>125.0</value>
               </parameter>
               <parameter>
-                <name>FPGA_I3CM_sclk_mhz</name>
+                <name>FPGA_I3C0_sclk_mhz</name>
                 <value>125.0</value>
               </parameter>
               <parameter>
-                <name>FPGA_I3CS_sclk_mhz</name>
+                <name>FPGA_I3C1_sclk_mhz</name>
                 <value>125.0</value>
               </parameter>
               <parameter>
@@ -2688,8 +3283,603 @@
                 <value>32</value>
               </parameter>
               <parameter>
+                <name>HPS_HANDOFF_OPTION_STRING</name>
+                <value>    HPS_PRESENT: true
+    HPS_DDR_PRESENT: true
+    hps_wachdog_expiration: COLD_RESET
+    cores_power_state: 15
+    boot_core: 0
+    l3_cache_size: FULL_ON
+    f2soc_intfcsel: DISABLE
+    f2sdram_intfcsel: ENABLE</value>
+              </parameter>
+              <parameter>
+                <name>HPS_HANDOFF_STRING</name>
+                <value>pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 5
+}
+pinmux_select {
+  value: 5
+}
+pinmux_select {
+  value: 4
+}
+pinmux_select {
+  value: 4
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 9
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 1
+}
+pinmux_select {
+  value: 3
+}
+pinmux_select {
+  value: 3
+}
+pinmux_select {
+  value: 3
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 3
+}
+pinmux_select {
+  value: 3
+}
+pinmux_select {
+  value: 3
+}
+pinmux_select {
+  value: 5
+}
+pinmux_select {
+  value: 5
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 8
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+pinmux_select {
+  value: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+io_delay {
+  output_val: 0
+  input_val: 0
+}
+reg {
+  reg_name: "mainpllgrp.nocclk.src"
+  reg_value: 0
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.cspdbgclk"
+  reg_value: 2
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.cstraceclk"
+  reg_value: 2
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.csclk"
+  reg_value: 0
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.mpuperiphdiv"
+  reg_value: 2
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.ccudiv"
+  reg_value: 1
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.softphydiv"
+  reg_value: 2
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.l4spclk"
+  reg_value: 2
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.l4mpclk"
+  reg_value: 1
+}
+reg {
+  reg_name: "mainpllgrp.nocdiv.l4sysfreeclk"
+  reg_value: 2
+}
+reg {
+  reg_name: "mainpllgrp.pllglob.modclkdiv"
+  reg_value: 7
+}
+reg {
+  reg_name: "mainpllgrp.pllglob.fastrefclk"
+  reg_value: 0
+}
+reg {
+  reg_name: "mainpllgrp.pllglob.psrc"
+  reg_value: 0
+}
+reg {
+  reg_name: "mainpllgrp.pllglob.drefclkdiv"
+  reg_value: 0
+}
+reg {
+  reg_name: "mainpllgrp.pllglob.arefclkdiv"
+  reg_value: 1
+}
+reg {
+  reg_name: "mainpllgrp.fdbck.fdiv"
+  reg_value: 0
+}
+reg {
+  reg_name: "mainpllgrp.pllc0.div"
+  reg_value: 5
+}
+reg {
+  reg_name: "mainpllgrp.pllc1.div"
+  reg_value: 5
+}
+reg {
+  reg_name: "mainpllgrp.pllc2.div"
+  reg_value: 8
+}
+reg {
+  reg_name: "mainpllgrp.pllc3.div"
+  reg_value: 10
+}
+reg {
+  reg_name: "mainpllgrp.pllm.mdiv"
+  reg_value: 160
+}
+reg {
+  reg_name: "perpllgrp.emacctl.emac0sel"
+  reg_value: 0
+}
+reg {
+  reg_name: "perpllgrp.emacctl.emac1sel"
+  reg_value: 0
+}
+reg {
+  reg_name: "perpllgrp.emacctl.emac2sel"
+  reg_value: 0
+}
+reg {
+  reg_name: "perpllgrp.pllglob.modclkdiv"
+  reg_value: 6
+}
+reg {
+  reg_name: "perpllgrp.pllglob.fstrefclk"
+  reg_value: 0
+}
+reg {
+  reg_name: "perpllgrp.pllglob.psrc"
+  reg_value: 0
+}
+reg {
+  reg_name: "perpllgrp.pllglob.drefclkdiv"
+  reg_value: 0
+}
+reg {
+  reg_name: "perpllgrp.pllglob.arefclkdiv"
+  reg_value: 1
+}
+reg {
+  reg_name: "perpllgrp.fdbck.fdiv"
+  reg_value: 0
+}
+reg {
+  reg_name: "perpllgrp.pllc0.div"
+  reg_value: 4
+}
+reg {
+  reg_name: "perpllgrp.pllc1.div"
+  reg_value: 2
+}
+reg {
+  reg_name: "perpllgrp.pllc2.div"
+  reg_value: 140
+}
+reg {
+  reg_name: "perpllgrp.pllc3.div"
+  reg_value: 7
+}
+reg {
+  reg_name: "perpllgrp.pllm.mdiv"
+  reg_value: 140
+}
+reg {
+  reg_name: "ctl.emacactr.src"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.emacactr.cnt"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.emacbctr.src"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.emacbctr.cnt"
+  reg_value: 9
+}
+reg {
+  reg_name: "ctl.emacptpctr.src"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.emacptpctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.gpiodbctr.src"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.gpiodbctr.cnt"
+  reg_value: 1
+}
+reg {
+  reg_name: "perpllgrp.gpiodiv.gpiodbclk"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.s2fuser0ctr.src"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.s2fuser0ctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.s2fuser1ctr.src"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.s2fuser1ctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.psirefctr.src"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.psirefctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.usb31ctr.src"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.usb31ctr.cnt"
+  reg_value: 19
+}
+reg {
+  reg_name: "ctl.dsuctr.src"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.dsuctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.core01ctr.src"
+  reg_value: 1
+}
+reg {
+  reg_name: "ctl.core01ctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.core23ctr.src"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.core2ctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "ctl.core3ctr.cnt"
+  reg_value: 0
+}
+reg {
+  reg_name: "hps_osc_clk_hz"
+  reg_value: 25000000
+}
+reg {
+  reg_name: "fpga_clk_hz"
+  reg_value: 200000000
+}
+</value>
+              </parameter>
+              <parameter>
                 <name>HPS_IO_Enable</name>
-                <value>HCLK:HPS_OSC_CLK,NONE,UART0:TX,UART0:RX,I2C0:SDA,I2C0:SCL,GPIO0:IO6,GPIO0:IO7,GPIO0:IO8,GPIO0:IO9,GPIO0:IO10,GPIO0:IO11,USB1:CLK,USB1:STP,USB1:DIR,USB1:DATA0,USB1:DATA1,USB1:NXT,USB1:DATA2,USB1:DATA3,USB1:DATA4,USB1:DATA5,USB1:DATA6,USB1:DATA7,SDMMC:DATA0,SDMMC:DATA1,SDMMC:CCLK,NONE,GPIO1:IO4,SDMMC:DATA2,SDMMC:DATA3,SDMMC:CMD,MDIO2:MDIO,MDIO2:MDC,GPIO1:IO10,GPIO1:IO11,EMAC2:TX_CLK,EMAC2:TX_CTL,EMAC2:RX_CLK,EMAC2:RX_CTL,EMAC2:TXD0,EMAC2:TXD1,EMAC2:RXD0,EMAC2:RXD1,EMAC2:TXD2,EMAC2:TXD3,EMAC2:RXD2,EMAC2:RXD3</value>
+                <value>NONE,NONE,UART0:TX,UART0:RX,I2C0:SDA,I2C0:SCL,GPIO0:IO6,GPIO0:IO7,GPIO0:IO8,GPIO0:IO9,GPIO0:IO10,HCLK:HPS_OSC_CLK,USB1:CLK,USB1:STP,USB1:DIR,USB1:DATA0,USB1:DATA1,USB1:NXT,USB1:DATA2,USB1:DATA3,USB1:DATA4,USB1:DATA5,USB1:DATA6,USB1:DATA7,SDMMC:DATA0,SDMMC:DATA1,SDMMC:CCLK,NONE,GPIO1:IO4,SDMMC:DATA2,SDMMC:DATA3,SDMMC:CMD,MDIO2:MDIO,MDIO2:MDC,GPIO1:IO10,GPIO1:IO11,EMAC2:TX_CLK,EMAC2:TX_CTL,EMAC2:RX_CLK,EMAC2:RX_CTL,EMAC2:TXD0,EMAC2:TXD1,EMAC2:RXD0,EMAC2:RXD1,EMAC2:TXD2,EMAC2:TXD3,EMAC2:RXD2,EMAC2:RXD3</value>
               </parameter>
               <parameter>
                 <name>I2C0_Mode</name>
@@ -3165,7 +4355,7 @@
               </parameter>
               <parameter>
                 <name>MPFE_f2s_data_width</name>
-                <value>256</value>
+                <value>0</value>
               </parameter>
               <parameter>
                 <name>MPFE_f2s_mode</name>
@@ -3201,7 +4391,7 @@
               </parameter>
               <parameter>
                 <name>MPLL_Frequencies</name>
-                <value>3200,1600,800,1066.7,400</value>
+                <value>4000.00,800.00,800.00,500.00,400.00</value>
               </parameter>
               <parameter>
                 <name>MPLL_Outputs</name>
@@ -3217,11 +4407,11 @@
               </parameter>
               <parameter>
                 <name>MPLL_VCO_M</name>
-                <value>0</value>
+                <value>160</value>
               </parameter>
               <parameter>
                 <name>MPLL_VCO_N</name>
-                <value>0</value>
+                <value>1</value>
               </parameter>
               <parameter>
                 <name>MPLL_VCO_Override_mhz</name>
@@ -3237,7 +4427,7 @@
               </parameter>
               <parameter>
                 <name>MPU_clk_ccu_div</name>
-                <value>1</value>
+                <value>2</value>
               </parameter>
               <parameter>
                 <name>MPU_clk_freq_override_mhz</name>
@@ -3245,7 +4435,7 @@
               </parameter>
               <parameter>
                 <name>MPU_clk_frequencies</name>
-                <value>1066.7,1066.7,1066.7,333,1600,1600</value>
+                <value>500.00,250.0,125.0,875.00,800.00,800.00</value>
               </parameter>
               <parameter>
                 <name>MPU_clk_outputs</name>
@@ -3257,7 +4447,7 @@
               </parameter>
               <parameter>
                 <name>MPU_clk_periph_div</name>
-                <value>1</value>
+                <value>4</value>
               </parameter>
               <parameter>
                 <name>MPU_clk_sources</name>
@@ -3389,7 +4579,7 @@
               </parameter>
               <parameter>
                 <name>PPLL_Frequencies</name>
-                <value>4000,1333.3,800,24,500</value>
+                <value>3500.00,875.00,1750.00,25.00,500.00</value>
               </parameter>
               <parameter>
                 <name>PPLL_Outputs</name>
@@ -3405,11 +4595,11 @@
               </parameter>
               <parameter>
                 <name>PPLL_VCO_M</name>
-                <value>0</value>
+                <value>140</value>
               </parameter>
               <parameter>
                 <name>PPLL_VCO_N</name>
-                <value>0</value>
+                <value>1</value>
               </parameter>
               <parameter>
                 <name>PPLL_VCO_Override_mhz</name>
@@ -3433,7 +4623,7 @@
               </parameter>
               <parameter>
                 <name>Periph_clk_frequencies</name>
-                <value>50,50,50,500,200,100,500,400</value>
+                <value>250,50,250,400.00,200.00,100.00,500.00,20.00</value>
               </parameter>
               <parameter>
                 <name>Periph_clk_outputs</name>
@@ -3445,7 +4635,7 @@
               </parameter>
               <parameter>
                 <name>Periph_clk_sources</name>
-                <value>PeriphC3,PeriphC3,PeriphC3,PeriphC3,MainC3,GDB Free,MainC3,MainC3</value>
+                <value>PeriphC3,PeriphC3,PeriphC3,MainC3,MainC3,GDB Free,PeriphC3,MainC3</value>
               </parameter>
               <parameter>
                 <name>Periph_emac_ptp_freq_override</name>
@@ -3848,7 +5038,7 @@
             <className>intel_sundancemesa_hps</className>
             <version>1.0.0</version>
             <name>sm_hps</name>
-            <uniqueName>ghrd_hps_system_intel_agilex_5_soc_0_intel_sundancemesa_hps_100_rdx45pq</uniqueName>
+            <uniqueName>ghrd_hps_system_intel_agilex_5_soc_0_intel_sundancemesa_hps_100_u5k3bcy</uniqueName>
             <nonce>0</nonce>
             <incidentConnections>
               <incidentConnection>
@@ -3876,7 +5066,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>conduit</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>sm_hps.hps2sdram_interconnect/sm_mpfe.sdram2hps_interconnect</name>
                 <end>sm_mpfe/sdram2hps_interconnect</end>
                 <start>sm_hps/hps2sdram_interconnect</start>
@@ -3902,7 +5092,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>sm_hps.hps_ccu_interconnect_clk/sm_mpfe.mpfe_ccu_interconnect_clk</name>
                 <end>sm_mpfe/mpfe_ccu_interconnect_clk</end>
                 <start>sm_hps/hps_ccu_interconnect_clk</start>
@@ -3924,7 +5114,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>sm_hps.hps_ccu_interconnect_rst/sm_mpfe.mpfe_ccu_interconnect_rst</name>
                 <end>sm_mpfe/mpfe_ccu_interconnect_rst</end>
                 <start>sm_hps/hps_ccu_interconnect_rst</start>
@@ -4022,7 +5212,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>sm_hps.hps_dmi0_interconnect/sm_mpfe.mpfe_dmi0_interconnect</name>
                 <end>sm_mpfe/mpfe_dmi0_interconnect</end>
                 <start>sm_hps/hps_dmi0_interconnect</start>
@@ -4120,7 +5310,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>sm_hps.hps_dmi1_interconnect/sm_mpfe.mpfe_dmi1_interconnect</name>
                 <end>sm_mpfe/mpfe_dmi1_interconnect</end>
                 <start>sm_hps/hps_dmi1_interconnect</start>
@@ -4218,7 +5408,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>sm_hps.hps_s2mpfe_interconnect/sm_mpfe.mpfe_s2mpfe_interconnect</name>
                 <end>sm_mpfe/mpfe_s2mpfe_interconnect</end>
                 <start>sm_hps/hps_s2mpfe_interconnect</start>
@@ -4226,100 +5416,542 @@
               <incidentConnection>
                 <parameters>
                   <parameter>
-                    <name>defaultConnection</name>
-                    <value>false</value>
+                    <name>startPortLSB</name>
+                    <value>0</value>
                   </parameter>
                   <parameter>
-                    <name>qsys_mm.piplineType</name>
-                    <value>PIPELINE_STAGE</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.insertDefaultSlave</name>
-                    <value>FALSE</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.enableOutOfOrderSupport</name>
-                    <value>FALSE</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.enableInstrumentation</name>
-                    <value>FALSE</value>
-                  </parameter>
-                  <parameter>
-                    <name>domainAlias</name>
+                    <name>endPort</name>
                     <value></value>
                   </parameter>
                   <parameter>
-                    <name>qsys_mm.widthAdapterImplementation</name>
-                    <value>GENERIC_CONVERTER</value>
+                    <name>endPortLSB</name>
+                    <value>0</value>
                   </parameter>
                   <parameter>
-                    <name>addressWidthSysInfo</name>
+                    <name>startPort</name>
                     <value></value>
                   </parameter>
                   <parameter>
-                    <name>qsys_mm.interconnectResetSource</name>
-                    <value>DEFAULT</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.burstAdapterImplementation</name>
-                    <value>GENERIC_CONVERTER</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.optimizeRdFifoSize</name>
-                    <value>FALSE</value>
-                  </parameter>
-                  <parameter>
-                    <name>baseAddress</name>
-                    <value>0x0000</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.responseFifoType</name>
-                    <value>REGISTER_BASED</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.clockCrossingAdapter</name>
-                    <value>HANDSHAKE</value>
-                  </parameter>
-                  <parameter>
-                    <name>arbitrationPriority</name>
-                    <value>1</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.maxAdditionalLatency</name>
-                    <value>1</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.syncResets</name>
-                    <value>FALSE</value>
-                  </parameter>
-                  <parameter>
-                    <name>slaveDataWidthSysInfo</name>
-                    <value>-1</value>
-                  </parameter>
-                  <parameter>
-                    <name>addressMapSysInfo</name>
-                    <value></value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.enableAllPipelines</name>
-                    <value>FALSE</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.enableEccProtection</name>
-                    <value>FALSE</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.interconnectType</name>
-                    <value>STANDARD</value>
+                    <name>width</name>
+                    <value>0</value>
                   </parameter>
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
-                <className>avalon</className>
-                <version>23.2</version>
-                <name>sm_mpfe.mpfe_f2soc_interconnect/sm_hps.hps_f2soc_interconnect</name>
-                <end>sm_hps/hps_f2soc_interconnect</end>
-                <start>sm_mpfe/mpfe_f2soc_interconnect</start>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_elasbuf_interconnect/sm_usb31_phy.i_usb31_pipe_ElasBufferMode</name>
+                <end>sm_usb31_phy/i_usb31_pipe_ElasBufferMode</end>
+                <start>sm_hps/usb31_elasbuf_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_loopback_interconnect/sm_usb31_phy.i_usb31_pipe_TxDetectRxLoopback</name>
+                <end>sm_usb31_phy/i_usb31_pipe_TxDetectRxLoopback</end>
+                <start>sm_hps/usb31_loopback_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_piperate_interconnect/sm_usb31_phy.i_usb31_pipe_TxDeEmphasis</name>
+                <end>sm_usb31_phy/i_usb31_pipe_TxDeEmphasis</end>
+                <start>sm_hps/usb31_piperate_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_pwrdown_interconnect/sm_usb31_phy.i_usb31_pipe_PowerDown</name>
+                <end>sm_usb31_phy/i_usb31_pipe_PowerDown</end>
+                <start>sm_hps/usb31_pwrdown_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_rst_interconnect/sm_usb31_phy.i_usb31_pipe_reset_n</name>
+                <end>sm_usb31_phy/i_usb31_pipe_reset_n</end>
+                <start>sm_hps/usb31_rst_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_rxeqtrain_interconnect/sm_usb31_phy.i_usb31_pipe_RxEqTrain</name>
+                <end>sm_usb31_phy/i_usb31_pipe_RxEqTrain</end>
+                <start>sm_hps/usb31_rxeqtrain_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_rxpolarity_interconnect/sm_usb31_phy.i_usb31_pipe_RxPolarity</name>
+                <end>sm_usb31_phy/i_usb31_pipe_RxPolarity</end>
+                <start>sm_hps/usb31_rxpolarity_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_rxterm_interconnect/sm_usb31_phy.i_usb31_pipe_RxTermination</name>
+                <end>sm_usb31_phy/i_usb31_pipe_RxTermination</end>
+                <start>sm_hps/usb31_rxterm_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_txdata_interconnect/sm_usb31_phy.i_usb31_pipe_TxData</name>
+                <end>sm_usb31_phy/i_usb31_pipe_TxData</end>
+                <start>sm_hps/usb31_txdata_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_txdatak_interconnect/sm_usb31_phy.i_usb31_pipe_TxDataK</name>
+                <end>sm_usb31_phy/i_usb31_pipe_TxDataK</end>
+                <start>sm_hps/usb31_txdatak_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_txelecidle_interconnect/sm_usb31_phy.i_usb31_pipe_TxElecidle</name>
+                <end>sm_usb31_phy/i_usb31_pipe_TxElecidle</end>
+                <start>sm_hps/usb31_txelecidle_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_txoneszeros_interconnect/sm_usb31_phy.i_usb31_pipe_TxOnesZeros</name>
+                <end>sm_usb31_phy/i_usb31_pipe_TxOnesZeros</end>
+                <start>sm_hps/usb31_txoneszeros_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_usb31_phy.o_usb31_pipe_PhyStatus/sm_hps.usb31_phystatus_interconnect</name>
+                <end>sm_hps/usb31_phystatus_interconnect</end>
+                <start>sm_usb31_phy/o_usb31_pipe_PhyStatus</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_usb31_phy.o_usb31_pipe_RxData/sm_hps.usb31_rxdata_interconnect</name>
+                <end>sm_hps/usb31_rxdata_interconnect</end>
+                <start>sm_usb31_phy/o_usb31_pipe_RxData</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_usb31_phy.o_usb31_pipe_RxDataK/sm_hps.usb31_rxdatak_interconnect</name>
+                <end>sm_hps/usb31_rxdatak_interconnect</end>
+                <start>sm_usb31_phy/o_usb31_pipe_RxDataK</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_usb31_phy.o_usb31_pipe_RxElecidle/sm_hps.usb31_rxelecidle_interconnect</name>
+                <end>sm_hps/usb31_rxelecidle_interconnect</end>
+                <start>sm_usb31_phy/o_usb31_pipe_RxElecidle</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_usb31_phy.o_usb31_pipe_RxValid/sm_hps.usb31_rxvalid_interconnect</name>
+                <end>sm_hps/usb31_rxvalid_interconnect</end>
+                <start>sm_usb31_phy/o_usb31_pipe_RxValid</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_usb31_phy.o_usb31_pipe_Rxstatus/sm_hps.usb31_rxstatus_interconnect</name>
+                <end>sm_hps/usb31_rxstatus_interconnect</end>
+                <start>sm_usb31_phy/o_usb31_pipe_Rxstatus</start>
               </incidentConnection>
               <incidentConnection>
                 <parameters>
@@ -4342,32 +5974,10 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
-                <name>sm_mpfe.mpfe_f2soc_interconnect_clk/sm_hps.hps_f2soc_interconnect_clk</name>
-                <end>sm_hps/hps_f2soc_interconnect_clk</end>
-                <start>sm_mpfe/mpfe_f2soc_interconnect_clk</start>
-              </incidentConnection>
-              <incidentConnection>
-                <parameters>
-                  <parameter>
-                    <name>resetDomainSysInfo</name>
-                    <value>-1</value>
-                  </parameter>
-                  <parameter>
-                    <name>clockDomainSysInfo</name>
-                    <value>-1</value>
-                  </parameter>
-                  <parameter>
-                    <name>clockResetSysInfo</name>
-                    <value></value>
-                  </parameter>
-                </parameters>
-                <interconnectAssignments></interconnectAssignments>
-                <className>reset</className>
-                <version>23.2</version>
-                <name>sm_mpfe.mpfe_f2soc_interconnect_rst/sm_hps.hps_f2soc_interconnect_rst</name>
-                <end>sm_hps/hps_f2soc_interconnect_rst</end>
-                <start>sm_mpfe/mpfe_f2soc_interconnect_rst</start>
+                <version>23.4</version>
+                <name>sm_usb31_phy.o_usb31_pipe_clk/sm_hps.usb31_clk_interconnect</name>
+                <end>sm_hps/usb31_clk_interconnect</end>
+                <start>sm_usb31_phy/o_usb31_pipe_clk</start>
               </incidentConnection>
             </incidentConnections>
             <path>ghrd_hps_system_intel_agilex_5_soc_0.intel_agilex_5_soc_0.sm_hps</path>
@@ -4384,11 +5994,11 @@
               </parameter>
               <parameter>
                 <name>EMIF_AXI_Enable</name>
-                <value>false</value>
+                <value>true</value>
               </parameter>
               <parameter>
                 <name>EMIF_Topology</name>
-                <value>0</value>
+                <value>1</value>
               </parameter>
               <parameter>
                 <name>device_family</name>
@@ -4408,7 +6018,7 @@
               </parameter>
               <parameter>
                 <name>f2s_data_width</name>
-                <value>256</value>
+                <value>0</value>
               </parameter>
               <parameter>
                 <name>f2s_mode</name>
@@ -4427,7 +6037,7 @@
             <className>intel_sundancemesa_mpfe</className>
             <version>1.0.0</version>
             <name>sm_mpfe</name>
-            <uniqueName>ghrd_hps_system_intel_agilex_5_soc_0_intel_sundancemesa_mpfe_100_gdwz5gy</uniqueName>
+            <uniqueName>ghrd_hps_system_intel_agilex_5_soc_0_intel_sundancemesa_mpfe_100_hrvlzia</uniqueName>
             <nonce>0</nonce>
             <incidentConnections>
               <incidentConnection>
@@ -4455,7 +6065,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>conduit</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>sm_hps.hps2sdram_interconnect/sm_mpfe.sdram2hps_interconnect</name>
                 <end>sm_mpfe/sdram2hps_interconnect</end>
                 <start>sm_hps/hps2sdram_interconnect</start>
@@ -4481,7 +6091,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>sm_hps.hps_ccu_interconnect_clk/sm_mpfe.mpfe_ccu_interconnect_clk</name>
                 <end>sm_mpfe/mpfe_ccu_interconnect_clk</end>
                 <start>sm_hps/hps_ccu_interconnect_clk</start>
@@ -4503,7 +6113,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>reset</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>sm_hps.hps_ccu_interconnect_rst/sm_mpfe.mpfe_ccu_interconnect_rst</name>
                 <end>sm_mpfe/mpfe_ccu_interconnect_rst</end>
                 <start>sm_hps/hps_ccu_interconnect_rst</start>
@@ -4601,7 +6211,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>sm_hps.hps_dmi0_interconnect/sm_mpfe.mpfe_dmi0_interconnect</name>
                 <end>sm_mpfe/mpfe_dmi0_interconnect</end>
                 <start>sm_hps/hps_dmi0_interconnect</start>
@@ -4699,7 +6309,7 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>sm_hps.hps_dmi1_interconnect/sm_mpfe.mpfe_dmi1_interconnect</name>
                 <end>sm_mpfe/mpfe_dmi1_interconnect</end>
                 <start>sm_hps/hps_dmi1_interconnect</start>
@@ -4797,108 +6407,611 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>avalon</className>
-                <version>23.2</version>
+                <version>23.4</version>
                 <name>sm_hps.hps_s2mpfe_interconnect/sm_mpfe.mpfe_s2mpfe_interconnect</name>
                 <end>sm_mpfe/mpfe_s2mpfe_interconnect</end>
                 <start>sm_hps/hps_s2mpfe_interconnect</start>
               </incidentConnection>
+            </incidentConnections>
+            <path>ghrd_hps_system_intel_agilex_5_soc_0.intel_agilex_5_soc_0.sm_mpfe</path>
+          </instanceData>
+          <children></children>
+        </node>
+        <node>
+          <instanceKey xsi:type="xs:string">sm_usb31_phy</instanceKey>
+          <instanceData xsi:type="data">
+            <parameters>
+              <parameter>
+                <name>CORE_SPEEDGRADE</name>
+                <value>{4}</value>
+              </parameter>
+              <parameter>
+                <name>HSSI_SPEEDGRADE</name>
+                <value>{0}</value>
+              </parameter>
+              <parameter>
+                <name>avmm_enable</name>
+                <value>true</value>
+              </parameter>
+              <parameter>
+                <name>device</name>
+                <value>A5ED065BB32AE4SR0</value>
+              </parameter>
+              <parameter>
+                <name>device_family</name>
+                <value>Agilex 5</value>
+              </parameter>
+              <parameter>
+                <name>device_iobank_rev</name>
+                <value>IO96B</value>
+              </parameter>
+              <parameter>
+                <name>die_revisions</name>
+                <value>MAIN_SM7_REVA</value>
+              </parameter>
+              <parameter>
+                <name>die_types</name>
+                <value>MAIN_SM7</value>
+              </parameter>
+              <parameter>
+                <name>message_level</name>
+                <value>error</value>
+              </parameter>
+              <parameter>
+                <name>pma_data_rate</name>
+                <value>5000</value>
+              </parameter>
+              <parameter>
+                <name>ref_clk</name>
+                <value>100</value>
+              </parameter>
+            </parameters>
+            <interconnectAssignments></interconnectAssignments>
+            <className>intel_usbphy_gts</className>
+            <version>1.0.0</version>
+            <name>sm_usb31_phy</name>
+            <uniqueName>ghrd_hps_system_intel_agilex_5_soc_0_intel_usbphy_gts_100_mk4aksi</uniqueName>
+            <nonce>0</nonce>
+            <incidentConnections>
               <incidentConnection>
                 <parameters>
                   <parameter>
-                    <name>defaultConnection</name>
-                    <value>false</value>
+                    <name>startPortLSB</name>
+                    <value>0</value>
                   </parameter>
                   <parameter>
-                    <name>qsys_mm.piplineType</name>
-                    <value>PIPELINE_STAGE</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.insertDefaultSlave</name>
-                    <value>FALSE</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.enableOutOfOrderSupport</name>
-                    <value>FALSE</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.enableInstrumentation</name>
-                    <value>FALSE</value>
-                  </parameter>
-                  <parameter>
-                    <name>domainAlias</name>
+                    <name>endPort</name>
                     <value></value>
                   </parameter>
                   <parameter>
-                    <name>qsys_mm.widthAdapterImplementation</name>
-                    <value>GENERIC_CONVERTER</value>
+                    <name>endPortLSB</name>
+                    <value>0</value>
                   </parameter>
                   <parameter>
-                    <name>addressWidthSysInfo</name>
+                    <name>startPort</name>
                     <value></value>
                   </parameter>
                   <parameter>
-                    <name>qsys_mm.interconnectResetSource</name>
-                    <value>DEFAULT</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.burstAdapterImplementation</name>
-                    <value>GENERIC_CONVERTER</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.optimizeRdFifoSize</name>
-                    <value>FALSE</value>
-                  </parameter>
-                  <parameter>
-                    <name>baseAddress</name>
-                    <value>0x0000</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.responseFifoType</name>
-                    <value>REGISTER_BASED</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.clockCrossingAdapter</name>
-                    <value>HANDSHAKE</value>
-                  </parameter>
-                  <parameter>
-                    <name>arbitrationPriority</name>
-                    <value>1</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.maxAdditionalLatency</name>
-                    <value>1</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.syncResets</name>
-                    <value>FALSE</value>
-                  </parameter>
-                  <parameter>
-                    <name>slaveDataWidthSysInfo</name>
-                    <value>-1</value>
-                  </parameter>
-                  <parameter>
-                    <name>addressMapSysInfo</name>
-                    <value></value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.enableAllPipelines</name>
-                    <value>FALSE</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.enableEccProtection</name>
-                    <value>FALSE</value>
-                  </parameter>
-                  <parameter>
-                    <name>qsys_mm.interconnectType</name>
-                    <value>STANDARD</value>
+                    <name>width</name>
+                    <value>0</value>
                   </parameter>
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
-                <className>avalon</className>
-                <version>23.2</version>
-                <name>sm_mpfe.mpfe_f2soc_interconnect/sm_hps.hps_f2soc_interconnect</name>
-                <end>sm_hps/hps_f2soc_interconnect</end>
-                <start>sm_mpfe/mpfe_f2soc_interconnect</start>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_elasbuf_interconnect/sm_usb31_phy.i_usb31_pipe_ElasBufferMode</name>
+                <end>sm_usb31_phy/i_usb31_pipe_ElasBufferMode</end>
+                <start>sm_hps/usb31_elasbuf_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_loopback_interconnect/sm_usb31_phy.i_usb31_pipe_TxDetectRxLoopback</name>
+                <end>sm_usb31_phy/i_usb31_pipe_TxDetectRxLoopback</end>
+                <start>sm_hps/usb31_loopback_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_piperate_interconnect/sm_usb31_phy.i_usb31_pipe_TxDeEmphasis</name>
+                <end>sm_usb31_phy/i_usb31_pipe_TxDeEmphasis</end>
+                <start>sm_hps/usb31_piperate_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_pwrdown_interconnect/sm_usb31_phy.i_usb31_pipe_PowerDown</name>
+                <end>sm_usb31_phy/i_usb31_pipe_PowerDown</end>
+                <start>sm_hps/usb31_pwrdown_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_rst_interconnect/sm_usb31_phy.i_usb31_pipe_reset_n</name>
+                <end>sm_usb31_phy/i_usb31_pipe_reset_n</end>
+                <start>sm_hps/usb31_rst_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_rxeqtrain_interconnect/sm_usb31_phy.i_usb31_pipe_RxEqTrain</name>
+                <end>sm_usb31_phy/i_usb31_pipe_RxEqTrain</end>
+                <start>sm_hps/usb31_rxeqtrain_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_rxpolarity_interconnect/sm_usb31_phy.i_usb31_pipe_RxPolarity</name>
+                <end>sm_usb31_phy/i_usb31_pipe_RxPolarity</end>
+                <start>sm_hps/usb31_rxpolarity_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_rxterm_interconnect/sm_usb31_phy.i_usb31_pipe_RxTermination</name>
+                <end>sm_usb31_phy/i_usb31_pipe_RxTermination</end>
+                <start>sm_hps/usb31_rxterm_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_txdata_interconnect/sm_usb31_phy.i_usb31_pipe_TxData</name>
+                <end>sm_usb31_phy/i_usb31_pipe_TxData</end>
+                <start>sm_hps/usb31_txdata_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_txdatak_interconnect/sm_usb31_phy.i_usb31_pipe_TxDataK</name>
+                <end>sm_usb31_phy/i_usb31_pipe_TxDataK</end>
+                <start>sm_hps/usb31_txdatak_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_txelecidle_interconnect/sm_usb31_phy.i_usb31_pipe_TxElecidle</name>
+                <end>sm_usb31_phy/i_usb31_pipe_TxElecidle</end>
+                <start>sm_hps/usb31_txelecidle_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_hps.usb31_txoneszeros_interconnect/sm_usb31_phy.i_usb31_pipe_TxOnesZeros</name>
+                <end>sm_usb31_phy/i_usb31_pipe_TxOnesZeros</end>
+                <start>sm_hps/usb31_txoneszeros_interconnect</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_usb31_phy.o_usb31_pipe_PhyStatus/sm_hps.usb31_phystatus_interconnect</name>
+                <end>sm_hps/usb31_phystatus_interconnect</end>
+                <start>sm_usb31_phy/o_usb31_pipe_PhyStatus</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_usb31_phy.o_usb31_pipe_RxData/sm_hps.usb31_rxdata_interconnect</name>
+                <end>sm_hps/usb31_rxdata_interconnect</end>
+                <start>sm_usb31_phy/o_usb31_pipe_RxData</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_usb31_phy.o_usb31_pipe_RxDataK/sm_hps.usb31_rxdatak_interconnect</name>
+                <end>sm_hps/usb31_rxdatak_interconnect</end>
+                <start>sm_usb31_phy/o_usb31_pipe_RxDataK</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_usb31_phy.o_usb31_pipe_RxElecidle/sm_hps.usb31_rxelecidle_interconnect</name>
+                <end>sm_hps/usb31_rxelecidle_interconnect</end>
+                <start>sm_usb31_phy/o_usb31_pipe_RxElecidle</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_usb31_phy.o_usb31_pipe_RxValid/sm_hps.usb31_rxvalid_interconnect</name>
+                <end>sm_hps/usb31_rxvalid_interconnect</end>
+                <start>sm_usb31_phy/o_usb31_pipe_RxValid</start>
+              </incidentConnection>
+              <incidentConnection>
+                <parameters>
+                  <parameter>
+                    <name>startPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>endPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>endPortLSB</name>
+                    <value>0</value>
+                  </parameter>
+                  <parameter>
+                    <name>startPort</name>
+                    <value></value>
+                  </parameter>
+                  <parameter>
+                    <name>width</name>
+                    <value>0</value>
+                  </parameter>
+                </parameters>
+                <interconnectAssignments></interconnectAssignments>
+                <className>conduit</className>
+                <version>23.4</version>
+                <name>sm_usb31_phy.o_usb31_pipe_Rxstatus/sm_hps.usb31_rxstatus_interconnect</name>
+                <end>sm_hps/usb31_rxstatus_interconnect</end>
+                <start>sm_usb31_phy/o_usb31_pipe_Rxstatus</start>
               </incidentConnection>
               <incidentConnection>
                 <parameters>
@@ -4921,35 +7034,13 @@
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
                 <className>clock</className>
-                <version>23.2</version>
-                <name>sm_mpfe.mpfe_f2soc_interconnect_clk/sm_hps.hps_f2soc_interconnect_clk</name>
-                <end>sm_hps/hps_f2soc_interconnect_clk</end>
-                <start>sm_mpfe/mpfe_f2soc_interconnect_clk</start>
-              </incidentConnection>
-              <incidentConnection>
-                <parameters>
-                  <parameter>
-                    <name>resetDomainSysInfo</name>
-                    <value>-1</value>
-                  </parameter>
-                  <parameter>
-                    <name>clockDomainSysInfo</name>
-                    <value>-1</value>
-                  </parameter>
-                  <parameter>
-                    <name>clockResetSysInfo</name>
-                    <value></value>
-                  </parameter>
-                </parameters>
-                <interconnectAssignments></interconnectAssignments>
-                <className>reset</className>
-                <version>23.2</version>
-                <name>sm_mpfe.mpfe_f2soc_interconnect_rst/sm_hps.hps_f2soc_interconnect_rst</name>
-                <end>sm_hps/hps_f2soc_interconnect_rst</end>
-                <start>sm_mpfe/mpfe_f2soc_interconnect_rst</start>
+                <version>23.4</version>
+                <name>sm_usb31_phy.o_usb31_pipe_clk/sm_hps.usb31_clk_interconnect</name>
+                <end>sm_hps/usb31_clk_interconnect</end>
+                <start>sm_usb31_phy/o_usb31_pipe_clk</start>
               </incidentConnection>
             </incidentConnections>
-            <path>ghrd_hps_system_intel_agilex_5_soc_0.intel_agilex_5_soc_0.sm_mpfe</path>
+            <path>ghrd_hps_system_intel_agilex_5_soc_0.intel_agilex_5_soc_0.sm_usb31_phy</path>
           </instanceData>
           <children></children>
         </node>

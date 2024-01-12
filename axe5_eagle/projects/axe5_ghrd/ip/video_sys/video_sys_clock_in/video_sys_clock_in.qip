@@ -1,5 +1,5 @@
 set_global_assignment -entity "video_sys_clock_in" -library "video_sys_clock_in" -name IP_TOOL_NAME "QsysPrimePro"
-set_global_assignment -entity "video_sys_clock_in" -library "video_sys_clock_in" -name IP_TOOL_VERSION "23.2.1"
+set_global_assignment -entity "video_sys_clock_in" -library "video_sys_clock_in" -name IP_TOOL_VERSION "23.4"
 set_global_assignment -entity "video_sys_clock_in" -library "video_sys_clock_in" -name IP_TOOL_ENV "QsysPrimePro"
 set_global_assignment -entity "video_sys_clock_in" -library "video_sys_clock_in" -name IP_TOOL_VENDOR_NAME "Intel Corporation"
 set_global_assignment -entity "video_sys_clock_in" -library "video_sys_clock_in" -name IP_TOP_LEVEL_COMPONENT_NAME "altera_clock_bridge"

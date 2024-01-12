@@ -83,9 +83,9 @@
         </parameters>
         <interconnectAssignments></interconnectAssignments>
         <className>altera_avalon_jtag_uart</className>
-        <version>19.2.3</version>
+        <version>19.2.4</version>
         <name>jtag_uart_0</name>
-        <uniqueName>peripheral_sys_jtag_uart_0_altera_avalon_jtag_uart_1923_xb3vxpq</uniqueName>
+        <uniqueName>peripheral_sys_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq</uniqueName>
         <nonce>0</nonce>
         <incidentConnections></incidentConnections>
         <path>peripheral_sys_jtag_uart_0.jtag_uart_0</path>

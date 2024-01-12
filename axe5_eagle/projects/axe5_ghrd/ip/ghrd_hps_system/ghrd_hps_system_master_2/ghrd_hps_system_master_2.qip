@@ -1,5 +1,5 @@
 set_global_assignment -entity "ghrd_hps_system_master_2" -library "ghrd_hps_system_master_2" -name IP_TOOL_NAME "QsysPrimePro"
-set_global_assignment -entity "ghrd_hps_system_master_2" -library "ghrd_hps_system_master_2" -name IP_TOOL_VERSION "23.2.1"
+set_global_assignment -entity "ghrd_hps_system_master_2" -library "ghrd_hps_system_master_2" -name IP_TOOL_VERSION "23.4"
 set_global_assignment -entity "ghrd_hps_system_master_2" -library "ghrd_hps_system_master_2" -name IP_TOOL_ENV "QsysPrimePro"
 set_global_assignment -entity "ghrd_hps_system_master_2" -library "ghrd_hps_system_master_2" -name IP_TOOL_VENDOR_NAME "Intel Corporation"
 set_global_assignment -entity "ghrd_hps_system_master_2" -library "ghrd_hps_system_master_2" -name IP_TOP_LEVEL_COMPONENT_NAME "altera_jtag_avalon_master"
@@ -89,17 +89,17 @@ set_global_assignment -entity "ghrd_hps_system_master_2_channel_adapter_1921_fka
 set_global_assignment -entity "ghrd_hps_system_master_2_channel_adapter_1921_fkajlia" -library "channel_adapter_1921" -name IP_COMPONENT_GROUP "QmFzaWMgRnVuY3Rpb25zL0JyaWRnZXMgYW5kIEFkYXB0b3JzL1N0cmVhbWluZw=="
 set_global_assignment -entity "ghrd_hps_system_master_2_channel_adapter_1921_fkajlia" -library "channel_adapter_1921" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly9kb2N1bWVudGF0aW9uLmFsdGVyYS5jb20vIy9saW5rL213aDE0MDk5NjAxODE2NDEvbXdoMTQwOTk1ODgyODczMg=="
 set_global_assignment -entity "ghrd_hps_system_master_2_channel_adapter_1921_fkajlia" -library "channel_adapter_1921" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly9kb2N1bWVudGF0aW9uLmFsdGVyYS5jb20vIy9saW5rL2hjbzE0MjE2OTgwNDIwODcvaGNvMTQyMTY5ODAxMzQwOA=="
-set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1921" -name IP_COMPONENT_NAME "YWx0ZXJhX3Jlc2V0X2NvbnRyb2xsZXI="
-set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1921" -name IP_COMPONENT_DISPLAY_NAME "TWVybGluIFJlc2V0IENvbnRyb2xsZXIgSW50ZWwgRlBHQSBJUA=="
-set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1921" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
-set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1921" -name IP_COMPONENT_INTERNAL "Off"
-set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1921" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
-set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1921" -name IP_COMPONENT_VERSION "MTkuMi4x"
-set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1921" -name IP_COMPONENT_DESCRIPTION "Rm9yIHN5c3RlbXMgd2l0aCBtdWx0aXBsZSByZXNldCBpbnB1dHMsIHRoZSBNZXJsaW4gUmVzZXQgQ29udHJvbGxlciBPUnMgYWxsIHJlc2V0IGlucHV0cyBhbmQgZ2VuZXJhdGVzIGEgc2luZ2xlIHJlc2V0IG91dHB1dC4="
-set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1921" -name IP_COMPONENT_GROUP "QmFzaWMgRnVuY3Rpb25zL0Nsb2NrczsgUExMcyBhbmQgUmVzZXRz"
-set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1921" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL3Byb2dyYW1tYWJsZS9kb2N1bWVudGF0aW9uL3pjbjE1MTM5ODcyODI5MzUuaHRtbCNtd2gxNDA5OTU4ODI4NzMy"
-set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1921" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvZGFtL3d3dy9wcm9ncmFtbWFibGUvdXMvZW4vcGRmcy9saXRlcmF0dXJlL3VnL3VnLXFwcC1wbGF0Zm9ybS1kZXNpZ25lci5wZGY="
-set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1921" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL3Byb2dyYW1tYWJsZS9kb2N1bWVudGF0aW9uL2hjbzE0MTY4MzYxNDU1NTUuaHRtbCNoY28xNDE2ODM2NjUzMjIx"
+set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_COMPONENT_NAME "YWx0ZXJhX3Jlc2V0X2NvbnRyb2xsZXI="
+set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_COMPONENT_DISPLAY_NAME "TWVybGluIFJlc2V0IENvbnRyb2xsZXIgSW50ZWwgRlBHQSBJUA=="
+set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_COMPONENT_VERSION "MTkuMi4y"
+set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_COMPONENT_DESCRIPTION "Rm9yIHN5c3RlbXMgd2l0aCBtdWx0aXBsZSByZXNldCBpbnB1dHMsIHRoZSBNZXJsaW4gUmVzZXQgQ29udHJvbGxlciBPUnMgYWxsIHJlc2V0IGlucHV0cyBhbmQgZ2VuZXJhdGVzIGEgc2luZ2xlIHJlc2V0IG91dHB1dC4="
+set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_COMPONENT_GROUP "QmFzaWMgRnVuY3Rpb25zL0Nsb2NrczsgUExMcyBhbmQgUmVzZXRz"
+set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL3Byb2dyYW1tYWJsZS9kb2N1bWVudGF0aW9uL3pjbjE1MTM5ODcyODI5MzUuaHRtbCNtd2gxNDA5OTU4ODI4NzMy"
+set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvZGFtL3d3dy9wcm9ncmFtbWFibGUvdXMvZW4vcGRmcy9saXRlcmF0dXJlL3VnL3VnLXFwcC1wbGF0Zm9ybS1kZXNpZ25lci5wZGY="
+set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL3Byb2dyYW1tYWJsZS9kb2N1bWVudGF0aW9uL2hjbzE0MTY4MzYxNDU1NTUuaHRtbCNoY28xNDE2ODM2NjUzMjIx"
 set_global_assignment -entity "ghrd_hps_system_master_2_altera_jtag_avalon_master_191_3zppvky" -library "altera_jtag_avalon_master_191" -name IP_COMPONENT_NAME "Z2hyZF9ocHNfc3lzdGVtX21hc3Rlcl8yX2FsdGVyYV9qdGFnX2F2YWxvbl9tYXN0ZXJfMTkxXzN6cHB2a3k="
 set_global_assignment -entity "ghrd_hps_system_master_2_altera_jtag_avalon_master_191_3zppvky" -library "altera_jtag_avalon_master_191" -name IP_COMPONENT_DISPLAY_NAME "SlRBRyB0byBBdmFsb24gTWFzdGVyIEJyaWRnZSBJbnRlbCBGUEdBIElQ"
 set_global_assignment -entity "ghrd_hps_system_master_2_altera_jtag_avalon_master_191_3zppvky" -library "altera_jtag_avalon_master_191" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
@@ -137,9 +137,9 @@ set_global_assignment -library "altera_avalon_st_packets_to_bytes_1922" -name VE
 set_global_assignment -library "altera_avalon_packets_to_master_1922" -name VERILOG_FILE [file join $::quartus(qip_path) "altera_avalon_packets_to_master_1922/synth/altera_avalon_packets_to_master.v"]
 set_global_assignment -library "channel_adapter_1921" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "channel_adapter_1921/synth/ghrd_hps_system_master_2_channel_adapter_1921_5wnzrci.sv"]
 set_global_assignment -library "channel_adapter_1921" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "channel_adapter_1921/synth/ghrd_hps_system_master_2_channel_adapter_1921_fkajlia.sv"]
-set_global_assignment -library "altera_reset_controller_1921" -name VERILOG_FILE [file join $::quartus(qip_path) "altera_reset_controller_1921/synth/altera_reset_controller.v"]
-set_global_assignment -library "altera_reset_controller_1921" -name VERILOG_FILE [file join $::quartus(qip_path) "altera_reset_controller_1921/synth/altera_reset_synchronizer.v"]
-set_instance_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1921" -name SDC_ENTITY_FILE [file join $::quartus(qip_path) "altera_reset_controller_1921/synth/altera_reset_controller.sdc"] -no_sdc_promotion  -no_auto_inst_discovery 
+set_global_assignment -library "altera_reset_controller_1922" -name VERILOG_FILE [file join $::quartus(qip_path) "altera_reset_controller_1922/synth/altera_reset_controller.v"]
+set_global_assignment -library "altera_reset_controller_1922" -name VERILOG_FILE [file join $::quartus(qip_path) "altera_reset_controller_1922/synth/altera_reset_synchronizer.v"]
+set_instance_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name SDC_ENTITY_FILE [file join $::quartus(qip_path) "altera_reset_controller_1922/synth/altera_reset_controller.sdc"] -no_sdc_promotion 
 set_global_assignment -library "altera_jtag_avalon_master_191" -name VERILOG_FILE [file join $::quartus(qip_path) "altera_jtag_avalon_master_191/synth/ghrd_hps_system_master_2_altera_jtag_avalon_master_191_3zppvky.v"]
 set_global_assignment -library "ghrd_hps_system_master_2" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/ghrd_hps_system_master_2.v"]
 
@@ -147,9 +147,9 @@ set_global_assignment -library "ghrd_hps_system_master_2" -name VERILOG_FILE [fi
 set_global_assignment -entity "ghrd_hps_system_master_2_altera_jtag_avalon_master_191_3zppvky" -library "altera_jtag_avalon_master_191" -name IP_TOOL_NAME "altera_jtag_avalon_master"
 set_global_assignment -entity "ghrd_hps_system_master_2_altera_jtag_avalon_master_191_3zppvky" -library "altera_jtag_avalon_master_191" -name IP_TOOL_VERSION "19.1"
 set_global_assignment -entity "ghrd_hps_system_master_2_altera_jtag_avalon_master_191_3zppvky" -library "altera_jtag_avalon_master_191" -name IP_TOOL_ENV "QsysPrimePro"
-set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1921" -name IP_TOOL_NAME "altera_reset_controller"
-set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1921" -name IP_TOOL_VERSION "19.2.1"
-set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1921" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_TOOL_NAME "altera_reset_controller"
+set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_TOOL_VERSION "19.2.2"
+set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_TOOL_ENV "QsysPrimePro"
 set_global_assignment -entity "ghrd_hps_system_master_2_channel_adapter_1921_fkajlia" -library "channel_adapter_1921" -name IP_TOOL_NAME "channel_adapter"
 set_global_assignment -entity "ghrd_hps_system_master_2_channel_adapter_1921_fkajlia" -library "channel_adapter_1921" -name IP_TOOL_VERSION "19.2.1"
 set_global_assignment -entity "ghrd_hps_system_master_2_channel_adapter_1921_fkajlia" -library "channel_adapter_1921" -name IP_TOOL_ENV "QsysPrimePro"

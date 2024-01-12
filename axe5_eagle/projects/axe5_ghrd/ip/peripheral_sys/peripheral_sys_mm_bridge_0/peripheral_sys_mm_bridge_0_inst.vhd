@@ -1,13 +1,15 @@
 	component peripheral_sys_mm_bridge_0 is
 		generic (
-			DATA_WIDTH        : integer := 32;
-			SYMBOL_WIDTH      : integer := 8;
-			HDL_ADDR_WIDTH    : integer := 24;
-			BURSTCOUNT_WIDTH  : integer := 1;
-			PIPELINE_COMMAND  : integer := 1;
-			PIPELINE_RESPONSE : integer := 1;
-			SYNC_RESET        : integer := 0;
-			USE_WRITERESPONSE : integer := 0
+			DATA_WIDTH               : integer := 32;
+			SYMBOL_WIDTH             : integer := 8;
+			HDL_ADDR_WIDTH           : integer := 24;
+			BURSTCOUNT_WIDTH         : integer := 1;
+			PIPELINE_COMMAND         : integer := 1;
+			PIPELINE_RESPONSE        : integer := 1;
+			SYNC_RESET               : integer := 0;
+			USE_WRITERESPONSE        : integer := 0;
+			S0_WAITREQUEST_ALLOWANCE : integer := 0;
+			M0_WAITREQUEST_ALLOWANCE : integer := 0
 		);
 		port (
 			clk              : in  std_logic                                     := 'X';             -- clk
@@ -37,14 +39,16 @@
 
 	u0 : component peripheral_sys_mm_bridge_0
 		generic map (
-			DATA_WIDTH        => INTEGER_VALUE_FOR_DATA_WIDTH,
-			SYMBOL_WIDTH      => INTEGER_VALUE_FOR_SYMBOL_WIDTH,
-			HDL_ADDR_WIDTH    => INTEGER_VALUE_FOR_HDL_ADDR_WIDTH,
-			BURSTCOUNT_WIDTH  => INTEGER_VALUE_FOR_BURSTCOUNT_WIDTH,
-			PIPELINE_COMMAND  => INTEGER_VALUE_FOR_PIPELINE_COMMAND,
-			PIPELINE_RESPONSE => INTEGER_VALUE_FOR_PIPELINE_RESPONSE,
-			SYNC_RESET        => INTEGER_VALUE_FOR_SYNC_RESET,
-			USE_WRITERESPONSE => INTEGER_VALUE_FOR_USE_WRITERESPONSE
+			DATA_WIDTH               => INTEGER_VALUE_FOR_DATA_WIDTH,
+			SYMBOL_WIDTH             => INTEGER_VALUE_FOR_SYMBOL_WIDTH,
+			HDL_ADDR_WIDTH           => INTEGER_VALUE_FOR_HDL_ADDR_WIDTH,
+			BURSTCOUNT_WIDTH         => INTEGER_VALUE_FOR_BURSTCOUNT_WIDTH,
+			PIPELINE_COMMAND         => INTEGER_VALUE_FOR_PIPELINE_COMMAND,
+			PIPELINE_RESPONSE        => INTEGER_VALUE_FOR_PIPELINE_RESPONSE,
+			SYNC_RESET               => INTEGER_VALUE_FOR_SYNC_RESET,
+			USE_WRITERESPONSE        => INTEGER_VALUE_FOR_USE_WRITERESPONSE,
+			S0_WAITREQUEST_ALLOWANCE => INTEGER_VALUE_FOR_S0_WAITREQUEST_ALLOWANCE,
+			M0_WAITREQUEST_ALLOWANCE => INTEGER_VALUE_FOR_M0_WAITREQUEST_ALLOWANCE
 		)
 		port map (
 			clk              => CONNECTED_TO_clk,              --   clk.clk

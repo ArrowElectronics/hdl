@@ -143,11 +143,11 @@ set_false_path -to [get_pins -compatibility_mode -nocase *|alt_rst_req_sync_out_
 # -----------------------------------------------------------------------------
 proc constrain_alt_handshake_clock_crosser_skew { path } {
 
-    set in_regs  [ get_registers $path|*alt_hiconnect_clock_crosser*|in_data_buffer* ] 
-    set out_regs [ get_registers $path|*alt_hiconnect_clock_crosser*|out_data_buffer* ] 
+    set in_regs  [ get_registers $path|*clock_xer|in_data_buffer* ] 
+    set out_regs [ get_registers $path|*clock_xer|out_data_buffer* ] 
 
-    set in_regs [ add_to_collection $in_regs  [ get_registers $path|*alt_hiconnect_clock_crosser*|in_data_toggle ] ]
-    set out_regs [ add_to_collection $out_regs [ get_registers $path|*alt_hiconnect_clock_crosser:*|altera_std_synchronizer:in_to_out_synchronizer|din_s1 ] ]
+    set in_regs [ add_to_collection $in_regs  [ get_registers $path|*clock_xer|in_data_toggle ] ]
+    set out_regs [ add_to_collection $out_regs [ get_registers $path|*clock_xer|in_to_out_synchronizer|din_s1 ] ]
 
     set_max_skew -from $in_regs -to $out_regs -get_skew_value_from_clock_period dst_clock_period -skew_value_multiplier 0.8
 }
