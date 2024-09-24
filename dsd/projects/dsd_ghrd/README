@@ -1,0 +1,21 @@
+Verified with Quartus 22.1 Standard
+
+Notes
+-----
+
+1. Added a DDR3 controller connected to DDR3 on the FPGA
+2. Controller is mastered by
+	- HPS H2F bridge (mapped at address 0xc0000000 in the HPS)
+		- Memory can be accessed from u-boot
+			- Boot to the u-boot prompt	// press any key to halt u-boot	
+			- run bridge_enable_handoff	// enable HPS to FPGA bridge
+			- mw.l 0xc0000000 0x12345678	// write 0x12345678 to address 0x0000 in DDR3
+			- md.l 0xc0000000 1		// display address 0x0000
+	- JTAG to Avalon Master Bridge
+		- Download the sof file to the DataStorm DAQ
+		- Memory can be accessed from System Console. Use the following commands
+			- get_service_paths master
+			- set ddr3_fpga_master [lindex [get_service_paths master] 0]
+			- open_service master $ddr3_fpga_master
+			- master_write_32 $ddr3_fpga_master 0x00000000 0x12345678 1
+			- master_read_32 $ddr3_fpga_master 0x00000000
