@@ -31,7 +31,6 @@
 *_html
 *.sld
 *.txt
-*.qsys
 *.csv
 xst
 netgen
@@ -55,14 +54,8 @@ db
 *.fit.*
 *.map.*
 *.sta.*
-*.qsf
-*.qpf
-*.qws
-*.sof
-*.rbf
-system_qsys_script.tcl
+
 hc_output
-hps_isw_handoff
 hps_sdram_*.csv
 incremental_db
 system_bd/
